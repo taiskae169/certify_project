@@ -51,11 +51,7 @@
 	<!-- End of Library setting for Spring Framework -->
 	
 	<!-- https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/jstl -->
-	<dependency>
-	    <groupId>javax.servlet.jsp.jstl</groupId>
-	    <artifactId>jstl</artifactId>
-	    <version>1.2</version>
-	</dependency>
+
 	
 	
 	
