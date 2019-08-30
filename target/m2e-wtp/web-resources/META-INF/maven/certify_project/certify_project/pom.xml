@@ -147,10 +147,14 @@
 	    <groupId>com.google.code.gson</groupId>
 	    <artifactId>gson</artifactId>
 	    <version>2.8.5</version>
-<<<<<<< HEAD
-	</dependency></dependencies>
-=======
+
 	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-core</artifactId>
+		<version>4.3.4.RELEASE</version>
+	</dependency>
+
 	
 	<!-- http://opencsv.sourceforge.net/apidocs/au/com/bytecode/opencsv/CSVWriter.html -->
 	<dependency>
@@ -163,7 +167,6 @@
 	
 	
   </dependencies>
->>>>>>> branch 'master' of https://github.com/taiskae169/certify_project.git
   
   <build>
     <sourceDirectory>src</sourceDirectory>
