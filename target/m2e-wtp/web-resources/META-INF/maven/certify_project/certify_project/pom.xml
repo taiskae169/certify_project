@@ -50,6 +50,8 @@
 	
 	<!-- End of Library setting for Spring Framework -->
 	
+	<!-- ======================================================================================= -->
+	
 	<!-- start of Library setting for jstl -->
 	
 		<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
@@ -67,6 +69,8 @@
 
 
 	<!-- End of Library setting for jstl -->
+	
+	<!-- ======================================================================================= -->
 	
 	
 	<!-- Start of Library setting for mybatis -->
@@ -88,6 +92,8 @@
 
 
 	<!-- End of Library setting for mybatis -->
+	
+	<!-- ======================================================================================= -->
 	
 	<!-- Start of Library setting for R -->
 	
@@ -113,6 +119,9 @@
 	
 	<!-- End of Library setting for mybatis -->
 	
+	<!-- ======================================================================================= -->
+	
+	<!-- Others -->
 	
 	<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 	<dependency>
