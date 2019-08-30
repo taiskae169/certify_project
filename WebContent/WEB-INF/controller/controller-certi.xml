@@ -19,6 +19,17 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
+	 <bean id="dataSource" 
+   		class="org.apache.tomcat.dbcp.dbcp2.BasicDataSource"
+   		p:driverClassName="oracle.jdbc.driver.OracleDriver"
+   		p:url="jdbc:oracle:thin:@nullmaster.iptime.org:1521:xe"
+   		p:username="class12"
+   		p:password="class12"
+   		destroy-method="close"
+   
+   />
+ 
+	
 	
 	
 	
