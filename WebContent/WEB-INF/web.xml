@@ -14,7 +14,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>certi</servlet-name>
-		<url-pattern>*.net</url-pattern>
+		<url-pattern>*.certi</url-pattern>
 	</servlet-mapping>
 	
 	<filter>
