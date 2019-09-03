@@ -10,14 +10,24 @@ public class Certi_Bean {
 
 	ModelAndView mv =null;
 	
-	@RequestMapping("main")
-	public ModelAndView main() {
+	@RequestMapping("main.certi")
+	public ModelAndView mainpage() {
 		mv = new ModelAndView();
 		
-		System.out.println("start");
 
-		mv.setViewName("/test");
+		mv.setViewName("/main/main");
 		return mv;
 	}
+	
+//	@RequestMapping("error.certi")
+//	public ModelAndView errorpage() {
+//		mv = new ModelAndView();
+//		
+//		System.out.println("errorpage");
+//		mv.setViewName("error");
+//		
+//		return mv;
+//	}
+//	에러페이지 일시 보류
 	
 }
