@@ -117,12 +117,13 @@ public class OverrideSource {
 			
 			// 회원 경력정보
 			sql="select * from USER_CAREER where id=?";
-			userCareerVO uscrvo = new userCareerVO();
+			userCareerVO uscrvo = null;
 			returnCareer = new ArrayList<userCareerVO>();
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
+				uscrvo = new userCareerVO();
 				uscrvo.setNum(rs.getInt("num"));
 				uscrvo.setId(rs.getString("id"));
 				uscrvo.setCompany(rs.getString("company"));
