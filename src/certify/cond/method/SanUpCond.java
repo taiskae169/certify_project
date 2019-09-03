@@ -9,6 +9,7 @@ import certify.vo.CertifyVO;
 import user.vo.userCareerSub;
 import user.vo.userCareerVO;
 import user.vo.userCertiVO;
+import user.vo.userEduVO;
 
 /*
  * 산업기사 자격증 조건문
@@ -25,11 +26,7 @@ public class SanUpCond extends OverrideSource{
 	private Date today = new Date();
 	
 	// 학력정보 리턴 간 받아올 변수
-	private int edu = 0;
-	private int major = 0;
-	private int state = 0;
-	private Date ent_date = null;
-	private Date gra_date = null;
+	private List<userEduVO> user_eduList = null;
 	
 	// 회원이 기보유한 자격증 리스트 리턴을 위한 변수
 	private List<userCertiVO> user_certiList = null;
@@ -58,8 +55,10 @@ public class SanUpCond extends OverrideSource{
 	public boolean sanup_cond1(String id, int certify_num) {
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
-		if(edu==1 && state==2 && major==cfvo.getCate()) {
-			applyPossible=true;
+		for(int i=0; i<user_eduList.size(); i++) {
+			if(user_eduList.get(i).edu==1 && user_eduList.get(i).state==2 && user_eduList.get(i).major==cfvo.getCate()) {
+				applyPossible=true; break;
+			}
 		}
 		return applyPossible;
 	}
@@ -68,8 +67,10 @@ public class SanUpCond extends OverrideSource{
 	public boolean sanup_cond2(String id, int certify_num) {
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
-		if(edu==2 && state==2 && major==cfvo.getCate()) {
-			applyPossible=true;
+		for(int i=0; i<user_eduList.size(); i++) {
+			if(user_eduList.get(i).edu==2 && user_eduList.get(i).state==2 && user_eduList.get(i).major==cfvo.getCate()) {
+				applyPossible=true; break;
+			}
 		}
 		return applyPossible;
 	}
@@ -78,9 +79,12 @@ public class SanUpCond extends OverrideSource{
 	public boolean sanup_cond3(String id, int certify_num) {
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
-		if(edu==1 && state==0 && major==cfvo.getCate()) {
-			applyPossible=true;
+		for(int i=0; i<user_eduList.size(); i++) {
+			if(user_eduList.get(i).edu==1 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
+				applyPossible=true; break;
+			}
 		}
+		
 		return applyPossible;
 	}
 	
@@ -88,8 +92,10 @@ public class SanUpCond extends OverrideSource{
 	public boolean sanup_cond4(String id, int certify_num) {
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
-		if(edu==2 && state==0 && major==cfvo.getCate()) {
-			applyPossible=true;
+		for(int i=0; i<user_eduList.size(); i++) {
+			if(user_eduList.get(i).edu==2 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
+				applyPossible=true; break;
+			}
 		}
 		return applyPossible;
 	}
@@ -98,13 +104,14 @@ public class SanUpCond extends OverrideSource{
 	public boolean sanup_cond5(String id, int certify_num) {
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
-		
-		// 4년제 이상이고, 전공이 자격증의 분류와 같을때 (재학)
-		if(edu==3 && state==1 && major==cfvo.getCate()) {
-			long diff = today.getTime() - ent_date.getTime();
-		    long diffDays = diff / (24 * 60 * 60 * 1000);
-		    // 관련학과 2년 이상 마쳤을 경우(현재기준)
-		    if(diffDays>=year*2)applyPossible=true;
+		for(int i=0; i<user_eduList.size(); i++) {
+			if(user_eduList.get(i).edu==3 && user_eduList.get(i).state==1 && user_eduList.get(i).major==cfvo.getCate()) {
+				long diff = today.getTime() - user_eduList.get(i).ent_date.getTime();
+			    long diffDays = diff / (24 * 60 * 60 * 1000);
+			    if(diffDays>=year*2) {
+			    	applyPossible=true; break;
+			    }
+			}
 		}
 		return applyPossible;
 	}
@@ -113,13 +120,15 @@ public class SanUpCond extends OverrideSource{
 	public boolean sanup_cond6(String id, int certify_num) {
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
-		
-		// 5년제 이상이고, 전공이 자격증의 분류와 같을때 (재학)
-		if(edu==4 && state==1 && major==cfvo.getCate()) {
-			long diff = today.getTime() - ent_date.getTime();
-		    long diffDays = diff / (24 * 60 * 60 * 1000);
-		    // 관련학과 2년 이상 마쳤을 경우(현재기준)
-		    if(diffDays>=(year*5)/2)applyPossible=true;
+		for(int i=0; i<user_eduList.size(); i++) {
+			if(user_eduList.get(i).edu==4 && user_eduList.get(i).state==1 && user_eduList.get(i).major==cfvo.getCate()) {
+				long diff = today.getTime() - user_eduList.get(i).ent_date.getTime();
+			    long diffDays = diff / (24 * 60 * 60 * 1000);
+			    // 관련학과 2년 이상 마쳤을 경우(현재기준)
+			    if(diffDays>=(year*5)/2) {
+			    	applyPossible=true; break;
+			    }
+			}
 		}
 		return applyPossible;
 	}
@@ -128,13 +137,14 @@ public class SanUpCond extends OverrideSource{
 	public boolean sanup_cond7(String id, int certify_num) {
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
-		
-		// 6년제 이상이고, 전공이 자격증의 분류와 같을때 (재학)
-		if(edu==5 && state==1 && major==cfvo.getCate()) {
-			long diff = today.getTime() - ent_date.getTime();
-		    long diffDays = diff / (24 * 60 * 60 * 1000);
-		    // 관련학과 2년 이상 마쳤을 경우(현재기준)
-		    if(diffDays>=year*3)applyPossible=true;
+		for(int i=0; i<user_eduList.size(); i++) {
+			if(user_eduList.get(i).edu==5 && user_eduList.get(i).state==1 && user_eduList.get(i).major==cfvo.getCate()) {
+				long diff = today.getTime() - user_eduList.get(i).ent_date.getTime();
+			    long diffDays = diff / (24 * 60 * 60 * 1000);
+			    if(diffDays>=year*3) {
+			    	applyPossible=true; break;
+			    }
+			}
 		}
 		return applyPossible;
 	}
@@ -143,7 +153,11 @@ public class SanUpCond extends OverrideSource{
 	public boolean sanup_cond8(String id, int certify_num) {
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
-		if(edu==6 && state==2 && major==cfvo.getCate()) applyPossible=true;
+		for(int i=0; i<user_eduList.size(); i++) {
+			if(user_eduList.get(i).edu==6 && user_eduList.get(i).state==2 && user_eduList.get(i).major==cfvo.getCate()) {
+				applyPossible=true; break;
+			}
+		}
 		return applyPossible;
 	}
 	
@@ -151,7 +165,11 @@ public class SanUpCond extends OverrideSource{
 	public boolean sanup_cond9(String id, int certify_num) {
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
-		if(edu==6 && state==0 && major==cfvo.getCate()) applyPossible=true;
+		for(int i=0; i<user_eduList.size(); i++) {
+			if(user_eduList.get(i).edu==6 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
+				applyPossible=true; break;
+			}
+		}
 		return applyPossible;
 	}
 	
@@ -159,7 +177,11 @@ public class SanUpCond extends OverrideSource{
 	public boolean sanup_cond10(String id, int certify_num) {
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
-		if(edu==3 && state==2 && major==cfvo.getCate()) applyPossible=true;
+		for(int i=0; i<user_eduList.size(); i++) {
+			if(user_eduList.get(i).edu==3 && user_eduList.get(i).state==2 && user_eduList.get(i).major==cfvo.getCate()) {
+				applyPossible=true; break;
+			}
+		}
 		return applyPossible;
 	}
 
@@ -167,7 +189,11 @@ public class SanUpCond extends OverrideSource{
 	public boolean sanup_cond11(String id, int certify_num) {
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
-		if(edu==3 && state==0 && major==cfvo.getCate()) applyPossible=true;
+		for(int i=0; i<user_eduList.size(); i++) {
+			if(user_eduList.get(i).edu==3 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
+				applyPossible=true; break;
+			}
+		}
 		return applyPossible;
 	}
 	
@@ -175,11 +201,12 @@ public class SanUpCond extends OverrideSource{
 	public boolean sanup_cond12(String id, int certify_num) {
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
-		
 		for(int i=0; i<user_certiList.size(); i++) {
 			if(user_certiList.get(i).cate==cfvo.cate && user_certiList.get(i).type==0) {
 				if(careerMap!=null && careerMap.containsKey(cfvo.getCate()) ) {
-		    		if(careerMap.get(cfvo.getCate())>=year) applyPossible=true;
+		    		if(careerMap.get(cfvo.getCate())>=year) {
+		    			applyPossible=true; break;
+		    		}
 		    	}
 			}
 		}
@@ -200,7 +227,11 @@ public class SanUpCond extends OverrideSource{
 	public boolean sanup_cond14(String id, int certify_num) {
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
-		if(edu==7 && state==2 && major==cfvo.getCate())	applyPossible=true;
+		for(int i=0; i<user_eduList.size(); i++) {
+			if(user_eduList.get(i).edu==7 && user_eduList.get(i).state==2 && user_eduList.get(i).major==cfvo.getCate()) {
+				applyPossible=true; break;
+			}
+		}
 		return applyPossible;
 	}
 	
@@ -208,7 +239,11 @@ public class SanUpCond extends OverrideSource{
 	public boolean sanup_cond15(String id, int certify_num) {
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
-		if(edu==7 && state==0 && major==cfvo.getCate())	applyPossible=true;
+		for(int i=0; i<user_eduList.size(); i++) {
+			if(user_eduList.get(i).edu==7 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
+				applyPossible=true; break;
+			}
+		}
 		return applyPossible;
 	}
 	
@@ -218,7 +253,9 @@ public class SanUpCond extends OverrideSource{
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		if(user_certiList!=null) {
 			for(int i=0; i<user_certiList.size(); i++) {
-				if(user_certiList.get(i).cate==cfvo.cate && user_certiList.get(i).type >= cfvo.type) applyPossible=true;
+				if(user_certiList.get(i).cate==cfvo.cate && user_certiList.get(i).type >= cfvo.type) {
+					applyPossible=true; break;
+				}
 			}
 		}
 		return applyPossible;

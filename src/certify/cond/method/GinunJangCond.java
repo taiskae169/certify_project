@@ -9,6 +9,7 @@ import certify.vo.CertifyVO;
 import user.vo.userCareerSub;
 import user.vo.userCareerVO;
 import user.vo.userCertiVO;
+import user.vo.userEduVO;
 
 public class GinunJangCond extends OverrideSource{
 	// 가능/불가능 리턴을 위한 변수
@@ -19,18 +20,7 @@ public class GinunJangCond extends OverrideSource{
 	private Date today = new Date();
 	
 	// 학력정보 리턴 간 받아올 변수
-	private int edu = 0;
-	private int major = 0;
-	private int state = 0;
-	private Date ent_date = null;
-	private Date gra_date = null;
-	
-	// 경력사항 리턴 간 받아올 변수
-	private String company = null;
-	private int comp_cate = 0;
-	private Date com_ent_date = null;
-	private Date com_gra_date = null;
-	private long comp_workdays = 0;
+	private List<userEduVO> user_eduList = null;
 		
 	// 회원이 기보유한 자격증 리스트 리턴을 위한 변수
 	private List<userCertiVO> user_certiList = null;
@@ -62,7 +52,9 @@ public class GinunJangCond extends OverrideSource{
 		for(int i=0; i<user_certiList.size(); i++) {
 			if(user_certiList.get(i).cate==cfvo.cate && user_certiList.get(i).type==0) {
 				if(careerMap!=null && careerMap.containsKey(cfvo.getCate()) ) {
-		    		if(careerMap.get(cfvo.getCate())>=year*7) applyPossible=true;
+		    		if(careerMap.get(cfvo.getCate())>=year*7) {
+		    			applyPossible=true; break;
+		    		}
 		    	}
 			}
 		}
@@ -84,9 +76,14 @@ public class GinunJangCond extends OverrideSource{
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		if(user_certiList!=null) {
+			condition : 
 			for(int i=0; i<user_certiList.size(); i++) {
 				if(user_certiList.get(i).cate==cfvo.cate && user_certiList.get(i).type == 0) {
-					if(edu==9 && state==2)	applyPossible=true;
+					for(int j=0; j<user_eduList.size();j++) {
+						if(user_eduList.get(j).edu==9 && user_eduList.get(j).state==2)	{
+							applyPossible=true; break condition;
+						}
+					}
 				}
 			}
 		}
@@ -100,7 +97,11 @@ public class GinunJangCond extends OverrideSource{
 		if(user_certiList!=null) {
 			for(int i=0; i<user_certiList.size(); i++) {
 				if(user_certiList.get(i).cate==cfvo.cate && user_certiList.get(i).type == 0) {
-					if(edu==9 && state==0)	applyPossible=true;
+					for(int j=0; j<user_eduList.size();j++) {
+						if(user_eduList.get(j).edu==9 && user_eduList.get(j).state==0)	{
+							applyPossible=true; break;
+						}
+					}
 				}
 			}
 		}
@@ -113,7 +114,9 @@ public class GinunJangCond extends OverrideSource{
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		if(user_certiList!=null) {
 			for(int i=0; i<user_certiList.size(); i++) {
-				if(user_certiList.get(i).cate==cfvo.cate && user_certiList.get(i).type == cfvo.type) applyPossible=true;
+				if(user_certiList.get(i).cate==cfvo.cate && user_certiList.get(i).type == cfvo.type) {
+					applyPossible=true; break;
+				}
 			}
 		}
 		return applyPossible;
@@ -126,7 +129,11 @@ public class GinunJangCond extends OverrideSource{
 		if(user_certiList!=null) {
 			for(int i=0; i<user_certiList.size(); i++) {
 				if(user_certiList.get(i).cate==cfvo.cate && user_certiList.get(i).type == 1) {
-					if(edu==9 && state==2)	applyPossible=true;
+					for(int j=0; j<user_eduList.size();j++) {
+						if(user_eduList.get(j).edu==9 && user_eduList.get(j).state==2)	{
+							applyPossible=true; break;
+						}
+					}
 				}
 			}
 		}
@@ -140,7 +147,11 @@ public class GinunJangCond extends OverrideSource{
 		if(user_certiList!=null) {
 			for(int i=0; i<user_certiList.size(); i++) {
 				if(user_certiList.get(i).cate==cfvo.cate && user_certiList.get(i).type == 1) {
-					if(edu==9 && state==0)	applyPossible=true;
+					for(int j=0; j<user_eduList.size();j++) {
+						if(user_eduList.get(j).edu==9 && user_eduList.get(j).state==0)	{
+							applyPossible=true; break;
+						}
+					}
 				}
 			}
 		}
@@ -154,7 +165,9 @@ public class GinunJangCond extends OverrideSource{
 		for(int i=0; i<user_certiList.size(); i++) {
 			if(user_certiList.get(i).cate==cfvo.cate && user_certiList.get(i).type>=1) {
 				if(careerMap!=null && careerMap.containsKey(cfvo.getCate()) ) {
-		    		if(careerMap.get(cfvo.getCate())>=year*5) applyPossible=true;
+		    		if(careerMap.get(cfvo.getCate())>=year*5) {
+		    			applyPossible=true; break;
+		    		}
 		    	}
 			}
 		}

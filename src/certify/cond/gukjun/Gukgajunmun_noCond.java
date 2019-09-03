@@ -10,6 +10,7 @@ import certify.vo.CertifyVO;
 import user.vo.userCareerSub;
 import user.vo.userCareerVO;
 import user.vo.userCertiVO;
+import user.vo.userEduVO;
 
 public class Gukgajunmun_noCond extends OverrideSource{
 	// 가능/불가능 리턴을 위한 변수
@@ -20,25 +21,12 @@ public class Gukgajunmun_noCond extends OverrideSource{
 	private Date today = new Date();
 	
 	// 학력정보 리턴 간 받아올 변수
-	private int edu = 0;
-	private int major = 0;
-	private int state = 0;
-	private Date ent_date = null;
-	private Date gra_date = null;
-	
-	// 경력사항 리턴 간 받아올 변수
-	private String company = null;
-	private int comp_cate = 0;
-	private Date com_ent_date = null;
-	private Date com_gra_date = null;
-	private long comp_workdays = 0;
+	private List<userEduVO> user_eduList = null;
 		
 	// 회원이 기보유한 자격증 리스트 리턴을 위한 변수
 	private List<userCertiVO> user_certiList = null;
 	
 	// 회원의 경력사항을 리턴받는 리스트 변수
-	private ArrayList<userCareerVO> returnCareer = null;	// DB에 저장된 리스트를 리턴할 변수
-	private List<userCareerSub> user_career_sub =null; 		// 카테고리별 근무년수(근무일수) 총합 후 저장을 위한 리스트 변수
 	private HashMap<Integer, Long> careerMap = null;		// 실제 조건 비교에 사용되는 Map
 	
 	// 전체 자격증 종류 리스트 리턴을 위한 변수
