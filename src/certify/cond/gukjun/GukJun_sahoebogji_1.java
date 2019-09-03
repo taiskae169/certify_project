@@ -147,7 +147,9 @@ public class GukJun_sahoebogji_1 extends OverrideSource{
 			if((user_eduList.get(i).edu==1 || user_eduList.get(i).edu==2 ) && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.cate) {
 				for(int j=0; j<user_certiList.size(); j++) {
 					if(user_certiList.get(j).num==000) {
-						
+						/*
+						 * 자격시험 일정과 자격증 취득일을 비교하는 문구 필요
+						 */
 						if(careerMap!=null && careerMap.containsKey(cfvo.getCate())) {
 				    		if(careerMap.get(cfvo.getCate())>=year) {
 				    			applyPossible=true; break;
@@ -161,7 +163,7 @@ public class GukJun_sahoebogji_1 extends OverrideSource{
 		return applyPossible;
 	}
 	
-	
+	// 조건 8. 전문대학 졸업 후 학점은행제를 통해 사회복지 교과목을 이수한 자로서 사회복지사 2급 자격증 취득일로부터 시험일까지 사회복지 실무경험이 1년 이상인 자
 	
 	
 	
