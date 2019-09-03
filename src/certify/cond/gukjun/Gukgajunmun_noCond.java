@@ -7,7 +7,6 @@ import java.util.List;
 
 import certify.cond.method.OverrideSource;
 import certify.vo.CertifyVO;
-import user.vo.userCareerSub;
 import user.vo.userCareerVO;
 import user.vo.userCertiVO;
 import user.vo.userEduVO;
@@ -462,13 +461,20 @@ public class Gukgajunmun_noCond extends OverrideSource{
 	
 	// 조건 있는 자격증리스트 ▼
 	// 문화재수리기술자 (보수, 단청, 조경, 보존과학, 식물보호)
-	public boolean gukjun_munhwa_gisulja(String id, int certify_num) {
+	public boolean gukjun_munhwajae_gisulja(String id, int certify_num) {
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
+		condition :
 		if(careerMap!=null && careerMap.containsKey(cfvo.getCate())){
-			if(careerMap.get(cfvo.getCate())>=year && edu>=0) {
-				for(int i=0; i<user_certiList.size(); i++) {
-					if(user_certiList.get(i).type>=0 && /*문화재수리기능자 자격증 있는것 파악*/) applyPossible=true;
+			for(int i=0; i<user_eduList.size(); i++) {
+				if(careerMap.get(cfvo.getCate())>=year && user_eduList.get(i).edu>=0) {
+					for(int j=0; j<user_certiList.size(); j++) {
+						for(int num=639; num<=662; num++) {
+							if(user_certiList.get(j).num==num){
+								applyPossible=true; break condition;
+							}
+						}
+					}
 				}
 			}
 		}
@@ -483,8 +489,8 @@ public class Gukgajunmun_noCond extends OverrideSource{
 		 * 하는 자는 건축사법에 따른 건축사 자격을 가진 자 이어야 한다.
 		 */
 		for(int i=0; i<user_certiList.size(); i++) {
-			if(user_certiList.get(i).num==000) {
-				// 건축사 자격증 위 000에 넣어야함
+			if(user_certiList.get(i).num==701) {
+				applyPossible=true; break;
 			}
 		}
 		return applyPossible;

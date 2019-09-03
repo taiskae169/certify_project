@@ -1,13 +1,10 @@
 package certify.cond.method;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import certify.vo.CertifyVO;
-import user.vo.userCareerSub;
-import user.vo.userCareerVO;
 import user.vo.userCertiVO;
 import user.vo.userEduVO;
 
@@ -216,7 +213,7 @@ public class GiSulsaCond extends OverrideSource{
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		if(careerMap!=null && careerMap.containsKey(cfvo.getCate()) ) {
-			if(careerMap.get(cfvo.getCate())>=year*9) applyPossible=true; break;
+			if(careerMap.get(cfvo.getCate())>=year*9) applyPossible=true;
 		}
 		return applyPossible;
 	}
