@@ -1,24 +1,12 @@
 package certify.cond.method;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.sql.DataSource;
-
 import certify.vo.CertifyVO;
-import user.vo.userCareerSub;
-import user.vo.userCareerVO;
 import user.vo.userCertiVO;
 import user.vo.userEduVO;
-import user.vo.userVO;
 
 /*
  * 기사 자격증 조건문
@@ -245,7 +233,7 @@ public class GisaCond extends OverrideSource{
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		if(careerMap!=null && careerMap.containsKey(cfvo.getCate())) {
     		if(careerMap.get(cfvo.getCate())>=year*4) {
-    			applyPossible=true; break;
+    			applyPossible=true;
     		}
     	}
 		return applyPossible;

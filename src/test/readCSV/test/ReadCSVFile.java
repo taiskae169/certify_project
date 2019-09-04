@@ -43,6 +43,16 @@ public class ReadCSVFile {
 		return conn;
 	}
 	
+	private void dbserver() throw IOException, SQLException {
+		String sql = "";
+		conn=getConnection();
+		sql="insert into CERTIFY(num,cre_name) values(?,?)";
+		pstmt=conn.prepareStatement(sql);
+		 pstmt.setInt(1,1);
+         pstmt.setString(2, "bong");
+         pstmt.executeUpdate();
+	}
+	
 	private void reader(String filePath) throws IOException, SQLException {
        
 		@SuppressWarnings("resource") //안쓰면 reader 안닫았다고 밑에 밑줄쳐진다.
@@ -75,9 +85,10 @@ public class ReadCSVFile {
 	
 	public static void main(String[] args) throws SQLException {
 		ReadCSVFile csvRead = new ReadCSVFile();
-		 
+		 		
         try {
-            csvRead.reader("/Users/mac/certification.csv");
+            csvRead.dbserver();
+        	//csvRead.reader("/Users/mac/certification.csv");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import certify.vo.CertifyVO;
-import user.vo.userCareerSub;
 import user.vo.userCareerVO;
 import user.vo.userCertiVO;
 import user.vo.userEduVO;

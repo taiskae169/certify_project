@@ -7,7 +7,6 @@ import java.util.List;
 
 import certify.cond.method.OverrideSource;
 import certify.vo.CertifyVO;
-import user.vo.userCareerSub;
 import user.vo.userCareerVO;
 import user.vo.userCertiVO;
 import user.vo.userEduVO;
@@ -164,7 +163,14 @@ public class GukJun_sahoebogji_1 extends OverrideSource{
 	}
 	
 	// 조건 8. 전문대학 졸업 후 학점은행제를 통해 사회복지 교과목을 이수한 자로서 사회복지사 2급 자격증 취득일로부터 시험일까지 사회복지 실무경험이 1년 이상인 자
+		
+	// 조건 9. 사회복지사 양성과정 수료자(시행연도 2월 28일까지)
 	
+	// 조건10. 외국 대학(원) 졸업자(사회복지학 또는 사회사업학 학사학위 이상 소지자)
+	
+	// 조건 11. 외국대학 졸업 후 학점은행제를 통해 사회복지 교과목을 이수한 자(시행연도 2월 28일까지)
+	
+	// 조건 12. 학점은행제를 통해 사회복지 교과목을 이수하고, 전문학사 학위를 취득한 자로서 실무경력 1년 이상인 자
 	
 	
 	
