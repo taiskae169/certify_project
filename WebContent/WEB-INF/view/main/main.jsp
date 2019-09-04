@@ -12,27 +12,22 @@
   <title>자격루</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="/certify/resource/main/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/certify/resource/gen/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom fonts for this template -->
-  <link href="/certify/resource/main/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-  <link href="/certify/resource/main/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+  <link href="/certify/resource/gen/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="/certify/resource/gen/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
-  <link href="/certify/resource/main/css/landing-page.min.css" rel="stylesheet">
+  <link href="/certify/resource/gen/css/landing-page.min.css" rel="stylesheet">
 
 </head>
 
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar navbar-light bg-light static-top" style="width:90%;margin:auto">
-    <div class="container">
-      <a class="navbar-brand" href="#">자격루</a>
-      <a class="btn btn-primary" href="#">Login</a>
-    </div>
-  </nav>
+
 
   <!-- Masthead -->
   <header>
@@ -59,89 +54,48 @@
   <!-- Icons Grid -->
   <hr style="width:90%"/>
 
-
+  <nav class="navbar navbar-light bg-light static-top" style="width:90%;margin:auto">
+    <div class="container">
+      <a class="navbar-brand" href="#">자격루</a>
+      <a class="btn btn-primary" href="#">Login</a>
+    </div>
+  </nav>
 
   <!-- Image Showcases -->
   <section class="showcase" style="width:90%;margin:auto;">
-    <div class="container-fluid p-0">
-      <div class="row no-gutters">
-
-        <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('img/bg-showcase-1.jpg');"></div>
-        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-          <h2>Fully Responsive Design</h2>
-          <p class="lead mb-0">When you use a theme created by Start Bootstrap, you know that the theme will look great on any device, whether it's a phone, tablet, or desktop the page will behave responsively!</p>
-        </div>
-      </div>
-      <div class="row no-gutters">
-        <div class="col-lg-6 text-white showcase-img" style="background-image: url('img/bg-showcase-2.jpg');"></div>
-        <div class="col-lg-6 my-auto showcase-text">
-          <h2>Updated For Bootstrap 4</h2>
-          <p class="lead mb-0">Newly improved, and full of great utility classes, Bootstrap 4 is leading the way in mobile responsive web development! All of the themes on Start Bootstrap are now using Bootstrap 4!</p>
-        </div>
-      </div>
-      <div class="row no-gutters">
-        <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('img/bg-showcase-3.jpg');"></div>
-        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-          <h2>Easy to Use &amp; Customize</h2>
-          <p class="lead mb-0">Landing Page is just HTML and CSS with a splash of SCSS for users who demand some deeper customization options. Out of the box, just add your content and images, and your new landing page will be ready to go!</p>
-        </div>
-      </div>
+    
+  </section >
+  <div style="width:90%;height:606px;margin:auto;display:block;">
+	<div style="width:59%;height:600px;border-style:solid;float:left;">
+    	<div style="height:64%;border-style:solid;margin:3px;">
+    		신청가능 시험 목록 출력창
+    	</div>
+    	<div style="height:34%;border-style:solid;margin:3px;">
+    		공지사항
+    	</div>
     </div>
-  </section>
-
+    <div style="width:40%;height:600px;border-style:solid;float:right;">
+    	<div style="height:29%;margin:3px;border-style:solid;">
+    		로그인창
+    	</div>
+    	<div style="height:20%;margin:3px;border-style:solid;">
+    		응시자격링크
+    	</div>
+    	<div style="height:49%;margin:3px;border-style:solid;">
+    		게시판
+    	</div>
+    </div>
+   </div>
   <!-- Testimonials -->
-  <section class="testimonials text-center bg-light">
-    <div class="container">
-      <h2 class="mb-5">What people are saying...</h2>
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-            <img class="img-fluid rounded-circle mb-3" src="img/testimonials-1.jpg" alt="">
-            <h5>Margaret E.</h5>
-            <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-            <img class="img-fluid rounded-circle mb-3" src="img/testimonials-2.jpg" alt="">
-            <h5>Fred S.</h5>
-            <p class="font-weight-light mb-0">"Bootstrap is amazing. I've been using it to create lots of super nice landing pages."</p>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-            <img class="img-fluid rounded-circle mb-3" src="img/testimonials-3.jpg" alt="">
-            <h5>Sarah W.</h5>
-            <p class="font-weight-light mb-0">"Thanks so much for making these free resources available to us!"</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Call to Action -->
-  <section class="call-to-action text-white text-center">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-9 mx-auto">
-          <h2 class="mb-4">Ready to get started? Sign up now!</h2>
-        </div>
-        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-          <form>
-            <div class="form-row">
-              <div class="col-12 col-md-9 mb-2 mb-md-0">
-                <input type="email" class="form-control form-control-lg" placeholder="Enter your email...">
-              </div>
-              <div class="col-12 col-md-3">
-                <button type="submit" class="btn btn-block btn-lg btn-primary">Sign up!</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
+  <div style="width:90%;height:100px;margin:auto;border-style:solid;display:block;">
+ 		<ul style="list-style:none;margin:0;padding:0;">
+ 			<li style="margin:0;padding:0;border=0;float:left;"><img src="/certify/resource/image/main/qnet.jpg" style="height:70px;weghit:300px;"></li>
+ 			<li style="margin:0;padding:0;border=0;float:left;"><img src="/certify/resource/image/main/qnet.jpg" style="height:70px;weghit:300px;"></li>
+ 			<li style="margin:0;padding:0;border=0;float:left;"><img src="/certify/resource/image/main/qnet.jpg" style="height:70px;weghit:300px;"></li>
+ 			<li style="margin:0;padding:0;border=0;float:left;"><img src="/certify/resource/image/main/qnet.jpg" style="height:70px;weghit:300px;"></li>
+ 		</ul>
+  </div>
+	<!-- 자격증 사이트 목록 -->
 
   <!-- Footer -->
   <footer class="footer bg-light">
@@ -191,8 +145,8 @@
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="/certify/resource/main/vendor/jquery/jquery.min.js"></script>
-  <script src="/certify/resource/main/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/certify/resource/gen/vendor/jquery/jquery.min.js"></script>
+  <script src="/certify/resource/gen/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
