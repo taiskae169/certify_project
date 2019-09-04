@@ -1,14 +1,12 @@
 package certify.cond.method;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import certify.vo.CertifyVO;
-import user.vo.userCareerSub;
-import user.vo.userCareerVO;
 import user.vo.userCertiVO;
+import user.vo.userEduVO;
 
 public class GiSulsaCond extends OverrideSource{
 	// 가능/불가능 리턴을 위한 변수
@@ -19,11 +17,7 @@ public class GiSulsaCond extends OverrideSource{
 	private Date today = new Date();
 	
 	// 학력정보 리턴 간 받아올 변수
-	private int edu = 0;
-	private int major = 0;
-	private int state = 0;
-	private Date ent_date = null;
-	private Date gra_date = null;
+	private List<userEduVO> user_eduList = null;
 		
 	// 회원이 기보유한 자격증 리스트 리턴을 위한 변수
 	private List<userCertiVO> user_certiList = null;
@@ -52,10 +46,12 @@ public class GiSulsaCond extends OverrideSource{
 	public boolean gisulsa_cond1(String id, int certify_num) {
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
-		if(edu==1 && state==0 && major==cfvo.getCate()) {
-			if(careerMap!=null && ( careerMap.containsKey(major) || careerMap.containsKey(cfvo.getCate()) )) {
-	    		if(careerMap.get(cfvo.getCate())>=year*8) applyPossible=true;
-	    	}
+		for(int i=0; i<user_eduList.size(); i++) {
+			if(user_eduList.get(i).edu==1 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
+				if(careerMap!=null && ( careerMap.containsKey(user_eduList.get(i).major) || careerMap.containsKey(cfvo.getCate()) )) {
+		    		if(careerMap.get(cfvo.getCate())>=year*8) applyPossible=true; break;
+		    	}
+			}
 		}
 		return applyPossible;
 	}
@@ -64,10 +60,12 @@ public class GiSulsaCond extends OverrideSource{
 	public boolean gisulsa_cond2(String id, int certify_num) {
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
-		if(edu==2 && state==0 && major==cfvo.getCate()) {
-			if(careerMap!=null && ( careerMap.containsKey(major) || careerMap.containsKey(cfvo.getCate()) )) {
-	    		if(careerMap.get(cfvo.getCate())>=year*7) applyPossible=true;
-	    	}
+		for(int i=0; i<user_eduList.size(); i++) {
+			if(user_eduList.get(i).edu==2 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
+				if(careerMap!=null && ( careerMap.containsKey(user_eduList.get(i).major) || careerMap.containsKey(cfvo.getCate()) )) {
+		    		if(careerMap.get(cfvo.getCate())>=year*7) applyPossible=true; break;
+		    	}
+			}
 		}
 		return applyPossible;
 	}
@@ -76,13 +74,15 @@ public class GiSulsaCond extends OverrideSource{
 	public boolean gisulsa_cond3(String id, int certify_num) {
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
-		if(edu==3 && state==1 && major==cfvo.getCate()) {
-			long diff = today.getTime() - ent_date.getTime();
-		    long diffDays = diff / (24 * 60 * 60 * 1000);
-		    if(diffDays>=year*2) {
-		    	if(careerMap!=null && ( careerMap.containsKey(major) || careerMap.containsKey(cfvo.getCate()) )) {
-		    		if(careerMap.get(cfvo.getCate())>=year*8) applyPossible=true;
-		    	}
+		for(int i=0; i<user_eduList.size();i++) {
+			if(user_eduList.get(i).edu==3 && user_eduList.get(i).state==1 && user_eduList.get(i).major==cfvo.getCate()) {
+				long diff = today.getTime() - user_eduList.get(i).ent_date.getTime();
+			    long diffDays = diff / (24 * 60 * 60 * 1000);
+			    if(diffDays>=year*2) {
+			    	if(careerMap!=null && ( careerMap.containsKey(user_eduList.get(i).major) || careerMap.containsKey(cfvo.getCate()) )) {
+			    		if(careerMap.get(cfvo.getCate())>=year*8) applyPossible=true; break;
+			    	}
+				}
 			}
 		}
 		return applyPossible;
@@ -92,13 +92,15 @@ public class GiSulsaCond extends OverrideSource{
 	public boolean gisulsa_cond4(String id, int certify_num) {
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
-		if(edu==4 && state==1 && major==cfvo.getCate()) {
-			long diff = today.getTime() - ent_date.getTime();
-		    long diffDays = diff / (24 * 60 * 60 * 1000);
-		    if(diffDays>=year*5/2) {
-		    	if(careerMap!=null && ( careerMap.containsKey(major) || careerMap.containsKey(cfvo.getCate()) )) {
-		    		if(careerMap.get(cfvo.getCate())>=year*8) applyPossible=true;
-		    	}
+		for(int i=0; i<user_eduList.size(); i++) {
+			if(user_eduList.get(i).edu==4 && user_eduList.get(i).state==1 && user_eduList.get(i).major==cfvo.getCate()) {
+				long diff = today.getTime() - user_eduList.get(i).ent_date.getTime();
+			    long diffDays = diff / (24 * 60 * 60 * 1000);
+			    if(diffDays>=year*5/2) {
+			    	if(careerMap!=null && ( careerMap.containsKey(user_eduList.get(i).major) || careerMap.containsKey(cfvo.getCate()) )) {
+			    		if(careerMap.get(cfvo.getCate())>=year*8) applyPossible=true; break;
+			    	}
+				}
 			}
 		}
 		return applyPossible;
@@ -108,13 +110,15 @@ public class GiSulsaCond extends OverrideSource{
 	public boolean gisulsa_cond5(String id, int certify_num) {
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
-		if(edu==4 && state==1 && major==cfvo.getCate()) {
-			long diff = today.getTime() - ent_date.getTime();
-		    long diffDays = diff / (24 * 60 * 60 * 1000);
-		    if(diffDays>=year*3) {
-		    	if(careerMap!=null && ( careerMap.containsKey(major) || careerMap.containsKey(cfvo.getCate()) )) {
-		    		if(careerMap.get(cfvo.getCate())>=year*8) applyPossible=true;
-		    	}
+		for(int i=0; i<user_eduList.size(); i++) {
+			if(user_eduList.get(i).edu==4 && user_eduList.get(i).state==1 && user_eduList.get(i).major==cfvo.getCate()) {
+				long diff = today.getTime() - user_eduList.get(i).ent_date.getTime();
+			    long diffDays = diff / (24 * 60 * 60 * 1000);
+			    if(diffDays>=year*3) {
+			    	if(careerMap!=null && ( careerMap.containsKey(user_eduList.get(i).major) || careerMap.containsKey(cfvo.getCate()) )) {
+			    		if(careerMap.get(cfvo.getCate())>=year*8) applyPossible=true; break;
+			    	}
+				}
 			}
 		}
 		return applyPossible;
@@ -124,9 +128,11 @@ public class GiSulsaCond extends OverrideSource{
 	public boolean gisulsa_cond6(String id, int certify_num) {
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
-		if(edu==8 && state==2 && major==cfvo.getCate() ) {
-		    if(careerMap!=null && ( careerMap.containsKey(major) || careerMap.containsKey(cfvo.getCate()) )) {
-		    	if(careerMap.get(cfvo.getCate())>=year*6) applyPossible=true;
+		for(int i=0; i<user_eduList.size(); i++) {
+			if(user_eduList.get(i).edu==8 && user_eduList.get(i).state==2 && user_eduList.get(i).major==cfvo.getCate() ) {
+			    if(careerMap!=null && ( careerMap.containsKey(user_eduList.get(i).major) || careerMap.containsKey(cfvo.getCate()) )) {
+			    	if(careerMap.get(cfvo.getCate())>=year*6) applyPossible=true; break;
+				}
 			}
 		}
 		return applyPossible;
@@ -136,9 +142,11 @@ public class GiSulsaCond extends OverrideSource{
 	public boolean gisulsa_cond7(String id, int certify_num) {
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
-		if(edu==7 && state==2 && major==cfvo.getCate() ) {
-		    if(careerMap!=null && ( careerMap.containsKey(major) || careerMap.containsKey(cfvo.getCate()) )) {
-		    	if(careerMap.get(cfvo.getCate())>=year*8) applyPossible=true;
+		for(int i=0; i<user_eduList.size(); i++) {
+			if(user_eduList.get(i).edu==7 && user_eduList.get(i).state==2 && user_eduList.get(i).major==cfvo.getCate() ) {
+			    if(careerMap!=null && ( careerMap.containsKey(user_eduList.get(i).major) || careerMap.containsKey(cfvo.getCate()) )) {
+			    	if(careerMap.get(cfvo.getCate())>=year*8) applyPossible=true; break;
+				}
 			}
 		}
 		return applyPossible;
@@ -148,9 +156,11 @@ public class GiSulsaCond extends OverrideSource{
 	public boolean gisulsa_cond8(String id, int certify_num) {
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
-		if(edu==6 && state==0 && major==cfvo.getCate()) {
-			if(careerMap!=null && ( careerMap.containsKey(major) || careerMap.containsKey(cfvo.getCate()) )) {
-		    	if(careerMap.get(cfvo.getCate())>=year*6) applyPossible=true;
+		for(int i=0; i<user_eduList.size(); i++) {
+			if(user_eduList.get(i).edu==6 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
+				if(careerMap!=null && ( careerMap.containsKey(user_eduList.get(i).major) || careerMap.containsKey(cfvo.getCate()) )) {
+			    	if(careerMap.get(cfvo.getCate())>=year*6) applyPossible=true; break;
+				}
 			}
 		}
 		return applyPossible;
@@ -163,7 +173,7 @@ public class GiSulsaCond extends OverrideSource{
 		for(int i=0; i<user_certiList.size(); i++) {
 			if(user_certiList.get(i).cate==cfvo.cate && user_certiList.get(i).type==0) {
 				if(careerMap!=null && careerMap.containsKey(cfvo.getCate()) ) {
-		    		if(careerMap.get(cfvo.getCate())>=year*7) applyPossible=true;
+		    		if(careerMap.get(cfvo.getCate())>=year*7) applyPossible=true; break;
 		    	}
 			}
 		}
@@ -177,7 +187,7 @@ public class GiSulsaCond extends OverrideSource{
 		for(int i=0; i<user_certiList.size(); i++) {
 			if(user_certiList.get(i).cate==cfvo.cate && user_certiList.get(i).type==2) {
 				if(careerMap!=null && careerMap.containsKey(cfvo.getCate()) ) {
-		    		if(careerMap.get(cfvo.getCate())>=year*4) applyPossible=true;
+		    		if(careerMap.get(cfvo.getCate())>=year*4) applyPossible=true; break;
 		    	}
 			}
 		}
@@ -188,10 +198,12 @@ public class GiSulsaCond extends OverrideSource{
 	public boolean gisulsa_cond11(String id, int certify_num) {
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
-		if(edu==3 && state==0 && major==cfvo.getCate()) {
-			if(careerMap!=null && careerMap.containsKey(cfvo.getCate()) ) {
-				if(careerMap.get(cfvo.getCate())>=year*6) applyPossible=true;
-		    }
+		for(int i=0; i<user_eduList.size(); i++) {
+			if(user_eduList.get(i).edu==3 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
+				if(careerMap!=null && careerMap.containsKey(cfvo.getCate()) ) {
+					if(careerMap.get(cfvo.getCate())>=year*6) applyPossible=true; break;
+			    }
+			}
 		}
 		return applyPossible;
 	}	
@@ -212,7 +224,7 @@ public class GiSulsaCond extends OverrideSource{
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		if(user_certiList!=null) {
 			for(int i=0; i<user_certiList.size(); i++) {
-				if(user_certiList.get(i).cate==cfvo.cate && user_certiList.get(i).type == cfvo.type) applyPossible=true;
+				if(user_certiList.get(i).cate==cfvo.cate && user_certiList.get(i).type == cfvo.type) applyPossible=true; break;
 			}
 		}
 		return applyPossible;
@@ -226,7 +238,7 @@ public class GiSulsaCond extends OverrideSource{
 			for(int i=0; i<user_certiList.size(); i++) {
 				if(user_certiList.get(i).cate==cfvo.cate && user_certiList.get(i).type==1) {
 					if(careerMap!=null && careerMap.containsKey(cfvo.getCate())) {
-			    		if(careerMap.get(cfvo.getCate())>=year*5) applyPossible=true;
+			    		if(careerMap.get(cfvo.getCate())>=year*5) applyPossible=true; break;
 			    	}
 				}
 			}

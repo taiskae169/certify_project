@@ -14,9 +14,9 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import certify.vo.CertifyVO;
-import user.vo.userCareerSub;
 import user.vo.userCareerVO;
 import user.vo.userCertiVO;
+import user.vo.userEduVO;
 import user.vo.userVO;
 
 
@@ -44,11 +44,7 @@ public class OverrideSource {
 	private Date today = new Date();
 	
 	// 학력정보 리턴 간 받아올 변수
-	private int edu = 0;
-	private int major = 0;
-	private int state = 0;
-	private Date ent_date = null;
-	private Date gra_date = null;
+	private List<userEduVO> user_eduList = null;
 	
 	// 경력사항 리턴 간 받아올 변수
 	private String company = null;
@@ -106,23 +102,31 @@ public class OverrideSource {
 			}
 			// 회원 학력정보
 			sql="select * from USER_EDU where id=?";
+			userEduVO uevo = null;
+			user_eduList = new ArrayList<userEduVO>();
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs=pstmt.executeQuery();
-			edu = rs.getInt("edu");
-			major = rs.getInt("major");
-			state = rs.getInt("state");
-			ent_date = rs.getDate("ent_date");
-			gra_date = rs.getDate("gra_date");
+			while(rs.next()) {
+				uevo = new userEduVO();
+				uevo.id = rs.getString("id");
+				uevo.edu = rs.getInt("edu");
+				uevo.major = rs.getInt("major");
+				uevo.state = rs.getInt("state");
+				uevo.ent_date = rs.getDate("ent_date");
+				uevo.gra_date = rs.getDate("gra_date");
+				user_eduList.add(uevo);
+			}
 			
 			// 회원 경력정보
 			sql="select * from USER_CAREER where id=?";
-			userCareerVO uscrvo = new userCareerVO();
+			userCareerVO uscrvo = null;
 			returnCareer = new ArrayList<userCareerVO>();
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
+				uscrvo = new userCareerVO();
 				uscrvo.setNum(rs.getInt("num"));
 				uscrvo.setId(rs.getString("id"));
 				uscrvo.setCompany(rs.getString("company"));
@@ -211,4 +215,22 @@ public class OverrideSource {
 		}
 		return cfvo;
 	}
+}
+
+class userCareerSub {
+	// 회원 경력정보 활용을 위해 임시적으로 사용하는 sub클래스입니다.
+	public int user_car_cate;
+	public long user_sub_workdays;
+	public int getUser_car_cate() {
+		return user_car_cate;
+	}
+	public void setUser_car_cate(int user_car_cate) {
+		this.user_car_cate = user_car_cate;
+	}
+	public long getUser_sub_workdays() {
+		return user_sub_workdays;
+	}
+	public void setUser_sub_workdays(long user_sub_workdays) {
+		this.user_sub_workdays = user_sub_workdays;
+	}	
 }

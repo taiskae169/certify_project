@@ -72,7 +72,6 @@
 		    <version>1.1.2</version>
 		</dependency>
 
-
 	<!-- End of Library setting for jstl -->
 	
 	<!-- ======================================================================================= -->
@@ -156,13 +155,12 @@
 
 
 	
-	<!-- http://opencsv.sourceforge.net/apidocs/au/com/bytecode/opencsv/CSVWriter.html -->
+	<!-- http://opencsv.sourceforge.net/#how_can_i_use_it_in_my_maven_projects -->
 	<dependency>
-   		<groupId>net.sf.opencsv</groupId>
-  		<artifactId>opencsv</artifactId>
-   		<version>2.0</version>
-	</dependency>
-	
+     <groupId>com.opencsv</groupId>
+     <artifactId>opencsv</artifactId>
+     <version>4.5</version>
+  	</dependency>
 	
 	
 	
