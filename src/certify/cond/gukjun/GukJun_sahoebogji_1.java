@@ -53,7 +53,7 @@ public class GukJun_sahoebogji_1 extends OverrideSource{
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		for(int i=0; i<user_eduList.size(); i++) {
-			if(user_eduList.get(i).edu==10 && user_eduList.get(i).major==cfvo.cate && check==true) {
+			if((user_eduList.get(i).edu==10 || user_eduList.get(i).edu==11) && user_eduList.get(i).major==cfvo.cate && check==true) {
 				// ▲ check : 웹에서 필수 6과목, 선택 2과목을 이수했는지 체크하도록 해야함
 				applyPossible=true; break;
 			}
@@ -130,7 +130,7 @@ public class GukJun_sahoebogji_1 extends OverrideSource{
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		for(int i=0; i<user_eduList.size(); i++) {
-			if(user_eduList.get(i).edu==11 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.cate) {
+			if(user_eduList.get(i).edu==12 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.cate) {
 				applyPossible=true; break;
 			}
 		}

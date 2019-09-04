@@ -136,6 +136,84 @@ public class Gukjun_sobangSisul extends OverrideSource {
 	 * 		나. 이공계 분야의 석사학위를 취득한 후 2년 이상 소방실무경력이 있는 사람
 	 * 		다. 이공계 분야의 학사학위를 취득한 후 3년 이상 소방실무경력이 있는 사람
 	 */
+	public boolean gukjun_sobangsisul7(String id, int certify_num) {
+		getUserStatus(id);
+		CertifyVO cfvo = getCertifyStatus(certify_num);
+		condition:
+			for(int i=0; i<user_eduList.size(); i++) {
+				if(user_eduList.get(i).edu==11 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.cate) {
+					// 박사학위취득일때
+					applyPossible=true; break condition;
+				}else if(user_eduList.get(i).edu==10 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.cate) {
+					if(careerMap!=null && careerMap.containsKey(cfvo.getCate())) {
+						if(careerMap.get(cfvo.getCate())>=year*2) applyPossible=true; break condition;
+					}
+				}else if(user_eduList.get(i).edu==3 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.cate) {
+					if(careerMap!=null && careerMap.containsKey(cfvo.getCate())) {
+						if(careerMap.get(cfvo.getCate())>=year*3) applyPossible=true; break condition;
+					}
+				}
+			}
+		return applyPossible;
+	}
+	
+	/* 조건 8. 소방안전공학(소방방재공학, 안전공학을 포함한다) 분야를 전공한 후 다음 각 목의 어느 하나에 해당하는 사람
+	 * 		가. 해당 분야의 석사학위 이상을 취득한 사람
+	 * 		나. 2년 이상 소방실무경력이 있는 사람
+	 */
+	public boolean gukjun_sobangsisul8(String id, int certify_num) {
+		getUserStatus(id);
+		CertifyVO cfvo = getCertifyStatus(certify_num);
+		condition:
+			for(int i=0; i<user_eduList.size(); i++) {
+				if(user_eduList.get(i).edu==3 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.cate) {
+					for(int j=0; j<user_eduList.size(); j++) {
+						if(user_eduList.get(j).edu==10 && user_eduList.get(j).state==0 && user_eduList.get(j).major==cfvo.cate) {
+							applyPossible=true; break condition;
+						}else if(careerMap!=null && careerMap.containsKey(cfvo.cate)) {
+							if(careerMap.get(cfvo.getCate())>=year*2) applyPossible=true; break condition;
+						}
+					}
+				}
+			}
+		return applyPossible;
+	}
+	
+	// 조건 9. 소방안전 관련 학과의 학사학위를 취득한 후 3년 이상 소방실무경력이 있는 사람
+	public boolean gukjun_sobangsisul9(String id, int certify_num) {
+		getUserStatus(id);
+		CertifyVO cfvo = getCertifyStatus(certify_num);
+		condition:
+			for(int i=0; i<user_eduList.size(); i++) {
+				if(user_eduList.get(i).edu==3 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.cate) {
+					if(careerMap!=null && careerMap.containsKey(cfvo.cate)) {
+						if(careerMap.get(cfvo.getCate())>=year*3) applyPossible=true; break condition;
+					}
+				}
+			}
+		return applyPossible;
+	}
+	
+	/* 조건 10. 다음 각 목의 어느 하나에 해당하는 사람
+	 * 		가. 특급 소방안전관리대상물의 소방안전관리자로 2년 이상 근무한 실무경력이 있는 사람
+	 * 		나. 1급 소방안전관리대상물의 소방안전관리자로 3년 이상 근무한 실무경력이 있는 사람
+	 * 		다. 3급 소방안전관리대상물의 소방안전관리자로 7년 이상 근무한 실무경력이 있는 사람
+	 * 		마. 10년 이상 소방실무경력이 있는 사람
+	 */
+	// 조건 10은 판별 불가
+	
+	// 조건 11. 건축사 자격 취득
+	public boolean gukjun_sobangsisul11(String id, int certify_num) {
+		getUserStatus(id);
+		CertifyVO cfvo = getCertifyStatus(certify_num);
+		condition:
+			for(int i=0; i<user_certiList.size(); i++) {
+				if(user_certiList.get(i).num==701) {
+					applyPossible=true; break;
+				}
+			}
+		return applyPossible;
+	}
 	
 	
 }

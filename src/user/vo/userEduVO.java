@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class userEduVO {
 	public String id;
+	public String name;
 	public int edu;
 	public int major;
 	public int state;
@@ -14,6 +15,12 @@ public class userEduVO {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public int getEdu() {
 		return edu;

@@ -110,6 +110,7 @@ public class OverrideSource {
 			while(rs.next()) {
 				uevo = new userEduVO();
 				uevo.id = rs.getString("id");
+				uevo.name = rs.getString("name");
 				uevo.edu = rs.getInt("edu");
 				uevo.major = rs.getInt("major");
 				uevo.state = rs.getInt("state");
