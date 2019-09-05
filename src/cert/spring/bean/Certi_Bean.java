@@ -19,6 +19,25 @@ public class Certi_Bean {
 		return mv;
 	}
 	
+	@RequestMapping("logintest.certi")
+	public ModelAndView logintest() {
+		mv = new ModelAndView();
+		
+
+		mv.setViewName("/main/loginbox");
+		return mv;
+	}
+	@RequestMapping("loginPro.certi")
+	public ModelAndView loginPro(String id, String pw) {
+		mv = new ModelAndView();
+		System.out.println("loginPro Ω√¿€");
+		System.out.println(id);
+		System.out.println(pw);
+		
+		mv.setViewName("/login/loginPro");
+		return mv;
+	}
+	
 //	@RequestMapping("error.certi")
 //	public ModelAndView errorpage() {
 //		mv = new ModelAndView();

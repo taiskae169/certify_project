@@ -24,6 +24,8 @@
 	<!-- setting of controller location -->
 	<context:component-scan base-package="cert.spring.bean" />
 			 
+	<!-- Bean List -->
+	<bean id="login" class="certify.user.dao.UserMethod" />
 							
 </beans>
 		

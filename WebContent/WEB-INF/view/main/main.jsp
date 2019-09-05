@@ -52,9 +52,9 @@
   </header>
 
   <!-- Icons Grid -->
-  <hr style="width:90%"/>
+  <hr style="width:1450px;"/>
 
-  <nav class="navbar navbar-light bg-light static-top" style="width:90%;margin:auto">
+  <nav class="navbar navbar-light bg-light static-top" style="width:1450px;;margin:auto">
     <div class="container">
       <a class="navbar-brand" href="#">자격루</a>
       <a class="btn btn-primary" href="#">Login</a>
@@ -62,32 +62,32 @@
   </nav>
 
   <!-- Image Showcases -->
-  <section class="showcase" style="width:90%;margin:auto;">
+  <section class="showcase" style="width:1450px;;margin:auto;">
     
   </section >
-  <div style="width:90%;height:606px;margin:auto;display:block;">
+  <div style="width:1450px;height:606px;margin:auto;display:block;">
 	<div style="width:59%;height:600px;border-style:solid;float:left;">
-    	<div style="height:64%;border-style:solid;margin:3px;">
+    	<div style="height:380px;border-style:solid;margin:3px;">
     		신청가능 시험 목록 출력창
     	</div>
-    	<div style="height:34%;border-style:solid;margin:3px;">
+    	<div style="height:200px;border-style:solid;margin:3px;">
     		공지사항
     	</div>
     </div>
-    <div style="width:40%;height:600px;border-style:solid;float:right;">
-    	<div style="height:29%;margin:3px;border-style:solid;">
-    		로그인창
+    <div style="width:580px;height:600px;border-style:solid;float:right;">
+    	<div style="height:172.25px;margin:3px;">
+    		<jsp:include page="/WEB-INF/view/main/loginbox.jsp" />
     	</div>
-    	<div style="height:20%;margin:3px;border-style:solid;">
+    	<div style="height:119px;margin:3px;border-style:solid;">
     		응시자격링크
     	</div>
-    	<div style="height:49%;margin:3px;border-style:solid;">
+    	<div style="height:291px;margin:3px;border-style:solid;">
     		게시판
     	</div>
     </div>
    </div>
   <!-- Testimonials -->
-  <div style="width:90%;height:100px;margin:auto;border-style:solid;display:block;">
+  <div style="width:1450px;;height:100px;margin:auto;border-style:solid;display:block;">
  		<ul style="list-style:none;margin:0;padding:0;">
  			<li style="margin:0;padding:0;border=0;float:left;"><img src="/certify/resource/image/main/qnet.jpg" style="height:70px;weghit:300px;"></li>
  			<li style="margin:0;padding:0;border=0;float:left;"><img src="/certify/resource/image/main/qnet.jpg" style="height:70px;weghit:300px;"></li>
