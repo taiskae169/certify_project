@@ -19,6 +19,8 @@ public class Certi_Bean {
 		return mv;
 	}
 	
+	
+	
 //	@RequestMapping("error.certi")
 //	public ModelAndView errorpage() {
 //		mv = new ModelAndView();
@@ -28,6 +30,6 @@ public class Certi_Bean {
 //		
 //		return mv;
 //	}
-//	¿¡·¯ÆäÀÌÁö ÀÏ½Ã º¸·ù
+//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	
 }

@@ -43,14 +43,20 @@ public class ReadCSVFile {
 		return conn;
 	}
 	
-	private void dbserver() throw IOException, SQLException {
+	private void dbserver() throws IOException, SQLException {
 		String sql = "";
 		conn=getConnection();
-		sql="insert into CERTIFY(num,cre_name) values(?,?)";
+		sql="select * from board_cate_value";
 		pstmt=conn.prepareStatement(sql);
-		 pstmt.setInt(1,1);
-         pstmt.setString(2, "bong");
-         pstmt.executeUpdate();
+		rs = pstmt.executeQuery();
+		if(rs.next()) {
+			do {
+				System.out.println(rs.getInt("num"));
+				System.out.print(rs.getString("value"));
+			}
+			while(rs.next());
+		}
+		 
 	}
 	
 	private void reader(String filePath) throws IOException, SQLException {
@@ -60,7 +66,7 @@ public class ReadCSVFile {
         
 		String sql = "";
 		conn=getConnection();
-		sql="insert into CERTIFY(num,cre_name) values(?,?)";
+		sql="insert into CERTIFY(NUM,CRE_NAME) values(?,?)";
 		pstmt=conn.prepareStatement(sql);
 		 pstmt.setInt(1,1);
          pstmt.setString(2, "bong");
@@ -116,5 +122,3 @@ class School {
 	
 	
 }
-
-
