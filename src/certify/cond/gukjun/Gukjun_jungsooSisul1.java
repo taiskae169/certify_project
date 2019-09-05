@@ -12,7 +12,6 @@ import com.opencsv.CSVReader;
 
 import certify.cond.method.OverrideSource;
 import certify.vo.CertifyVO;
-import test.Major;
 import user.vo.userCareerVO;
 import user.vo.userCertiVO;
 import user.vo.userEduVO;

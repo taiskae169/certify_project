@@ -26,6 +26,8 @@
 	<context:component-scan base-package="test.readCSV.test" />
 	
 			 
+	<!-- Bean List -->
+	<bean id="login" class="certify.user.dao.UserMethod" />
 							
 </beans>
 		

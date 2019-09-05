@@ -24,6 +24,7 @@ public class Certi_Bean {
 		return mv;
 	}
 	
+<<<<<<< HEAD
 	@RequestMapping("test1.certi")
 	public ModelAndView test1(){
 		mv = new ModelAndView();
@@ -42,6 +43,27 @@ public class Certi_Bean {
 		mv.setViewName("/test_test");
 		return mv;
 	}
+=======
+	@RequestMapping("logintest.certi")
+	public ModelAndView logintest() {
+		mv = new ModelAndView();
+		
+
+		mv.setViewName("/main/loginbox");
+		return mv;
+	}
+	@RequestMapping("loginPro.certi")
+	public ModelAndView loginPro(String id, String pw) {
+		mv = new ModelAndView();
+		System.out.println("loginPro ����");
+		System.out.println(id);
+		System.out.println(pw);
+		
+		mv.setViewName("/login/loginPro");
+		return mv;
+	}
+	
+>>>>>>> branch 'master' of https://github.com/taiskae169/certify_project.git
 	
 	
 	

@@ -13,9 +13,9 @@
 		<option>대학교</option>
 		<option>대학원</option>
 	</select>
-	학교명 : <a id="school_name_click" onclick="openSub();"><input type="text" name="school_name" readOnly /></a>
+	학교명 : <a id="school_name" onclick="openSub();"><input type="text" name="school_name" readOnly /></a>
 	
-	학과명 : <a id="school_name_click" onclick="openSub();"><input type="text" name="school_name" readOnly /></a>
+	학과명 : <a id="major_name" onclick="openSub();"><input type="text" name="school_name" readOnly /></a>
 </form>
 
 
