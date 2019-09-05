@@ -2,12 +2,13 @@ package cert.spring.bean;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import test.readCSV.test.ReadCSVFile_saveToHashMap;
+import test.readCSV.test.ReadCSVFile_saveToHashSet;
 
 @Controller
 @RequestMapping("/")
@@ -34,11 +35,12 @@ public class Certi_Bean {
 	@RequestMapping("test_test.certi")
 	public ModelAndView test_test() throws IOException {
 		mv = new ModelAndView();
-		ReadCSVFile_saveToHashMap rcsv = new ReadCSVFile_saveToHashMap();
-		HashMap univercity = rcsv.reader("C:/Users/DELL/Documents/major.csv");
+		ReadCSVFile_saveToHashSet rcsv = new ReadCSVFile_saveToHashSet();
+		List univercity = rcsv.reader("C:/Users/DELL/Documents/major.csv");
 		
 		
-		mv.addObject("uni",univercity);
+		mv.addObject("uni_name",univercity.get(0));
+		mv.addObject("major_name",univercity.get(1));
 		mv.setViewName("/test_test");
 		return mv;
 	}

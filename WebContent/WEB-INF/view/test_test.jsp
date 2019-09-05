@@ -19,6 +19,7 @@
 </form>
 <br><br><br>
 <div class="scrollBoard">
-	<a><span>"${uni.get()}"</span></a>
+	<c:set></c:set>
+	<a><span></span></a>
 </div>
 
