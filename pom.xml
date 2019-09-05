@@ -6,6 +6,17 @@
   <packaging>war</packaging>
   <name>team3</name>
   <description>certify_project</description>
+  
+  <!-- repository for ojdbc14 -->
+  <repositories>
+	<repository>
+		<id>Spring Plugins</id>
+		<url>http://maven.geomajas.org/</url>
+	</repository>
+  </repositories>
+  
+  
+  
   <dependencies>
   	<!-- Start of Library setting for Spring Framework  -->
   	
@@ -167,10 +178,17 @@
      <artifactId>opencsv</artifactId>
      <version>4.5</version>
   	</dependency>
-	
-	
+
+	<!-- https://mvnrepository.com/artifact/com.oracle.jdbc/ojdbc14 -->
+	<dependency>
+     <groupId>com.oracle.jdbc</groupId>
+     <artifactId>ojdbc14</artifactId>
+     <version>10.2.0.1.0</version>
+	</dependency>
+
 	
   </dependencies>
+  
   
   <build>
     <sourceDirectory>src</sourceDirectory>

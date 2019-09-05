@@ -30,13 +30,16 @@ public class Certi_Bean {
 	@RequestMapping("loginPro.certi")
 	public ModelAndView loginPro(String id, String pw) {
 		mv = new ModelAndView();
-		System.out.println("loginPro ½ÃÀÛ");
+		System.out.println("loginPro ï¿½ï¿½ï¿½ï¿½");
 		System.out.println(id);
 		System.out.println(pw);
 		
 		mv.setViewName("/login/loginPro");
 		return mv;
 	}
+	
+	
+	
 	
 //	@RequestMapping("error.certi")
 //	public ModelAndView errorpage() {
@@ -47,6 +50,6 @@ public class Certi_Bean {
 //		
 //		return mv;
 //	}
-//	¿¡·¯ÆäÀÌÁö ÀÏ½Ã º¸·ù
+//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	
 }
