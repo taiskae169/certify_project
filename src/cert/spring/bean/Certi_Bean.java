@@ -74,7 +74,7 @@ public class Certi_Bean {
 	public ModelAndView logintest() {
 		mv = new ModelAndView();
 		
-
+		System.out.println("test");
 		mv.setViewName("/main/loginbox");
 		return mv;
 	}
