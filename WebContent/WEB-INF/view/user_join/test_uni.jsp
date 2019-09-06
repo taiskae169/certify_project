@@ -11,14 +11,15 @@
 </style>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
-
-
+	function search(){
+		location.href=
+	}
 </script>
 
 <form>
 	<b>학교명을 입력하세요.</b><br>
 	<input type="text" name="school_name" id="school_name"/>
-	<input type="button" name="검색" id="search" onclick="document.location.href='test_.do?pageNum=${pageNum}"/>
+	<input type="button" name="검색" id="search" onclick="search();"/>
 
 </form>
 <br><br><br>
