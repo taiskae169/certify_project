@@ -16,7 +16,7 @@ public class UserMethod {
 		Map<String, String> idpw = new HashMap<String, String>();
 		idpw.put("id", id);
 		idpw.put("pw", pw);
-		
+		System.out.println("DB½ÃÀÛ Àü");
 		int test = sql.selectOne("user.logincheck", idpw);
 		System.out.println(test);
 		
