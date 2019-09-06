@@ -13,13 +13,10 @@ import java.security.SecureRandom;
 import java.util.Random;
 
 import javax.servlet.*;
-
+import javax.servlet.http.HttpSession;
 
 import org.mybatis.spring.SqlSessionTemplate;
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/taiskae169/certify_project.git
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
@@ -84,7 +81,7 @@ public class Certi_Bean {
 	public ModelAndView logintest() {
 		mv = new ModelAndView();
 		
-
+		System.out.println("test");
 		mv.setViewName("/main/loginbox");
 		return mv;
 	}
@@ -92,7 +89,7 @@ public class Certi_Bean {
 	@RequestMapping("loginPro.certi")
 	public ModelAndView loginPro(String id, String pw) {
 		mv = new ModelAndView();
-		System.out.println("loginPro ����");
+
 		System.out.println(id);
 		System.out.println(pw);
 		
@@ -123,6 +120,6 @@ public class Certi_Bean {
 //		
 //		return mv;
 //	}
-//	���������� �Ͻ� ����
+//	占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占싹쏙옙 占쏙옙占쏙옙
 	
 }
