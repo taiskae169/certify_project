@@ -6,17 +6,27 @@ import java.util.List;
 import java.util.Set;
 import java.util.Map.Entry;
 
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import test.readCSV.test.CSVtoMap;
+import certify.user.dao.UserMethod;
 
+@Repository
 @Controller
 @RequestMapping("/")
 public class Certi_Bean {
 
+	@Autowired
+	UserMethod userdao = null;
+	
 	ModelAndView mv =null;
+	
+	@Autowired
+	private SqlSessionTemplate sql = null;
 	
 	@RequestMapping("main.certi")
 	public ModelAndView mainpage() {
@@ -24,7 +34,7 @@ public class Certi_Bean {
 		mv.setViewName("/main/main");
 		return mv;
 	}
-	
+
 	@RequestMapping("logintest.certi")
 	public ModelAndView logintest() {
 		mv = new ModelAndView();
@@ -41,10 +51,22 @@ public class Certi_Bean {
 		System.out.println(id);
 		System.out.println(pw);
 		
+		int i = (Integer)userdao.logincheck(id, pw);
+		
+		
 		mv.setViewName("/login/loginPro");
 		return mv;
 	}
 	
+
+	@RequestMapping("Bongtest.certi")
+	public String Bongtest() {
+		
+		int bong = sql.selectOne("Test");
+		
+		return "/test_test";
+	}
+
 	
 	
 //	@RequestMapping("error.certi")
