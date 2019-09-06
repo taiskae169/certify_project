@@ -7,15 +7,22 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import certify.user.dao.UserMethod;
+
 import test.readCSV.test.ReadCSVFile_saveToHashSet;
 
+@Repository
 @Controller
 @RequestMapping("/")
 public class Certi_Bean {
 
+	@Autowired
+	UserMethod userdao = null;
+	
 	ModelAndView mv =null;
 	
 	@Autowired
@@ -27,26 +34,6 @@ public class Certi_Bean {
 		
 
 		mv.setViewName("/main/main");
-		return mv;
-	}
-	
-	@RequestMapping("test1.certi")
-	public ModelAndView test1(){
-		mv = new ModelAndView();
-		mv.setViewName("/test1");
-		return mv;
-	}
-	
-	@RequestMapping("test_test.certi")
-	public ModelAndView test_test() throws IOException {
-		mv = new ModelAndView();
-		ReadCSVFile_saveToHashSet rcsv = new ReadCSVFile_saveToHashSet();
-		List univercity = rcsv.reader("C:/Users/DELL/Documents/major.csv");
-		
-		
-		mv.addObject("uni_name",univercity.get(0));
-		mv.addObject("major_name",univercity.get(1));
-		mv.setViewName("/test_test");
 		return mv;
 	}
 	
@@ -65,18 +52,22 @@ public class Certi_Bean {
 		System.out.println(id);
 		System.out.println(pw);
 		
+		int i = (Integer)userdao.logincheck(id, pw);
+		
+		
 		mv.setViewName("/login/loginPro");
 		return mv;
 	}
 	
+
 	@RequestMapping("Bongtest.certi")
 	public String Bongtest() {
 		
-		int bong = sql.selectOne("");
+		int bong = sql.selectOne("Test");
 		
 		return "/test_test";
 	}
-	
+
 	
 	
 //	@RequestMapping("error.certi")
