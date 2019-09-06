@@ -5,7 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.Map.Entry;
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/taiskae169/certify_project.git
 
 import java.math.BigInteger;
 import java.net.URLEncoder;
@@ -16,7 +19,10 @@ import javax.servlet.*;
 
 
 import org.mybatis.spring.SqlSessionTemplate;
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/taiskae169/certify_project.git
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
@@ -40,8 +46,12 @@ public class Certi_Bean {
 	
 	@RequestMapping("main.certi")
 	public ModelAndView mainpage(HttpSession session) {
+<<<<<<< HEAD
 		mv = new ModelAndView();
 
+=======
+		mv = new ModelAndView();
+>>>>>>> branch 'master' of https://github.com/taiskae169/certify_project.git
 		
 		String redirectURI;
 		String naverURI;
@@ -65,8 +75,12 @@ public class Certi_Bean {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+<<<<<<< HEAD
 		
 		
+=======
+
+>>>>>>> branch 'master' of https://github.com/taiskae169/certify_project.git
 		mv.setViewName("/main/main");
 		return mv;
 	}
