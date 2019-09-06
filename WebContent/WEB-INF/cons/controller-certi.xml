@@ -23,7 +23,7 @@
 			
 	<!-- setting of controller location -->
 	<context:component-scan base-package="cert.spring.bean" />
-	<context:component-scan base-package="cert.spring.bean" />
+	<context:component-scan base-package="test.readCSV.test" />
 	
 	<!-- setting of DB -->
 	<bean id="dataSource"
