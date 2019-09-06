@@ -6,5 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="logincheck" parameterType="map" resultType="int">
 		select count(*) from user_info where id=#{id} and pw=#{pw}
 	</select>
-
+	<select id="Test" resultType="int">
+  		select count(num) from BOARD_CATE_VALUE 
+  	</select>
 </mapper>

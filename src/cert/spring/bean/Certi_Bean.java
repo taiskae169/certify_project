@@ -1,5 +1,12 @@
 package cert.spring.bean;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
+import java.util.Map.Entry;
+
+<<<<<<< HEAD
 import java.math.BigInteger;
 import java.net.URLEncoder;
 import java.security.SecureRandom;
@@ -7,16 +14,18 @@ import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
+=======
+import org.mybatis.spring.SqlSessionTemplate;
+>>>>>>> branch 'master' of https://github.com/taiskae169/certify_project.git
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import certify.user.dao.UserMethod;
 
-import test.readCSV.test.ReadCSVFile_saveToHashSet;
-
-
+@Repository
 @Controller
 @RequestMapping("/")
 public class Certi_Bean {
@@ -26,9 +35,13 @@ public class Certi_Bean {
 	
 	ModelAndView mv =null;
 	
+	@Autowired
+	private SqlSessionTemplate sql = null;
+	
 	@RequestMapping("main.certi")
 	public ModelAndView mainpage(HttpSession session) {
 		mv = new ModelAndView();
+<<<<<<< HEAD
 		
 		String redirectURI;
 		String naverURI;
@@ -55,10 +68,12 @@ public class Certi_Bean {
 		
 		
 
+=======
+>>>>>>> branch 'master' of https://github.com/taiskae169/certify_project.git
 		mv.setViewName("/main/main");
 		return mv;
 	}
-	
+
 	@RequestMapping("logintest.certi")
 	public ModelAndView logintest() {
 		mv = new ModelAndView();
@@ -67,10 +82,11 @@ public class Certi_Bean {
 		mv.setViewName("/main/loginbox");
 		return mv;
 	}
+	
 	@RequestMapping("loginPro.certi")
 	public ModelAndView loginPro(String id, String pw) {
 		mv = new ModelAndView();
-		System.out.println("loginPro ½ÃÀÛ");
+		System.out.println("loginPro ï¿½ï¿½ï¿½ï¿½");
 		System.out.println(id);
 		System.out.println(pw);
 		
@@ -81,7 +97,15 @@ public class Certi_Bean {
 		return mv;
 	}
 	
-	
+
+	@RequestMapping("Bongtest.certi")
+	public String Bongtest() {
+		
+		int bong = sql.selectOne("Test");
+		
+		return "/test_test";
+	}
+
 	
 	
 //	@RequestMapping("error.certi")

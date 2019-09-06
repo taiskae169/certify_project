@@ -5,21 +5,24 @@
 .scrollBoard{
         overflow-x: auto;
         overflow-y: auto;
-        width: 400px;
-        height: 100px;
+        width: 500px;
+        height: 500px;
     }
 </style>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
-	
+
+
 </script>
-<b>학교명을 입력하세요.</b><br>
+
 <form>
+	<b>학교명을 입력하세요.</b><br>
 	<input type="text" name="school_name" id="school_name"/>
+	<input type="button" name="검색" id="search" onclick="document.location.href='test_.do?pageNum=${pageNum}"/>
 
 </form>
 <br><br><br>
-<div class="scrollBoard">
-	<c:set></c:set>
-	<a><span></span></a>
+<div class="scrollBoard" border="1">
+	
 </div>
 
