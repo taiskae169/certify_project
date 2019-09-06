@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,6 +17,9 @@ import test.readCSV.test.ReadCSVFile_saveToHashSet;
 public class Certi_Bean {
 
 	ModelAndView mv =null;
+	
+	@Autowired
+	private SqlSessionTemplate sql = null;
 	
 	@RequestMapping("main.certi")
 	public ModelAndView mainpage() {
@@ -62,6 +67,14 @@ public class Certi_Bean {
 		
 		mv.setViewName("/login/loginPro");
 		return mv;
+	}
+	
+	@RequestMapping("Bongtest.certi")
+	public String Bongtest() {
+		
+		int bong = sql.selectOne("");
+		
+		return "/test_test";
 	}
 	
 	

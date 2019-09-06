@@ -19,8 +19,16 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
+	<bean id="dataSource" 
+   		class="org.apache.tomcat.dbcp.dbcp2.BasicDataSource"
+   		p:driverClassName="oracle.jdbc.driver.OracleDriver"
+   		p:url="jdbc:oracle:thin:@nullmaster.iptime.org:1521:xe"
+   		p:username="class12"
+   		p:password="class12"
+   		destroy-method="close"
+   
+   />
 
-			
 	<!-- setting of controller location -->
 	<context:component-scan base-package="cert.spring.bean" />
 	<context:component-scan base-package="test.readCSV.test" />
@@ -28,6 +36,15 @@
 			 
 	<!-- Bean List -->
 	<bean id="login" class="certify.user.dao.UserMethod" />
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+   	<property name="dataSource" ref="dataSource"/>
+   	<property name="configLocation" value="/WEB-INF/mybatis/mybatis-config.xml"/>
+   </bean>
+   
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate"
+   destroy-method="clearCache">
+   <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg></bean>
 							
 </beans>
 		
