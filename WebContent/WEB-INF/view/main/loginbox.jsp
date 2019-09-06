@@ -13,7 +13,7 @@
 		<a href="#">회원가입</a> /
 		<a href="#">ID/PW찾기</a>
 		<div style=" position:relative; left:320px;bottom:105px;">
-			<a href="#"><img src="/certify/resource/image/login/naver_icon_long.PNG" style="width:200px;height:30px; margin:2px;"/> </a> <br />
+			<a href="${naverURI}"><img src="/certify/resource/image/login/naver_icon_long.PNG" style="width:200px;height:30px; margin:2px;"/> </a> <br />
 			<a href="#"><img src="/certify/resource/image/login/kakao_icon_middle.png" style="width:200px;height:30px; margin:2px;"/></a> <br />
 			<a href="#"><img src="/certify/resource/image/login/google_icon_middle.png" style="width:200px;height:30px; margin:2px;"/> </a>
 		</div>

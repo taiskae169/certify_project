@@ -1,5 +1,12 @@
 package cert.spring.bean;
 
+import java.math.BigInteger;
+import java.net.URLEncoder;
+import java.security.SecureRandom;
+import java.util.Random;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,8 +27,32 @@ public class Certi_Bean {
 	ModelAndView mv =null;
 	
 	@RequestMapping("main.certi")
-	public ModelAndView mainpage() {
+	public ModelAndView mainpage(HttpSession session) {
 		mv = new ModelAndView();
+		
+		String redirectURI;
+		String naverURI;
+		String state;
+		try {
+			redirectURI = URLEncoder.encode("http://localhost:8080/certify/loginCh.certi", "UTF-8");
+			SecureRandom rendom = new SecureRandom();
+			state = new BigInteger(130,rendom).toString();
+			
+			naverURI="https://nid.naver.com/oauth2.0/authorize?response_type=code";
+			naverURI +="&client_id=UfsHgM0aSD0KyYettfN3";
+			naverURI +="&redirect_uri=" + redirectURI;
+			naverURI +="&state"+state;
+			
+			session.setAttribute("naverState", state);
+			
+			
+			mv.addObject("naverURI",naverURI);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
 		
 
 		mv.setViewName("/main/main");

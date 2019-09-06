@@ -71,12 +71,14 @@
     		신청가능 시험 목록 출력창
     	</div>
     	<div style="height:200px;border-style:solid;margin:3px;">
-    		공지사항
+    		공지사항 <br />
     	</div>
     </div>
     <div style="width:580px;height:600px;border-style:solid;float:right;">
     	<div style="height:172.25px;margin:3px;">
-    		<jsp:include page="/WEB-INF/view/main/loginbox.jsp" />
+    		<jsp:include page="/WEB-INF/view/main/loginbox.jsp">
+    			<jsp:param value="${naverURI}" name="naverURI"/>
+    		</jsp:include>
     	</div>
     	<div style="height:119px;margin:3px;border-style:solid;">
     		응시자격링크
