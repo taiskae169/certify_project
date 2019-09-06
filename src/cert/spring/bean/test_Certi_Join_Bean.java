@@ -6,21 +6,23 @@ import java.util.Set;
 import java.util.Map.Entry;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import test.readCSV.test.CSVtoMap;
 
+@Repository
 @Controller
-@RequestMapping("/user_join/")
-public class Certi_Join_Bean {
+@RequestMapping("/")
+public class test_Certi_Join_Bean {
 	
 	ModelAndView mv =null;
 	
 	@RequestMapping("test1.certi")
 	public ModelAndView test1(){
 		mv = new ModelAndView();
-		mv.setViewName("/test1");
+		mv.setViewName("/test_user_join/test1");
 		return mv;
 	}
 	
@@ -41,7 +43,8 @@ public class Certi_Join_Bean {
 	        }
 		}
 		mv.addObject("uni_name",uni_name);
-		mv.setViewName("/test_uni");
+		mv.addObject("uni_name_length",uni_name.length);
+		mv.setViewName("/test_user_join/test_uni");
 		return mv;
 	}
 	
