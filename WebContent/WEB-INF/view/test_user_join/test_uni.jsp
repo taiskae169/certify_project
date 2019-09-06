@@ -11,8 +11,13 @@
 </style>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
+	var school_name_val = $('input#school_name').val();
 	function search(){
-		location.href=
+		if(school_name_val!=null){
+			location.href="test_uni.certi?search="+school_name_val;
+		}else{
+			alert("학교 명을 입력해주세요.");
+		}
 	}
 </script>
 
@@ -24,6 +29,13 @@
 </form>
 <br><br><br>
 <div class="scrollBoard" border="1">
-	
+	<c:if test="${uni_name!=null}" >
+		<c:forEach begin="0" end="${uni_name_length}" step="1" var="i">
+			<span><a>${uni_name[i]}</a></span><br>
+		</c:forEach>
+	</c:if>
+	<c:if test="${uni_name==null}" >
+		<span> 해당하는 학교가 없습니다. </span>
+	</c:if>
 </div>
 
