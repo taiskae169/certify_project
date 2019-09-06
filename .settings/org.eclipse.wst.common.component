@@ -2,9 +2,6 @@
     <wb-module deploy-name="certify_project-0.0.1-SNAPSHOT">
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-sources/annotations"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/generated-test-sources/test-annotations"/>
         <property name="java-output-path" value="/certify_project/build/classes"/>
         <property name="context-root" value="certify_project"/>
     </wb-module>
