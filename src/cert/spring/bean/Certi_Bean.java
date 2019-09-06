@@ -5,10 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.Map.Entry;
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/taiskae169/certify_project.git
 
 import java.math.BigInteger;
 import java.net.URLEncoder;
