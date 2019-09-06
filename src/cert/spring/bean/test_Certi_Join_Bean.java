@@ -1,7 +1,9 @@
 package cert.spring.bean;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 import java.util.Map.Entry;
 
@@ -26,24 +28,26 @@ public class test_Certi_Join_Bean {
 		return mv;
 	}
 	
-	@SuppressWarnings("null")
 	@RequestMapping("test_uni.certi")
-	public ModelAndView test_test(String search) throws IOException {
+	public ModelAndView test_test(String school_name) throws IOException {
 		mv = new ModelAndView();
 		CSVtoMap ctm = new CSVtoMap();
 		HashMap<String, Set<String>> univercity = ctm.reader("C:/Users/DELL/Documents/major.csv");
 
-		String [] uni_name = null;
-		if(search!=null) {
+		List uni_name = null;
+		int length=0;
+		if(school_name!=null) {
+			uni_name  =new ArrayList();
 			int i = 0;
 	        for (Entry<String, Set<String>> e : univercity.entrySet()) {
-	        	if (e.getKey().contains(search)) {
-	        	  uni_name[i]=e.getKey();
+	        	if (e.getKey().contains(school_name)) {
+	        	  uni_name.add(e.getKey());
+	        	  length=uni_name.size();
 	        	}
 	        }
 		}
 		mv.addObject("uni_name",uni_name);
-		mv.addObject("uni_name_length",uni_name.length);
+		mv.addObject("uni_name_length",length);
 		mv.setViewName("/test_user_join/test_uni");
 		return mv;
 	}

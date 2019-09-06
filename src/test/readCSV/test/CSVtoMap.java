@@ -21,9 +21,6 @@ public class CSVtoMap {
         String save = null;
         Set<String> s = null;
         while ((nextLine = reader.readNext()) != null) {
-        	System.out.print("학교 : " + nextLine[2].trim()+" / ");
-            System.out.print("과명 : " + nextLine[3].trim()+" / ");	// 가로행
-            System.out.println();
             if(save==null) {
             	s = new HashSet<String>();
             	save=nextLine[2].trim();

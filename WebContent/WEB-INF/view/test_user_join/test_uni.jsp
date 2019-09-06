@@ -14,24 +14,29 @@
 	var school_name_val = $('input#school_name').val();
 	function search(){
 		if(school_name_val!=null){
-			location.href="test_uni.certi?search="+school_name_val;
+			window.location="test_uni.certi?school_name="+school_name_val;
 		}else{
 			alert("학교 명을 입력해주세요.");
 		}
+	}
+	function setUni_name(){		
+	    opener.document.user_edu_info.school_name.value=${uni_name[i]};
+	    opener.document.user_edu_info.school_name.value = document.getElementById("${i}").value
+		self.close();
 	}
 </script>
 
 <form>
 	<b>학교명을 입력하세요.</b><br>
 	<input type="text" name="school_name" id="school_name"/>
-	<input type="button" name="검색" id="search" onclick="search();"/>
+	<input type="button" value="검색" name="search" id="search" onclick="search();"/>
 
 </form>
 <br><br><br>
 <div class="scrollBoard" border="1">
 	<c:if test="${uni_name!=null}" >
 		<c:forEach begin="0" end="${uni_name_length}" step="1" var="i">
-			<span><a>${uni_name[i]}</a></span><br>
+			<span><a onclick="setUni_name();" id="${i}">${uni_name[i]}</a></span><br>
 		</c:forEach>
 	</c:if>
 	<c:if test="${uni_name==null}" >
