@@ -82,7 +82,7 @@ public class Certi_Bean {
 	@RequestMapping("loginPro.certi")
 	public ModelAndView loginPro(String id, String pw) {
 		mv = new ModelAndView();
-		System.out.println("loginPro ����");
+
 		System.out.println(id);
 		System.out.println(pw);
 		
@@ -113,6 +113,6 @@ public class Certi_Bean {
 //		
 //		return mv;
 //	}
-//	���������� �Ͻ� ����
+//	占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占싹쏙옙 占쏙옙占쏙옙
 	
 }
