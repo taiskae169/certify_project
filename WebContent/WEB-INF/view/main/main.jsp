@@ -72,6 +72,7 @@
     	</div>
     	<div style="height:200px;border-style:solid;margin:3px;">
     		공지사항 <br />
+    		
     	</div>
     </div>
     <div style="width:580px;height:600px;border-style:solid;float:right;">

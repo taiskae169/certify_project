@@ -2,7 +2,7 @@
     pageEncoding="EUC-KR"%>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <div class="container" style="background-color:#EAEAEA;width:568px;height:172.25px;margin:auto;">
-	<form action="/certify/loginPro.certi" id="loginForm" style="display:inline-block; margin:10px;" method="POST">
+	<form action="/certify/user/loginPro.certi" id="loginForm" style="display:inline-block; margin:10px;" method="POST">
 		<label for="id-box" style="display:inline-block; width:60px;">EMAIL </label>
 		<input type="text" name="id" /> <br />
 		<label for="pw-box" style="display:inline-block; width:60px;">PW </label>
