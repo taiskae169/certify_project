@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.Map.Entry;
 
-<<<<<<< HEAD
 import java.math.BigInteger;
 import java.net.URLEncoder;
 import java.security.SecureRandom;
@@ -14,9 +13,8 @@ import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
-=======
+
 import org.mybatis.spring.SqlSessionTemplate;
->>>>>>> branch 'master' of https://github.com/taiskae169/certify_project.git
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
@@ -41,7 +39,6 @@ public class Certi_Bean {
 	@RequestMapping("main.certi")
 	public ModelAndView mainpage(HttpSession session) {
 		mv = new ModelAndView();
-<<<<<<< HEAD
 		
 		String redirectURI;
 		String naverURI;
@@ -65,11 +62,7 @@ public class Certi_Bean {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		
-		
 
-=======
->>>>>>> branch 'master' of https://github.com/taiskae169/certify_project.git
 		mv.setViewName("/main/main");
 		return mv;
 	}
