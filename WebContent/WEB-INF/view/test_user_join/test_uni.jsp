@@ -31,8 +31,8 @@
 	function setUni_name(selectId){		
 		opener.document.user_edu_info.school_name.value = selectId;
 		window.location="test_uni.certi?school_nameFix="+selectId;
-		$("#uni_check").css("display" ,"none");
-		$("#major_check").css("display" ,"block");
+		$('#uni_check').hide();
+		$('#major_check').show();
 	}
 	function setMajor_name(selectId){		
 		opener.document.user_edu_info.major_name.value = selectId;
@@ -59,7 +59,7 @@
 	</div>
 </div>
 <!-- 학교 및 학과 div 구분 -->
-<div id="major_check">
+<div id="major_check" >
 	<form>
 		<b>학과명을 입력하세요.</b><br>
 		<input type="text" name="major_name" id="major_name" onKeypress="javascript:if(event.keyCode==13) {search_major();}" />
