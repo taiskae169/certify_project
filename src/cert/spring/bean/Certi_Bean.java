@@ -1,15 +1,21 @@
 package cert.spring.bean;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.Map.Entry;
+import certify.vo.*;
+import certify.cond.method.*;
 
 
 import java.math.BigInteger;
 import java.net.URLEncoder;
 import java.security.SecureRandom;
+import java.sql.SQLException;
 import java.util.Random;
 
 import javax.servlet.*;
@@ -22,6 +28,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.opencsv.CSVReader;
 
 import certify.user.dao.UserMethod;
 
@@ -102,15 +110,30 @@ public class Certi_Bean {
 	
 
 	@RequestMapping("Bongtest.certi")
-	public String Bongtest() {
+	public String Bongtest() throws IOException, SQLException{
+		 
+		@SuppressWarnings("resource")
+		CSVReader reader = new CSVReader(new InputStreamReader(new FileInputStream("/Users/mac/certification.csv"), "EUC-KR")); // CSV파일 한글로 읽어들이기
+		
+		String[] nextLine;
+		while ((nextLine = reader.readNext()) != null) {
+		
+			CertificationVO certification = new CertificationVO();
+			certification.setNum(Integer.parseInt(nextLine[0]));
+			certification.setName(nextLine[1]);
+			
+			sql.insert("user.insertMember", certification);
+			
+		} 
 		
 		int bong = sql.selectOne("Test");
+		System.out.println(bong);
 		
-		return "/test_test";
+		return "/main/main";
 	}
 
-	
-	
+}
+
 //	@RequestMapping("error.certi")
 //	public ModelAndView errorpage() {
 //		mv = new ModelAndView();
@@ -122,4 +145,4 @@ public class Certi_Bean {
 //	}
 //	占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占싹쏙옙 占쏙옙占쏙옙
 	
-}
+

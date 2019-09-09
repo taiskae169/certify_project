@@ -9,4 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="Test" resultType="int">
   		select count(num) from BOARD_CATE_VALUE 
   	</select>
+  	<insert id="insertMember" parameterType="CertificationVO">
+  		insert into CERTIFY_INFO values(#{num}, #{name})
+  	</insert>
 </mapper>

@@ -1,4 +1,4 @@
-package test.readCSV.test;
+package certify.cond.method;
 
 import java.io.FileInputStream;
 import java.io.FileReader;
@@ -17,15 +17,20 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.opencsv.CSVReader;
 
 public class ReadCSVFile {
+	@Autowired
+	private SqlSessionTemplate sql = null;
 	
 	private static ReadCSVFile instance = new ReadCSVFile();
 	public static ReadCSVFile getInstance() {
 		return instance;
 	}
-	private ReadCSVFile() {}
+	public ReadCSVFile() {}
 	
 	private Connection conn=null;
 	private PreparedStatement pstmt= null;
@@ -63,14 +68,8 @@ public class ReadCSVFile {
        
 		@SuppressWarnings("resource") //안쓰면 reader 안닫았다고 밑에 밑줄쳐진다.
         CSVReader reader = new CSVReader(new InputStreamReader(new FileInputStream(filePath), "EUC-KR")); // CSV파일 한글로 읽어들이기
-        
-		String sql = "";
-		conn=getConnection();
-		sql="insert into CERTIFY(NUM,CRE_NAME) values(?,?)";
-		pstmt=conn.prepareStatement(sql);
-		 pstmt.setInt(1,1);
-         pstmt.setString(2, "bong");
-         pstmt.executeUpdate();
+   
+
 		
         String[] nextLine;
         int i = 0;
@@ -78,13 +77,13 @@ public class ReadCSVFile {
         	School sc = new School();
             // nextLine[] is an array of values from the line
         	// nextLine[]은 csv파일에서 한줄을 의미 
-            /*sql="insert into CERTIFY(num,cre_name) values(?,?)";
-			pstmt=conn.prepareStatement(sql);
+            sql.update(,Integer.parseInt(nextLine[0]));
+			
 			System.out.println(nextLine[0]);
 			sc.setNum(Integer.parseInt(nextLine[0]));
             pstmt.setInt(1,sc.getNum());
             pstmt.setString(2, nextLine[1]);
-            pstmt.executeUpdate();*/
+            pstmt.executeUpdate();
  
         }    
     }
