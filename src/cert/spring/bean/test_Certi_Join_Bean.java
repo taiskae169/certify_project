@@ -29,7 +29,7 @@ public class test_Certi_Join_Bean {
 	}
 	
 	@RequestMapping("test_uni.certi")
-	public ModelAndView test_test(String school_name, String school_nameFix) throws IOException {
+	public ModelAndView test_test(String school_name, String school_nameFix, String major_nameFix) throws IOException {
 		mv = new ModelAndView();
 		CSVtoMap ctm = new CSVtoMap();
 		HashMap<String, Set<String>> univercity = ctm.reader("C:/Users/DELL/Documents/major.csv");
@@ -48,6 +48,15 @@ public class test_Certi_Join_Bean {
 	        }
 		}
 		if(school_nameFix!=null) {
+			System.out.println(school_nameFix);
+			major_name =  new ArrayList();
+			Object [] majorArr = univercity.get(school_nameFix).toArray();
+			for(int i=0; i<majorArr.length; i++) {
+				major_name.add(majorArr[i]);
+			}
+			length=major_name.size();
+		}
+		if(major_nameFix!=null) {
 			System.out.println(school_nameFix);
 			major_name =  new ArrayList();
 			Object [] majorArr = univercity.get(school_nameFix).toArray();

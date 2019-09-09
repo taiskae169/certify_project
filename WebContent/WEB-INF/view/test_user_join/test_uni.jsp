@@ -12,7 +12,7 @@
 	dispaly: block;
 }
 #major_check{
-	dispaly: 'none;'
+	dispaly: none;
 }
 </style>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -28,15 +28,15 @@
 		window.location="test_uni.certi?major_name="+major_name_val;
 	}
 
-	function setUni_name(click){		
-		opener.document.user_edu_info.school_name.value = click;
-		window.location="test_uni.certi?school_nameFix="+click+"&status=false";
+	function setUni_name(selectId){		
+		opener.document.user_edu_info.school_name.value = selectId;
+		window.location="test_uni.certi?school_nameFix="+selectId;
 		$("#uni_check").css("display" ,"none");
 		$("#major_check").css("display" ,"block");
 	}
-	function setMajor_name(click){		
-		opener.document.user_edu_info.major_name.value = click;
-		window.location="test_uni.certi?school_nameFix="+click;
+	function setMajor_name(selectId){		
+		opener.document.user_edu_info.major_name.value = selectId;
+		window.location=window.location.href+"?major_nameFix="+selectId;
 		self.close();
 	}
 </script>
@@ -58,7 +58,6 @@
 		</c:if>
 	</div>
 </div>
-
 <!-- 학교 및 학과 div 구분 -->
 <div id="major_check">
 	<form>
@@ -78,5 +77,4 @@
 		</c:if>
 	</div>
 </div>
-
 
