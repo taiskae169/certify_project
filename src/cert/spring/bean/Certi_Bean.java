@@ -11,7 +11,6 @@ import java.util.Map.Entry;
 import certify.vo.*;
 import certify.cond.method.*;
 
-
 import java.math.BigInteger;
 import java.net.URLEncoder;
 import java.security.SecureRandom;
@@ -50,27 +49,20 @@ public class Certi_Bean {
 	public ModelAndView mainpage(HttpSession session) {
 
 		mv = new ModelAndView();
-
-
-		mv = new ModelAndView();
-
-		mv = new ModelAndView();
-
-
-		
 		String redirectURI;
 		String naverURI;
 		String state;
 		try {
-			redirectURI = URLEncoder.encode("http://localhost:8080/certify/loginCh.certi", "UTF-8");
+			redirectURI = URLEncoder.encode("http://localhost:8080/certify/user/naverLogin.certi", "UTF-8");
 			SecureRandom rendom = new SecureRandom();
 			state = new BigInteger(130,rendom).toString();
 			
 			naverURI="https://nid.naver.com/oauth2.0/authorize?response_type=code";
 			naverURI +="&client_id=UfsHgM0aSD0KyYettfN3";
 			naverURI +="&redirect_uri=" + redirectURI;
-			naverURI +="&state"+state;
+			naverURI +="&state="+state;
 			
+			System.out.println(naverURI);
 			session.setAttribute("naverState", state);
 			
 			
@@ -85,6 +77,7 @@ public class Certi_Bean {
 		return mv;
 	}
 
+	//로그인 모듈 테스트만을 위한 메소드
 	@RequestMapping("logintest.certi")
 	public ModelAndView logintest() {
 		mv = new ModelAndView();
@@ -94,19 +87,7 @@ public class Certi_Bean {
 		return mv;
 	}
 	
-	@RequestMapping("loginPro.certi")
-	public ModelAndView loginPro(String id, String pw) {
-		mv = new ModelAndView();
 
-		System.out.println(id);
-		System.out.println(pw);
-		
-		int i = (Integer)userdao.logincheck(id, pw);
-		
-		
-		mv.setViewName("/login/loginPro");
-		return mv;
-	}
 	
 
 	@RequestMapping("Bongtest.certi")
@@ -117,12 +98,12 @@ public class Certi_Bean {
 		
 		String[] nextLine;
 		while ((nextLine = reader.readNext()) != null) {
-		
-			CertificationVO certification = new CertificationVO();
-			certification.setNum(Integer.parseInt(nextLine[0]));
-			certification.setName(nextLine[1]);
-			
-			sql.insert("user.insertMember", certification);
+			CertificationVO vo = new CertificationVO();
+			vo.setNum(Integer.parseInt(nextLine[0]));
+			vo.setName(nextLine[1]);
+			vo.setCate(1);
+			vo.setType(1);
+			sql.insert("user.insertMember", vo);
 			
 		} 
 		
