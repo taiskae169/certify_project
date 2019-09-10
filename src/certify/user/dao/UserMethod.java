@@ -1,10 +1,18 @@
 package certify.user.dao;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 public class UserMethod {
 	
@@ -23,6 +31,56 @@ public class UserMethod {
 		
 		return result;
 		
+	}
+	//아이디/비밀번호를 체크하는 메소드 -> 아이디 불일치, 비밀번호 불일치를 구분하기 위해 수정필요
+	
+	public HashMap<String, String> getNaverProfile(String access_token){
+		HashMap<String , String> profile = new HashMap<String,String>();
+		
+		System.out.println("프로필 가지져오기 시작");
+		
+		String header = "Bearer "+access_token;
+		try {
+			String apiURL="https://openapi.naver.com/v1/nid/me";
+			URL url = new URL(apiURL);
+			HttpURLConnection con = (HttpURLConnection)url.openConnection();
+			con.setRequestMethod("GET");
+			con.setRequestProperty("Authorization", header);
+			int responseCode = con.getResponseCode();
+			BufferedReader br;
+			if(responseCode==200) {
+				br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+			}else {
+				br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+			}
+			String inputLine;
+			StringBuffer response = new StringBuffer();
+			while((inputLine=br.readLine())!=null) {
+				response.append(inputLine);
+			}
+			br.close();
+			
+			
+			JsonParser jp = new JsonParser();
+			JsonElement element = jp.parse(response.toString());
+			if(element.getAsJsonObject().get("message").getAsString().equals("success")) {
+				JsonObject tmp = (JsonObject)jp.parse(response.toString());
+				JsonObject info = (JsonObject)tmp.get("response");
+				
+				profile.put("email",info.get("email").getAsString());
+				profile.put("name", info.get("name").getAsString());
+				profile.put("birthday", info.get("birthday").getAsString());
+				profile.put("gender", info.get("gender").getAsString());
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		System.out.println("프로필가져오기 끝");
+		
+		return profile;
 	}
 
 }

@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -44,10 +45,11 @@ public class Certi_User_Bean {
 	
 	@RequestMapping("naverLogin.certi")
 	public ModelAndView naverLogin(HttpSession session, String code) {
+		System.out.println("네이버 로그인 시작");
 		mv = new ModelAndView();
 		
 		String clientId="UfsHgM0aSD0KyYettfN3";
-		String clientSecret="siBe65lAg";
+		String clientSecret="jsiBe65lAg";
 		String state = (String)session.getAttribute("naverState");
 		String redirectURI;
 		String apiURL;
@@ -67,6 +69,10 @@ public class Certi_User_Bean {
 		    con.setRequestMethod("GET");
 		    int responseCode=con.getResponseCode();
 		    BufferedReader br;
+		    
+		    
+		    System.out.println("response :" + responseCode);
+		    
 		    if(responseCode==200) {
 		    	br = new BufferedReader(new InputStreamReader(con.getInputStream()));
 		    }else {
@@ -93,7 +99,12 @@ public class Certi_User_Bean {
 		    	session.setAttribute("naver_access_token", access_token);
 		    	session.setAttribute("naver_refresh_token", refresh_token);
 		    	
-		    	//access토큰 추출 이후에 회원정보 추출이 필요
+		    	HashMap<String, String> profile = userdao.getNaverProfile(access_token);
+		    	
+		    	System.out.println(profile.get("name"));
+		    	System.out.println(profile.get("birthday"));
+		    	System.out.println(profile.get("gender"));
+		    	System.out.println(profile.get("email"));
 		    }
 		    
 		} catch (Exception e) {
