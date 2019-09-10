@@ -16,6 +16,10 @@ public class userVO {
 	public Timestamp reg;
 	public int wana;
 	public int qual;
+	public String naverId;
+	public String kakaoId;
+	public String googleId;
+	
 	
 	public String getId() {
 		return id;
@@ -65,5 +69,22 @@ public class userVO {
 	public void setQual(int qual) {
 		this.qual = qual;
 	}
-	
+	public String getNaverId() {
+		return naverId;
+	}
+	public void setNaverId(String naverId) {
+		this.naverId = naverId;
+	}
+	public String getKakaoId() {
+		return kakaoId;
+	}
+	public void setKakaoId(String kakaoId) {
+		this.kakaoId = kakaoId;
+	}
+	public String getGoogleId() {
+		return googleId;
+	}
+	public void setGoogleId(String googleId) {
+		this.googleId = googleId;
+	}
 }

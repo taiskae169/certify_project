@@ -34,6 +34,30 @@ public class UserMethod {
 	}
 	//아이디/비밀번호를 체크하는 메소드 -> 아이디 불일치, 비밀번호 불일치를 구분하기 위해 수정필요
 	
+	
+	public int naverLogin(String id) {
+		int result=sql.selectOne("user.naverLogin",id);
+		
+		return result;
+	}
+	//네이버 로그인 확인
+	//1일시 회원가입이 되어있는 사람
+	public int kakaoLogin(String id) {
+		int result=sql.selectOne("user.kakaoLogin",id);
+		
+		return result;
+	}
+	//카카오회원로그인 확인
+	//1일시 회원가입이 되어있는 사람
+	public int googleLogin(String id) {
+		int result=sql.selectOne("user.googleLogin",id);
+		
+		return result;
+	}
+	//구글 로그인 확인
+	//1일시 회원가입이 되어있는 사람
+	
+	
 	public HashMap<String, String> getNaverProfile(String access_token){
 		HashMap<String , String> profile = new HashMap<String,String>();
 		
@@ -71,6 +95,7 @@ public class UserMethod {
 				profile.put("name", info.get("name").getAsString());
 				profile.put("birthday", info.get("birthday").getAsString());
 				profile.put("gender", info.get("gender").getAsString());
+				profile.put("id", info.get("id").getAsString());
 			}
 			
 		} catch (Exception e) {
