@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -8,34 +9,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>사거리</title>
         <!-- Bootstrap -->
-        <link href="/resources/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
         <link href="/resources/image/icon/HalfLife.ico" rel="shortcuticon">
-        <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요한) -->
+        <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요한) -->	
         <script src="//code.jquery.com/jquery.js"></script>
         <!-- 모든 합쳐진 플러그인을 포함하거나 (아래) 필요한 각각의 파일들을 포함하세요 -->
-        <script src="/resources/bootstrap/js/bootstrap.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
         <!-- Respond.js 으로 IE8 에서 반응형 기능을 활성화하세요 (https://github.com/scottjehl/Respond) -->
         <script src="/resources/bootstrap/js/respond.js"></script>
     </head>
     <body>
         <div class="container"><!-- 좌우측의 공간 확보 -->
-            <!-- 헤더 들어가는 부분 -->
-             
-            <div class="row">
-                <p></p>
-                <div class="col-md-6">
-                    <small>
-                    <a href="#">로그인</a> | <a href="/user/signUp">회원가입</a>
-                    </small></div>
-                <div class="col-md-6">
-                    <p class="text-right">
-                        <a href="http://www.naver.com" target="_blank"><img src="/resources/image/icon/naverIcon.png" alt="네이버 블로그" width="20" height="20" class="img-rounded"></a>
-                        <a href="http://www.facebook.com" target="_blank"><img src="/resources/image/icon/facebookIcon.png" alt="네이버 블로그" width="20" height="20" class="img-rounded"></a>
-                        <a href="http://www.twitter.com" target="_blank"><img src="/resources/image/icon/twitterIcon.png" alt="네이버 블로그" width="21" height="21" class="img-rounded"></a>
-                    </p>
-                </div>
-            </div>
-            <!--// 헤더 들어가는 부분 -->
             <!-- 모달창 -->
             <div class="modal fade" id="defaultModal">
                 <div class="modal-dialog">
@@ -54,16 +38,15 @@
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
             <!--// 모달창 -->
-            <hr/>
                 <!-- 본문 들어가는 부분 -->
                  
- 
+ 		<hr />
  
         <form class="form-horizontal" role="form" method="post" action="javascript:alert( 'success!' );">
             <div class="form-group">
                 <label for="provision" class="col-lg-2 control-label">회원가입약관</label>
                 <div class="col-lg-10" id="provision">
-                    <textarea class="form-control" rows="8" style="resize:none">
+                    <textarea class="form-control" rows="8" style="resize:none" readonly="readonly">
 약관동의
                     </textarea>
                     <div class="radio">
@@ -74,7 +57,7 @@
                     </div>
                     <div class="radio">
                         <label>
-                            <input type="radio" id="provisionYn" name="provisionYn" value="N">
+                            <input type="radio" id="provisionYn" name="provisionYn" value="N" checked>
                             동의하지 않습니다.
                         </label>
                     </div>
@@ -83,18 +66,18 @@
             <div class="form-group">
                 <label for="memberInfo" class="col-lg-2 control-label">개인정보취급방침</label>
                 <div class="col-lg-10" id="memberInfo">
-                    <textarea class="form-control" rows="8" style="resize:none">
+                    <textarea class="form-control" rows="8" style="resize:none" readonly="readonly">
 개인정보의 항목 및 수집방법
                     </textarea>
                     <div class="radio">
                         <label>
-                            <input type="radio" id="memberInfoYn" name="memberInfoYn" value="Y" checked>
+                            <input type="radio" id="memberInfoYn" name="memberInfoYn" value="Y" >
                             동의합니다.
                         </label>
                     </div>
                     <div class="radio">
                         <label>
-                            <input type="radio" id="memberInfoYn" name="memberInfoYn" value="N">
+                            <input type="radio" id="memberInfoYn" name="memberInfoYn" value="N" checked>
                             동의하지 않습니다.
                         </label>
                     </div>
@@ -103,7 +86,7 @@
             <div class="form-group" id="divId">
                 <label for="inputId" class="col-lg-2 control-label">아이디</label>
                 <div class="col-lg-10">
-                    <input type="text" class="form-control onlyAlphabetAndNumber" id="id" data-rule-required="true" placeholder="30자이내의 알파벳, 언더스코어(_), 숫자만 입력 가능합니다." maxlength="30">
+                    <input type="email" class="form-control" id="email" data-rule-required="true" placeholder="이메일" maxlength="40">
                 </div>
             </div>
             <div class="form-group" id="divPassword">
@@ -124,32 +107,39 @@
                     <input type="text" class="form-control onlyHangul" id="name" data-rule-required="true" placeholder="한글만 입력 가능합니다." maxlength="15">
                 </div>
             </div>
-             
-            <div class="form-group" id="divNickname">
-                <label for="inputNickname" class="col-lg-2 control-label">별명</label>
-                <div class="col-lg-10">
-                    <input type="text" class="form-control" id="nickname" data-rule-required="true" placeholder="별명" maxlength="15">
-                </div>
-            </div>
-             
-            <div class="form-group" id="divEmail">
-                <label for="inputEmail" class="col-lg-2 control-label">이메일</label>
-                <div class="col-lg-10">
-                    <input type="email" class="form-control" id="email" data-rule-required="true" placeholder="이메일" maxlength="40">
-                </div>
-            </div>
-            <div class="form-group" id="divPhoneNumber">
-                <label for="inputPhoneNumber" class="col-lg-2 control-label">휴대폰 번호</label>
-                <div class="col-lg-10">
-                    <input type="tel" class="form-control onlyNumber" id="phoneNumber" data-rule-required="true" placeholder="-를 제외하고 숫자만 입력하세요." maxlength="11">
-                </div>
-            </div>
             <div class="form-group">
                 <label for="inputPhoneNumber" class="col-lg-2 control-label">성별</label>
                 <div class="col-lg-10">
                     <select class="form-control" id="gender">
                         <option value="M">남</option>
                         <option value="F">여</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPhoneNumber" class="col-lg-2 control-label">생년월일</label>
+                <div class="col-lg-10">
+                    <input type="date" class="form-control" id="dirth" data-rule-required="true">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPhoneNumber" class="col-lg-2 control-label">관심카테고리</label>
+                <div class="col-lg-10">
+                    <select class="form-control" id="gender">
+                        <option value="M">남</option>
+                        <option value="F">여</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPhoneNumber" class="col-lg-2 control-label">응시자격</label>
+                <div class="col-lg-10">
+                    <select class="form-control" id="gender">
+                        <option value="0">기능사</option>
+                        <option value="1">산업기사</option>
+                        <option value="2">기사</option>
+                        <option value="3">기술사</option>
+                        <option value="4">기능장</option>
                     </select>
                 </div>
             </div>
@@ -466,17 +456,7 @@
              
         </script>
                 <!--// 본문 들어가는 부분 -->
-            <hr/>
-            <!-- 푸터 들어가는 부분 -->
-             
-            <div>
-                <p class="text-center">
-                    <small><strong> 사거리</strong></small><br>
-                    <small>대표 : 홍길동 ㆍ 주소 :  사거리 ㆍ 사업자등록번호:123-12-12345 ㆍ 전화 : 064-123-1234</small><br>
-                    <small>Copyrightⓒ test.com All rights reserved.</small>
-                </p>
-            </div>
-            <!--// 푸터 들어가는 부분 -->
+
         </div>
     </body>
 </html>

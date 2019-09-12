@@ -98,8 +98,8 @@ public class Certi_User_Bean {
 		    	refresh_token= element.getAsJsonObject().get("refresh_token").getAsString();
 		    	//json에서 access_toekn, refresh_token 추출 완료
 		    	
-		    	session.setAttribute("naver_access_token", access_token);
-		    	session.setAttribute("naver_refresh_token", refresh_token);
+		    	//session.setAttribute("naver_access_token", access_token);
+		    	//session.setAttribute("naver_refresh_token", refresh_token);
 		    	
 		    	HashMap<String, String> profile = userdao.getNaverProfile(access_token);
 		    	userVO userinfo = new userVO();
@@ -178,6 +178,24 @@ public class Certi_User_Bean {
 			mv.setViewName("/login/sign");
 		}
 		
+		
+		return mv;
+	}
+	
+	@RequestMapping("sign.certi")
+	public ModelAndView sign() {
+		mv = new ModelAndView();
+		
+		mv.setViewName("/login/sign");
+		
+		return mv;
+	}
+	
+	@RequestMapping("signpage.certi")
+	public ModelAndView signPage() {
+		mv = new ModelAndView();
+		
+		mv.setViewName("/login/signPage");
 		
 		return mv;
 	}
