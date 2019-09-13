@@ -7,9 +7,11 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.sql.Timestamp;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +21,12 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
 import certify.user.dao.UserMethod;
+import certify.vo.Cer_CategoryVO;
 import user.vo.userVO;
+
+
+
+
 
 @Controller
 @RequestMapping("/user/")
@@ -181,10 +188,14 @@ public class Certi_User_Bean {
 		
 		return mv;
 	}
-	
+	 
 	@RequestMapping("sign.certi")
 	public ModelAndView sign() {
 		mv = new ModelAndView();
+		
+		List<Cer_CategoryVO> category = 
+		
+		
 		
 		mv.setViewName("/login/sign");
 		

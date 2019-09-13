@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -13,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+
+import certify.vo.Cer_CategoryVO;
 
 public class UserMethod {
 	
@@ -106,6 +109,14 @@ public class UserMethod {
 		System.out.println("프로필가져오기 끝");
 		
 		return profile;
+	}
+	
+	public List<Cer_CategoryVO> getCerti_Category(){
+		List<Cer_CategoryVO> category = sql.selectList("user.cer_category");
+		//여기까지 했음
+		
+		
+		
 	}
 
 }
