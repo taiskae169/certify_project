@@ -63,7 +63,9 @@
 
   <!-- Image Showcases -->
   <section class="showcase" style="width:1450px;;margin:auto;">
-    <jsp:include page="/WEB-INF/view/login/signPage.jsp" />
+    <jsp:include page="/WEB-INF/view/login/signPage.jsp">
+    	<jsp:param value="${category}" name="category"/>
+    </jsp:include>
     
   </section >
 

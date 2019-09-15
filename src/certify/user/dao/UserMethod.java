@@ -113,10 +113,12 @@ public class UserMethod {
 	
 	public List<Cer_CategoryVO> getCerti_Category(){
 		List<Cer_CategoryVO> category = sql.selectList("user.cer_category");
-		//여기까지 했음
 		
-		
-		
+//		for(Cer_CategoryVO i :category) {
+//			System.out.println(i.getName());
+//		}
+
+		return category;
 	}
 
 }

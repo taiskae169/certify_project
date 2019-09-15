@@ -87,6 +87,7 @@
                 <label for="inputId" class="col-lg-2 control-label">아이디</label>
                 <div class="col-lg-10">
                     <input type="email" class="form-control" id="email" data-rule-required="true" placeholder="이메일" maxlength="40">
+                	<button class="btn">중복확인</button>
                 </div>
             </div>
             <div class="form-group" id="divPassword">
@@ -126,8 +127,9 @@
                 <label for="inputPhoneNumber" class="col-lg-2 control-label">관심카테고리</label>
                 <div class="col-lg-10">
                     <select class="form-control" id="gender">
-                        <option value="M">남</option>
-                        <option value="F">여</option>
+                    	<c:forEach var="cate" items="${category}">
+                    		<option value="${cate.certi_num}">${cate.name}</option>
+                    	</c:forEach>
                     </select>
                 </div>
             </div>

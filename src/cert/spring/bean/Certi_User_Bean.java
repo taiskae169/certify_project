@@ -193,10 +193,10 @@ public class Certi_User_Bean {
 	public ModelAndView sign() {
 		mv = new ModelAndView();
 		
-		List<Cer_CategoryVO> category = 
+		List<Cer_CategoryVO> category = userdao.getCerti_Category();
 		
 		
-		
+		mv.addObject("category",category);
 		mv.setViewName("/login/sign");
 		
 		return mv;
