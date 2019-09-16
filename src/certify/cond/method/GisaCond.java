@@ -216,7 +216,7 @@ public class GisaCond extends OverrideSource{
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		for(int i=0; i<user_certiList.size(); i++) {
-			if(user_certiList.get(i).cate==cfvo.cate && user_certiList.get(i).type==0) {
+			if(user_certiList.get(i).cate==cfvo.getCate() && user_certiList.get(i).type==0) {
 				if(careerMap!=null && careerMap.containsKey(cfvo.getCate()) ) {
 		    		if(careerMap.get(cfvo.getCate())>=year*3) {
 		    			applyPossible=true; break;
@@ -285,7 +285,7 @@ public class GisaCond extends OverrideSource{
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		if(user_certiList!=null) {
 			for(int i=0; i<user_certiList.size(); i++) {
-				if(user_certiList.get(i).cate==cfvo.cate && user_certiList.get(i).type >= cfvo.type) {
+				if(user_certiList.get(i).cate==cfvo.getCate() && user_certiList.get(i).type >= cfvo.getType()) {
 					applyPossible=true; break;
 				}
 			}
@@ -299,7 +299,7 @@ public class GisaCond extends OverrideSource{
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		if(user_certiList!=null) {
 			for(int i=0; i<user_certiList.size(); i++) {
-				if(user_certiList.get(i).cate==cfvo.cate && user_certiList.get(i).type==1) {
+				if(user_certiList.get(i).cate==cfvo.getCate() && user_certiList.get(i).type==1) {
 					if(careerMap!=null && careerMap.containsKey(cfvo.getCate())) {
 			    		if(careerMap.get(cfvo.getCate())>=year) {
 			    			applyPossible=true; break;

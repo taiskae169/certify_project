@@ -54,7 +54,7 @@ public class Gukjun_sobangAnjun extends OverrideSource {
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		condition:
-			if(careerMap!=null && careerMap.containsKey(cfvo.cate)) {
+			if(careerMap!=null && careerMap.containsKey(cfvo.getCate())) {
 				if(careerMap.get(cfvo.getCate())>=year*3) applyPossible=true; break condition;
 			}else if(user_eduList!=null) {
 				for(int i=0; i<user_eduList.size(); i++) {
