@@ -22,8 +22,8 @@
 			<option value="" selected>게시판을 선택해주세요.</option>
 			<option value="">---------------------------</option>
 			<c:forEach begin="0" end="${catelist.size()-1}" step="1" var="i">
-			<c:set var="catelist" value="${catelist[i]}"/>
-			<option value="${catelist.num }" id="${catelist.num }">${catelist.value}</option>	
+			<c:set var="cate" value="${catelist[i]}"/>
+			<option value="${cate.num }" id="${cate.num }">${cate.value}</option>	
 			</c:forEach>
 		
 			</td>

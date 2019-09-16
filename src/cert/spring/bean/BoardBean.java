@@ -81,7 +81,7 @@ public class BoardBean {
 	public String BoardWriteForm(HttpSession session,Model model) {
 		session.setAttribute("memId", "bong");
 		List<BoardCateVO> catelist = null;
-		catelist = (List)sql.selectList("board.getCateAriticle");
+		catelist = (List)sql.selectList("board.getCateArticle");
 		model.addAttribute("catelist",catelist);
 		return "/board/BoardWriteForm";
 	}
@@ -104,6 +104,7 @@ public class BoardBean {
 			vo.setOrgname(orgName);
 			vo.setId((String)session.getAttribute("memId"));
 			vo.setTitle(vo.getTitle());
+			vo.setCate(vo.getCate());
 			vo.setContent(vo.getContent());
 			sql.insert("board.fileInsert",vo);
 			
