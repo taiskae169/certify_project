@@ -1,10 +1,10 @@
 package certify.vo;
 
 public class CertifyVO {
-	public int num;
-	public int cate;
-	public int type;
-	public String name;
+	private int num;
+	private int cate;
+	private int type;
+	private String name;
 	
 	public int getNum() {
 		return num;

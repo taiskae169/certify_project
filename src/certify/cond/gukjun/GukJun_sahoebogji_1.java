@@ -53,7 +53,7 @@ public class GukJun_sahoebogji_1 extends OverrideSource{
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		for(int i=0; i<user_eduList.size(); i++) {
-			if((user_eduList.get(i).edu==10 || user_eduList.get(i).edu==11) && user_eduList.get(i).major==cfvo.cate && check==true) {
+			if((user_eduList.get(i).edu==10 || user_eduList.get(i).edu==11) && user_eduList.get(i).major==cfvo.getCate() && check==true) {
 				// ▲ check : 웹에서 필수 6과목, 선택 2과목을 이수했는지 체크하도록 해야함
 				applyPossible=true; break;
 			}
@@ -97,7 +97,7 @@ public class GukJun_sahoebogji_1 extends OverrideSource{
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		condition :
 		for(int i=0; i<user_eduList.size(); i++) {
-			if((user_eduList.get(i).edu==1 || user_eduList.get(i).edu==2) && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.cate) {
+			if((user_eduList.get(i).edu==1 || user_eduList.get(i).edu==2) && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
 				for(int j=0; j<user_eduList.size(); j++) {
 					if((user_eduList.get(j).edu==3 || user_eduList.get(j).edu==4 || user_eduList.get(j).edu==5) && user_eduList.get(j).state==0) {
 						applyPossible=true; break condition;
@@ -130,7 +130,7 @@ public class GukJun_sahoebogji_1 extends OverrideSource{
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		for(int i=0; i<user_eduList.size(); i++) {
-			if(user_eduList.get(i).edu==12 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.cate) {
+			if(user_eduList.get(i).edu==12 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
 				applyPossible=true; break;
 			}
 		}
@@ -143,7 +143,7 @@ public class GukJun_sahoebogji_1 extends OverrideSource{
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		condition : 
 		for(int i=0; i<user_eduList.size(); i++) {
-			if((user_eduList.get(i).edu==1 || user_eduList.get(i).edu==2 ) && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.cate) {
+			if((user_eduList.get(i).edu==1 || user_eduList.get(i).edu==2 ) && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
 				for(int j=0; j<user_certiList.size(); j++) {
 					if(user_certiList.get(j).num==000) {
 						/*

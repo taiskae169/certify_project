@@ -141,14 +141,14 @@ public class Gukjun_sobangSisul extends OverrideSource {
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		condition:
 			for(int i=0; i<user_eduList.size(); i++) {
-				if(user_eduList.get(i).edu==11 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.cate) {
+				if(user_eduList.get(i).edu==11 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
 					// 박사학위취득일때
 					applyPossible=true; break condition;
-				}else if(user_eduList.get(i).edu==10 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.cate) {
+				}else if(user_eduList.get(i).edu==10 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
 					if(careerMap!=null && careerMap.containsKey(cfvo.getCate())) {
 						if(careerMap.get(cfvo.getCate())>=year*2) applyPossible=true; break condition;
 					}
-				}else if(user_eduList.get(i).edu==3 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.cate) {
+				}else if(user_eduList.get(i).edu==3 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
 					if(careerMap!=null && careerMap.containsKey(cfvo.getCate())) {
 						if(careerMap.get(cfvo.getCate())>=year*3) applyPossible=true; break condition;
 					}
@@ -166,11 +166,11 @@ public class Gukjun_sobangSisul extends OverrideSource {
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		condition:
 			for(int i=0; i<user_eduList.size(); i++) {
-				if(user_eduList.get(i).edu==3 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.cate) {
+				if(user_eduList.get(i).edu==3 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
 					for(int j=0; j<user_eduList.size(); j++) {
-						if(user_eduList.get(j).edu==10 && user_eduList.get(j).state==0 && user_eduList.get(j).major==cfvo.cate) {
+						if(user_eduList.get(j).edu==10 && user_eduList.get(j).state==0 && user_eduList.get(j).major==cfvo.getCate()) {
 							applyPossible=true; break condition;
-						}else if(careerMap!=null && careerMap.containsKey(cfvo.cate)) {
+						}else if(careerMap!=null && careerMap.containsKey(cfvo.getCate())) {
 							if(careerMap.get(cfvo.getCate())>=year*2) applyPossible=true; break condition;
 						}
 					}
@@ -185,8 +185,8 @@ public class Gukjun_sobangSisul extends OverrideSource {
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		condition:
 			for(int i=0; i<user_eduList.size(); i++) {
-				if(user_eduList.get(i).edu==3 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.cate) {
-					if(careerMap!=null && careerMap.containsKey(cfvo.cate)) {
+				if(user_eduList.get(i).edu==3 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
+					if(careerMap!=null && careerMap.containsKey(cfvo.getCate())) {
 						if(careerMap.get(cfvo.getCate())>=year*3) applyPossible=true; break condition;
 					}
 				}
