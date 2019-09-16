@@ -53,6 +53,7 @@ public class Certi_Bean {
 		String naverURI;
 		String state;
 		try {
+			//네이버 로그인을 위한 URL 설정
 			redirectURI = URLEncoder.encode("http://localhost:8080/certify/user/naverLogin.certi", "UTF-8");
 			SecureRandom rendom = new SecureRandom();
 			state = new BigInteger(130,rendom).toString();
@@ -62,11 +63,11 @@ public class Certi_Bean {
 			naverURI +="&redirect_uri=" + redirectURI;
 			naverURI +="&state="+state;
 			
-			System.out.println(naverURI);
 			session.setAttribute("naverState", state);
 			
 			
 			mv.addObject("naverURI",naverURI);
+			//네이버 로그인을 위한 URL 설정 끝
 			
 		} catch (Exception e) {
 			// TODO: handle exception

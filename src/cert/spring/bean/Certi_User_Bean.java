@@ -5,9 +5,13 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +21,12 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
 import certify.user.dao.UserMethod;
+import certify.vo.Cer_CategoryVO;
+import user.vo.userVO;
+
+
+
+
 
 @Controller
 @RequestMapping("/user/")
@@ -44,10 +54,11 @@ public class Certi_User_Bean {
 	
 	@RequestMapping("naverLogin.certi")
 	public ModelAndView naverLogin(HttpSession session, String code) {
+		System.out.println("네이버 로그인 시작");
 		mv = new ModelAndView();
 		
 		String clientId="UfsHgM0aSD0KyYettfN3";
-		String clientSecret="siBe65lAg";
+		String clientSecret="jsiBe65lAg";
 		String state = (String)session.getAttribute("naverState");
 		String redirectURI;
 		String apiURL;
@@ -67,6 +78,10 @@ public class Certi_User_Bean {
 		    con.setRequestMethod("GET");
 		    int responseCode=con.getResponseCode();
 		    BufferedReader br;
+		    
+		    
+		    System.out.println("response :" + responseCode);
+		    
 		    if(responseCode==200) {
 		    	br = new BufferedReader(new InputStreamReader(con.getInputStream()));
 		    }else {
@@ -90,10 +105,35 @@ public class Certi_User_Bean {
 		    	refresh_token= element.getAsJsonObject().get("refresh_token").getAsString();
 		    	//json에서 access_toekn, refresh_token 추출 완료
 		    	
-		    	session.setAttribute("naver_access_token", access_token);
-		    	session.setAttribute("naver_refresh_token", refresh_token);
+		    	//session.setAttribute("naver_access_token", access_token);
+		    	//session.setAttribute("naver_refresh_token", refresh_token);
 		    	
-		    	//access토큰 추출 이후에 회원정보 추출이 필요
+		    	HashMap<String, String> profile = userdao.getNaverProfile(access_token);
+		    	userVO userinfo = new userVO();
+		    	userinfo.setId(profile.get("email"));
+		    	userinfo.setName(profile.get("name"));
+		    	userinfo.setNaverId(profile.get("id"));
+		    	
+//		    	System.out.println(profile.get("name"));
+//		    	System.out.println(profile.get("birthday"));
+//		    	System.out.println(profile.get("email"));
+//		    	System.out.println(profile.get("id"));
+		    	
+		    	
+				int check = userdao.kakaoLogin(userinfo.getId());
+				
+				System.out.println("check : " + check);
+				
+				if(check==1) {
+					//user_info 데이터베이스에 가입되어 있는 경우
+					mv.setViewName("/login/welcome");
+					session.setAttribute("sessionID", userinfo.getId());
+				}else {
+					//user_info에 없으므로 가입 필요
+					mv.addObject("userinfo", userinfo);
+					//내용 전달을 위해서 설정
+					mv.setViewName("/login/sign");
+				}
 		    }
 		    
 		} catch (Exception e) {
@@ -101,6 +141,72 @@ public class Certi_User_Bean {
 			e.printStackTrace();
 		}
 		
+		
+		return mv;
+	}
+	
+	@RequestMapping("kakaoLogin.certi")
+	public ModelAndView kakaoLogin(userVO userinfo, HttpSession session) {
+		mv = new ModelAndView();
+		
+		int check = userdao.kakaoLogin(userinfo.getId());
+		
+		System.out.println("check : " + check);
+		
+		if(check==1) {
+			//user_info 데이터베이스에 가입되어 있는 경우
+			mv.setViewName("/login/welcome");
+			session.setAttribute("sessionID", userinfo.getId());
+		}else {
+			//user_info에 없으므로 가입 필요
+			mv.addObject("userinfo", userinfo);
+			//내용 전달을 위해서 설정
+			mv.setViewName("/login/sign");
+		}
+		
+		return mv; 
+	}
+	
+	@RequestMapping("googleLogin.certi")
+	public ModelAndView googleLogin(userVO userinfo, HttpSession session) {
+		mv = new ModelAndView();
+		
+		int check = userdao.googleLogin(userinfo.getId());
+		
+		System.out.println("check : " + check);
+		
+		if(check==1) {
+			//user_info 데이터베이스에 가입되어 있는 경우
+			mv.setViewName("/login/welcome");
+			session.setAttribute("sessionID", userinfo.getId());
+		}else {
+			//user_info에 없으므로 가입 필요
+			mv.addObject("userinfo", userinfo);
+			mv.setViewName("/login/sign");
+		}
+		
+		
+		return mv;
+	}
+	 
+	@RequestMapping("sign.certi")
+	public ModelAndView sign() {
+		mv = new ModelAndView();
+		
+		List<Cer_CategoryVO> category = userdao.getCerti_Category();
+		
+		
+		mv.addObject("category",category);
+		mv.setViewName("/login/sign");
+		
+		return mv;
+	}
+	
+	@RequestMapping("signpage.certi")
+	public ModelAndView signPage() {
+		mv = new ModelAndView();
+		
+		mv.setViewName("/login/signPage");
 		
 		return mv;
 	}

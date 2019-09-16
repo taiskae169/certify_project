@@ -16,7 +16,16 @@
 	</select>
 	학교명 : <a id="school_name" onclick="openSub();"><input type="text" name="school_name" readOnly /></a>
 	학과명 : <a id="major_name" onclick="openSub();"><input type="text" name="major_name" readOnly /></a>
-	학제 : <a id="major_years" onclick="openSub();"><input type="text" name="major_years" readOnly /></a>
+	학제 : <a id="major_years" onclick="openSub();"><input type="text" name="edu" readOnly /></a>
+	상태 : <select id="status" name="status">
+			<option value="0">졸업</option>
+			<option value="1">재학중</option>
+			<option value="2">졸업예정</option>
+			<option value="3">중퇴</option>
+		</select>
+	입학일자 : <input type="date" name="ent_date" />	
+	졸업일자 : <input type="date" name="gra_date" />
+	<input type=hidden" name="major">
 </form>
 
 

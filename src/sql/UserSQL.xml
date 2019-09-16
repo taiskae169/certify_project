@@ -9,7 +9,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="Test" resultType="int">
   		select count(num) from BOARD_CATE_VALUE 
   	</select>
+
   	<insert id="insertMember" parameterType="certify.vo.CertificationVO">
   		insert into certify_info values(#{num}, #{cate}, #{type}, #{name})
   	</insert>
+
+  	<select id="naverLogin" parameterType="String" resultType="int">
+  		select count(*) from user_info where naverid=#{value}
+  	</select>
+  	<select id="kakaoLogin" parameterType="String" resultType="int">
+  		select count(*) from user_info where kakaoid=#{value}
+  	</select>
+  	<select id="googleLogin" parameterType="String" resultType="int">
+  		select count(*) from user_info where googleid=#{value}
+  	</select>
+  	<select id="cer_category" resultType="certify.vo.Cer_CategoryVO">
+  		select * from cer_category
+  	</select>
+
 </mapper>
