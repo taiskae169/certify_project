@@ -13,13 +13,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	<select id="naverLogin" parameterType="String" resultType="int">
   		select count(*) from user_info where naverid=#{value}
   	</select>
+  	<!-- naver id check -->
   	<select id="kakaoLogin" parameterType="String" resultType="int">
   		select count(*) from user_info where kakaoid=#{value}
   	</select>
+  	<!-- kakao id check -->
   	<select id="googleLogin" parameterType="String" resultType="int">
   		select count(*) from user_info where googleid=#{value}
   	</select>
+  	<!-- google id check -->
   	<select id="cer_category" resultType="certify.vo.Cer_CategoryVO">
   		select * from cer_category
   	</select>
+  	<!-- category list return -->
+  	
+  	<select id="idCheck" resultType="int" parameterType="String">
+  		select count(*) from user_info where id=#{value}
+  	</select>
+  	<!-- id check for sign -->
+  	
+  	<insert id="sign" parameterType="user.vo.userVO">
+  		insert into user_info(id,pw,name,birth,wana,qual,googleid,naverid,kakaoid) values(#{id},#{pw},#{name},#{birth},#{wana},#{qual},#{googleid},#{naverid},#{kakaoid})
+  	</insert>
 </mapper>
