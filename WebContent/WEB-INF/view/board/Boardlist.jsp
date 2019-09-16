@@ -61,15 +61,17 @@
         	</table>
         	</c:if>
         	<c:if test="${count>0 }">
+        	<div>
       <c:if test="${startPage>10}">
-         <a href="BoardList.certi?pageNum=${startPage - 10}">[이전]</a>
+         <div align="center"><a href="BoardList.certi?pageNum=${startPage - 10}">[이전]</a></div>
       </c:if>
       <c:forEach begin="${startPage}" end="${endPage }" step="1" var="i">
-         <a href="BoardList.certi?pageNum=${i}">[${i}]</a>
+         <div align="center"><a href="BoardList.certi?pageNum=${i}">[${i}]</a></div>
        </c:forEach>
       <c:if test="${endPage < pageCount}">
-         <a href="BoardList.certi?pageNum=${startPage + 10}">[다음]</a>
+         <div align="center"><a href="BoardList.certi?pageNum=${startPage + 10}">[다음]</a></div>
       </c:if>
    </c:if>
-   <button onclick="window.location='BoardWriteForm.certi'">글쓰기</button>					
+   <div align="right"><button class="btn btn-sm btn-primary" onclick="window.location='BoardWriteForm.certi'">글쓰기</button></div>
+   </div>					
 </html>

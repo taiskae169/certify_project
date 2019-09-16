@@ -13,4 +13,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	<select id="content" parameterType="int" resultType="board.vo.BoardVO">
   		select * from board where num=#{value}
   	</select>
+  	<insert id="fileInsert" parameterType="board.vo.BoardVO">
+  		insert into board values(board_seq.nextval, #{id}, #{title}, #{content},sysdate,#{orgname},#{newname})
+  	</insert>
+  	<select id="Filenum" resultType="int">
+  		select count(*) from board
+  	</select>
+  	<select id="getCateArticle" resultType="board.vo.BoardCateVO">
+  		select * from board_cate_value
+  	</select>
 </mapper>

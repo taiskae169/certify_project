@@ -78,12 +78,16 @@ public class BoardBean {
 	}
 	
 	@RequestMapping("BoardWriteForm.certi")
-	public String BoardWriteForm() {
+	public String BoardWriteForm(HttpSession session,Model model) {
+		session.setAttribute("memId", "bong");
+		List<BoardCateVO> catelist = null;
+		catelist = (List)sql.selectList("board.getCateAriticle");
+		model.addAttribute("catelist",catelist);
 		return "/board/BoardWriteForm";
 	}
 	
 	@RequestMapping(value="BoardWritePro.certi", method=RequestMethod.POST)
-	public String loginBoardWritePro(BoardVO vo , 
+	public String BoardWritePro(BoardVO vo , 
 				MultipartHttpServletRequest request,Model model,HttpSession session) throws IOException{
 			MultipartFile mf = request.getFile("save");
 			String imgs = request.getRealPath("imgs");
@@ -91,7 +95,7 @@ public class BoardBean {
 			String orgName = mf.getOriginalFilename(); 
 			String ext = orgName.substring(orgName.lastIndexOf('.'));
 			
-			int num = (Integer)sql.selectOne("bong.Filenum") + 1;
+			int num = (Integer)sql.selectOne("board.Filenum") + 1;
 			String newName = "image"+num+ext; 
 			File copyFile = new File(imgs+"//"+newName);
 			mf.transferTo(copyFile);
@@ -101,7 +105,7 @@ public class BoardBean {
 			vo.setId((String)session.getAttribute("memId"));
 			vo.setTitle(vo.getTitle());
 			vo.setContent(vo.getContent());
-			sql.insert("bong.fileInsert",vo);
+			sql.insert("board.fileInsert",vo);
 			
 			return "board/BoardWritePro";
 		
