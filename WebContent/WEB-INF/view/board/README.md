@@ -1,79 +1,68 @@
-Clean Dashboard Responsive Bootstrap UI Theme
-=================================
+# [Start Bootstrap - Landing Page](https://startbootstrap.com/template-overviews/landing-page/)
 
-**[Click Here to View Demo][demo]**
+[Landing Page](http://startbootstrap.com/template-overviews/landing-page/) is a multipurpose landing page template for [Bootstrap](http://getbootstrap.com/) created by [Start Bootstrap](http://startbootstrap.com/).
 
-![Screen Shot](https://lh3.googleusercontent.com/-knA4VZ4BOZc/UguTdKO18gI/AAAAAAAAAwk/eHmGSxPl7rE/w1075-h705-no/Screen+Shot+2013-08-14+at+9.49.11+AM.png "Demo Screen Shot")
+## Preview
 
-Powerful Admin Theme
----------------------
-This application is javascript/css/html5 package of additional features placed on top of the twitter bootstrap libraries. To use, either compile the less files or use the existing css file.
+[![Landing Page Preview](https://startbootstrap.com/assets/img/screenshots/themes/landing-page.png)](https://blackrockdigital.github.io/startbootstrap-landing-page/)
 
-Theme Components
----------------------
-Additional components like a shadow box, admin panels, login screen, fixed bottom footer and more are included.
+**[View Live Preview](https://blackrockdigital.github.io/startbootstrap-landing-page/)**
 
-Custom JS Libraries
----------------------
-[The custom virtual tour library](https://github.com/keaplogik/bootstrap-help-guide). In the demo you can select a sample form under the 'Try ME' navigation. 
-There are two buttons on the right hand side. One demos the virtual tour of setting up a new user account, and one demos a tour of the current page. Give it a try!
+## Status
 
-Built On Bootstrap
----------------------
-Built on bootstrap 2.1.1 but supports up to 2.3.1. To upgrade you need to replace the bootstrap less folder with your desired bootstrap version. Find yourself a good less compiler and recompile the less into CSS. 
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/BlackrockDigital/startbootstrap-landing-page/master/LICENSE)
+[![npm version](https://img.shields.io/npm/v/startbootstrap-landing-page.svg)](https://www.npmjs.com/package/startbootstrap-landing-page)
+[![Build Status](https://travis-ci.org/BlackrockDigital/startbootstrap-landing-page.svg?branch=master)](https://travis-ci.org/BlackrockDigital/startbootstrap-landing-page)
+[![dependencies Status](https://david-dm.org/BlackrockDigital/startbootstrap-landing-page/status.svg)](https://david-dm.org/BlackrockDigital/startbootstrap-landing-page)
+[![devDependencies Status](https://david-dm.org/BlackrockDigital/startbootstrap-landing-page/dev-status.svg)](https://david-dm.org/BlackrockDigital/startbootstrap-landing-page?type=dev)
 
+## Download and Installation
 
-LESS Setup using Grunt (Modified by Porrapat)
-----------------------------
+To begin using this template, choose one of the following options to get started:
+* [Download the latest release on Start Bootstrap](https://startbootstrap.com/template-overviews/landing-page/)
+* Install via npm: `npm i startbootstrap-landing-page`
+* Clone the repo: `git clone https://github.com/BlackrockDigital/startbootstrap-landing-page.git`
+* [Fork, Clone, or Download on GitHub](https://github.com/BlackrockDigital/startbootstrap-landing-page)
 
-You have to setup NPM by download Node.js that NPM will come with Node.js already.
+## Usage
 
-Install grunt at global.
+### Basic Usage
 
-```bash
-$ npm install -g grunt
-```
+After downloading, simply edit the HTML and CSS files included with the template in your favorite text editor to make changes. These are the only files you need to worry about, you can ignore everything else! To preview the changes you make to the code, you can open the `index.html` file in your web browser.
 
-Install Grunt Command Line.
+### Advanced Usage
 
-```bash
-$ npm install -g grunt-cli
-```
+After installation, run `npm install` and then run `npm start` which will open up a preview of the template in your default browser, watch for changes to core template files, and live reload the browser when changes are saved. You can view the `gulpfile.js` to see which tasks are included with the dev environment.
 
-Setup LESS and Watch using file package.json
+#### Gulp Tasks
 
-```bash
-npm install
-```
+- `gulp` the default task that builds everything
+- `gulp watch` browserSync opens the project in your default browser and live reloads when changes are made
+- `gulp css` compiles SCSS files into CSS and minifies the compiled CSS
+- `gulp js` minifies the themes JS file
+- `gulp vendor` copies dependencies from node_modules to the vendor directory
 
-In the Gruntfile.js file, you can make some configuration. There are two example tasks here.
+You must have npm installed globally in order to use this build environment.
 
-First : Basic Complie LESS task.
+## Bugs and Issues
 
-```bash
-grunt
-```
+Have a bug or an issue with this template? [Open a new issue](https://github.com/BlackrockDigital/startbootstrap-landing-page/issues) here on GitHub or leave a comment on the [template overview page at Start Bootstrap](http://startbootstrap.com/template-overviews/landing-page/).
 
-Second : Task Watch for Compile LESS automatically when you edit some of your LESS files.
+## About
 
-```bash
-grunt test
-```
+Start Bootstrap is an open source library of free Bootstrap templates and themes. All of the free templates and themes on Start Bootstrap are released under the MIT license, which means you can use them for any purpose, even for commercial projects.
 
-Note : To exit watch, you have to press Ctrl+C 2 times.
+* https://startbootstrap.com
+* https://twitter.com/SBootstrap
 
+Start Bootstrap was created by and is maintained by **[David Miller](http://davidmiller.io/)**, Owner of [Blackrock Digital](http://blackrockdigital.io/).
 
-Compiled with Less
----------------------
-The source contains all the less files needed to compile a custom instance of the less template. Just point your less compiler to the file in bootstrap-clean-dashboard-theme/less/customize-template.less and recompile your CSS.
+* http://davidmiller.io
+* https://twitter.com/davidmillerskt
+* https://github.com/davidtmiller
 
-View Current Custom Theme
----------------------
-There is a default theme which can be overridden with different styling. The theme has a demo in the repository under `clean-dashboard/demo`. To view the demo theme pull down the repo and start an http server in that directory. I like to use [SimpleHTTPServer](https://itunes.apple.com/us/app/simple-http-server/id441002840?mt=12)  app for Mac.
+Start Bootstrap is based on the [Bootstrap](http://getbootstrap.com/) framework created by [Mark Otto](https://twitter.com/mdo) and [Jacob Thorton](https://twitter.com/fat).
 
-**Project contributions must come from the community. The author is no longer actively working on this project..**. Fork if you want to improve and contribute. It will be appreciated.
+## Copyright and License
 
-**[Click Here to View Demo][demo]**
-
-
-[demo]: http://keaplogik.github.io/Bootstrap-Clean-Dashboard-Theme/demo/dashboard.html
+Copyright 2013-2019 Blackrock Digital LLC. Code released under the [MIT](https://github.com/BlackrockDigital/startbootstrap-landing-page/blob/gh-pages/LICENSE) license.

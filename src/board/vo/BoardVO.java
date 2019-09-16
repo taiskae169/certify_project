@@ -4,45 +4,44 @@ import java.util.Date;
 
 public class BoardVO {
 	private int num;
-	private String writer;
-	private String subject;
+	private String cate;
+	private String title;
+	private String id;
 	private String content;
-	private String passwd;
 	private Date reg_date;
 	private int readcount;
 	private String orgname;
 	private String newname;
 	private int step;
-	
 	public int getNum() {
 		return num;
 	}
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public String getWriter() {
-		return writer;
+	public String getCate() {
+		return cate;
 	}
-	public void setWriter(String writer) {
-		this.writer = writer;
+	public void setCate(String cate) {
+		this.cate = cate;
 	}
-	public String getSubject() {
-		return subject;
+	public String getTitle() {
+		return title;
 	}
-	public void setSubject(String subject) {
-		this.subject = subject;
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getContent() {
 		return content;
 	}
 	public void setContent(String content) {
 		this.content = content;
-	}
-	public String getPasswd() {
-		return passwd;
-	}
-	public void setPasswd(String passwd) {
-		this.passwd = passwd;
 	}
 	public Date getReg_date() {
 		return reg_date;
@@ -74,6 +73,5 @@ public class BoardVO {
 	public void setStep(int step) {
 		this.step = step;
 	}
-	
 	
 }
