@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -222,7 +223,7 @@ public class Certi_User_Bean {
 		return mv;
 	}
 	
-	@RequestMapping(value="idcheck.certi", method=RequestMethod.POST)
+	@RequestMapping(value="idcheck.certi")
 	public @ResponseBody String idcheck(String email) {
 		String str = "BLOCK";
 		if(!email.trim().equals("")) {
@@ -232,12 +233,17 @@ public class Certi_User_Bean {
 		//System.out.println(str);
 		return str;
 	}
-	
-	@RequestMapping("signup.certi")
-	public ModelAndView signUp(userVO vo) {
+
+	@RequestMapping(value="signup.certi")
+	public ModelAndView signUp(@ModelAttribute userVO vo,String id) {
 		mv = new ModelAndView();
+		System.out.println("test 시작");
 		
+		System.out.println("id :" + vo.getId());
+		System.out.println("tid : " + id);
 		
+		System.out.println("test 끝");
+		userdao.signUp(vo);
 		
 		mv.setViewName("/login/signup");
 		return mv;

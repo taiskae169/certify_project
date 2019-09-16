@@ -47,7 +47,7 @@
                  
  		<hr />
  
-        <form class="form-horizontal" role="form" method="post" action="/certify/user/signUP.certi">
+        <form class="form-horizontal" role="form" method="get" action="/certify/user/signup.certi" >
             <div class="form-group">
                 <label for="provision" class="col-lg-2 control-label">회원가입약관</label>
                 <div class="col-lg-10" id="provision">
@@ -91,18 +91,18 @@
             <div class="form-group" id="divId">
                 <label for="inputId" class="col-lg-2 control-label">아이디</label>
                 <div class="col-lg-10">
-                    <input type="email" class="form-control" id="email" data-rule-required="true" placeholder="이메일" maxlength="40" value="${userinfo.id}">
+                    <input type="email" class="form-control" id="email" name="id" data-rule-required="true" placeholder="이메일" maxlength="40" value="${userinfo.id}">
                 	<button type="button" class="btn" onclick="openIdChk();">중복확인</button>
-                	<input type="hidden" id="kakaoId" value="${userinfo.kakaoId}">
-                	<input type="hidden" id="naverId" value="${userinfo.naverId}">
-                	<input type="hidden" id="googleId" value="${userinfo.googleId}">
+                	<input type="hidden" id="kakaoId" name="kakaoId" value="${userinfo.kakaoId}">
+                	<input type="hidden" id="naverId" name="naverId" value="${userinfo.naverId}">
+                	<input type="hidden" id="googleId" name="googleId" value="${userinfo.googleId}">
                 	<input type="hidden" id="idchecked" value="0">
                 </div>
             </div>
             <div class="form-group" id="divPassword">
                 <label for="inputPassword" class="col-lg-2 control-label">패스워드</label>
                 <div class="col-lg-10">
-                    <input type="password" class="form-control" id="password" name="excludeHangul" data-rule-required="true" placeholder="패스워드" maxlength="30">
+                    <input type="password" class="form-control" id="password" name="pw" data-rule-required="true" placeholder="패스워드" maxlength="30">
                 </div>
             </div>
             <div class="form-group" id="divPasswordCheck">
@@ -114,28 +114,19 @@
             <div class="form-group" id="divName">
                 <label for="inputName" class="col-lg-2 control-label">이름</label>
                 <div class="col-lg-10">
-                    <input type="text" class="form-control onlyHangul" id="name" data-rule-required="true" placeholder="한글만 입력 가능합니다." maxlength="15" value="${userinfo.name}">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputPhoneNumber" class="col-lg-2 control-label">성별</label>
-                <div class="col-lg-10">
-                    <select class="form-control" id="gender">
-                        <option value="M">남</option>
-                        <option value="F">여</option>
-                    </select>
+                    <input type="text" class="form-control onlyHangul" id="name" name="name" data-rule-required="true" placeholder="한글만 입력 가능합니다." maxlength="15" value="${userinfo.name}">
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputPhoneNumber" class="col-lg-2 control-label">생년월일</label>
                 <div class="col-lg-10">
-                    <input type="date" class="form-control" id="dirth" data-rule-required="true">
+                    <input type="date" class="form-control" id="dirth" name="birth" data-rule-required="true">
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputPhoneNumber" class="col-lg-2 control-label">관심카테고리</label>
                 <div class="col-lg-10">
-                    <select class="form-control" id="wana">
+                    <select class="form-control" id="wana" name="wana">
                     	<c:forEach var="cate" items="${category}">
                     		<option value="${cate.certi_num}">${cate.name}</option>
                     	</c:forEach>
@@ -145,7 +136,7 @@
             <div class="form-group">
                 <label for="inputPhoneNumber" class="col-lg-2 control-label">응시자격</label>
                 <div class="col-lg-10">
-                    <select class="form-control" id="qual">
+                    <select class="form-control" id="qual" name="qual">
                         <option value="0">기능사</option>
                         <option value="1">산업기사</option>
                         <option value="2">기사</option>
