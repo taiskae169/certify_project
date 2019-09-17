@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class userEduVO {
 	public String id;
-	public String name;
+	public String edu_name;
 	public int edu;
 	public int major;
 	public int state;
@@ -17,10 +17,10 @@ public class userEduVO {
 		this.id = id;
 	}
 	public String getName() {
-		return name;
+		return edu_name;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setName(String edu_name) {
+		this.edu_name = edu_name;
 	}
 	public int getEdu() {
 		return edu;
