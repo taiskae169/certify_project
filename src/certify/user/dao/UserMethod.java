@@ -16,6 +16,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import certify.vo.Cer_CategoryVO;
+import user.vo.userCareerVO;
+import user.vo.userEduVO;
 import user.vo.userVO;
 
 public class UserMethod {
@@ -157,4 +159,17 @@ public class UserMethod {
 		
 		return name;
 	}
+	
+	// 회원 학력사항 입력 메소드
+	public void insertUserEdu(userEduVO uevo) {
+		System.out.println("회원정보-학력을 저장합니다.");
+		sql.insert("user.insertEdu", uevo);
+	}
+	
+	// 회원 경력사항 입력 메소드
+	public void insertUserCareer(userCareerVO ucvo) {
+		System.out.println("회원정보-경력을 저장합니다.");
+		sql.insert("user.insertCareer", ucvo);
+	}
+	
 }

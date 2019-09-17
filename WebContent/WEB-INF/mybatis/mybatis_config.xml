@@ -6,6 +6,5 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<mappers>
 		<mapper resource="/sql/UserSQL.xml" />
 		<mapper resource="/sql/BoardSQL.xml" />
-		<mapper resource="/sql/Test_UserSQL_ByCho.xml" />
 	</mappers>
 </configuration>

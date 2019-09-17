@@ -163,7 +163,7 @@
 	}
 </script>
 
-<!-- 전체 폼들 전송하는 쿼리 -->
+<!-- 전체 폼들을 전송하는 쿼리 -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 	$(function(){
@@ -176,11 +176,11 @@
 				var careerArr = new Array();
 				var edu_formsize = $('#edu_forms').find('.forms_edu');
 				var career_formsize = $('#career_forms').find('.forms_career');
-
-				for(var x=0; x<edu_formsize.length-1; x++){
+				
+				for(var x=0; x<edu_formsize.length; x++){
 					eduArr[x] = edu_formsize[x].id;
 				}
-				for(var x=0; x<career_formsize.length-1; x++){
+				for(var x=0; x<career_formsize.length; x++){
 					careerArr[x] = career_formsize[x].id;
 				}
 				for(var x=0; x < eduArr.length; x++){
@@ -200,7 +200,6 @@
 					error:function(jqXHR, textStatus, errorThrown){
 						alert("에러가 발생하였습니다!"+textStatus+" : "+errorThrown);
 						return false;
-						// 왠지 모르겠는데 에러발생함
 					}
 				});
 			}else{

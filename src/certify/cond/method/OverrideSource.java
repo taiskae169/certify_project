@@ -111,6 +111,7 @@ public class OverrideSource {
 				uevo = new userEduVO();
 				uevo.id = rs.getString("id");
 				uevo.edu_name = rs.getString("edu_name");
+				uevo.major_name = rs.getString("major_name");
 				uevo.edu = rs.getInt("edu");
 				uevo.major = rs.getInt("major");
 				uevo.state = rs.getInt("state");

@@ -3,7 +3,10 @@ package cert.spring.bean;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -115,7 +118,6 @@ public class test_Certi_Join_Bean {
 		}
 		
 		if(school_nameFix!=null && major_nameFix!=null) {
-			System.out.println(school_nameFix+" "+major_nameFix);
 			if(school_nameFix.contains("고등학교")) {
 				edu = 0;
 				eduType = "고등학교";
@@ -159,20 +161,61 @@ public class test_Certi_Join_Bean {
 	}
 	
 	@RequestMapping(value="testEC_Pro.certi", method = RequestMethod.POST)
-	@ResponseBody
-	public ModelAndView testEC_Pro(String eduList, String careerList) throws IOException{
+	public ModelAndView testEC_Pro(HttpSession session, String eduList, String careerList) throws IOException, Exception{
 		mv = new ModelAndView();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		//String id = (String) session.getAttribute("sessionID");
+		String id = "test";
+		
+		List<userEduVO> eduVoList = new ArrayList<userEduVO>();
+		List<userCareerVO> careerVoList = new ArrayList<userCareerVO>();		
+		
 		String pre_edu_enc = URLDecoder.decode(eduList, "UTF-8");
 		String pre_career_enc = URLDecoder.decode(careerList, "UTF-8");
 		
 		String [] edu_enc = pre_edu_enc.split("@@");
 		for(int i=0; i< edu_enc.length; i++) {
-			System.out.println(edu_enc[i]);
+			uevo = new userEduVO();
+			String[] eduArr = edu_enc[i].split("&");
+			for(int j=0; j<eduArr.length; j++) {
+				eduArr[j] = eduArr[j].substring(eduArr[j].indexOf("=")+1);
+				System.out.println(eduArr[j]);
+			}
+			uevo.setId(id);
+			uevo.setEdu_name(eduArr[0]);
+			uevo.setMajor_name(eduArr[1]);
+			// eduArr[2] = eduType==VO에없는 것
+			uevo.setState(Integer.parseInt(eduArr[3]));
+			uevo.setMajor(Integer.parseInt(eduArr[4]));
+				Date ent_date = sdf.parse(eduArr[5]);
+				Date gra_date = sdf.parse(eduArr[6]);
+			uevo.setEnt_date(ent_date);
+			uevo.setGra_date(gra_date);
+			uevo.setEdu(Integer.parseInt(eduArr[7]));
+			userdao.insertUserEdu(uevo);
+			eduVoList.add(uevo);
+			// 주 : 배열의 순서가 바뀔 일이 없기 때문에 가능한 하드코딩입니다. 맵핑으로 못받더라구요 ㅜㅜㅜ
 		}
-		// ajax로 데이터 잘 넘어옴
 		
-		
-		
+		String [] career_enc = pre_career_enc.split("@@");
+		for(int i=0; i< career_enc.length; i++) {
+			ucvo = new userCareerVO();
+			String [] careerArr = career_enc[i].split("&");
+			for(int j=0; j<careerArr.length; j++) {
+				careerArr[j] = careerArr[j].substring(careerArr[j].indexOf("=")+1);
+			}
+			ucvo.setId(id);
+			ucvo.setCompany(careerArr[0]);
+			ucvo.setComp_cate(Integer.parseInt(careerArr[1]));
+				Date ent_date = sdf.parse(careerArr[2]);
+				Date gra_date = sdf.parse(careerArr[3]);
+			ucvo.setCom_ent_date(ent_date);
+			ucvo.setCom_gra_date(gra_date);
+			userdao.insertUserCareer(ucvo);
+			careerVoList.add(ucvo);
+		}
+
 		mv.setViewName("/test_user_join/testEC_Pro");
 		return mv;
 	}

@@ -58,7 +58,7 @@ public class Gukjun_sobangAnjun extends OverrideSource {
 				if(careerMap.get(cfvo.getCate())>=year*3) applyPossible=true; break condition;
 			}else if(user_eduList!=null) {
 				for(int i=0; i<user_eduList.size(); i++) {
-					if(user_eduList.get(i).getName().contains("소방학교") && user_eduList.get(i).state==0) {
+					if(user_eduList.get(i).getEdu_name().contains("소방학교") && user_eduList.get(i).state==0) {
 						long diff = user_eduList.get(i).getEnt_date().getTime() - user_eduList.get(i).getGra_date().getTime();
 						long diffDays = Math.abs(diff / (24 * 60 * 60 * 1000));	// 양수변환
 						if(diffDays>=14) applyPossible=true; break condition;

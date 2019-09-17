@@ -42,8 +42,6 @@ public class ReadCSVatUniv {
         }   
         long end = System.currentTimeMillis();
         long belong = end - start;
-        System.out.println("전체학과수 : "+i);
-        System.out.println("걸린 시간: " + belong + " 밀리초");
        
         return univercity;
     }
