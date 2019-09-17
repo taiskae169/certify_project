@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -234,13 +235,13 @@ public class Certi_User_Bean {
 		return str;
 	}
 
-	@RequestMapping(value="signup.certi")
-	public ModelAndView signUp(@ModelAttribute userVO vo,String id) {
+	@RequestMapping(value="signup.certi", method = RequestMethod.POST,produces="text/plain;charset=UTF-8")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	public ModelAndView signUp(@ModelAttribute userVO vo) {
 		mv = new ModelAndView();
 		System.out.println("test 시작");
 		
 		System.out.println("id :" + vo.getId());
-		System.out.println("tid : " + id);
 		
 		System.out.println("test 끝");
 		userdao.signUp(vo);
