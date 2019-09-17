@@ -1,12 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
 <script src="//developers.kakao.com/sdk/js/kakao.min.js" ></script>
 <script src="https://apis.google.com/js/api:client.js"></script>
+<script src="//code.jquery.com/jquery.js"></script>
 <meta name="google-signin-client_id" content="74093674387-j64supuapk07470j07hso4fc9fuufb1g.apps.googleusercontent.com">
 
 
-<div class="container" style="background-color:#EAEAEA;width:568px;height:172.25px;margin:auto;">
+<script type="text/javascript">
+	function openWindow(){
+		window.open("/certify/user/lookUp.certi","아이디/비밀번호 찾기","width=400, height=250, toolbar=no, menuvar=no, scrollbars=no, resizable=no");
+	}
+</script>
+
+
+<div class="container" style="background-color:#EAEAEA;width:568px;height:132.25px;margin:auto;">
+            <!-- 모달창 -->
+            <div class="modal fade in" id="defaultModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title">아이디/비밀번호 찾기</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p class="modal-contents"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            <!--// 모달창 -->
+<!-- 로그인된 아이디가 있는 경우 -->
+<c:if test="${!empty sessionID}">
+	<h3>환영합니다. ${name }님</h3>
+	<div style="float:left;">
+		<a class="btn btn-default" href="#" role="button" style="display:block;float:right;">관심자격증</a>
+		<a class="btn btn-default" href="#" role="button" style="display:block;float:right;">경력/학력수정</a>
+		<a class="btn btn-default" href="#" role="button" style="display:block;float:right;">마이페이지</a>
+	</div>
+	<a class="btn btn-default" href="/certify/user/logout.certi" role="button" style="display:block;float:right;">로그아웃</a>
+
+</c:if>
+
+<!-- 로그인된 아이디가 없는 경우 -->
+<c:if test="${empty sessionID}">
 	<form action="/certify/user/loginPro.certi" id="loginForm" style="display:inline-block; margin:10px;" method="POST">
 		<label for="id-box" style="display:inline-block; width:60px;">EMAIL </label>
 		<input type="text" name="id" /> <br />
@@ -15,8 +58,8 @@
 	</form>
 	<button type="button" class="btn btn-info" onclick="document.getElementById('loginForm').submit();" style="position:relative; height:55px; bottom:15px;">로그인</button> <br />
 	<div style="margin:10px;">
-		<a href="#">회원가입</a> /
-		<a href="#">ID/PW찾기</a>
+		<a href="/certify/user/sign.certi">회원가입</a> /
+		<a href="javascript:openWindow();">ID/PW찾기</a>
 		<div style=" position:relative; left:320px;bottom:105px; width:40px;">
 			<a href="${naverURI}"><img src="/certify/resource/image/login/naver_icon_long.PNG" style="width:200px;height:30px; margin:2px;"/> </a> <br />
 			<a href="javascript:loginWithKakao()" id="custom-login-btn"><img src="/certify/resource/image/login/kakao_icon_middle.png" style="width:200px;height:30px; margin:2px;"/></a> <br />
@@ -105,5 +148,6 @@
 		
 		</div>
 	</div>
-		
+</c:if>
+
 </div>

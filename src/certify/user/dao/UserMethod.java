@@ -30,8 +30,7 @@ public class UserMethod {
 		idpw.put("id", id);
 		idpw.put("pw", pw);
 		System.out.println("DB 테스트");
-		int test = sql.selectOne("user.logincheck", idpw);
-		System.out.println(test);
+		result = sql.selectOne("user.logincheck", idpw);
 		
 		
 		return result;
@@ -143,8 +142,19 @@ public class UserMethod {
 		System.out.println("birth : " + vo.getBirth());
 		System.out.println("id : " + vo.getId());
 		System.out.println("pw :" + vo.getPw());
+		System.out.println("googleid : " + vo.getGoogleId());
+		System.out.println("naverid : " + vo.getNaverId());
+		System.out.println("kakaoid : " + vo.getKakaoId());
 		sql.insert("user.sign", vo);
 		System.out.println("가입 성공");
 		
+	}//회원가입을 위한 메소드
+	
+	public String getName(String id) {
+		String name = sql.selectOne("user.getName",id);
+		
+		System.out.println(name);
+		
+		return name;
 	}
 }

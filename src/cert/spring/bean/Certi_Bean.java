@@ -63,8 +63,6 @@ public class Certi_Bean {
 			naverURI +="&redirect_uri=" + redirectURI;
 			naverURI +="&state="+state;
 			
-			session.setAttribute("naverState", state);
-			
 			
 			mv.addObject("naverURI",naverURI);
 			//네이버 로그인을 위한 URL 설정 끝
@@ -73,7 +71,17 @@ public class Certi_Bean {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+		
+		String id = (String)session.getAttribute("sessionID");
+		System.out.println("sessionID : " +id);
+		
+		if(id!=null) {
+			System.out.println("세션 아이디 있음");
+			String name = userdao.getName(id);
+			mv.addObject("name",name);
+		}
 
+		
 		mv.setViewName("/main/main");
 		return mv;
 	}
@@ -83,7 +91,7 @@ public class Certi_Bean {
 	public ModelAndView logintest() {
 		mv = new ModelAndView();
 		
-		System.out.println("test");
+		
 		mv.setViewName("/main/loginbox");
 		return mv;
 	}

@@ -13,11 +13,13 @@
 
   <!-- Bootstrap core CSS -->
   <link href="/certify/resource/gen/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
   <!-- Custom fonts for this template -->
 
   <!-- Custom styles for this template -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  
   <script src="//code.jquery.com/jquery.js"></script>
 
 </head>
@@ -74,15 +76,16 @@
     	</div>
     </div>
     <div style="width:580px;height:600px;border-style:solid;float:right;">
-    	<div style="height:172.25px;margin:3px;">
+    	<div style="height:152.25px;margin:3px;">
     		<jsp:include page="/WEB-INF/view/main/loginbox.jsp">
     			<jsp:param value="${naverURI}" name="naverURI"/>
+    			<jsp:param value="${sessionID}" name="sessionID"/>
     		</jsp:include>
     	</div>
     	<div style="height:119px;margin:3px;border-style:solid;">
     		응시자격링크
     	</div>
-    	<div style="height:291px;margin:3px;border-style:solid;">
+    	<div style="height:311px;margin:3px;border-style:solid;">
     		게시판
     	</div>
     </div>

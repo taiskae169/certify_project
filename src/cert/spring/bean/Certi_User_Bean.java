@@ -44,16 +44,21 @@ public class Certi_User_Bean {
 	UserMethod userdao = null;
 	
 	@RequestMapping("loginPro.certi")
-	public ModelAndView loginPro(String id, String pw) {
+	public ModelAndView loginPro(String id, String pw,HttpSession session) {
 		mv = new ModelAndView();
 
 		System.out.println(id);
 		System.out.println(pw);
 		
-		int i = (Integer)userdao.logincheck(id, pw);
+		int i = userdao.logincheck(id, pw);
+		System.out.println("로그인 체크 : " + i);
+		if(i==1) {
+			System.out.println("로그인 중");
+			session.setAttribute("sessionID", id);
+		}
 		
 		
-		mv.setViewName("/login/loginPro");
+		mv.setViewName("/login/welcome");
 		return mv;
 	}//일반적 로그인 체크, 현재 DB테스트로 인하여  간단한 테스트만을 설정하였음, 이후 변경 필요
 	
@@ -125,7 +130,7 @@ public class Certi_User_Bean {
 //		    	System.out.println(profile.get("id"));
 		    	
 		    	
-				int check = userdao.kakaoLogin(userinfo.getId());
+				int check = userdao.naverLogin(userinfo.getNaverId());
 				
 				System.out.println("check : " + check);
 				
@@ -156,7 +161,7 @@ public class Certi_User_Bean {
 	public ModelAndView kakaoLogin(userVO userinfo, HttpSession session) {
 		mv = new ModelAndView();
 		
-		int check = userdao.kakaoLogin(userinfo.getId());
+		int check = userdao.kakaoLogin(userinfo.getKakaoId());
 		
 		System.out.println("check : " + check);
 		
@@ -180,7 +185,7 @@ public class Certi_User_Bean {
 	public ModelAndView googleLogin(userVO userinfo, HttpSession session) {
 		mv = new ModelAndView();
 		
-		int check = userdao.googleLogin(userinfo.getId());
+		int check = userdao.googleLogin(userinfo.getGoogleId());
 		
 		System.out.println("check : " + check);
 		
@@ -239,14 +244,27 @@ public class Certi_User_Bean {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	public ModelAndView signUp(@ModelAttribute userVO vo) {
 		mv = new ModelAndView();
-		System.out.println("test 시작");
-		
-		System.out.println("id :" + vo.getId());
-		
-		System.out.println("test 끝");
-		userdao.signUp(vo);
+
+		//userdao.signUp(vo);
 		
 		mv.setViewName("/login/signup");
+		return mv;
+	}//가입처리 페이지
+	
+	@RequestMapping("logout.certi")
+	public ModelAndView logout(HttpSession session) {
+		mv = new ModelAndView();
+		
+		session.invalidate();
+		
+		mv.setViewName("/login/logout");
+		return mv;
+	}
+	@RequestMapping("lookUp.certi")
+	public ModelAndView lookUp() {
+		mv = new ModelAndView();
+		
+		mv.setViewName("/login/lookUp");
 		return mv;
 	}
 	
