@@ -124,7 +124,7 @@ public class Gukjun_sobangAnjun extends OverrideSource {
 					for(int v=0; v<var.length; v++) {
 						if(user_eduList.get(i).edu==var[v]) applyPossible=true; break condition;
 					}
-					if(user_eduList.get(i).edu==14 && user_eduList.get(i).name.contains("교육훈련")) {
+					if(user_eduList.get(i).edu==14 && user_eduList.get(i).edu_name.contains("교육훈련")) {
 						applyPossible=true; break condition;
 					}
 				}

@@ -36,7 +36,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	</select>
   	<!-- id check for sign -->
   	
+  	<select id="getName" resultType="String" parameterType="String">
+  		select name from user_info where id=#{value}
+  	</select>
+  	
   	<insert id="sign" parameterType="user.vo.userVO">
-  		insert into user_info(id,pw,name,birth,wana,qual,googleid,naverid,kakaoid) values(#{id},#{pw},#{name},#{birth},#{wana},#{qual},#{googleid},#{naverid},#{kakaoid})
+  		insert into user_info(id,pw,name,birth,wana,qual,googleid,naverid,kakaoid) values(#{id},#{pw},#{name},#{birth},#{wana},#{qual},#{googleId},#{naverId},#{kakaoId})
   	</insert>
+  	<!-- sign  -->
 </mapper>
