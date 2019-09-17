@@ -143,7 +143,7 @@ public class UserMethod {
 		System.out.println("birth : " + vo.getBirth());
 		System.out.println("id : " + vo.getId());
 		System.out.println("pw :" + vo.getPw());
-		//sql.insert("user.sign", vo);
+		sql.insert("user.sign", vo);
 		System.out.println("가입 성공");
 		
 	}
