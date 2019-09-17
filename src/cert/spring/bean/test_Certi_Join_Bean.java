@@ -172,6 +172,7 @@ public class test_Certi_Join_Bean {
 		// ajax로 데이터 잘 넘어옴
 		
 		
+		
 		mv.setViewName("/test_user_join/testEC_Pro");
 		return mv;
 	}
