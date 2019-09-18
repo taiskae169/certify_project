@@ -71,7 +71,9 @@
 
     
   </section >
-    <jsp:include page="/WEB-INF/view/test_user_join/input_eduCareerPage.jsp"></jsp:include>
+    <jsp:include page="/WEB-INF/view/user_myPage/input_eduCareerPage.jsp">
+    	<jsp:param name="category" value="${category}"/>
+    </jsp:include>
   <!-- Testimonials -->
 
   <hr />
