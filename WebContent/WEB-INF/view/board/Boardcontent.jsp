@@ -22,7 +22,9 @@
 
   <!-- Custom styles for this template -->
   <link href="/certify/resource/gen/css/landing-page.min.css" rel="stylesheet">
+  
 </head>
+	<div position = "static">
 			<table cellSpacing=1 cellPadding=1 width="80%" border=1 align="center">
 				<tr align="center" height="40">
 					<td align="center"><b>글번호</b></td>
@@ -52,11 +54,20 @@
 					    		</c:if>
 					    <c:if test="${board.newname != null}">
 					  		 	 	
-								<td align="center"  width="150" ><button onclick="window.location='Download.kb?newname=${board.newname}'">다운로드</button></td>
+								<td align="left"><button onclick="window.location='Download.certi?newname=${board.newname}'">다운로드</button></td>
 						</c:if>
-				 	 </tr >
+				 	 </tr>
 				</table>
-				<a href="BoardList.certi">
-					<span class="text">글목록</span>
-				</a>
+				</div>
+				<div position = "static" align="center">
+				<button class="btn btn-sm btn-primary" onclick="window.location='BoardUpdateForm.certi?num=${board.num}'">수정하기</button>
+				<button class="btn btn-sm btn-primary" onclick="window.location='BoardList.certi'">목록보기</button>
+				<button class="btn btn-sm btn-danger" onclick="window.location='BoardDelete.certi?num=${board.num}'">삭제하기</button>
+				</div>
+				<div position = "static" align="center">
+				<jsp:include page="CommentList.jsp"/>
+				</div>
+				
+				
+				
 </body>

@@ -9,19 +9,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>사거리</title>
         <!-- Bootstrap -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        
         <link href="/resources/image/icon/HalfLife.ico" rel="shortcuticon">
         <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요한) -->	
         <script src="//code.jquery.com/jquery.js"></script>
         <!-- 모든 합쳐진 플러그인을 포함하거나 (아래) 필요한 각각의 파일들을 포함하세요 -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
         <!-- Respond.js 으로 IE8 에서 반응형 기능을 활성화하세요 (https://github.com/scottjehl/Respond) -->
-        <script src="/resources/bootstrap/js/respond.js"></script>
+        <script src="/resource/bootstrap/js/respond.js"></script>
+        
+        <!-- 모달 CSS 추가 -->
+       
+        
+
     </head>
     <body>
         <div class="container"><!-- 좌우측의 공간 확보 -->
             <!-- 모달창 -->
-            <div class="modal fade" id="defaultModal">
+            <div class="modal fade in" id="defaultModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -42,7 +47,7 @@
                  
  		<hr />
  
-        <form class="form-horizontal" role="form" method="post" action="javascript:alert( 'success!' );">
+        <form class="form-horizontal" role="form" method="get" action="/certify/user/signup.certi" >
             <div class="form-group">
                 <label for="provision" class="col-lg-2 control-label">회원가입약관</label>
                 <div class="col-lg-10" id="provision">
@@ -86,14 +91,18 @@
             <div class="form-group" id="divId">
                 <label for="inputId" class="col-lg-2 control-label">아이디</label>
                 <div class="col-lg-10">
-                    <input type="email" class="form-control" id="email" data-rule-required="true" placeholder="이메일" maxlength="40">
-                	<button class="btn">중복확인</button>
+                    <input type="email" class="form-control" id="email" name="id" data-rule-required="true" placeholder="이메일" maxlength="40" value="${userinfo.id}">
+                	<button type="button" class="btn" onclick="openIdChk();">중복확인</button>
+                	<input type="hidden" id="kakaoId" name="kakaoId" value="${userinfo.kakaoId}">
+                	<input type="hidden" id="naverId" name="naverId" value="${userinfo.naverId}">
+                	<input type="hidden" id="googleId" name="googleId" value="${userinfo.googleId}">
+                	<input type="hidden" id="idchecked" value="0">
                 </div>
             </div>
             <div class="form-group" id="divPassword">
                 <label for="inputPassword" class="col-lg-2 control-label">패스워드</label>
                 <div class="col-lg-10">
-                    <input type="password" class="form-control" id="password" name="excludeHangul" data-rule-required="true" placeholder="패스워드" maxlength="30">
+                    <input type="password" class="form-control" id="password" name="pw" data-rule-required="true" placeholder="패스워드" maxlength="30">
                 </div>
             </div>
             <div class="form-group" id="divPasswordCheck">
@@ -105,28 +114,19 @@
             <div class="form-group" id="divName">
                 <label for="inputName" class="col-lg-2 control-label">이름</label>
                 <div class="col-lg-10">
-                    <input type="text" class="form-control onlyHangul" id="name" data-rule-required="true" placeholder="한글만 입력 가능합니다." maxlength="15">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputPhoneNumber" class="col-lg-2 control-label">성별</label>
-                <div class="col-lg-10">
-                    <select class="form-control" id="gender">
-                        <option value="M">남</option>
-                        <option value="F">여</option>
-                    </select>
+                    <input type="text" class="form-control onlyHangul" id="name" name="name" data-rule-required="true" placeholder="한글만 입력 가능합니다." maxlength="15" value="${userinfo.name}">
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputPhoneNumber" class="col-lg-2 control-label">생년월일</label>
                 <div class="col-lg-10">
-                    <input type="date" class="form-control" id="dirth" data-rule-required="true">
+                    <input type="date" class="form-control" id="dirth" name="birth" data-rule-required="true">
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputPhoneNumber" class="col-lg-2 control-label">관심카테고리</label>
                 <div class="col-lg-10">
-                    <select class="form-control" id="gender">
+                    <select class="form-control" id="wana" name="wana">
                     	<c:forEach var="cate" items="${category}">
                     		<option value="${cate.certi_num}">${cate.name}</option>
                     	</c:forEach>
@@ -136,7 +136,7 @@
             <div class="form-group">
                 <label for="inputPhoneNumber" class="col-lg-2 control-label">응시자격</label>
                 <div class="col-lg-10">
-                    <select class="form-control" id="gender">
+                    <select class="form-control" id="qual" name="qual">
                         <option value="0">기능사</option>
                         <option value="1">산업기사</option>
                         <option value="2">기사</option>
@@ -145,28 +145,7 @@
                     </select>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="inputEmailReceiveYn" class="col-lg-2 control-label">이메일 수신여부</label>
-                <div class="col-lg-10">
-                    <label class="radio-inline">
-                        <input type="radio" id="emailReceiveYn" name="emailReceiveYn" value="Y" checked> 동의합니다.
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" id="emailReceiveYn" name="emailReceiveYn" value="N"> 동의하지 않습니다.
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputPhoneNumber" class="col-lg-2 control-label">SMS 수신여부</label>
-                <div class="col-lg-10">
-                    <label class="radio-inline">
-                        <input type="radio" id="smsReceiveYn" name="smsReceiveYn" value="Y" checked> 동의합니다.
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" id="smsReceiveYn" name="smsReceiveYn" value="N"> 동의하지 않습니다.
-                    </label>
-                </div>
-            </div>
+
             <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-10">
                     <button type="submit" class="btn btn-default">Sign in</button>
@@ -174,8 +153,50 @@
             </div>
         </form>
          
+
+         
+         
          
         <script>
+        	function openIdChk(){
+        		var modalContents = $(".modal-contents");
+                var modal = $("#defaultModal");
+                var divId = $('#divId');
+            	$.ajax({
+                	type:'POST',
+                    url:'/certify/user/idcheck.certi',
+                    data:{
+                        "email":$('#email').val()
+                    },
+                    success:function(data){
+						if($.trim(data)=="YES"){
+							if($('email').val()!=''){
+								console.log('id체크');
+								modalContents.text("사용가능한 아이디입니다.");
+								modal.modal('show');
+								$("#idchecked").val("1");
+								
+							}
+						}//if문
+						else if($.trim(data)=="BLOCK"){
+							modalContents.text("아이디를 입력해주세요");
+							modal.modal('show');
+							divId.removeClass("has-success");
+	                        divId.addClass("has-error");
+	                        $("#idchecked").val("0");
+						}
+						else{
+							if($('#email').val()!=''){
+								modalContents.text("중복된 아이디입니다.");
+								modal.modal('show');
+								divId.removeClass("has-success");
+		                        divId.addClass("has-error");
+		                        $("#idchecked").val("0");
+							}
+						}//else문 끝
+                    }//success:function 끝    
+                })//ajax 끝
+            }//openIdChk 끝
          
             $(function(){
                 //모달을 전역변수로 선언
@@ -312,9 +333,12 @@
                     var divPhoneNumber = $('#divPhoneNumber');
                      
                     //회원가입약관
+                    
                     if($('#provisionYn:checked').val()=="N"){
                         modalContents.text("회원가입약관에 동의하여 주시기 바랍니다."); //모달 메시지 입력
                         modal.modal('show'); //모달 띄우기
+
+						console.log('test');
                          
                         provision.removeClass("has-success");
                         provision.addClass("has-error");
@@ -342,6 +366,19 @@
                     //아이디 검사
                     if($('#id').val()==""){
                         modalContents.text("아이디를 입력하여 주시기 바랍니다.");
+                        modal.modal('show');
+                         
+                        divId.removeClass("has-success");
+                        divId.addClass("has-error");
+                        $('#id').focus();
+                        return false;
+                    }else{
+                        divId.removeClass("has-error");
+                        divId.addClass("has-success");
+                    }
+
+                    if($('#idchecked').val()=="0"){
+                        modalContents.text("아이디 중복확인을 해주시기 바랍니다.");
                         modal.modal('show');
                          
                         divId.removeClass("has-success");
@@ -460,5 +497,6 @@
                 <!--// 본문 들어가는 부분 -->
 
         </div>
+        
     </body>
 </html>

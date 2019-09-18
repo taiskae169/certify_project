@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		select * from board where num=#{value}
   	</select>
   	<insert id="fileInsert" parameterType="board.vo.BoardVO">
-  		insert into board values(board_seq.nextval, #{id}, #{title}, #{content},sysdate,#{orgname},#{newname})
+  		insert into board values(board_seq.nextval,#{cate},#{title},#{id},#{content},sysdate,0,#{orgname},#{readcount},#{newname})
   	</insert>
   	<select id="Filenum" resultType="int">
   		select count(*) from board
@@ -22,4 +22,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	<select id="getCateArticle" resultType="board.vo.BoardCateVO">
   		select * from board_cate_value
   	</select>
+  	<update id="UpdateBoard" parameterType="board.vo.BoardVO">
+  		update board set cate=#{cate},title=#{title},content=#{content},reg_date=sysdate,orgname=#{orgname},newname=#{newname} where num=#{num}
+  	</update>
+  	<select id="UpdateForm" parameterType="int" resultType="board.vo.BoardVO" >
+  		select * from board where num=#{value}
+  	</select>
+  	<delete id="DeleteBoard" parameterType="int">
+  		delete from board where num=#{value}
+  	</delete>
+  	<select id="CommentCount" parameterType="int" resultType="int">
+		select count(*) from board_comment where table_num=#{value}
+	</select>
+  	<select id="getComment" parameterType="int" resultType="board.vo.CommentVO">
+  		select * from (select * from board_comment where table_num=#{value} order by num asc)order by step asc
+  	</select>
+  	<insert id="CommentWrite" parameterType="board.vo.CommentVO">
+  		insert into board_comment values(board_comment_seq.nextval,#{table_num},#{id},sysdate,0,#{content})
+  	</insert>
+  	
 </mapper>

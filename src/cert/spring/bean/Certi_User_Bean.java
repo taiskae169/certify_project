@@ -14,7 +14,11 @@ import javax.servlet.http.HttpSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.JsonElement;
@@ -130,6 +134,8 @@ public class Certi_User_Bean {
 					session.setAttribute("sessionID", userinfo.getId());
 				}else {
 					//user_info에 없으므로 가입 필요
+					List<Cer_CategoryVO> category = userdao.getCerti_Category();
+					mv.addObject("category",category);
 					mv.addObject("userinfo", userinfo);
 					//내용 전달을 위해서 설정
 					mv.setViewName("/login/sign");
@@ -159,6 +165,8 @@ public class Certi_User_Bean {
 			session.setAttribute("sessionID", userinfo.getId());
 		}else {
 			//user_info에 없으므로 가입 필요
+			List<Cer_CategoryVO> category = userdao.getCerti_Category();
+			mv.addObject("category",category);
 			mv.addObject("userinfo", userinfo);
 			//내용 전달을 위해서 설정
 			mv.setViewName("/login/sign");
@@ -181,7 +189,9 @@ public class Certi_User_Bean {
 			session.setAttribute("sessionID", userinfo.getId());
 		}else {
 			//user_info에 없으므로 가입 필요
+			List<Cer_CategoryVO> category = userdao.getCerti_Category();
 			mv.addObject("userinfo", userinfo);
+			mv.addObject("category",category);
 			mv.setViewName("/login/sign");
 		}
 		
@@ -190,8 +200,10 @@ public class Certi_User_Bean {
 	}
 	 
 	@RequestMapping("sign.certi")
-	public ModelAndView sign() {
+	public ModelAndView sign(@ModelAttribute userVO vo) {
 		mv = new ModelAndView();
+		
+		System.out.println(vo.getKakaoId());
 		
 		List<Cer_CategoryVO> category = userdao.getCerti_Category();
 		
@@ -208,6 +220,32 @@ public class Certi_User_Bean {
 		
 		mv.setViewName("/login/signPage");
 		
+		return mv;
+	}
+	
+	@RequestMapping(value="idcheck.certi")
+	public @ResponseBody String idcheck(String email) {
+		String str = "BLOCK";
+		if(!email.trim().equals("")) {
+			str =userdao.idCheck(email);
+		}
+		
+		//System.out.println(str);
+		return str;
+	}
+
+	@RequestMapping(value="signup.certi")
+	public ModelAndView signUp(@ModelAttribute userVO vo,String id) {
+		mv = new ModelAndView();
+		System.out.println("test 시작");
+		
+		System.out.println("id :" + vo.getId());
+		System.out.println("tid : " + id);
+		
+		System.out.println("test 끝");
+		userdao.signUp(vo);
+		
+		mv.setViewName("/login/signup");
 		return mv;
 	}
 	

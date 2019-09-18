@@ -16,8 +16,10 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import certify.vo.Cer_CategoryVO;
+import user.vo.userVO;
 
 public class UserMethod {
+
 	
 	@Autowired
 	private SqlSessionTemplate sql =null;
@@ -119,6 +121,30 @@ public class UserMethod {
 //		}
 
 		return category;
-	}
+	}//카테고리 리스트 가져오는 것
 
+	public String idCheck(String id) {
+		String str = "";
+		int check = sql.selectOne("user.idCheck",id);
+//		System.out.println(id);
+//		System.out.println(check);
+		
+		if(check==0) {
+			str="YES";
+		}else {
+			str="NO";
+		}
+		
+		return str;
+	}// id 중복확인을 위한 메소드
+	
+	public void signUp(userVO vo) {
+		System.out.println("가입 시작");
+		System.out.println("birth : " + vo.getBirth());
+		System.out.println("id : " + vo.getId());
+		System.out.println("pw :" + vo.getPw());
+		//sql.insert("user.sign", vo);
+		System.out.println("가입 성공");
+		
+	}
 }

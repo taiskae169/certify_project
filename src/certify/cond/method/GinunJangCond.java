@@ -49,7 +49,7 @@ public class GinunJangCond extends OverrideSource{
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		for(int i=0; i<user_certiList.size(); i++) {
-			if(user_certiList.get(i).cate==cfvo.cate && user_certiList.get(i).type==0) {
+			if(user_certiList.get(i).cate==cfvo.getCate() && user_certiList.get(i).type==0) {
 				if(careerMap!=null && careerMap.containsKey(cfvo.getCate()) ) {
 		    		if(careerMap.get(cfvo.getCate())>=year*7) {
 		    			applyPossible=true; break;
@@ -77,7 +77,7 @@ public class GinunJangCond extends OverrideSource{
 		if(user_certiList!=null) {
 			condition : 
 			for(int i=0; i<user_certiList.size(); i++) {
-				if(user_certiList.get(i).cate==cfvo.cate && user_certiList.get(i).type == 0) {
+				if(user_certiList.get(i).cate==cfvo.getCate() && user_certiList.get(i).type == 0) {
 					for(int j=0; j<user_eduList.size();j++) {
 						if(user_eduList.get(j).edu==9 && user_eduList.get(j).state==2)	{
 							applyPossible=true; break condition;
@@ -95,7 +95,7 @@ public class GinunJangCond extends OverrideSource{
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		if(user_certiList!=null) {
 			for(int i=0; i<user_certiList.size(); i++) {
-				if(user_certiList.get(i).cate==cfvo.cate && user_certiList.get(i).type == 0) {
+				if(user_certiList.get(i).cate==cfvo.getCate() && user_certiList.get(i).type == 0) {
 					for(int j=0; j<user_eduList.size();j++) {
 						if(user_eduList.get(j).edu==9 && user_eduList.get(j).state==0)	{
 							applyPossible=true; break;
@@ -113,7 +113,7 @@ public class GinunJangCond extends OverrideSource{
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		if(user_certiList!=null) {
 			for(int i=0; i<user_certiList.size(); i++) {
-				if(user_certiList.get(i).cate==cfvo.cate && user_certiList.get(i).type == cfvo.type) {
+				if(user_certiList.get(i).cate==cfvo.getCate() && user_certiList.get(i).type == cfvo.getType()) {
 					applyPossible=true; break;
 				}
 			}
@@ -127,7 +127,7 @@ public class GinunJangCond extends OverrideSource{
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		if(user_certiList!=null) {
 			for(int i=0; i<user_certiList.size(); i++) {
-				if(user_certiList.get(i).cate==cfvo.cate && user_certiList.get(i).type == 1) {
+				if(user_certiList.get(i).cate==cfvo.getCate() && user_certiList.get(i).type == 1) {
 					for(int j=0; j<user_eduList.size();j++) {
 						if(user_eduList.get(j).edu==9 && user_eduList.get(j).state==2)	{
 							applyPossible=true; break;
@@ -145,7 +145,7 @@ public class GinunJangCond extends OverrideSource{
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		if(user_certiList!=null) {
 			for(int i=0; i<user_certiList.size(); i++) {
-				if(user_certiList.get(i).cate==cfvo.cate && user_certiList.get(i).type == 1) {
+				if(user_certiList.get(i).cate==cfvo.getCate() && user_certiList.get(i).type == 1) {
 					for(int j=0; j<user_eduList.size();j++) {
 						if(user_eduList.get(j).edu==9 && user_eduList.get(j).state==0)	{
 							applyPossible=true; break;
@@ -162,7 +162,7 @@ public class GinunJangCond extends OverrideSource{
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		for(int i=0; i<user_certiList.size(); i++) {
-			if(user_certiList.get(i).cate==cfvo.cate && user_certiList.get(i).type>=1) {
+			if(user_certiList.get(i).cate==cfvo.getCate() && user_certiList.get(i).type>=1) {
 				if(careerMap!=null && careerMap.containsKey(cfvo.getCate()) ) {
 		    		if(careerMap.get(cfvo.getCate())>=year*5) {
 		    			applyPossible=true; break;

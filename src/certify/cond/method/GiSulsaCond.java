@@ -171,7 +171,7 @@ public class GiSulsaCond extends OverrideSource{
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		for(int i=0; i<user_certiList.size(); i++) {
-			if(user_certiList.get(i).cate==cfvo.cate && user_certiList.get(i).type==0) {
+			if(user_certiList.get(i).cate==cfvo.getCate() && user_certiList.get(i).type==0) {
 				if(careerMap!=null && careerMap.containsKey(cfvo.getCate()) ) {
 		    		if(careerMap.get(cfvo.getCate())>=year*7) applyPossible=true; break;
 		    	}
@@ -185,7 +185,7 @@ public class GiSulsaCond extends OverrideSource{
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		for(int i=0; i<user_certiList.size(); i++) {
-			if(user_certiList.get(i).cate==cfvo.cate && user_certiList.get(i).type==2) {
+			if(user_certiList.get(i).cate==cfvo.getCate() && user_certiList.get(i).type==2) {
 				if(careerMap!=null && careerMap.containsKey(cfvo.getCate()) ) {
 		    		if(careerMap.get(cfvo.getCate())>=year*4) applyPossible=true; break;
 		    	}
@@ -224,7 +224,7 @@ public class GiSulsaCond extends OverrideSource{
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		if(user_certiList!=null) {
 			for(int i=0; i<user_certiList.size(); i++) {
-				if(user_certiList.get(i).cate==cfvo.cate && user_certiList.get(i).type == cfvo.type) applyPossible=true; break;
+				if(user_certiList.get(i).cate==cfvo.getCate() && user_certiList.get(i).type == cfvo.getType()) applyPossible=true; break;
 			}
 		}
 		return applyPossible;
@@ -236,7 +236,7 @@ public class GiSulsaCond extends OverrideSource{
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		if(user_certiList!=null) {
 			for(int i=0; i<user_certiList.size(); i++) {
-				if(user_certiList.get(i).cate==cfvo.cate && user_certiList.get(i).type==1) {
+				if(user_certiList.get(i).cate==cfvo.getCate() && user_certiList.get(i).type==1) {
 					if(careerMap!=null && careerMap.containsKey(cfvo.getCate())) {
 			    		if(careerMap.get(cfvo.getCate())>=year*5) applyPossible=true; break;
 			    	}
