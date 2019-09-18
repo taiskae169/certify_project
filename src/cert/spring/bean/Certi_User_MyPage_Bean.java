@@ -172,85 +172,83 @@ public class Certi_User_MyPage_Bean {
 		mv = new ModelAndView();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
-		//String id = (String) session.getAttribute("sessionID");
-		String id = "test"; // testId	
+		String id = (String) session.getAttribute("sessionID");	
 		
-		if(!eduList.equals("notUse")) {
-			String pre_edu_enc = URLDecoder.decode(eduList, "UTF-8");
-			String [] edu_enc = pre_edu_enc.split("@@");
-																	System.out.println(pre_edu_enc);
-			for(int i=0; i< edu_enc.length; i++) {
-				Date gra_date=null;
-				Date ent_date = null;
-				uevo = new userEduVO();
-				String[] eduArr = edu_enc[i].split("&");
-				for(int j=0; j<eduArr.length; j++) {
-					eduArr[j] = eduArr[j].substring(eduArr[j].indexOf("=")+1);
+		if(id!=null) {
+			if(!eduList.equals("notUse")) {
+				String pre_edu_enc = URLDecoder.decode(eduList, "UTF-8");
+				String [] edu_enc = pre_edu_enc.split("@@");
+				for(int i=0; i< edu_enc.length; i++) {
+					Date gra_date=null;
+					Date ent_date = null;
+					uevo = new userEduVO();
+					String[] eduArr = edu_enc[i].split("&");
+					for(int j=0; j<eduArr.length; j++) {
+						eduArr[j] = eduArr[j].substring(eduArr[j].indexOf("=")+1);
+					}
+					uevo.setId(id);
+					uevo.setEdu_name(eduArr[0]);
+					uevo.setMajor_name(eduArr[1]);
+									// eduArr[2] = eduType== VO에없는 것
+					uevo.setState(Integer.parseInt(eduArr[3]));
+					uevo.setMajor(Integer.parseInt(eduArr[4]));
+						if(eduArr[5]==null || eduArr[5].equals("") || eduArr[5].equals(" ")) {
+							ent_date = new Date();
+							String time = sdf.format(ent_date);
+							ent_date = sdf.parse(time);
+						}else {
+							ent_date = sdf.parse(eduArr[5]);
+						}
+						
+						if(eduArr[6]==null || eduArr[6].equals("") || eduArr[6].equals(" ")) {
+							gra_date = new Date();
+							String time = sdf.format(gra_date);
+							gra_date = sdf.parse(time);
+						}else {
+							gra_date = sdf.parse(eduArr[6]);
+						}
+					uevo.setEnt_date(ent_date);
+					uevo.setGra_date(gra_date);
+					uevo.setEdu(Integer.parseInt(eduArr[7]));
+					userdao.insertUserEdu(uevo);
+					// 주 : 배열의 순서가 바뀔 일이 없기 때문에 가능한 하드코딩입니다. 맵핑으로 못받더라구요 ㅜㅜㅜ
 				}
-				uevo.setId(id);
-				uevo.setEdu_name(eduArr[0]);
-				uevo.setMajor_name(eduArr[1]);
-								// eduArr[2] = eduType== VO에없는 것
-				uevo.setState(Integer.parseInt(eduArr[3]));
-				uevo.setMajor(Integer.parseInt(eduArr[4]));
-					if(eduArr[5]==null || eduArr[5].equals("") || eduArr[5].equals(" ")) {
-						ent_date = new Date();
-						String time = sdf.format(ent_date);
-						ent_date = sdf.parse(time);
-					}else {
-						ent_date = sdf.parse(eduArr[5]);
+			}
+			
+			if(!careerList.equals("notUse")) {
+				String pre_career_enc = URLDecoder.decode(careerList, "UTF-8");
+				String [] career_enc = pre_career_enc.split("@@");
+				for(int i=0; i< career_enc.length; i++) {
+					ucvo = new userCareerVO();
+					Date gra_date=null;
+					Date ent_date = null;
+					String [] careerArr = career_enc[i].split("&");
+					for(int j=0; j<careerArr.length; j++) {
+						careerArr[j] = careerArr[j].substring(careerArr[j].indexOf("=")+1);
 					}
-					
-					if(eduArr[6]==null || eduArr[6].equals("") || eduArr[6].equals(" ")) {
-						gra_date = new Date();
-						String time = sdf.format(gra_date);
-						gra_date = sdf.parse(time);
-					}else {
-						gra_date = sdf.parse(eduArr[6]);
-					}
-				uevo.setEnt_date(ent_date);
-				uevo.setGra_date(gra_date);
-				uevo.setEdu(Integer.parseInt(eduArr[7]));
-				userdao.insertUserEdu(uevo);
-				// 주 : 배열의 순서가 바뀔 일이 없기 때문에 가능한 하드코딩입니다. 맵핑으로 못받더라구요 ㅜㅜㅜ
+					ucvo.setId(id);
+					ucvo.setCompany(careerArr[0]);
+					ucvo.setComp_cate(Integer.parseInt(careerArr[1]));
+						if(careerArr[2]==null || careerArr[2].equals("") || careerArr[2].equals(" ")) {
+							ent_date = new Date();
+							String time = sdf.format(ent_date);
+							ent_date = sdf.parse(time);
+						}else {
+							gra_date = sdf.parse(careerArr[2]);
+						}
+						if(careerArr[3]==null || careerArr[3].equals("") || careerArr[3].equals(" ")) {
+							gra_date = new Date();
+							String time = sdf.format(gra_date);
+							gra_date = sdf.parse(time);
+						}else {
+							gra_date = sdf.parse(careerArr[3]);
+						}
+					ucvo.setCom_ent_date(ent_date);
+					ucvo.setCom_gra_date(gra_date);
+					userdao.insertUserCareer(ucvo);
+				}
 			}
 		}
-		
-		if(!careerList.equals("notUse")) {
-			String pre_career_enc = URLDecoder.decode(careerList, "UTF-8");
-			String [] career_enc = pre_career_enc.split("@@");
-																	System.out.println(pre_career_enc);
-			for(int i=0; i< career_enc.length; i++) {
-				ucvo = new userCareerVO();
-				Date gra_date=null;
-				Date ent_date = null;
-				String [] careerArr = career_enc[i].split("&");
-				for(int j=0; j<careerArr.length; j++) {
-					careerArr[j] = careerArr[j].substring(careerArr[j].indexOf("=")+1);
-				}
-				ucvo.setId(id);
-				ucvo.setCompany(careerArr[0]);
-				ucvo.setComp_cate(Integer.parseInt(careerArr[1]));
-					if(careerArr[2]==null || careerArr[2].equals("") || careerArr[2].equals(" ")) {
-						ent_date = new Date();
-						String time = sdf.format(ent_date);
-						ent_date = sdf.parse(time);
-					}else {
-						gra_date = sdf.parse(careerArr[2]);
-					}
-					if(careerArr[3]==null || careerArr[3].equals("") || careerArr[3].equals(" ")) {
-						gra_date = new Date();
-						String time = sdf.format(gra_date);
-						gra_date = sdf.parse(time);
-					}else {
-						gra_date = sdf.parse(careerArr[3]);
-					}
-				ucvo.setCom_ent_date(ent_date);
-				ucvo.setCom_gra_date(gra_date);
-				userdao.insertUserCareer(ucvo);
-			}
-		}
-
 		mv.setViewName("/user_myPage/inputEduCareer_Pro");
 		return mv;
 	}

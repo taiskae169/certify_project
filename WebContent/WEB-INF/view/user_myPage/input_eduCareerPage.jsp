@@ -297,10 +297,6 @@
 							alert("학교 및 학과는 필수기재사항입니다!")
 							$('#'+edu_forms[x].id+'#edu_name').focus();
 							return false;
-						}else if( $('#'+edu_forms[x].id+'#ent_date').val()==undefined ){
-								alert("입학 일자는 필수기재사항입니다!")
-								$('#'+edu_forms[x].id+'#ent_date').focus();
-								return false;
 						}else{
 							eduArr[x] = edu_forms[x].id;
 						}
@@ -322,10 +318,6 @@
 						if( $('#'+career_forms[x].id+'#company').val()=="" ){
 							alert("사업체명은 필수기재사항입니다!")
 							$('#'+career_forms[x].id+'#company').focus();
-							return false;
-						}else if( $('#'+career_forms[x].id+'#comp_ent_date').val()==undefined ){
-							alert("입사일자는 필수기재사항입니다!")
-							$('#'+career_forms[x].id+'#comp_ent_date').focus();
 							return false;
 						}else{
 							careerArr[x] = career_forms[x].id;
