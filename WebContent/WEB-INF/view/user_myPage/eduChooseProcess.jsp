@@ -23,7 +23,7 @@
 
 	function setUni_name(selectId){		
 		opener.document.user_edu_${num}.edu_name.value = selectId;
-		window.location="test_uni.certi?num="+${num}+"&school_nameFix="+selectId;
+		window.location="eduChooseProcess.certi?num="+${num}+"&school_nameFix="+selectId;
 	}
 	function setMajor_name(selectId){		
 		opener.document.user_edu_${num}.major_name.value = selectId;
@@ -33,7 +33,7 @@
 <!-- 대학교 검색 -->
 <c:if test="${major_List==null}" >
 <div id="uni_check">
-	<form name="search_form" action="test_uni.certi">
+	<form name="search_form" action="eduChooseProcess.certi">
 		<b>학교명을 입력하세요.</b><br>
 		<span> 고등학교의 경우 직접 입력해주세요. ("고등학교"를 정확히 입력해주세요!) </span>
 		<input type="text" name="school_name" id="school_name" onkeypress="JavaScript:press(this.form)" />
@@ -57,7 +57,7 @@
 <!-- 학과 검색 -->
 <c:if test="${school_nameFix!=null}">
 <div id="major_check" >
-	<form name="search_form" action="test_uni.certi">
+	<form name="search_form" action="eduChooseProcess.certi">
 		<b>학과명을 입력하세요.</b><br>
 		<input type="text" name="major_name" id="major_name" onkeypress="JavaScript:press(this.form)"  />
 		<input type="hidden" name="num" value="${num}" >

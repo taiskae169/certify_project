@@ -33,8 +33,8 @@ import user.vo.userEduVO;
 
 @Repository
 @Controller
-@RequestMapping("/")
-public class test_Certi_Join_Bean {
+@RequestMapping("/user/myPage/")
+public class Certi_User_MyPage_Bean {
 	
 	ModelAndView mv =null;
 	
@@ -47,21 +47,28 @@ public class test_Certi_Join_Bean {
 	@Autowired
 	userEduVO uevo = null;
 	
-	@RequestMapping("test1.certi")
-	public ModelAndView test1(HttpServletRequest request, HttpSession session){
+	@RequestMapping("input_eduCareer.certi")
+	public ModelAndView input_eduCareer(HttpServletRequest request, HttpSession session){
 		mv = new ModelAndView();
 		
-		String testId = "haha3423";
-		
+		//String id = (String) session.getAttribute("sessionID");
+		String id = "test"; // testId
 		List<Cer_CategoryVO> category = userdao.getCerti_Category();
 		mv.addObject("category",category);
 		
-		mv.setViewName("/test_user_join/test1");
+		mv.setViewName("/user_myPage/input_eduCareer");
 		return mv;
 	}
 	
-	@RequestMapping("test_uni.certi")
-	public ModelAndView test_test(int num, String school_name, String major_name, 
+	@RequestMapping("input_eduCareerPage.certi")
+	public ModelAndView input_eduCareerPage(HttpServletRequest request, HttpSession session){
+		mv = new ModelAndView();
+		mv.setViewName("/user_myPage/input_eduCareerPage");
+		return mv;
+	}
+	
+	@RequestMapping("eduChooseProcess.certi")
+	public ModelAndView eduChooseProcess(int num, String school_name, String major_name, 
 							String school_nameFix, String major_nameFix) throws IOException {
 		mv = new ModelAndView();
 		String filepath = "C:/Users/DELL/Documents/major.csv";
@@ -156,67 +163,95 @@ public class test_Certi_Join_Bean {
 		mv.addObject("major", major);
 		mv.addObject("eduType", eduType);
 		mv.addObject("edu", edu);
-		mv.setViewName("/test_user_join/test_uni");
+		mv.setViewName("/user_myPage/eduChooseProcess");
 		return mv;
 	}
 	
-	@RequestMapping(value="testEC_Pro.certi", method = RequestMethod.POST)
+	@RequestMapping(value="inputEduCareer_Pro.certi", method = RequestMethod.POST)
 	public ModelAndView testEC_Pro(HttpSession session, String eduList, String careerList) throws IOException, Exception{
 		mv = new ModelAndView();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
 		//String id = (String) session.getAttribute("sessionID");
-		String id = "test";
+		String id = "test"; // testId	
 		
-		List<userEduVO> eduVoList = new ArrayList<userEduVO>();
-		List<userCareerVO> careerVoList = new ArrayList<userCareerVO>();		
-		
-		String pre_edu_enc = URLDecoder.decode(eduList, "UTF-8");
-		String pre_career_enc = URLDecoder.decode(careerList, "UTF-8");
-		
-		String [] edu_enc = pre_edu_enc.split("@@");
-		for(int i=0; i< edu_enc.length; i++) {
-			uevo = new userEduVO();
-			String[] eduArr = edu_enc[i].split("&");
-			for(int j=0; j<eduArr.length; j++) {
-				eduArr[j] = eduArr[j].substring(eduArr[j].indexOf("=")+1);
-				System.out.println(eduArr[j]);
+		if(!eduList.equals("notUse")) {
+			String pre_edu_enc = URLDecoder.decode(eduList, "UTF-8");
+			String [] edu_enc = pre_edu_enc.split("@@");
+																	System.out.println(pre_edu_enc);
+			for(int i=0; i< edu_enc.length; i++) {
+				Date gra_date=null;
+				Date ent_date = null;
+				uevo = new userEduVO();
+				String[] eduArr = edu_enc[i].split("&");
+				for(int j=0; j<eduArr.length; j++) {
+					eduArr[j] = eduArr[j].substring(eduArr[j].indexOf("=")+1);
+				}
+				uevo.setId(id);
+				uevo.setEdu_name(eduArr[0]);
+				uevo.setMajor_name(eduArr[1]);
+								// eduArr[2] = eduType== VO에없는 것
+				uevo.setState(Integer.parseInt(eduArr[3]));
+				uevo.setMajor(Integer.parseInt(eduArr[4]));
+					if(eduArr[5]==null || eduArr[5].equals("") || eduArr[5].equals(" ")) {
+						ent_date = new Date();
+						String time = sdf.format(ent_date);
+						ent_date = sdf.parse(time);
+					}else {
+						ent_date = sdf.parse(eduArr[5]);
+					}
+					
+					if(eduArr[6]==null || eduArr[6].equals("") || eduArr[6].equals(" ")) {
+						gra_date = new Date();
+						String time = sdf.format(gra_date);
+						gra_date = sdf.parse(time);
+					}else {
+						gra_date = sdf.parse(eduArr[6]);
+					}
+				uevo.setEnt_date(ent_date);
+				uevo.setGra_date(gra_date);
+				uevo.setEdu(Integer.parseInt(eduArr[7]));
+				userdao.insertUserEdu(uevo);
+				// 주 : 배열의 순서가 바뀔 일이 없기 때문에 가능한 하드코딩입니다. 맵핑으로 못받더라구요 ㅜㅜㅜ
 			}
-			uevo.setId(id);
-			uevo.setEdu_name(eduArr[0]);
-			uevo.setMajor_name(eduArr[1]);
-			// eduArr[2] = eduType==VO에없는 것
-			uevo.setState(Integer.parseInt(eduArr[3]));
-			uevo.setMajor(Integer.parseInt(eduArr[4]));
-				Date ent_date = sdf.parse(eduArr[5]);
-				Date gra_date = sdf.parse(eduArr[6]);
-			uevo.setEnt_date(ent_date);
-			uevo.setGra_date(gra_date);
-			uevo.setEdu(Integer.parseInt(eduArr[7]));
-			userdao.insertUserEdu(uevo);
-			eduVoList.add(uevo);
-			// 주 : 배열의 순서가 바뀔 일이 없기 때문에 가능한 하드코딩입니다. 맵핑으로 못받더라구요 ㅜㅜㅜ
 		}
 		
-		String [] career_enc = pre_career_enc.split("@@");
-		for(int i=0; i< career_enc.length; i++) {
-			ucvo = new userCareerVO();
-			String [] careerArr = career_enc[i].split("&");
-			for(int j=0; j<careerArr.length; j++) {
-				careerArr[j] = careerArr[j].substring(careerArr[j].indexOf("=")+1);
+		if(!careerList.equals("notUse")) {
+			String pre_career_enc = URLDecoder.decode(careerList, "UTF-8");
+			String [] career_enc = pre_career_enc.split("@@");
+																	System.out.println(pre_career_enc);
+			for(int i=0; i< career_enc.length; i++) {
+				ucvo = new userCareerVO();
+				Date gra_date=null;
+				Date ent_date = null;
+				String [] careerArr = career_enc[i].split("&");
+				for(int j=0; j<careerArr.length; j++) {
+					careerArr[j] = careerArr[j].substring(careerArr[j].indexOf("=")+1);
+				}
+				ucvo.setId(id);
+				ucvo.setCompany(careerArr[0]);
+				ucvo.setComp_cate(Integer.parseInt(careerArr[1]));
+					if(careerArr[2]==null || careerArr[2].equals("") || careerArr[2].equals(" ")) {
+						ent_date = new Date();
+						String time = sdf.format(ent_date);
+						ent_date = sdf.parse(time);
+					}else {
+						gra_date = sdf.parse(careerArr[2]);
+					}
+					if(careerArr[3]==null || careerArr[3].equals("") || careerArr[3].equals(" ")) {
+						gra_date = new Date();
+						String time = sdf.format(gra_date);
+						gra_date = sdf.parse(time);
+					}else {
+						gra_date = sdf.parse(careerArr[3]);
+					}
+				ucvo.setCom_ent_date(ent_date);
+				ucvo.setCom_gra_date(gra_date);
+				userdao.insertUserCareer(ucvo);
 			}
-			ucvo.setId(id);
-			ucvo.setCompany(careerArr[0]);
-			ucvo.setComp_cate(Integer.parseInt(careerArr[1]));
-				Date ent_date = sdf.parse(careerArr[2]);
-				Date gra_date = sdf.parse(careerArr[3]);
-			ucvo.setCom_ent_date(ent_date);
-			ucvo.setCom_gra_date(gra_date);
-			userdao.insertUserCareer(ucvo);
-			careerVoList.add(ucvo);
 		}
 
-		mv.setViewName("/test_user_join/testEC_Pro");
+		mv.setViewName("/user_myPage/inputEduCareer_Pro");
 		return mv;
 	}
 	

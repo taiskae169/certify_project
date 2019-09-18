@@ -15,7 +15,7 @@
 			학교명 : <input type="text" name="edu_name" readOnly onclick="openSub(this.form)" />
 			학과명 : <input type="text" name="major_name" readOnly onclick="openSub(this.form)"/>
 			학제 : <input type="text" name="eduType" readOnly onclick="openSub(this.form)"/>
-			상태 : <select id="status" name="state">
+			상태 : <select id="state" name="state">
 					<option value="0">졸업</option>
 					<option value="1">재학중</option>
 					<option value="2">졸업예정</option>
