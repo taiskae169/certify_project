@@ -39,17 +39,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	<select id="getName" resultType="String" parameterType="String">
   		select name from user_info where id=#{value}
   	</select>
+  	<!-- looking for name  -->
+  	<select id="lookUpID" resultType="String" parameterType="user.vo.userVO">
+  		select id from user_info where name=#{name} and birth=#{birth}
+  	</select>
   	
+  	
+  	<!-- Insert for user's Informations -->
   	<insert id="sign" parameterType="user.vo.userVO">
   		insert into user_info(id,pw,name,birth,wana,qual,googleid,naverid,kakaoid) values(#{id},#{pw},#{name},#{birth},#{wana},#{qual},#{googleId},#{naverId},#{kakaoId})
   	</insert>
   	<!-- sign  -->
   	
-  	<!-- Insert for user's Informations -->
   	<insert id="insertEdu" parameterType="user.vo.userEduVO">
   		insert into USER_EDU(id,edu_name,major_name,edu,major,state,ent_date,gra_date) values(#{id},#{edu_name},#{major_name},#{edu},#{major},#{state},#{ent_date},#{gra_date})
   	</insert>
   	<insert id="insertCareer" parameterType="user.vo.userCareerVO">
   		insert into USER_CAREER(num,id,company,comp_cate,com_ent_date,com_gra_date) values(user_career_seq.nextval,#{id},#{company},#{comp_cate},#{com_ent_date},#{com_gra_date})
   	</insert>
+  	
+  	
+  	<!--  Update for user's Information -->
+  	<update id="updatePW" parameterType="user.vo.userVO">
+  		update user_info set pw=#{pw} where id=#{id}
+  	</update>
+  	
+  	
 </mapper>

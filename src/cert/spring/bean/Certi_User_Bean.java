@@ -36,6 +36,8 @@ import user.vo.userVO;
 @Controller
 @RequestMapping("/user/")
 public class Certi_User_Bean {
+	
+	
 // 유저 관련 페이지를 위한 bean파일
 // 로그인/ 개인정보 수정과 같은 페이지를 위한 컨트롤러입니다.
 	ModelAndView mv = null;
@@ -259,12 +261,38 @@ public class Certi_User_Bean {
 		
 		mv.setViewName("/login/logout");
 		return mv;
-	}
+	}//로그아웃
+	
 	@RequestMapping("lookUp.certi")
 	public ModelAndView lookUp() {
 		mv = new ModelAndView();
 		
 		mv.setViewName("/login/lookUp");
+		return mv;
+	}//아이디 찾기
+	
+	@RequestMapping(value="selectID.certi", method=RequestMethod.POST,produces="text/plain;charset=UTF-8")
+	public ModelAndView selectID(String name, String birth) {
+		mv = new ModelAndView();
+		//System.out.println("name : " + name);
+		//System.out.println("birth : " + birth);
+		
+		List<String> IDList = userdao.lookupID(name, birth);
+		
+		mv.addObject("IDList",IDList);
+		//System.out.println(IDList.get(0));
+		
+		mv.setViewName("/login/selectID");
+		return mv;
+	}
+	
+	@RequestMapping(value="selectIDPro.certi", method = RequestMethod.POST,produces="text/plain;charset=UTF-8")
+	public ModelAndView selectIDPro(String id) {
+		mv = new ModelAndView();
+		System.out.println("selectID 시작");
+		userdao.setTmpPw(id);
+		
+		mv.setViewName("/login/selectIDPro");
 		return mv;
 	}
 	

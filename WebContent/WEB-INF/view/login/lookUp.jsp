@@ -14,17 +14,17 @@
 	<div class="container">
 		<h4>아이디 찾기</h4>
 		<hr />
-		<form action="#" class="form-horizontal" role="form" method="POST">
+		<form action="/certify/user/selectID.certi" class="form-horizontal" role="form" method="POST">
 			<div class="form-group">
 				<label for="name" class="col-lg-2 control-label">이름</label>
 				<div class="col-md-4">
-				<input type="text" class="form-control onlyHangul" id="name" data-rule-required="true" placeholder="한글만 입력 가능합니다.">
+				<input type="text" class="form-control onlyHangul" id="name" name="name" data-rule-required="true" placeholder="한글만 입력 가능합니다.">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="birth" class="col-lg-2 control-label">생년월일</label>
 				<div class="col-md-4">
-				<input type="date" class="form-control" id="birth" data-rule-required="true" >
+				<input type="date" class="form-control" id="birth" name="birth" data-rule-required="true" >
 				</div>
 			</div>
 			<button type="submit" class="btn btn-default" style="float:right;">찾기</button>
