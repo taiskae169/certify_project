@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +36,8 @@ import user.vo.userVO;
 @Controller
 @RequestMapping("/user/")
 public class Certi_User_Bean {
+	
+	
 // 유저 관련 페이지를 위한 bean파일
 // 로그인/ 개인정보 수정과 같은 페이지를 위한 컨트롤러입니다.
 	ModelAndView mv = null;
@@ -43,16 +46,21 @@ public class Certi_User_Bean {
 	UserMethod userdao = null;
 	
 	@RequestMapping("loginPro.certi")
-	public ModelAndView loginPro(String id, String pw) {
+	public ModelAndView loginPro(String id, String pw,HttpSession session) {
 		mv = new ModelAndView();
 
 		System.out.println(id);
 		System.out.println(pw);
 		
-		int i = (Integer)userdao.logincheck(id, pw);
+		int i = userdao.logincheck(id, pw);
+		System.out.println("로그인 체크 : " + i);
+		if(i==1) {
+			System.out.println("로그인 중");
+			session.setAttribute("sessionID", id);
+		}
 		
 		
-		mv.setViewName("/login/loginPro");
+		mv.setViewName("/login/welcome");
 		return mv;
 	}//일반적 로그인 체크, 현재 DB테스트로 인하여  간단한 테스트만을 설정하였음, 이후 변경 필요
 	
@@ -124,7 +132,7 @@ public class Certi_User_Bean {
 //		    	System.out.println(profile.get("id"));
 		    	
 		    	
-				int check = userdao.kakaoLogin(userinfo.getId());
+				int check = userdao.naverLogin(userinfo.getNaverId());
 				
 				System.out.println("check : " + check);
 				
@@ -155,7 +163,7 @@ public class Certi_User_Bean {
 	public ModelAndView kakaoLogin(userVO userinfo, HttpSession session) {
 		mv = new ModelAndView();
 		
-		int check = userdao.kakaoLogin(userinfo.getId());
+		int check = userdao.kakaoLogin(userinfo.getKakaoId());
 		
 		System.out.println("check : " + check);
 		
@@ -179,7 +187,7 @@ public class Certi_User_Bean {
 	public ModelAndView googleLogin(userVO userinfo, HttpSession session) {
 		mv = new ModelAndView();
 		
-		int check = userdao.googleLogin(userinfo.getId());
+		int check = userdao.googleLogin(userinfo.getGoogleId());
 		
 		System.out.println("check : " + check);
 		
@@ -234,19 +242,59 @@ public class Certi_User_Bean {
 		return str;
 	}
 
-	@RequestMapping(value="signup.certi")
-	public ModelAndView signUp(@ModelAttribute userVO vo,String id) {
+	@RequestMapping(value="signup.certi", method = RequestMethod.POST,produces="text/plain;charset=UTF-8")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	public ModelAndView signUp(@ModelAttribute userVO vo) {
 		mv = new ModelAndView();
-		System.out.println("test 시작");
-		
-		System.out.println("id :" + vo.getId());
-		System.out.println("tid : " + id);
-		
-		System.out.println("test 끝");
+
 		userdao.signUp(vo);
 		
 		mv.setViewName("/login/signup");
 		return mv;
+	}//가입처리 페이지
+	
+	@RequestMapping("logout.certi")
+	public ModelAndView logout(HttpSession session) {
+		mv = new ModelAndView();
+		
+		session.invalidate();
+		
+		mv.setViewName("/login/logout");
+		return mv;
+	}//로그아웃
+	
+	@RequestMapping("lookUp.certi")
+	public ModelAndView lookUp() {
+		mv = new ModelAndView();
+		
+		mv.setViewName("/login/lookUp");
+		return mv;
+	}//아이디 찾기
+	
+	@RequestMapping(value="selectID.certi", method=RequestMethod.POST,produces="text/plain;charset=UTF-8")
+	public ModelAndView selectID(String name, String birth) {
+		mv = new ModelAndView();
+		//System.out.println("name : " + name);
+		//System.out.println("birth : " + birth);
+		
+		List<String> IDList = userdao.lookupID(name, birth);
+		
+		mv.addObject("IDList",IDList);
+		//System.out.println(IDList.get(0));
+		
+		mv.setViewName("/login/selectID");
+		return mv;
 	}
+	
+	@RequestMapping(value="selectIDPro.certi", method = RequestMethod.POST,produces="text/plain;charset=UTF-8")
+	public ModelAndView selectIDPro(String id) {
+		mv = new ModelAndView();
+		System.out.println("selectID 시작");
+		userdao.setTmpPw(id);
+		
+		mv.setViewName("/login/selectIDPro");
+		return mv;
+	}
+	
 	
 }

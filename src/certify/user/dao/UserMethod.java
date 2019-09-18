@@ -7,6 +7,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,10 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import certify.mail.Email;
 import certify.vo.Cer_CategoryVO;
+import user.vo.userCareerVO;
+import user.vo.userEduVO;
 import user.vo.userVO;
 
 public class UserMethod {
@@ -24,14 +28,16 @@ public class UserMethod {
 	@Autowired
 	private SqlSessionTemplate sql =null;
 	
+	@Autowired
+	private Email email;
+	
 	public int logincheck(String id, String pw) {
 		int result =0;
 		Map<String, String> idpw = new HashMap<String, String>();
 		idpw.put("id", id);
 		idpw.put("pw", pw);
 		System.out.println("DB 테스트");
-		int test = sql.selectOne("user.logincheck", idpw);
-		System.out.println(test);
+		result = sql.selectOne("user.logincheck", idpw);
 		
 		
 		return result;
@@ -143,8 +149,66 @@ public class UserMethod {
 		System.out.println("birth : " + vo.getBirth());
 		System.out.println("id : " + vo.getId());
 		System.out.println("pw :" + vo.getPw());
-		//sql.insert("user.sign", vo);
+		System.out.println("googleid : " + vo.getGoogleId());
+		System.out.println("naverid : " + vo.getNaverId());
+		System.out.println("kakaoid : " + vo.getKakaoId());
+		sql.insert("user.sign", vo);
 		System.out.println("가입 성공");
 		
+	}//회원가입을 위한 메소드
+	
+	public String getName(String id) {
+		String name = sql.selectOne("user.getName",id);
+		
+		System.out.println(name);
+		
+		return name;
 	}
+	
+	// 회원 학력사항 입력 메소드
+	public void insertUserEdu(userEduVO uevo) {
+		System.out.println("회원정보-학력을 저장합니다.");
+		sql.insert("user.insertEdu", uevo);
+	}
+	
+	// 회원 경력사항 입력 메소드
+	public void insertUserCareer(userCareerVO ucvo) {
+		System.out.println("회원정보-경력을 저장합니다.");
+		sql.insert("user.insertCareer", ucvo);
+	}
+	
+	//아이디 찾기를 위한 메소드
+	public List<String> lookupID(String name, String birth) {
+		List<String> list = null;
+		userVO vo = new userVO();
+		vo.setName(name);
+		vo.setBirth(birth);
+		
+		list = sql.selectList("user.lookUpID",vo);
+		
+		return list;
+	}
+	
+	//신규 비밀번호 생성 및 아이디 변경
+	public String setTmpPw(String email) {
+		String tmp = UUID.randomUUID().toString();
+		tmp = tmp.split("-")[0];
+		userVO vo = new userVO();
+		vo.setId(email);
+		vo.setPw(tmp);
+		//System.out.println("tmp : " + tmp);
+		sql.update("user.updatePW", vo);
+		
+		System.out.println("임시 비밀번호 등록 완료");
+		
+		return tmp;
+	}
+	
+	//임시 비밀번호를 전송
+	public void sendPW(userVO vo) throws Exception{
+		email.setContent("새로운 비밀번호는 " + vo.getPw()+"입니다.");
+		email.setReceiver(vo.getId());
+		email.setSubject("자격루 임시 비밀번호입니다.");
+	}
+	
 }

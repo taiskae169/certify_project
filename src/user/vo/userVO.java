@@ -11,7 +11,7 @@ public class userVO {
 	public String id;
 	public String pw;
 	public String name;
-	public Date birth;
+	public String birth;
 	public String profile;
 	public Timestamp reg;
 	public int wana;
@@ -39,10 +39,10 @@ public class userVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Date getBirth() {
+	public String getBirth() {
 		return birth;
 	}
-	public void setBirth(Date birth) {
+	public void setBirth(String birth) {
 		this.birth = birth;
 	}
 	public String getProfile() {

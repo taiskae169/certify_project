@@ -13,13 +13,11 @@
 
   <!-- Bootstrap core CSS -->
   <link href="/certify/resource/gen/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
   <!-- Custom fonts for this template -->
 
   <!-- Custom styles for this template -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-  
   <script src="//code.jquery.com/jquery.js"></script>
 
 </head>
@@ -66,40 +64,24 @@
     
   </section >
   <div style="width:1450px;height:606px;margin:auto;display:block;">
-	<div style="width:59%;height:600px;border-style:solid;float:left;">
-    	<div style="height:380px;border-style:solid;margin:3px;">
-    		신청가능 시험 목록 출력창
-    	</div>
-    	<div style="height:200px;border-style:solid;margin:3px;">
-    		공지사항 <br />
-    		
-    	</div>
-    </div>
-    <div style="width:580px;height:600px;border-style:solid;float:right;">
-    	<div style="height:152.25px;margin:3px;">
-    		<jsp:include page="/WEB-INF/view/main/loginbox.jsp">
-    			<jsp:param value="${naverURI}" name="naverURI"/>
-    			<jsp:param value="${sessionID}" name="sessionID"/>
-    		</jsp:include>
-    	</div>
-    	<div style="height:119px;margin:3px;border-style:solid;">
-    		응시자격링크
-    	</div>
-    	<div style="height:311px;margin:3px;border-style:solid;">
-    		게시판
-    	</div>
-    </div>
+		<div style="width:600px; height:600px;margin:auto;display:block;border-style:solid; background:#EAEAEA;">
+			<div>
+				<img src="/certify/resource/image/login/welcome.jpg" class="img-rounded" style="width:590px; height:350px;margin:auto; margin-top:10px;display:block;">
+			</div>
+
+				<h1 align="center">가입을 환영합니다.</h1>
+			
+			<div class="col-lg-10" style="margin:auto;margin-top:10px;">
+				<p><button type="button" class="btn btn-success btn-lg btn-block">응시자격 체크를 위한 경력 및 학력정보 입력</button></p>
+			</div>
+			<div class="col-lg-10" style="margin:auto;margin-top:10px;">
+				<p><button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='/certify/main.certi'">입력한 응시자격으로 사이트 이용하기</button></p>
+			</div>
+			
+		</div> <!-- 내부 카드 div 종료 -->
    </div>
   <!-- Testimonials -->
-  <div style="width:1450px;;height:100px;margin:auto;border-style:solid;display:block;">
- 		<ul style="list-style:none;margin:0;padding:0;">
- 			<li style="margin:0;padding:0;border=0;float:left;"><img src="/certify/resource/image/main/qnet.jpg" style="height:70px;weghit:300px;"></li>
- 			<li style="margin:0;padding:0;border=0;float:left;"><img src="/certify/resource/image/main/qnet.jpg" style="height:70px;weghit:300px;"></li>
- 			<li style="margin:0;padding:0;border=0;float:left;"><img src="/certify/resource/image/main/qnet.jpg" style="height:70px;weghit:300px;"></li>
- 			<li style="margin:0;padding:0;border=0;float:left;"><img src="/certify/resource/image/main/qnet.jpg" style="height:70px;weghit:300px;"></li>
- 		</ul>
-  </div>
-	<!-- 자격증 사이트 목록 -->
+
 
   <!-- Footer -->
   <footer class="footer bg-light">

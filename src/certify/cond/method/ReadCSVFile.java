@@ -77,7 +77,7 @@ public class ReadCSVFile {
         	School sc = new School();
             // nextLine[] is an array of values from the line
         	// nextLine[]은 csv파일에서 한줄을 의미 
-            sql.update(,Integer.parseInt(nextLine[0]));
+           // sql.update(,Integer.parseInt(nextLine[0]));
 			
 			System.out.println(nextLine[0]);
 			sc.setNum(Integer.parseInt(nextLine[0]));
