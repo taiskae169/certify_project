@@ -5,17 +5,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <title>자격루 : 학력 및 경력사항 입력</title>
-
+  <title>자격루</title>
   <!-- Bootstrap core CSS -->
- 
-  
   <!-- Custom fonts for this template -->
   <link href="/certify/resource/gen/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
   <link href="/certify/resource/gen/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
@@ -26,16 +21,12 @@
   <!-- Custom styles for this template -->
   <link href="/certify/resource/gen/css/landing-page.min.css" rel="stylesheet">
   <script src="//code.jquery.com/jquery.js"></script>
-
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 
 <body>
-
   <!-- Navigation -->
-
-
   <!-- Masthead -->
   <header>
     <div class="overlay" style="height:100px" style="width:80%; background:white;margin:auto;">
@@ -51,11 +42,8 @@
               </div>
             </div>
           </form>
-        </div>
-        
+        </div>     
     </div>
-    
-
   </header>
 
   <!-- Icons Grid -->
@@ -71,11 +59,17 @@
   <!-- Image Showcases -->
   <section class="showcase" style="width:1450px;;margin:auto;">
 
-    
   </section >
-    <jsp:include page="/WEB-INF/view/user_myPage/input_eduCareerPage.jsp">
-    	<jsp:param name="category" value="${category}"/>
+  
+  <!-- 본문  -->
+  
+  
+    <jsp:include page="/WEB-INF/view/user_myPage/myPage_data.jsp">
+    	<jsp:param value="${uvo}" name="uvo"/>	
     </jsp:include>
+    
+    
+  <!-- 본문 끝 -->
   <!-- Testimonials -->
 
   <hr />
@@ -135,7 +129,7 @@
 </c:if>
 <c:if test="${empty sessionID}">
 	<script>
-		alert("로그인이 필요합니다!");
+		alert("로그인이 필요한 기능입니다.");
 		window.location="/certify/main.certi";
 	</script>
 </c:if>

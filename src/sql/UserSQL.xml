@@ -44,6 +44,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		select id from user_info where name=#{name} and birth=#{birth}
   	</select>
   	
+  	<!-- get User Information -->
+  	<select id="getUserInfo" parameterType="String" resultType="user.vo.userVO">
+  		select * from user_info where id=#{id}
+  	</select>
   	
   	<!-- Insert for user's Informations -->
   	<insert id="sign" parameterType="user.vo.userVO">
