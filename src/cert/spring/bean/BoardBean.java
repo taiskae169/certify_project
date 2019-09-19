@@ -216,9 +216,30 @@ public class BoardBean {
 		model.addAttribute("count", count);
 		model.addAttribute("comment_num", c_num);
 		
-		
-		
 		return "/board/Boardcontent";
 	}
+	
+	@RequestMapping("BoardReCommentWrite.certi")
+	public String BoardReCommentWrite(CommentVO cvo,HttpSession session,int b_num,int c_num,Model model) {
+		cvo.setId((String)session.getAttribute("memId"));
+		cvo.setTable_num(b_num);
+		cvo.setContent(cvo.getContent());
+		cvo.setNum(c_num);
+		cvo.setStep(cvo.getStep()+1);
+		
+		
+		model.addAttribute("num", b_num);
+		sql.insert("board.ReCommentWrite", cvo);
+		return "/board/BoardCommentWrite";
+	}
+	
+	@RequestMapping("BoardCommentDelete.certi")
+	public String BoardCommentDelete(HttpSession session,int b_num,int c_num,Model model) {
+		model.addAttribute("num", b_num);
+		sql.delete("board.CommentDelete", c_num);
+		return "/board/BoardCommentDelete";
+	}
+	
+	
 	
 }

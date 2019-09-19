@@ -25,7 +25,7 @@
   
 </head>
 	<div position = "static">
-			<table cellSpacing=1 cellPadding=1 width="80%" border=1 align="center">
+			<table cellSpacing=1 cellPadding=1 width="1200" border=1 align="center">
 				<tr align="center" height="40">
 					<td align="center"><b>글번호</b></td>
 						<td align="center"  >${board.num }</td>
@@ -40,7 +40,7 @@
 				 	 </tr>
 				 	 <tr style="height:auto;">
 				 	 		<td align="center" style="color:; font-size:17px;"><b>내용</b></td>
-					    <td  align="left" valign="top" colspan="8" id="contentarea"><span> ${board.content }</span> <br/>
+					    <td style="overflow: scroll;"  align="left" valign="top" colspan="8" id="contentarea"><span> ${board.content }</span> <br/>
 					    <c:if test="${board.newname != null}">
 					    <img src="/Bong/imgs/${board.newname}"/>
 					    </c:if>
@@ -60,9 +60,11 @@
 				</table>
 				</div>
 				<div position = "static" align="center">
+				<c:if test="${board.id == sessionScope.memId }">
 				<button class="btn btn-sm btn-primary" onclick="window.location='BoardUpdateForm.certi?num=${board.num}'">수정하기</button>
-				<button class="btn btn-sm btn-primary" onclick="window.location='BoardList.certi'">목록보기</button>
 				<button class="btn btn-sm btn-danger" onclick="window.location='BoardDelete.certi?num=${board.num}'">삭제하기</button>
+				</c:if>
+				<button class="btn btn-sm btn-primary" onclick="window.location='BoardList.certi'">목록보기</button>
 				</div>
 				<div position = "static" align="center">
 				<jsp:include page="CommentList.jsp"/>

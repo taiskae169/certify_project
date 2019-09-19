@@ -35,10 +35,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from board_comment where table_num=#{value}
 	</select>
   	<select id="getComment" parameterType="int" resultType="board.vo.CommentVO">
-  		select * from (select * from board_comment where table_num=#{value} order by num asc)order by step asc
+  		select * from (select * from board_comment where table_num=#{value} order by step asc)order by num asc
   	</select>
   	<insert id="CommentWrite" parameterType="board.vo.CommentVO">
   		insert into board_comment values(board_comment_seq.nextval,#{table_num},#{id},sysdate,0,#{content})
   	</insert>
+  	<insert id="ReCommentWrite" parameterType="board.vo.CommentVO">
+  		insert into board_comment values(#{num},#{table_num},#{id},sysdate,#{step},#{content})
+  	</insert>
+  	<delete id="CommentDelete" parameterType="int">
+  		delete from board_comment where num=#{value}
+  	</delete>
   	
 </mapper>

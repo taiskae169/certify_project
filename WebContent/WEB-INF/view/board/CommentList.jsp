@@ -1,12 +1,13 @@
 <%@ page language="java"  contentType="text/html; charset=euc-kr"%>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 	
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">	
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -24,12 +25,13 @@
  <c:forEach begin="0" end="${Clist.size()-1}" step="1" var="i">
 	<style>
 	
-      p.a${i} {
-        cursor: pointer;
-        font-weight: bold;
-      }
       div.b${i} {
       	display: none;
+      }
+      
+      #re${i}{
+      	float:right;
+        align:right;
       }
     </style>
 
@@ -42,7 +44,7 @@ $(document).ready( function() {
 	var i = ${i}
 	
 	  $("div.b"+i).css("display",'none');
-  $( 'p.a'+i ).click( function() {
+  $( '#re'+i ).click( function() {
     $( 'div.b'+i ).toggle( 'slow' );
   });
 });
@@ -54,14 +56,9 @@ $(document).ready( function() {
 </head>
 <c:if test="${count==0 }">
 <div position = "static" style=" float:center; background-color:#0FF;  width:1200;">
-  <div style=" float:left; background-color:#0FC; width:20%; height:20">
- 	작성자
- </div>
-  <div float="left" style="border:1px">
-  	<div style=" float:left; background-color:red; width:80%; height:20">
-  	 hello
+  	<div style=" float:left; background-color:red; width:100%; height:30; align:right">
+		<span>코멘트개수( ${count } )</span>
   	</div>
- 	</div>
  </div>
  
  <div position = "static" style=" float:center; background-color:#0FF;  width:1200;">
@@ -90,64 +87,60 @@ $(document).ready( function() {
 </c:if>
 <c:if test="${count!=0 }">
 
- <div position = "static" style=" float:center; background-color:#0FF;  width:1200;">
-  <div style=" float:left; background-color:#0FC; width:20%; height:20">
- 	작성자
- </div>
-  <div float="left" style="border:1px">
-  	<div style=" float:left; background-color:red; width:80%; height:20">
-  	 hello
-  	</div>
- 	</div>
+ <div position = "static" style=" float:center; width:1200;">
+  	<div style=" float:left; width:100%; height:30; align:right">
+		<span style="float:right; align:right">코멘트개수( ${count } )</span>
+  	</div>	
  </div>
  
  <c:forEach begin="0" end="${Clist.size()-1}" step="1" var="i">
  <c:set var="comment" value="${Clist[i]}"/>
- <div position = "static" style=" float:center; background-color:#0FF;  width:1200;">
+ 
+ <div position = "static" style=" float:center; width:1200;">
+ 	<div style="border-top:1px solid black; float:left; width:20%; height:130">
+ 	<span style="line-height:100px; font-size:14pt">${comment.id}</span>
+ </div>
+  		<div style="overflow: auto; border-top:1px solid black; float:left; width:70%; height:130; padding-top:15px">
+ 			<span style="align:center; text-align:center;">${comment.content}</span>
+ 		</div>
+ 		<div style="border-top:1px solid black; float:left; width:10%; height:130; padding-top:20px">
+  	  <span style="font-size:11pt"><fmt:formatDate value="${comment.reg_date}" pattern="yyyy-MM-dd"/></span>
+  	  <br>
+  	  <br>
+  	  <button style="margin-right:10px" class="btn btn-sm btn-primary" id="re${i }">답글</button>
+  	  <c:if test="${comment.id == sessionScope.memId}">
+  	  <button style="float:left; margin-left:10px" class="btn btn-sm btn-danger" onclick="window.location='BoardCommentDelete.certi?b_num=${board.num }&c_num=${comment.num}'">삭제</button>
+  	  </c:if>
+  	</div>
+ 	</div>
  	
- 	<div style=" float:left; background-color:#0FC; width:20%; height:100">
- 	<span>${comment.id}</span>
+ 	<div class="b${i }" position = "static" style=" float:center; width:1200;">
+ <form action="BoardReCommentWrite.certi?b_num=${board.num }&c_num=${comment.num}" method="post">
+  <div style="border-top:1px dashed black; background-color:#efefef; float:left; width:20%; height:130">
+ 	  <span style="line-height:100px; font-size:14pt">${sessionScope.memId}</span>
  </div>
- <div float="left" style="border:1px">
-  	<div style=" float:left; background-color:red; width:80%; height:20; align:right">
-  	  <p class="a${i }" style="align:right">답글</p>
-  	</div>
-  		<div style="float:left; background-color:#0FF; width:80%; height:80">
- 			<span>${comment.content}
- 				<p class="b${i }">Lorem ipsum dolor.</p>
- 			</span>
+  	<div style="border-top:1px dashed black; background-color:#efefef; float:left; width:70%; height:130; padding-top:20px;">
+ 			<textarea style="height:80" row="50" cols="100" name="content"></textarea>
  		</div>
- 	</div>
- 	</div>
- 	<div class="b${i }" position = "static" style=" float:center; background-color:#0FF;  width:1200;">
- <form action="BoardCommentWrite.certi?num=${board.num }" method="post">
-  <div style=" float:left; background-color:#0FC; width:20%; height:100">
- 	 <p>${sessionScope.memId}<p>
- </div>
-  <div float="left" style="border:1px">
-  	<div style=" float:left; background-color:red; width:80%; height:20; align:right">
-  	<input style="float:right; align:right" type="submit" value="전송">
+ 	<div style="border-top:1px dashed black; background-color:#efefef; float:left; width:10%; height:130; padding-top:20px">
+  	  <br>
+  	  <input class="btn btn-lg btn-success" style="float:center; align:center" type="submit" value="전송">  	  
   	</div>
-  	<div style="float:left; background-color:#0FF; width:80%; height:80">
- 			<textarea style="height:80" row="80" cols="120" name="content"></textarea>
- 		</div>
- 	</div>
  	</form>
  </div>
  	</c:forEach>
  	<div position = "static" style=" float:center; background-color:#0FF;  width:1200;">
  <form action="BoardCommentWrite.certi?num=${board.num }" method="post">
-  <div style=" float:left; background-color:#0FC; width:20%; height:100">
- 	 <p>${sessionScope.memId}<p>
+  <div style="border-top:1px dashed black; background-color:#efefef; float:left; width:20%; height:130">
+ 	  <span style="line-height:100px; font-size:14pt">${sessionScope.memId}</span>
  </div>
-  <div float="left" style="border:1px">
-  	<div style=" float:left; background-color:red; width:80%; height:20; align:right">
-  	<input style="float:right; align:right" type="submit" value="전송">
-  	</div>
-  	<div style="float:left; background-color:#0FF; width:80%; height:80">
- 			<textarea style="height:80" row="80" cols="120" name="content"></textarea>
+  	<div style="border-top:1px dashed black; background-color:#efefef; float:left; width:70%; height:130; padding-top:20px;">
+ 			<textarea style="height:80" row="50" cols="100" name="content"></textarea>
  		</div>
- 	</div>
+ 	<div style="border-top:1px dashed black; background-color:#efefef; float:left; width:10%; height:130; padding-top:20px">
+  	  <br>
+  	  <input class="btn btn-lg btn-success" style="float:center; align:center" type="submit" value="전송">  	  
+  	</div>
  	</form>
  </div>
         	</c:if>				
