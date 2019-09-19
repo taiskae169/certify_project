@@ -17,6 +17,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import certify.mail.Email;
+import certify.mail.EmailSender;
 import certify.vo.Cer_CategoryVO;
 import user.vo.userCareerVO;
 import user.vo.userEduVO;
@@ -30,6 +31,8 @@ public class UserMethod {
 	
 	@Autowired
 	private Email email;
+	@Autowired
+	private EmailSender emailSender;
 	
 	public int logincheck(String id, String pw) {
 		int result =0;
@@ -209,6 +212,8 @@ public class UserMethod {
 		email.setContent("새로운 비밀번호는 " + vo.getPw()+"입니다.");
 		email.setReceiver(vo.getId());
 		email.setSubject("자격루 임시 비밀번호입니다.");
+		
+		emailSender.SendEmail(email);
 	}
 	
 }
