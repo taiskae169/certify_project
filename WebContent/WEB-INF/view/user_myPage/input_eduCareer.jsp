@@ -75,6 +75,7 @@
   </section >
     <jsp:include page="/WEB-INF/view/user_myPage/input_eduCareerPage.jsp">
     	<jsp:param name="category" value="${category}"/>
+    	<jsp:param name="certify" value="${certify}"/>
     </jsp:include>
   <!-- Testimonials -->
 

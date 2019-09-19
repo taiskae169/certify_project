@@ -65,7 +65,13 @@
   
   
     <jsp:include page="/WEB-INF/view/user_myPage/myPage_data.jsp">
-    	<jsp:param value="${uvo}" name="uvo"/>	
+    	<jsp:param value="${uvo}" name="uvo"/>
+		<jsp:param value="${edu_value}" name="edu_value"/>
+    	<jsp:param value="${certi_cate}" name="certi_cate"/>
+    	<jsp:param value="${allCerti}" name="allCerti"/>
+    	<jsp:param value="${eduList}" name="eduList"/>
+    	<jsp:param value="${careerList}" name="careerList"/>
+    	<jsp:param value="${certiList}" name="certiList"/>
     </jsp:include>
     
     

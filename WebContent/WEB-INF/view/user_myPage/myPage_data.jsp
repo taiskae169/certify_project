@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -44,18 +45,181 @@
         <hr />         
  		
  		<div>
- 			<h1> ${sessionID}님의 회원정보입니다.</h1>
+ 			<h1> ${uvo.name}님의 회원정보입니다.</h1>
  			<b><i> <!-- 문구 --> </i></b>
  			<br><hr/> 
  			<div id="user_info">
- 				<table>
- 					<tr><td rowspan=""><!-- 프로필 --></td><td>아이디 : ${uvo.id}</td></tr>
- 					<tr><td></td></tr>
- 					
- 				
+ 				<h3>회원 개인정보</h3>
+ 				<table id="user_Info" style="border-style: solid; width:100%;">
+ 					<tr>
+ 						<td rowspan="3" align="center">
+ 							<c:if test="${empty uvo.profile}"><img src="/certify/resource/image/icon_userDefault.jpg"/></c:if>
+ 							<c:if test="${!empty uvo.profile}"><img src="/certify/resource/image/${uvo.profile}"/></c:if>
+ 						</td>
+ 						<td>아이디 : ${uvo.id}</td>
+ 					</tr>
+ 					<tr>
+ 						<td>
+ 							패스워드 : <span id="hide">****</span><span id="real">${uvo.pw}</span>
+ 							<button class="btn" id="show">보기</button>
+ 						</td>
+ 					</tr>
+ 					<tr>
+ 						<td>생년월일 : ${uvo.birth}</td>
+ 					</tr>
+ 					<tr>
+ 						<td colspan="2">관심자격분야 :
+ 							<c:forEach var="cate" items="${certi_cate}">
+ 								<c:if test="${cate.certi_num == uvo.wana}">${cate.name}</c:if>
+ 							</c:forEach>
+ 						</td>
+ 					</tr>
+ 					<tr>
+ 						<td colspan="2">응시자격 : 
+ 							<c:choose>
+ 								<c:when test="${uvo.qual == 0}">기능사</c:when>
+ 								<c:when test="${uvo.qual == 1}">산업기사</c:when>
+ 								<c:when test="${uvo.qual == 2}">기사</c:when>
+ 								<c:when test="${uvo.qual == 3}">기술사</c:when>
+ 								<c:when test="${uvo.qual == 4}">기능장</c:when>
+ 								<c:when test="${uvo.qual == 5}">국가전문자격</c:when>
+ 								<c:when test="${uvo.qual == 6}">민간자격</c:when>
+ 								<c:when test="${uvo.qual == 7}">어학자격</c:when>
+ 							</c:choose>
+ 						</td>
+ 					</tr>
+ 					<tr>
+ 						<td> 외부사이트 계정 연결 </td>
+ 						<td> <span><a>네이버</a></span> <span><a>카카오</a></span> <span><a>구글</a></span> </td>
+ 					</tr>
  				</table>
  			</div>
  			
+ 			<div id="edu_info">
+ 				<h3>회원 학력정보</h3>
+ 				<table id="user_eduInfo" style="border-style: solid; width:100%;">
+ 					<thead style="border-style: solid;" align="center">
+ 						<td>학교명</td>
+ 						<td>학과(전공)명</td>
+ 						<td>학제</td>
+ 						<td>전공분야</td>
+ 						<td>상태</td>
+ 						<td>입학일자</td>
+ 						<td>졸업일자</td>
+ 					</thead>
+ 					<c:if test="${eduList==null}">
+ 						<tr align="center"><td colspan="7">입력된 학력사항이 없습니다.</td></tr>
+ 					</c:if>
+ 					<c:if test="${eduList!=null}">
+ 						<c:forEach var="edu" items="${eduList}">
+ 							<tr align="center">
+		 						<td>${edu.edu_name}</td>
+		 						<td>${edu.major_name}</td>
+		 						<td>
+									<c:forEach var="edu_value" items="${edu_value}">
+				 						<c:if test="${edu_value.num == edu.major}">${edu_value.value}</c:if>
+				 					</c:forEach>	 							
+		 						</td>
+		 						<td>
+		 							<c:forEach var="cate" items="${certi_cate}">
+				 						<c:if test="${cate.certi_num == edu.major}">${cate.name}</c:if>
+				 					</c:forEach>
+		 						</td>
+		 						<td>
+									<c:choose>
+					 					<c:when test="${edu.state == 0}">졸업</c:when>
+					 					<c:when test="${edu.state == 1}">재학</c:when>
+					 					<c:when test="${edu.state == 2}">졸업예정</c:when>
+					 					<c:when test="${edu.state == 3}">중퇴</c:when>
+					 				</c:choose>
+		 						</td>
+		 						<td><fmt:formatDate value="${edu.ent_date}" type="both" pattern="yyyy년 MM월 dd일"/></td>
+		 						<td><fmt:formatDate value="${edu.gra_date}" type="both" pattern="yyyy년 MM월 dd일"/></td>
+	 						</tr>
+	 					</c:forEach>
+ 					</c:if>
+ 				</table>
+ 			</div>
+ 			
+ 			<div id="career_info">
+ 				<h3>회원 학력정보</h3>
+ 				<table id="user_careerInfo" style="border-style: solid; width:100%;">
+ 					<thead style="border-style: solid;" align="center">
+ 						<td>사업체명</td>
+ 						<td>사업체 업종</td>
+ 						<td>입사일자</td>
+ 						<td>퇴사일자</td>
+ 					</thead>
+ 					<c:if test="${careerList==null}">
+ 						<tr align="center"><td colspan="4">입력된 경력사항이 없습니다.</td></tr>
+ 					</c:if>
+ 					<c:if test="${careerList!=null}">
+ 						<c:forEach var="career" items="${careerList}">
+ 							<tr align="center">
+		 						<td>${career.company}</td>
+		 						<td>
+		 							<c:forEach var="cate" items="${certi_cate}">
+				 						<c:if test="${cate.certi_num == career.comp_cate}">${cate.name}</c:if>
+				 					</c:forEach>
+		 						</td>
+		 						<td><fmt:formatDate value="${career.com_ent_date}" type="both" pattern="yyyy년 MM월 dd일"/></td>
+		 						<td><fmt:formatDate value="${career.com_gra_date}" type="both" pattern="yyyy년 MM월 dd일"/></td>
+	 						</tr>
+	 					</c:forEach>
+ 					</c:if>
+ 				</table>
+ 			</div>
+ 			
+ 			<div id="career_info">
+ 				<h3>회원 자격정보</h3>
+ 				<table id="user_certiInfo" style="border-style: solid; width:100%;">
+ 					<thead style="border-style: solid;" align="center">
+ 						<td>자격증명</td>
+ 						<td>자격증 분류</td>
+ 						<td>자격 종목</td>
+ 						<td>취득일자</td>
+ 					</thead>
+ 					<c:if test="${certiList==null}">
+ 						<tr align="center"><td colspan="4">입력된 자격사항이 없습니다.</td></tr>
+ 					</c:if>
+ 					<c:if test="${certiList!=null}">
+ 						<c:forEach var="certi" items="${certiList}">
+ 							<tr align="center">
+ 								<c:forEach var="ac" items="${allCerti}">
+			 						<c:if test="${ac.num == certi.cer_name}">
+			 							<td>${ac.name}</td>
+			 							<td>
+				 							<c:choose>
+					 								<c:when test="${ac.type == 0}">기능사</c:when>
+					 								<c:when test="${ac.type == 1}">산업기사</c:when>
+					 								<c:when test="${ac.type == 2}">기사</c:when>
+					 								<c:when test="${ac.type == 3}">기술사</c:when>
+					 								<c:when test="${ac.type == 4}">기능장</c:when>
+					 								<c:when test="${ac.type == 5}">국가전문자격</c:when>
+					 								<c:when test="${ac.type == 6}">민간자격</c:when>
+					 								<c:when test="${ac.type == 7}">어학자격</c:when>
+					 						</c:choose>
+				 						</td>
+			 							<td>
+			 								<c:forEach var="cate" items="${certi_cate}">
+				 								<c:if test="${cate.certi_num == ac.cate}">${cate.name}</c:if>
+				 							</c:forEach>
+			 							</td>
+			 						</c:if>
+		 						</c:forEach>
+		 						<td><fmt:formatDate value="${certi.cer_date}" type="both" pattern="yyyy년 MM월 dd일"/></td>
+	 						</tr>
+	 					</c:forEach>
+ 					</c:if>
+ 				</table>
+ 			</div>
+ 			<br></hr><br>
+ 			<!-- 하단버튼 -->
+ 			<div align="center">
+ 				<button id="goSelfTest">응시자격 자가진단</button>
+ 				<button id="goFixData">정보 수정</button>
+ 				<button id="goFixData">회원 탈퇴</button>
+ 			</div>
  			
  		</div>
  		
@@ -64,3 +228,23 @@
         </div> <!-- end of container -->
     </body>
 </html>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+$(document).ready(function() {
+    $("#hide").show();
+    $("#real").hide();
+    $("#show").click(function() {
+    	if($(this).text()=='보기'){
+        	$("#real").show();
+        	$("#hide").hide();
+        	$(this).text('숨기기');
+		}else{
+	        $("#real").hide();
+	        $("#hide").show();
+	        $(this).text('보기');
+		}
+    });
+});
+
+</script>
