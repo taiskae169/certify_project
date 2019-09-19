@@ -90,16 +90,39 @@
 	 			<br><hr/> 
 	 		</div>
 	 		<div>
-	 			<div>국가기술자격</div><div>국가전문자격</div>
+	 			<span id="gukki"
+	 				style="border-style: solid; padding: 5px; background-color: navy; color: white;">
+	 				국가기술자격</span> \
+	 			<span id="gukjun"
+	 				 style="border-style: solid; padding: 5px;">
+	 				 국가전문자격</span>
+	 			<br><br>
 	 			<form name="searchCerti" action="certi_sc_session1" method="post">
 	 				<input type="text" name="certi_name" placeholder="검색할 자격증을 입력해주세요."/>
 	 			</form>
 	 		</div>
 	 		</hr>
 	 		<div>
-	 			
+	 			<ul>
+	 				<c:forEach begin="0" end="${certiList.size()-1}" step="1" var="i">
+        				<c:set var="certi" value="${certiList[i]}"/>
+	 					<li><a id="${certi.num}">${certi.name}</a></li>
+	 				</c:forEach>
+	 			</ul>
 	 		</div>
-	 		
+	 		<div position = "static" align="center">
+		 		<c:if test="${count>0 }">
+			      <c:if test="${startPage>10}">
+			         <div align="center"><a href="certi_sc_session1?type=${type}&pageNum=${startPage - 10}">[이전]</a></div>
+			      </c:if>
+			      <c:forEach begin="${startPage}" end="${endPage }" step="1" var="i">
+			         <div align="center"><a href="certi_sc_session1?type=${type}&pageNum=${i}">[${i}]</a></div>
+			       </c:forEach>
+			      <c:if test="${endPage < pageCount}">
+			         <div align="center"><a href="certi_sc_session1?type=${type}&pageNum=${startPage + 10}">[다음]</a></div>
+			      </c:if>
+			   </c:if>
+		   </div>
 		</div> <!-- container end -->
     
     

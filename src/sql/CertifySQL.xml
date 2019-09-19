@@ -12,6 +12,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		select * from CERTIFY_INFO
   	</select>
   	
+  	<select id="getCertify_Board" resultType="certify.vo.CertifyVO">
+  		select * from (select num,cate,type,content,name,rownum r from (select * from CERTIFY_INFO where num in #{type} order by num asc) order by num asc) 
+  		<![CDATA[where r >= #{start} and r <= #{end}]]> 
+  	</select>
+  	
+  	<select id="getCertify_Board_Spec" resultType="certify.vo.CertifyVO">
+  		select * from (select num,cate,type,content,name,rownum r from (select * from CERTIFY_INFO  where num in #{type} and name like #{cer_name} order by num asc) order by num asc) 
+  		<![CDATA[where r >= #{start} and r <= #{end}]]> 
+  	</select>
+  	
   	<select id="getSpecCertify" resultType="certify.vo.CertifyVO">
   		select * from CERTIFY_INFO where num=#{num}
   	</select>	
@@ -19,5 +29,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	<select id="getAllCertifyOrder" resultType="certify.vo.CertifyVO">
   		select * from CERTIFY_INFO order by num asc
   	</select>
+  	
+  	<select id="getCount_gukki" resultType="int">
+		select count(*) from CERTIFY_INFO where num in #{type}
+	</select>
   	
 </mapper>

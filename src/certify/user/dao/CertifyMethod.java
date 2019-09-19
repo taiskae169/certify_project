@@ -1,5 +1,6 @@
 package certify.user.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -19,6 +20,18 @@ public class CertifyMethod {
 		return certify;
 	}
 	
+	// 전체 자격증을 게시판 리스트 형태로 리턴
+	public List<CertifyVO> getCertify_Board(HashMap<Object, Object> parameters){
+		List<CertifyVO> certify = sql.selectList("certi.getAllCertify", parameters);
+		return certify;
+	}
+	
+	// 특정검색어의 자격증을 게시판 리스트 형태로 리턴
+	public List<CertifyVO> getCertify_Board_Spec(HashMap<Object, Object> parameters){
+		List<CertifyVO> certify = sql.selectList("certi.getCertify_Board_Spec", parameters);
+		return certify;
+	}
+	
 	// 카테고리 리스트를 리턴
 	public List<Cer_CategoryVO> getCerti_Category(){
 		List<Cer_CategoryVO> category = sql.selectList("certi.cer_category");
@@ -35,6 +48,12 @@ public class CertifyMethod {
 	public List<CertifyVO> getAllCertifyOrder(){
 		List<CertifyVO> certify = sql.selectList("certi.getAllCertifyOrder");
 		return certify;
+	}
+	
+	// 전체 국가기술 자격증 개수를 리턴
+	public int getCount_gukki(){
+		int count = sql.selectOne("certi.getCount_gukki");
+		return count;
 	}
 	
 	
