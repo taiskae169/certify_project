@@ -4,6 +4,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Repository;
+
 import certify.vo.CertifyVO;
 import user.vo.userCertiVO;
 import user.vo.userEduVO;
@@ -14,6 +18,7 @@ import user.vo.userEduVO;
  * 수정일자 : 19.09.03. 작성자 : 조지훈
  */
 
+@Repository
 public class GisaCond extends OverrideSource{
 	
 	// 가능/불가능 리턴을 위한 변수
@@ -66,6 +71,9 @@ public class GisaCond extends OverrideSource{
 	}
 	
 	
+	
+
+
 	// 조건1. 4년제 대학 관련학과 1/2이상 마친 후, 동일 및 유사직무분야에서 2년이상 실무에 종사한 자
 	// 매개변수 - Stirng id : 해당 시험 응시자 id, int certify_num : 응시하고자 하는 자격증 번호
 	public boolean gisa_cond1(String id, int certify_num) {

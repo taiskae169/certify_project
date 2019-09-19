@@ -50,7 +50,7 @@
  			<br><hr/> 
  			<div id="user_info">
  				<h3>회원 개인정보</h3>
- 				<table id="user_Info" style="border-style: solid; width:100%;">
+ 				<table id="user_Info" style="border-style: solid; width:100%;" align="center">
  					<tr>
  						<td rowspan="3" align="center">
  							<c:if test="${empty uvo.profile}"><img src="/certify/resource/image/icon_userDefault.jpg"/></c:if>
@@ -145,8 +145,8 @@
  				<h3>회원 학력정보</h3>
  				<table id="user_careerInfo" style="border-style: solid; width:100%;">
  					<thead style="border-style: solid;" align="center">
- 						<td>사업체명</td>
- 						<td>사업체 업종</td>
+ 						<td>사업체/기관명</td>
+ 						<td>사업체/기관 업종</td>
  						<td>입사일자</td>
  						<td>퇴사일자</td>
  					</thead>
@@ -216,7 +216,7 @@
  			<br></hr><br>
  			<!-- 하단버튼 -->
  			<div align="center">
- 				<button id="goSelfTest">응시자격 자가진단</button>
+ 				<button id="goSelfCheck">응시자격 자가진단</button>
  				<button id="goFixData">정보 수정</button>
  				<button id="goFixData">회원 탈퇴</button>
  			</div>
@@ -231,20 +231,25 @@
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-$(document).ready(function() {
-    $("#hide").show();
-    $("#real").hide();
-    $("#show").click(function() {
-    	if($(this).text()=='보기'){
-        	$("#real").show();
-        	$("#hide").hide();
-        	$(this).text('숨기기');
-		}else{
-	        $("#real").hide();
-	        $("#hide").show();
-	        $(this).text('보기');
-		}
-    });
-});
-
+	$(document).ready(function() {
+	    $("#hide").show();
+	    $("#real").hide();
+	    $("#show").click(function() {
+	    	if($(this).text()=='보기'){
+	        	$("#real").show();
+	        	$("#hide").hide();
+	        	$(this).text('숨기기');
+			}else{
+		        $("#real").hide();
+		        $("#hide").show();
+		        $(this).text('보기');
+			}
+	    });
+	});
+	
+	$(document).ready(function(){
+		$('#goSelfCheck').click(function(){
+			window.location="/certify/certi/certi_sc_session1.certi";
+		})
+	});
 </script>

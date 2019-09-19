@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>자격루:마이페이지</title>
+  <title>자격루:응시자격 자가진단</title>
   <!-- Bootstrap core CSS -->
   <!-- Custom fonts for this template -->
   <link href="/certify/resource/gen/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
@@ -62,17 +62,45 @@
   </section >
   
   <!-- 본문  -->
-  
-  
-    <jsp:include page="/WEB-INF/view/user_myPage/myPage_data.jsp">
-    	<jsp:param value="${uvo}" name="uvo"/>
-		<jsp:param value="${edu_value}" name="edu_value"/>
-    	<jsp:param value="${certi_cate}" name="certi_cate"/>
-    	<jsp:param value="${allCerti}" name="allCerti"/>
-    	<jsp:param value="${eduList}" name="eduList"/>
-    	<jsp:param value="${careerList}" name="careerList"/>
-    	<jsp:param value="${certiList}" name="certiList"/>
-    </jsp:include>
+	<div class="container"><!-- 좌우측의 공간 확보 -->
+    	<!-- 모달창 -->
+        <div class="modal fade in" id="defaultModal">
+        	<div class="modal-dialog">
+            	<div class="modal-content">
+                	<div class="modal-header">
+                    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title">알림</h4>
+                    </div>
+					<div class="modal-body">
+						<p class="modal-contents"></p>
+					</div>
+					<div class="modal-footer">
+	                	<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+	               	</div>
+                </div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+        <!--// 모달창 -->
+               
+        <!-- 본문 들어가는 부분 -->
+        <hr />         
+	 		<div>
+	 			<h1> 응시자격 자가진단</h1>
+	 			<b><i>자가진단을 원하시는 자격증을 선택해주세요.</i></b>
+	 			<br><hr/> 
+	 		</div>
+	 		<div>
+	 			<div>국가기술자격</div><div>국가전문자격</div>
+	 			<form name="searchCerti" action="certi_sc_session1" method="post">
+	 				<input type="text" name="certi_name" placeholder="검색할 자격증을 입력해주세요."/>
+	 			</form>
+	 		</div>
+	 		</hr>
+	 		<div>
+	 			
+	 		</div>
+	 		
+		</div> <!-- container end -->
     
     
   <!-- 본문 끝 -->
@@ -135,7 +163,7 @@
 </c:if>
 <c:if test="${empty sessionID}">
 	<script>
-		alert("로그인이 필요한 기능입니다.");
+		alert("로그인이 필요한 서비스입니다.");
 		window.location="/certify/main.certi";
 	</script>
 </c:if>

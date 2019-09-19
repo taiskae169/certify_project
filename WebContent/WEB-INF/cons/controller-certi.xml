@@ -21,6 +21,7 @@
 
 	<!-- setting of controller location -->
 	<context:component-scan base-package="cert.spring.bean" />
+	<context:component-scan base-package="certify.cond.method" />
 	<context:component-scan base-package="test.readCSV.test" />
 	
 	 
@@ -57,12 +58,13 @@
 	
 	<!-- Bean List -->
 	<bean id="login" class="certify.user.dao.UserMethod" />
-
+	<bean id="certi" class="certify.user.dao.CertifyMethod" />
 					
 
 	<bean id="userCertiVO" class="user.vo.userCertiVO" />
 	<bean id="userCareerVO" class="user.vo.userCareerVO" />
 	<bean id="userEduVO" class="user.vo.userEduVO" />
+	
 	
 	<!-- Bean for Mail -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
