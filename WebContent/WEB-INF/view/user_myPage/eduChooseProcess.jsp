@@ -87,7 +87,6 @@
 			function setMajor(major){
 				opener.document.user_edu_${num}.major.value = major_val;
 				opener.document.user_edu_${num}.major.text = "기타";
-				opener.document.user_edu_${num}.major.setAttribute('disabled','true');
 			}
 			setMajor(major_val);
 		</script>
@@ -95,7 +94,6 @@
 	<c:if test="${edu!=null}">
 		<input type="hidden" id="edu" value="${edu}">
 		<input type="hidden" id="eduType" value="${eduType}">		
-		<input type="hidden" id="major" value="${eduType}">
 			<script>
 				var edu_val = document.getElementById('edu').value;
 				var eduType_val = document.getElementById('eduType').value;

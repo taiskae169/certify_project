@@ -233,7 +233,7 @@
 			tags += "<div class='form-group' id='divMajor'><label for='inputMajor' class='col-lg-2 control-label'>분류</label><div class='col-lg-10'><select class='form-control' id='major' name='major'><c:forEach var='cate' items='${category}'><option value='${cate.certi_num}'>${cate.name}</option></c:forEach></select></div></div>";
 			tags += "<div class='form-group' id='divEnt_Date'><label for='inputEnt_date' class='col-lg-2 control-label'>입학일자</label><div class='col-lg-10'><input type='date' id='ent_date' class='form-control' name='ent_date' data-rule-required='true' required max='9999-12-31'  placeholder='YYYY-MM-DD'></div></div>";
 			tags += "<div class='form-group' id='divGra_Date'><label for='inputGra_date' class='col-lg-2 control-label'>졸업일자</label><div class='col-lg-10'><input type='date' id='gra_date' class='form-control' name='gra_date' data-rule-required='true' max='9999-12-31'  placeholder='YYYY-MM-DD'><span> 현재 재학 시 미기재 또는 졸업일자 기재요망 (졸업예정자는 졸업일자를 작성해주세요.) </span></div></div>";
-			tags += "<input type='hidden' name='edu'><input class='btn' type='button' name='session_minus' value='삭제' onclick='removeForm(this.form);'>";
+			tags += "<input type='hidden' name='edu'><input class='btn' type='button' name='session_minus' value='삭제' onclick='removeForm(this.form);'><br><br>";
 		form.innerHTML = tags;
 	    document.getElementById('edu_forms').appendChild(form);
 	}
@@ -260,7 +260,7 @@
 	    	tags += "<div class='form-group' id='divComp_cate'><label for='inputComp_cate' class='col-lg-2 control-label'>사업체 업종/직무</label><div class='col-lg-10'><select id='comp_cate' class='form-control' id='comp_cate' name='comp_cate'><c:forEach var='cate' items='${category}'><option value='${cate.certi_num}'>${cate.name}</option></c:forEach></select></div></div>";
 	    	tags += "<div class='form-group' id='divComp_Ent_Date'><label for='inputComp_Ent_date' class='col-lg-2 control-label'>입사일자</label><div class='col-lg-10'><input type='date' id='comp_ent_date' lass='form-control' name='comp_ent_date' data-rule-required='true' required max='9999-12-31'  placeholder='YYYY-MM-DD'></div></div>";
 	    	tags += "<div class='form-group' id='divComp_Gra_Date'><label for='inputComp_Gra_date' class='col-lg-2 control-label'>퇴사일자</label><div class='col-lg-10'><input type='date' id='comp_gra_date' class='form-control' name='comp_gra_date' data-rule-required='true' max='9999-12-31' placeholder='YYYY-MM-DD'><span> 현재 재직 시 미기재 </span></div></div>";
-	    	tags += "<input class='btn' type='button' name='session_minus' value='삭제' onclick='removeForm(this.form);'><br>";
+	    	tags += "<input class='btn' type='button' name='session_minus' value='삭제' onclick='removeForm(this.form);'><br><br>";
 		form.innerHTML = tags;
 	    document.getElementById('career_forms').appendChild(form);
 	}
@@ -292,6 +292,7 @@
 						return false;
 					}
 				}else{
+					// 유효성검사 완성 X
 					for(var x=0; x<edu_forms.length; x++){
 						if( $('#'+edu_forms[x].id+'#edu_name').val()=="" || $('#'+edu_forms[x].id+'#major_name').val()=="" ){
 							alert("학교 및 학과는 필수기재사항입니다!")
@@ -314,6 +315,7 @@
 						return false;
 					}
 				}else{
+					// 유효성검사 완성 X
 					for(var x=0; x<career_forms.length; x++){
 						if( $('#'+career_forms[x].id+'#company').val()=="" ){
 							alert("사업체명은 필수기재사항입니다!")

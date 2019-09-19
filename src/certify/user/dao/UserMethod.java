@@ -211,4 +211,10 @@ public class UserMethod {
 		email.setSubject("자격루 임시 비밀번호입니다.");
 	}
 	
+	//회원 정보를 리턴
+	public userVO getUserInfo(String id) {
+		userVO vo = sql.selectOne("user.getUserInfo",id);
+		return vo;
+	}
+	
 }
