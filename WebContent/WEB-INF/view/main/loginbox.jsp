@@ -12,7 +12,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	function openWindow(){
-		window.open("/certify/user/lookUp.certi","아이디/비밀번호 찾기","width=400, height=250, toolbar=no, menuvar=no, scrollbars=no, resizable=no");
+		window.open("/certify/user/lookUp.certi","아이디/비밀번호 찾기","width=500, height=250, toolbar=no, menuvar=no, scrollbars=no, resizable=no");
 	}
 </script>
 

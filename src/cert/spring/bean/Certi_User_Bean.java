@@ -290,8 +290,20 @@ public class Certi_User_Bean {
 	public ModelAndView selectIDPro(String id) {
 		mv = new ModelAndView();
 		System.out.println("selectID 시작");
-		userdao.setTmpPw(id);
+		String tmp = userdao.setTmpPw(id);
+		userVO vo = new userVO();
 		
+		vo.setId(id);
+		vo.setPw(tmp);
+		
+		try {
+			userdao.sendPW(vo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+				
 		mv.setViewName("/login/selectIDPro");
 		return mv;
 	}
