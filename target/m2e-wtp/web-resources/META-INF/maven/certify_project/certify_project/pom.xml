@@ -71,7 +71,7 @@
 	
 	
 	<!-- End of Library setting for Spring Framework -->
-	
+	 
 	<!-- ======================================================================================= -->
 	
 	<!-- start of Library setting for jstl -->
@@ -129,6 +129,15 @@
 	    <artifactId>mybatis</artifactId>
 	    <version>3.4.5</version>
 	</dependency>
+	
+
+	<dependency>
+    <groupId>commons-fileupload</groupId>
+    <artifactId>commons-fileupload</artifactId>
+    <version>1.3.1</version>
+</dependency>
+
+	
 
 
 	<!-- End of Library setting for mybatis -->
@@ -158,6 +167,23 @@
 	
 	
 	<!-- End of Library setting for mybatis -->
+	
+	<!-- Start of Library setting for Mail -->
+	<dependency>
+	    <groupId>javax.mail</groupId>
+	    <artifactId>mail</artifactId>
+	    <version>1.4.7</version>
+    </dependency>
+    
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-context-support</artifactId>
+	    <version>4.3.4.RELEASE</version>
+	</dependency>
+    
+
+	<!-- End of Library setting for Mail -->
 	
 	<!-- ======================================================================================= -->
 	

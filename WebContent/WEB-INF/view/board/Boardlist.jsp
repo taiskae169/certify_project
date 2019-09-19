@@ -34,6 +34,7 @@
 							</table>
 </c:if>
 <c:if test="${count!=0 }">
+<div position = "static">
 <table class="table table-bordered table-striped" id="dataTable" width="750" cellspacing="0" border="1px">
 			<thead>
 				<tr height="40"  style="font-size:20px">
@@ -45,31 +46,37 @@
 			</thead>
         	<tbody>
         		<c:forEach begin="0" end="${boardlist.size()-1}" step="1" var="i">
-        		<c:set var="boardlist" value="${boardlist[i]}"/>
+        		<c:set var="board" value="${boardlist[i]}"/>
         		<tr height="30">
-        		<td align="center"  width="75" > ${boardlist.num}</td>
-        		<td align="center"  width="100" > ${boardlist.id}</td>
-        		<c:if test="${boardlist.newname != null}">
-        		<td align="center"  width="300" ><a href="BoardContent.certi?num=${boardlist.num }"> ${boardlist.title} [이미지 있어유]</a></td>
+        		<td align="center"  width="75" > ${board.num}</td>
+        		<td align="center"  width="100" > ${board.id}</td>
+        		<c:if test="${board.newname != null}">
+        		<td align="center"  width="300" ><a href="BoardContent.certi?num=${board.num }"> ${board.title} [이미지 있어유]</a></td>
         		</c:if>
-        		<c:if test="${boardlist.newname == null}">
-        		<td align="center"  width="300" ><a href="BoardContent.certi?num=${boardlist.num }"> ${boardlist.title} [이미지 없어유]</a></td>
+        		<c:if test="${board.newname == null}">
+        		<td align="center"  width="300" ><a href="BoardContent.certi?num=${board.num }"> ${board.title} [이미지 없어유]</a></td>
         		</c:if>
         		</tr>
         		</c:forEach>
         	</tbody>
         	</table>
         	</c:if>
+        	</div>
+        	<div position = "static" align="center">
         	<c:if test="${count>0 }">
+        	
       <c:if test="${startPage>10}">
-         <a href="BoardList.certi?pageNum=${startPage - 10}">[이전]</a>
+         <div align="center"><a href="BoardList.certi?pageNum=${startPage - 10}">[이전]</a></div>
       </c:if>
       <c:forEach begin="${startPage}" end="${endPage }" step="1" var="i">
-         <a href="BoardList.certi?pageNum=${i}">[${i}]</a>
+         <div align="center"><a href="BoardList.certi?pageNum=${i}">[${i}]</a></div>
        </c:forEach>
       <c:if test="${endPage < pageCount}">
-         <a href="BoardList.certi?pageNum=${startPage + 10}">[다음]</a>
+         <div align="center"><a href="BoardList.certi?pageNum=${startPage + 10}">[다음]</a></div>
       </c:if>
    </c:if>
-   <button onclick="window.location='BoardWriteForm.certi'">글쓰기</button>					
+   </div>
+   <div position = "static" align ="center">
+   <button class="btn btn-sm btn-primary" onclick="window.location='BoardWriteForm.certi'">글쓰기</button>
+   </div>					
 </html>

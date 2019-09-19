@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class BoardVO {
 	private int num;
-	private String cate;
+	private int cate;
 	private String title;
 	private String id;
 	private String content;
@@ -19,10 +19,10 @@ public class BoardVO {
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public String getCate() {
+	public int getCate() {
 		return cate;
 	}
-	public void setCate(String cate) {
+	public void setCate(int cate) {
 		this.cate = cate;
 	}
 	public String getTitle() {

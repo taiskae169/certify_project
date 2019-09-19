@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="certi">
+	
+  	<select id="cer_category" resultType="certify.vo.Cer_CategoryVO">
+  		select * from cer_category
+  	</select>
+  	
+  	<select id="getAllCertify" resultType="certify.vo.CertifyVO">
+  		select * from CERTIFY_INFO
+  	</select>
+  	
+  	<select id="getSpecCertify" resultType="certify.vo.CertifyVO">
+  		select * from CERTIFY_INFO where num=#{num}
+  	</select>	
+  	
+  	<select id="getAllCertifyOrder" resultType="certify.vo.CertifyVO">
+  		select * from CERTIFY_INFO order by num asc
+  	</select>
+  	
+</mapper>

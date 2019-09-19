@@ -247,7 +247,7 @@ public class Certi_User_Bean {
 	public ModelAndView signUp(@ModelAttribute userVO vo) {
 		mv = new ModelAndView();
 
-		//userdao.signUp(vo);
+		userdao.signUp(vo);
 		
 		mv.setViewName("/login/signup");
 		return mv;
