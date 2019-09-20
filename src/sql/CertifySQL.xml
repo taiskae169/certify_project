@@ -47,6 +47,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		select * from CERTIFY_INFO order by num asc
   	</select>
   	
+  	
+  	<!-- insert into Certi_Category table  -->
+  	<insert id="updateCetiCategory0" parameterType="certify.vo.CertiInfoVO">
+  		insert into certi_category0 values(#{cerName},#{gen},#{history},#{job},#{siteLink},#{site},#{pref},#{future},#{testInfo},#{how})
+  	</insert>
+  	
   	<select id="getCount" resultType="int">
 		select count(*) from CERTIFY_INFO
 	</select>
@@ -56,7 +62,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getCount_typeSpec1" resultType="int" >
-		select count(*) from CERTIFY_INFO where type in (0,1,2,3,4) and name like '%#{certi_name}%'
+		select count(*) from CERTIFY_INFO where type in (0,1,2,3,4) and name like '%\\#{certi_name}\\%'
 	</select>
 	
 	<select id="getCount_type2" resultType="int">
@@ -64,7 +70,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getCount_typeSpec2" resultType="int" >
-		select count(*) from CERTIFY_INFO where type in (5) and name like '%#{certi_name}%'
+		select count(*) from CERTIFY_INFO where type in (5) and name like '%\\#{certi_name}\\%'
 	</select>
 	
   	
