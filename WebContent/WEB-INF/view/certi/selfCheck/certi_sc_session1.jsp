@@ -90,16 +90,41 @@
 	 			<br><hr/> 
 	 		</div>
 	 		<div>
-	 			<div>국가기술자격</div><div>국가전문자격</div>
-	 			<form name="searchCerti" action="certi_sc_session1" method="post">
+	 			<span id="gukki"
+	 				style="border-style: solid; padding: 5px; background-color: navy; color: white;">
+	 				국가기술자격</span> \
+	 			<span id="gukjun"
+	 				 style="border-style: solid; padding: 5px;">
+	 				 국가전문자격</span>
+	 			<br><br>
+	 			<form name="searchCerti" action="certi_sc_session1.certi" >
+	 				<input type="hidden" name="type" value="${type}" />
 	 				<input type="text" name="certi_name" placeholder="검색할 자격증을 입력해주세요."/>
 	 			</form>
 	 		</div>
+	 		<br>
 	 		</hr>
 	 		<div>
-	 			
+	 			<ul>
+	 				<c:forEach begin="0" end="${certiList.size()-1}" step="1" var="i">
+        				<c:set var="certi" value="${certiList[i]}"/>
+	 					<li><a id="${certi.num}">${certi.name}</a></li>
+	 				</c:forEach>
+	 			</ul>
 	 		</div>
-	 		
+	 		<div position = "static" align="center">
+		 		<c:if test="${count>0 }">
+			      <c:if test="${startPage>10}">
+			         <a href="certi_sc_session1.certi?type=${type}&pageNum=${startPage - 10}">[이전]</a>
+			      </c:if>
+			      <c:forEach begin="${startPage}" end="${endPage }" step="1" var="i">
+			         <a href="certi_sc_session1.certi?type=${type}&pageNum=${i}">[${i}]</a>
+			      </c:forEach>
+			      <c:if test="${endPage < pageCount}">
+			         <a href="certi_sc_session1.certi?type=${type}&pageNum=${startPage + 10}">[다음]</a>
+			      </c:if>
+			   </c:if>
+		   </div>
 		</div> <!-- container end -->
     
     
@@ -167,3 +192,43 @@
 		window.location="/certify/main.certi";
 	</script>
 </c:if>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+	$(document).ready(function() {
+		var getUrlParameter = function getUrlParameter(sParam) {
+			var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+			sURLVariables = sPageURL.split('&'),
+			sParameterName,
+			i;
+			for (i = 0; i < sURLVariables.length; i++) {
+				sParameterName = sURLVariables[i].split('=');
+				if (sParameterName[0] === sParam) {
+					return sParameterName[1] === undefined ? true : sParameterName[1];
+				}
+			}
+		};
+		var type = getUrlParameter('type');
+
+		if(type=='1'){
+			$("#gukki").css('background-color' , 'navy');
+		    $("#gukki").css('color' , 'white');
+		    $("#gukjun").css('background-color' , 'white');
+		    $("#gukjun").css('color' , 'black');
+		}else{
+			$("#gukjun").css('background-color' , 'navy');
+		    $("#gukjun").css('color' , 'white');
+		    $("#gukki").css('background-color' , 'white');
+		    $("#gukki").css('color' , 'black');
+		}
+
+		 $("#gukki").click(function() {
+				window.location="certi_sc_session1.certi?type=1";
+		    });
+		
+	    $("#gukjun").click(function() {
+			window.location="certi_sc_session1.certi?type=2";
+	    });
+	});
+</script>
+

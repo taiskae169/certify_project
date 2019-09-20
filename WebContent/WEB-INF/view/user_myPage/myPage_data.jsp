@@ -249,7 +249,7 @@
 	
 	$(document).ready(function(){
 		$('#goSelfCheck').click(function(){
-			window.location="/certify/certi/certi_sc_session1.certi";
+			window.location="/certify/certi/certi_sc_session1.certi?type=1";
 		})
 	});
 </script>

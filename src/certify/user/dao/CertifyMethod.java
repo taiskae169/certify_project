@@ -55,5 +55,35 @@ public class CertifyMethod {
 		sql.insert("certi.updateCetiCategory0",vo);
 	}
 	
+	// 전체 자격증 개수를 리턴
+	public int getCount(){
+		int count = sql.selectOne("certi.getCount");
+		return count;
+	}
+	
+	// 국가기술 자격증 개수를 리턴
+	public int getCount_type1(){
+		int count = sql.selectOne("certi.getCount_type1");
+		return count;
+	}
+	
+	// 국가기술 자격증 개수를 리턴
+	public int getCount_typeSpec1(String certi_name){
+		int count = sql.selectOne("certi.getCount_typeSpec1", certi_name);
+		return count;
+	}
+		
+	// 전체 국가전문 자격증 개수를 리턴
+	public int getCount_type2(){
+		int count = sql.selectOne("certi.getCount_type2");
+		return count;
+	}
+	
+	// 전체 국가전문 자격증 개수를 리턴
+	public int getCount_typeSpec2(String certi_name){
+		int count = sql.selectOne("certi.getCount_typeSpec2", certi_name);
+		return count;
+	}
+	
 	
 }
