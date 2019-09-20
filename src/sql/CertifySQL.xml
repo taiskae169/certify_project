@@ -20,4 +20,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		select * from CERTIFY_INFO order by num asc
   	</select>
   	
+  	
+  	<!-- insert into Certi_Category table  -->
+  	<insert id="updateCetiCategory0" parameterType="certify.vo.CertiInfoVO">
+  		insert into certi_category0 values(#{cerName},#{gen},#{history},#{job},#{siteLink},#{site},#{pref},#{future},#{testInfo},#{how})
+  	</insert>
+  	
 </mapper>

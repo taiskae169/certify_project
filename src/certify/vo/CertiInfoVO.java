@@ -9,7 +9,7 @@ public class CertiInfoVO {
 	private String job;			//수행직무
 	private String siteLink;	//사이트 주소
 	private String site;		//기관명
-	private String row;			//법률 상 우대사항
+	private String pref;		//법률 상 우대사항
 	private String future;		//진로 및 전망
 	private String testInfo;	//출제경향
 	private String how;			//취득방법
@@ -51,11 +51,11 @@ public class CertiInfoVO {
 	public void setSite(String site) {
 		this.site = site;
 	}
-	public String getRow() {
-		return row;
+	public String getPref() {
+		return pref;
 	}
-	public void setRow(String row) {
-		this.row = row;
+	public void setPref(String pref) {
+		this.pref = pref;
 	}
 	public String getFuture() {
 		return future;
