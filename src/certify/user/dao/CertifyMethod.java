@@ -27,10 +27,10 @@ public class CertifyMethod {
 	}
 	
 	// 전체 자격증을 게시판 리스트 형태로 리턴
-		public List<CertifyVO> getCertify_Board2(HashMap<String, Object> parameters){
-			List<CertifyVO> certify = sql.selectList("certi.getCertify_Board2", parameters);
-			return certify;
-		}
+	public List<CertifyVO> getCertify_Board2(HashMap<String, Object> parameters){
+		List<CertifyVO> certify = sql.selectList("certi.getCertify_Board2", parameters);
+		return certify;
+	}
 
 	// 특정검색어의 자격증을 게시판 리스트 형태로 리턴
 	public List<CertifyVO> getCertify_Board_Spec1(HashMap<String, Object> parameters){
