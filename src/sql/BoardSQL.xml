@@ -3,11 +3,11 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
-	<select id="getCount" resultType="int">
+	<select id="getCountALL" resultType="int">
 		select count(*) from board
 	</select>
-	<select id="getAriticle" parameterType="map" resultType="board.vo.BoardVO">
-  		select * from (select num,title,id,content,newname,reg_date,step,orgname,readcount,rownum r from (select * from board order by num desc) order by num desc) 
+	<select id="getAriticleALL" parameterType="map" resultType="board.vo.BoardVO">
+  		select * from (select num,cate,title,id,content,newname,reg_date,step,orgname,readcount,rownum r from (select * from board order by num desc) order by num desc) 
   		<![CDATA[where r >= #{start} and r <= #{end}]]> 
   	</select>
   	<select id="content" parameterType="int" resultType="board.vo.BoardVO">
@@ -46,5 +46,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	<delete id="CommentDelete" parameterType="int">
   		delete from board_comment where num=#{value}
   	</delete>
+  		<select id="getAriticleCate" parameterType="map" resultType="board.vo.BoardVO">
+  		select * from (select num,cate,title,id,content,newname,reg_date,step,orgname,readcount,rownum r from (select * from board where cate=#{cate} order by num desc) order by num desc) 
+  		<![CDATA[where r >= #{start} and r <= #{end}]]> 
+  		</select>
+  		
+  		<select id="getCountCate" parameterType="int" resultType="int">
+		select count(*) from board where cate=#{value}
+	</select>
   	
 </mapper>

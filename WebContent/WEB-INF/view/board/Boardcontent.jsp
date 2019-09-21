@@ -1,74 +1,93 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery.js"></script>
+<!DOCTYPE html>
+<html>
+
 <head>
-	
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
 
   <title>자격루</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="/certify/resource/gen/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+  
+  
+ 
   <!-- Custom fonts for this template -->
-  <link href="/certify/resource/gen/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-  <link href="/certify/resource/gen/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-
 
   <!-- Custom styles for this template -->
-  <link href="/certify/resource/gen/css/landing-page.min.css" rel="stylesheet">
+   
   
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+ 
+  
+
 </head>
-	<div position = "static">
-			<table cellSpacing=1 cellPadding=1 width="1200" border=1 align="center">
-				<tr align="center" height="40">
-					<td align="center"><b>글번호</b></td>
-						<td align="center"  >${board.num }</td>
-					    <td align="center" style="color:; font-size:17px;"><b>작성자</b></td>
-					    <td align="center" > ${board.id }</td>
-					    <td align="center" style="color:; font-size:17px;"><b>작성일</b></td>
-					    <td align="center" > ${board.reg_date }</td>
-				 	 </tr>	
-					<tr height="40">
-					   	<td align="center" style="color:; font-size:17px;"><b>제목</b></td>
-					    <td align="left"  colspan="7" ><b>${board.title}</b></td>
-				 	 </tr>
-				 	 <tr style="height:auto;">
-				 	 		<td align="center" style="color:; font-size:17px;"><b>내용</b></td>
-					    <td style="overflow: scroll;"  align="left" valign="top" colspan="8" id="contentarea"><span> ${board.content }</span> <br/>
-					    <c:if test="${board.newname != null}">
-					    <img src="/Bong/imgs/${board.newname}"/>
-					    </c:if>
-					    </td>
-				 	 </tr >	 	 
-				 	 <tr style="height:auto;">
-				 	 	<td>첨부파일</td>
-				 	 	<c:if test="${board.newname == null}">
-					    <td  align="left" valign="top" colspan="7" >
-					    		<span style="color:gray;">첨부파일 없음</span>
-					    		</c:if>
-					    <c:if test="${board.newname != null}">
-					  		 	 	
-								<td align="left"><button onclick="window.location='Download.certi?newname=${board.newname}'">다운로드</button></td>
-						</c:if>
-				 	 </tr>
-				</table>
+<jsp:include page="/WEB-INF/view/Bar/Search.jsp"/>
+
+<jsp:include page="/WEB-INF/view/Bar/NavBar.jsp"/>
+      
+  <jsp:include page="/WEB-INF/view/Bar/SideBar.jsp"/>
+  
+
+	<div position="absolute" style="width:1000; height:100%; margin-top:50; margin-left:300; border:1px solid; padding:10; border-radius:10px">
+			<div position = "static" style="width:1000; height:50;">
+				<div position="static" style="float:left; width:800; height:50; border-bottom:1.5px dashed; display: flex; align-items:flex-end; justify-content:left; padding-left:15">
+					<b style="font-size:14pt">${board.title}</b>
 				</div>
-				<div position = "static" align="center">
+				
+				<div position="static" style="float:left; width:160; height:50; border-bottom:1.5px dashed; display:flex; align-items:flex-end; justify-content:center;">
+				<span style="font-size:13pt"><fmt:formatDate value="${board.reg_date }" pattern="yyyy-MM-dd"/></span>
+				</div>
+			</div>
+			
+			<div position = "static" style="width:1000; height:50;">
+			
+				<div position="static" style="float:left; width:750; height:50; display:flex; align-items:center; justify-content:left; padding-left:30">
+					<span>${board.id }</span>
+				</div>
+				<c:if test="${board.newname != null}"></c:if>
+				<div class="dropdown" position="static" style="float:left; width:210; height:50; display:flex; align-items:center; justify-content:left">
+					
+  					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">첨부파일 <span class="caret"></span></a>
+  					<ul class="dropdown-menu" role="menu">
+                  <li><a href="Download.certi?newname=${board.newname}">${board.newname }</a></li>
+                  </ul>
+  					 
+					</div>				
+			</div>
+				
+				<div position = "static" style="width:1000; height:100%;">
+				<div position="static" style="float:left; width:100%; align:center; overflow:scroll; padding-left:30">
+					 <span>${board.content }</span>
+					 <c:if test="${board.newname != null}">
+					 
+					    <img src="/certify/imgs/${board.newname}" style="width:800px; height:450px"/>
+					    </c:if>
+				</div>
+				</div>
+				
+	
+			</div>
+
+				
+				<div position="static" style="width:1000; height:70; margin-left:330; display:flex; align-items:center; justify-content:center" >
 				<c:if test="${board.id == sessionScope.memId }">
 				<button class="btn btn-sm btn-primary" onclick="window.location='BoardUpdateForm.certi?num=${board.num}'">수정하기</button>
 				<button class="btn btn-sm btn-danger" onclick="window.location='BoardDelete.certi?num=${board.num}'">삭제하기</button>
 				</c:if>
-				<button class="btn btn-sm btn-primary" onclick="window.location='BoardList.certi'">목록보기</button>
+				<button class="btn btn-sm btn-primary" onclick="window.location='BoardList.certi?catenum=10'">목록보기</button>
 				</div>
+				
+	
+
+				
 				<div position = "static" align="center">
 				<jsp:include page="CommentList.jsp"/>
-				</div>
+				</div>	
 				
 				
 				

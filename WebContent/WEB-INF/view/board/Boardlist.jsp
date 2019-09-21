@@ -1,46 +1,81 @@
-<%@ page language="java"  contentType="text/html; charset=euc-kr"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+<script src="//code.jquery.com/jquery.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
-	
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>ÀÚ°Ý·ç</title>
+  <title>ìžê²©ë£¨</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="/certify/resource/gen/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  
+  
 
   <!-- Custom fonts for this template -->
-  <link href="/certify/resource/gen/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-  <link href="/certify/resource/gen/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-
 
   <!-- Custom styles for this template -->
-  <link href="/certify/resource/gen/css/landing-page.min.css" rel="stylesheet">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  
+  
+
 </head>
+
+<body>
+
+  <!-- Navigation -->
+
+
+  <!-- Masthead -->
+  <header>
+    <div class="overlay" style="height:100px" style="width:80%; background:white; margin:auto;">
+    	<img src="/certify_project/resource/image/main/test.jpg" style="width:50px;height:50px;top:30px;left:130px;position:relative; float:left"/>
+    	<div class="col-md-10 col-lg-8 col-xl-7 mx-auto" style="top:30px; left:130px">
+          <form>
+            <div class="form-row">
+              <div class="col-12 col-md-9 mb-2 mb-md-0">
+                <input type="text" class="form-control form-control-lg">
+              </div>
+              <div class="col-12 col-md-3">
+                <button type="submit" class="btn btn-block btn-lg btn-primary">ê²€ìƒ‰</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        
+    </div>
+  </header>
+  
+  
+  	<jsp:include page="/WEB-INF/view/Bar/NavBar.jsp"/>
+      
+      <jsp:include page="/WEB-INF/view/Bar/SideBar.jsp"/>
+        
 <c:if test="${count==0 }">
-<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+<table class="table table-bordered" id="dataTable" width="70%" cellspacing="0">
 									<tr>
 										<td align="center">
-											<h3>ÇØ´çÇÏ´Â °Ô½Ã±ÛÀÌ ¾ø½À´Ï´Ù.. :(</h3>
+											<h3>í•´ë‹¹í•˜ëŠ” ê²Œì‹œê¸€ì´ ì—†ìŠµë‹ˆë‹¤.. :(</h3>
 										</td>
 									</tr>	
 							</table>
 </c:if>
 <c:if test="${count!=0 }">
-<div position = "static">
-<table class="table table-bordered table-striped" id="dataTable" width="750" cellspacing="0" border="1px">
+<div style="width:70%; float:left">
+<table class="table table-bordered table-striped" id="dataTable" width="70%" cellspacing="0" border="1px">
 			<thead>
 				<tr height="40"  style="font-size:20px">
-					<td align = "center" width="75">¹øÈ£</td>
-					<td align = "center" width="100">ÀÛ¼ºÀÚ</td>
-					<td align = "center" width="300">Á¦¸ñ</td>
+					<td align = "center" width="75">ë²ˆí˜¸</td>
+					<td align = "center" width="100">ìž‘ì„±ìž</td>
+					<td align = "center" width="300">ì œëª©</td>
 					
 				</tr>
 			</thead>
@@ -51,32 +86,35 @@
         		<td align="center"  width="75" > ${board.num}</td>
         		<td align="center"  width="100" > ${board.id}</td>
         		<c:if test="${board.newname != null}">
-        		<td align="center"  width="300" ><a href="BoardContent.certi?num=${board.num }"> ${board.title} [ÀÌ¹ÌÁö ÀÖ¾îÀ¯]</a></td>
+        		<td align="center"  width="300" ><a href="BoardContent.certi?num=${board.num }"> ${board.title} [ì´ë¯¸ì§€ ìžˆì–´ìœ ]</a></td>
         		</c:if>
         		<c:if test="${board.newname == null}">
-        		<td align="center"  width="300" ><a href="BoardContent.certi?num=${board.num }"> ${board.title} [ÀÌ¹ÌÁö ¾ø¾îÀ¯]</a></td>
+        		<td align="center"  width="300" ><a href="BoardContent.certi?num=${board.num }"> ${board.title} [ì´ë¯¸ì§€ ì—†ì–´ìœ ]</a></td>
         		</c:if>
         		</tr>
         		</c:forEach>
         	</tbody>
         	</table>
         	</c:if>
-        	</div>
+        	
+        	
         	<div position = "static" align="center">
         	<c:if test="${count>0 }">
         	
       <c:if test="${startPage>10}">
-         <div align="center"><a href="BoardList.certi?pageNum=${startPage - 10}">[ÀÌÀü]</a></div>
+         <div align="center"><a href="BoardList.certi?pageNum=${startPage - 10}">[ì´ì „]</a></div>
       </c:if>
       <c:forEach begin="${startPage}" end="${endPage }" step="1" var="i">
          <div align="center"><a href="BoardList.certi?pageNum=${i}">[${i}]</a></div>
        </c:forEach>
       <c:if test="${endPage < pageCount}">
-         <div align="center"><a href="BoardList.certi?pageNum=${startPage + 10}">[´ÙÀ½]</a></div>
+         <div align="center"><a href="BoardList.certi?pageNum=${startPage + 10}">[ë‹¤ìŒ]</a></div>
       </c:if>
    </c:if>
    </div>
    <div position = "static" align ="center">
-   <button class="btn btn-sm btn-primary" onclick="window.location='BoardWriteForm.certi'">±Û¾²±â</button>
-   </div>					
+   <button class="btn btn-sm btn-primary" onclick="window.location='BoardWriteForm.certi'">ê¸€ì“°ê¸°</button>
+   </div>
+   </div>	
+   </body>				
 </html>
