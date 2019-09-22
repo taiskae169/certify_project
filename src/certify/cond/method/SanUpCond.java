@@ -22,8 +22,6 @@ import user.vo.userVO;
  * 작성일자 : 19.08.27. 작성자 : 조지훈
  */
 
-@Controller
-@Repository
 public class SanUpCond{
 	
 	UserMethod userdao = new UserMethod();
@@ -55,8 +53,6 @@ public class SanUpCond{
 	
 	// 전체 자격증 종류 리스트 리턴을 위한 변수
 	// private List<CertifyVO> certifyList = certidao.getAllCertify();
-	
-	String sql="";
 	
 	// 단일 회원의 전체 정보 가져오기
 	public void getUserStatus(String id) {
