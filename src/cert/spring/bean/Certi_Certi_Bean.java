@@ -56,15 +56,15 @@ public class Certi_Certi_Bean {
 	userEduVO uevo = null;
 	
 	// Not Autowired
-	GinunJangCond ginun_cond = new GinunJangCond();
-	SanUpCond sanup_cond = new SanUpCond();
-	GiSulsaCond gisulsa_cond = new GiSulsaCond();
-	GisaCond gisa_cond = new GisaCond();
-	Gukgajunmun_noCond gukjun_nocond = new Gukgajunmun_noCond();
-	Gukjun_jungsooSisul1 gukjun_jungsoo = new Gukjun_jungsooSisul1();
-	GukJun_sahoebogji_1 gukjun_sahoe = new GukJun_sahoebogji_1();
-	Gukjun_sobangAnjun gukjun_soAnn = new Gukjun_sobangAnjun();
-	Gukjun_sobangSisul gukjun_soSii = new Gukjun_sobangSisul();
+	GinunJangCond ginun_cond = null;
+	SanUpCond sanup_cond = null;
+	GiSulsaCond gisulsa_cond = null;
+	GisaCond gisa_cond = null;
+	Gukgajunmun_noCond gukjun_nocond = null;
+	Gukjun_jungsooSisul1 gukjun_jungsoo = null;
+	GukJun_sahoebogji_1 gukjun_sahoe = null;
+	Gukjun_sobangAnjun gukjun_soAnn = null;
+	Gukjun_sobangSisul gukjun_soSii =null;
 	
 	
 	@RequestMapping("certi_sc_session1.certi")
@@ -205,6 +205,16 @@ public class Certi_Certi_Bean {
 		List<Cer_CategoryVO> certi_cate = null;
 		List<userCertiVO> certiList = null;		
 		List<methodVO> checkList = null;
+		
+		ginun_cond = new GinunJangCond();;
+		sanup_cond = new SanUpCond();
+		gisulsa_cond = new GiSulsaCond();
+		gisa_cond = new GisaCond();
+		gukjun_nocond = new Gukgajunmun_noCond();
+		gukjun_jungsoo = new Gukjun_jungsooSisul1();
+		gukjun_sahoe = new GukJun_sahoebogji_1();
+		gukjun_soAnn = new Gukjun_sobangAnjun();
+		gukjun_soSii = new Gukjun_sobangSisul();
 		
 		if(cerNum!=null) {
 			userVO uvo = userdao.getUserInfo((String) session.getAttribute("sessionID"));

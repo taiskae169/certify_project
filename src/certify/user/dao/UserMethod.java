@@ -227,6 +227,7 @@ public class UserMethod {
 	
 	//회원 정보를 리턴
 	public userVO getUserInfo(String id) {
+		System.out.println(id+"님의 정보를 가져옵니다.");
 		userVO vo = sql.selectOne("user.getUserInfo",id);
 		return vo;
 	}

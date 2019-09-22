@@ -97,13 +97,18 @@
 	 		<br><hr/>
 	 	</div>
 	 	<div class="row">
-	 	<h4> 자격증명 : ${pass}</h4>
+	 	<h4> 자격증명 : ${cf.name}</h4>
 	 	<h4> 진단 결과 : <span id="pass" >${pass}</span></h4>
 	 		<table id="user_certiInfo" style="border-style: solid; width:100%;">
  				<c:forEach var="check" items="${checkList}">
  					<tr>
  						<td>
- 							${check.possible}
+ 							<c:if test="${check.possible == true}" >
+ 								가능
+ 							</c:if>
+ 							<c:if test="${check.possible == false}" >
+ 								<b>불가능</b>
+ 							</c:if>
  						</td>
  						<td>
  							${check.mess}
