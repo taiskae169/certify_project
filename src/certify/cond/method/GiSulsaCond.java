@@ -1,5 +1,6 @@
 package certify.cond.method;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -245,6 +246,116 @@ public class GiSulsaCond extends OverrideSource{
 		}
 		return applyPossible;
 	}
+	
+	String [] messArr = {"2년제 전문대학 관련학과 졸업 후 동일 및 유사직무분야에서 8년이상 실무에 종사한 자",
+			"3년제 전문대학 관련학과 졸업 후 동일 및 유사직무분야에서 7년이상 실무에 종사한 자",
+			"4년제 대학 관련학과 1/2이상 마친 후 동일 및 유사직무분야에서 8년이상 실무에 종사한 자",
+			"5년제 대학 관련학과 1/2이상 마친 후 동일 및 유사직무분야에서 8년이상 실무에 종사한 자",
+			"6년제 대학 관련학과 1/2이상 마친 후 동일 및 유사직무분야에서 8년이상 실무에 종사한 자",
+			"고용노동부령이 정하는 교육훈련기관의 '기사수준의 기술훈련과정' 이수자로서 이수후 동일 및 유사직무분야에서 6년이상 실무에 종사한 자",
+			"고용노동부령이 정하는 교육훈련기관의 '산업기사수준의 기술훈련과정' 이수자로서 이수후 동일 및 유사직무분야에서 8년이상 실무에 종사한 자",
+			"관련학과 전공심화과정의 학사학위 취득 후 동일 및 유사직무분야에서 6년이상 실무에 종사한 자",
+			"기능사 자격 취득후 동일 및 유사직무분야에서 7년이상 실무에 종사한 자",
+			"기사 자격 취득후 동일 및 유사직무분야에서 4년이상 실무에 종사한 자",
+			"대학 관련학과 졸업 후 동일 및 유사직무분야에서 6년이상 실무에 종사한 자",
+			"동일 및 유사직무분야에서 9년이상 실무에 종사한 자",
+			"동일 및 유사직무분야의 다른 종목 기술사 자격을 취득한 자",
+			"산업기사 자격 취득후 동일 및 유사직무분야에서 5년이상 실무에 종사한 자"
+		};
+		
+		public List<methodVO> getGisulsaAll(String id, int cerNum) {
+			int idx = 0;
+			List<methodVO> checkList = new ArrayList<methodVO>();
+			methodVO mvo = new methodVO();
+			boolean cond = false;
+			String condmes = null;
+			
+			cond = gisulsa_cond1(id, cerNum);
+			condmes = messArr[idx]; 
+			++idx;
+			mvo.setPossible(cond); mvo.setMess(condmes);
+			checkList.add(mvo);
+			
+			cond = gisulsa_cond2(id, cerNum);
+			condmes = messArr[idx]; 
+			++idx;
+			mvo.setPossible(cond); mvo.setMess(condmes);
+			checkList.add(mvo);
+			
+			cond = gisulsa_cond3(id, cerNum);
+			condmes = messArr[idx]; 
+			++idx;
+			mvo.setPossible(cond); mvo.setMess(condmes);
+			checkList.add(mvo);
+			
+			cond = gisulsa_cond4(id, cerNum);
+			condmes = messArr[idx]; 
+			++idx;
+			mvo.setPossible(cond); mvo.setMess(condmes);
+			checkList.add(mvo);
+			
+			cond = gisulsa_cond5(id, cerNum);
+			condmes = messArr[idx]; 
+			++idx;
+			mvo.setPossible(cond); mvo.setMess(condmes);
+			checkList.add(mvo);
+			
+			cond = gisulsa_cond6(id, cerNum);
+			condmes = messArr[idx]; 
+			++idx;
+			mvo.setPossible(cond); mvo.setMess(condmes);
+			checkList.add(mvo);
+			
+			cond = gisulsa_cond7(id, cerNum);
+			condmes = messArr[idx]; 
+			++idx;
+			mvo.setPossible(cond); mvo.setMess(condmes);
+			checkList.add(mvo);
+			
+			cond = gisulsa_cond8(id, cerNum);
+			condmes = messArr[idx]; 
+			++idx;
+			mvo.setPossible(cond); mvo.setMess(condmes);
+			checkList.add(mvo);
+			
+			cond = gisulsa_cond9(id, cerNum);
+			condmes = messArr[idx]; 
+			++idx;
+			mvo.setPossible(cond); mvo.setMess(condmes);
+			checkList.add(mvo);
+			
+			cond = gisulsa_cond10(id, cerNum);
+			condmes = messArr[idx]; 
+			++idx;
+			mvo.setPossible(cond); mvo.setMess(condmes);
+			checkList.add(mvo);
+			
+			cond = gisulsa_cond11(id, cerNum);
+			condmes = messArr[idx]; 
+			++idx;
+			mvo.setPossible(cond); mvo.setMess(condmes);
+			checkList.add(mvo);
+			
+			cond = gisulsa_cond12(id, cerNum);
+			condmes = messArr[idx]; 
+			++idx;
+			mvo.setPossible(cond); mvo.setMess(condmes);
+			checkList.add(mvo);
+			
+			cond = gisulsa_cond13(id, cerNum);
+			condmes = messArr[idx]; 
+			++idx;
+			mvo.setPossible(cond); mvo.setMess(condmes);
+			checkList.add(mvo);
+			
+			cond = gisulsa_cond14(id, cerNum);
+			condmes = messArr[idx]; 
+			++idx;
+			mvo.setPossible(cond); mvo.setMess(condmes);
+			checkList.add(mvo);
+			
+			return checkList;
+		}
 	
 
 	/*

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import certify.vo.CertifyVO;
 import user.vo.userCareerVO;
@@ -11,9 +12,7 @@ import user.vo.userCertiVO;
 import user.vo.userEduVO;
 
 public class GinunJangCond extends OverrideSource{
-	// 가능/불가능 리턴을 위한 변수
-	private boolean applyPossible = false;	
-		
+
 	// 날짜 비교를 위한 변수
 	private int year = 365;	
 	private Date today = new Date();
@@ -46,6 +45,7 @@ public class GinunJangCond extends OverrideSource{
 	
 	// 조건 1. 기능사 자격 취득 후 동일 및 유사직무분야에서 7년이상 실무에 종사한 자
 	public boolean ginunjang_cond1(String id, int certify_num) {
+		boolean applyPossible = false;
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		for(int i=0; i<user_certiList.size(); i++) {
@@ -62,6 +62,7 @@ public class GinunJangCond extends OverrideSource{
 	
 	// 조건 2. 동일 및 유사직무분야에서 9년이상 실무에 종사한 자
 	public boolean ginunjang_cond2(String id, int certify_num) {
+		boolean applyPossible = false;
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		if(careerMap!=null && careerMap.containsKey(cfvo.getCate()) ) {
@@ -72,6 +73,7 @@ public class GinunJangCond extends OverrideSource{
 	
 	// 조건 3. 동일 및 유사직무분야의 기능사 자격 취득 후 기능대학의 기능장 과정 이수예정자
 	public boolean ginunjang_cond3(String id, int certify_num) {
+		boolean applyPossible = false;
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		if(user_certiList!=null) {
@@ -91,6 +93,7 @@ public class GinunJangCond extends OverrideSource{
 	
 	// 조건 4. 동일 및 유사직무분야의 기능사 자격 취득 후 기능대학의 기능장 과정 이수자
 	public boolean ginunjang_cond4(String id, int certify_num) {
+		boolean applyPossible = false;
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		if(user_certiList!=null) {
@@ -109,6 +112,7 @@ public class GinunJangCond extends OverrideSource{
 	
 	// 조건 5. 동일 및 유사직무분야의 다른 종목 기능장 자격을 취득한 자
 	public boolean ginunjang_cond5(String id, int certify_num) {
+		boolean applyPossible = false;
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		if(user_certiList!=null) {
@@ -123,6 +127,7 @@ public class GinunJangCond extends OverrideSource{
 	
 	// 조건 6. 동일 및 유사직무분야의 산업기사 자격 취득 후 기능대학의 기능장 과정 이수예정자
 	public boolean ginunjang_cond6(String id, int certify_num) {
+		boolean applyPossible = false;
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		if(user_certiList!=null) {
@@ -141,6 +146,7 @@ public class GinunJangCond extends OverrideSource{
 	
 	// 조건 7. 동일 및 유사직무분야의 산업기사 자격 취득 후 기능대학의 기능장 과정 이수자
 	public boolean ginunjang_cond7(String id, int certify_num) {
+		boolean applyPossible = false;
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		if(user_certiList!=null) {
@@ -159,6 +165,7 @@ public class GinunJangCond extends OverrideSource{
 	
 	// 조건 8. 산업기사 등급 이상 자격 취득 후 동일 및 유사직무분야에서 5년이상 실무에 종사한 자
 	public boolean ginunjang_cond8(String id, int certify_num) {
+		boolean applyPossible = false;
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
 		for(int i=0; i<user_certiList.size(); i++) {
@@ -172,6 +179,58 @@ public class GinunJangCond extends OverrideSource{
 		}
 		return applyPossible;
 	}
+	
+	public List<methodVO> getGinunjangAll(String id, int cerNum) {
+		List<methodVO> checkList = new ArrayList<methodVO>();
+		methodVO mvo = new methodVO();
+		boolean cond1 = ginunjang_cond1(id, cerNum);
+		String condmes1 = "기능사 자격 취득 후 동일 및 유사직무분야에서 7년이상 실무에 종사한 자.";
+		mvo.setPossible(cond1); mvo.setMess(condmes1);
+		checkList.add(mvo);
+		
+		boolean cond2 = ginunjang_cond2(id, cerNum);
+		String condmes2 = "동일 및 유사직무분야에서 9년이상 실무에 종사한 자.";
+		mvo.setPossible(cond2); mvo.setMess(condmes2);
+		checkList.add(mvo);
+		
+		boolean cond3 = ginunjang_cond3(id, cerNum);
+		String condmes3 = "동일 및 유사직무분야의 기능사 자격 취득 후 기능대학의 기능장 과정 이수예정자.";
+		mvo.setPossible(cond3); mvo.setMess(condmes3);
+		checkList.add(mvo);
+		
+		boolean cond4 = ginunjang_cond4(id, cerNum);
+		String condmes4 = "동일 및 유사직무분야의 기능사 자격 취득 후 기능대학의 기능장 과정 이수자.";
+		mvo.setPossible(cond4); mvo.setMess(condmes4);
+		checkList.add(mvo);
+		
+		boolean cond5 = ginunjang_cond5(id, cerNum);
+		String condmes5 ="동일 및 유사직무분야의 다른 종목 기능장 자격을 취득한 자.";
+		mvo.setPossible(cond5); mvo.setMess(condmes5);
+		checkList.add(mvo);
+		
+		boolean cond6 = ginunjang_cond6(id, cerNum);
+		String condmes6 ="동일 및 유사직무분야의 산업기사 자격 취득 후 기능대학의 기능장 과정 이수예정자.";
+		mvo.setPossible(cond6); mvo.setMess(condmes6);
+		checkList.add(mvo);
+		
+		boolean cond7 = ginunjang_cond7(id, cerNum);
+		String condmes7 = "동일 및 유사직무분야의 산업기사 자격 취득 후 기능대학의 기능장 과정 이수자";
+		mvo.setPossible(cond7); mvo.setMess(condmes7);
+		checkList.add(mvo);
+		
+		boolean cond8 = ginunjang_cond8(id, cerNum);
+		String condmes8 = "산업기사 등급 이상 자격 취득 후 동일 및 유사직무분야에서 5년이상 실무에 종사한 자";
+		mvo.setPossible(cond8); mvo.setMess(condmes8);
+		checkList.add(mvo);
+		
+		
+		return checkList;
+	}
+	
+	public void method1() {
+		System.out.println("됨");
+	}
+	
 
 	/*
 	 * 조건에 포함되지 않은 항목들

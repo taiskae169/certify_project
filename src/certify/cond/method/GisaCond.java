@@ -1,5 +1,6 @@
 package certify.cond.method;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -318,6 +319,131 @@ public class GisaCond extends OverrideSource{
 		}
 		return applyPossible;
 	}
+	
+	String [] messArr = {"4년제 대학 관련학과 1/2이상 마친 후, 동일 및 유사직무분야에서 2년이상 실무에 종사한 자",
+		"5년제 대학 관련학과 1/2이상 마친 후, 동일 및 유사직무분야에서 2년이상 실무에 종사한 자",
+		"6년제 대학 관련학과 1/2이상 마친 후 동일 및 유사직무분야에서 2년이상 실무에 종사한 자",
+		"관련학과 2년제 전문대학 졸업후 동일 및 유사직무분야에서 2년이상 실무에 종사한 자",
+		"관련학과 3년제 전문대학 졸업후 동일 및 유사직무분야에서 2년이상 실무에 종사한 자",
+		"관련학과 졸업예정자(4년제)",
+		"관련학과 졸업자(4년제)",
+		"관련학과 전공심화과정의 학사학위 취득예정자",
+		"관련학과 전공심화과정의 학사학위 취득자",
+		"기능사 자격 취득 후 동일 및 유사직무분야에서 3년이상 실무에 종사한 자",
+		"동일 및 유사직무분야에서 4년이상 실무에 종사한 자",
+		"동일 및 유사직무분야의 고용노동부령이 정하는 교육훈련기관의 '기사 수준 기술훈련과정' 이수예정자",
+		"동일 및 유사직무분야의 고용노동부령이 정하는 교육훈련기관의 '기사 수준 기술훈련과정' 이수자",
+		"동일 및 유사직무분야의 고용노동부령이 정하는 교육훈련기관의 '산업기사 수준 기술훈련과정' 이수 후 동일 및 유사직무분야에서 2년이상 실무에 종사한 자",
+		"동일 및 유사 직무분야의 다른 종목 기사 '이상'의 자격을 취득한 자",
+		"산업기사 등급 이상 자격 취득 후 동일 및 유사직무 분야에서 1년 이상 실무에 종사한 자"
+	};
+	
+	public List<methodVO> getGisaAll(String id, int cerNum) {
+		int idx = 0;
+		List<methodVO> checkList = new ArrayList<methodVO>();
+		methodVO mvo = new methodVO();
+		boolean cond = false;
+		String condmes = null;
+		
+		cond = gisa_cond1(id, cerNum);
+		condmes = messArr[idx]; 
+		++idx;
+		mvo.setPossible(cond); mvo.setMess(condmes);
+		checkList.add(mvo);
+		
+		cond = gisa_cond2(id, cerNum);
+		condmes = messArr[idx]; 
+		++idx;
+		mvo.setPossible(cond); mvo.setMess(condmes);
+		checkList.add(mvo);
+		
+		cond = gisa_cond3(id, cerNum);
+		condmes = messArr[idx]; 
+		++idx;
+		mvo.setPossible(cond); mvo.setMess(condmes);
+		checkList.add(mvo);
+		
+		cond = gisa_cond4(id, cerNum);
+		condmes = messArr[idx]; 
+		++idx;
+		mvo.setPossible(cond); mvo.setMess(condmes);
+		checkList.add(mvo);
+		
+		cond = gisa_cond5(id, cerNum);
+		condmes = messArr[idx]; 
+		++idx;
+		mvo.setPossible(cond); mvo.setMess(condmes);
+		checkList.add(mvo);
+		
+		cond = gisa_cond6(id, cerNum);
+		condmes = messArr[idx]; 
+		++idx;
+		mvo.setPossible(cond); mvo.setMess(condmes);
+		checkList.add(mvo);
+		
+		cond = gisa_cond7(id, cerNum);
+		condmes = messArr[idx]; 
+		++idx;
+		mvo.setPossible(cond); mvo.setMess(condmes);
+		checkList.add(mvo);
+		
+		cond = gisa_cond8(id, cerNum);
+		condmes = messArr[idx]; 
+		++idx;
+		mvo.setPossible(cond); mvo.setMess(condmes);
+		checkList.add(mvo);
+		
+		cond = gisa_cond9(id, cerNum);
+		condmes = messArr[idx]; 
+		++idx;
+		mvo.setPossible(cond); mvo.setMess(condmes);
+		checkList.add(mvo);
+		
+		cond = gisa_cond10(id, cerNum);
+		condmes = messArr[idx]; 
+		++idx;
+		mvo.setPossible(cond); mvo.setMess(condmes);
+		checkList.add(mvo);
+		
+		cond = gisa_cond11(id, cerNum);
+		condmes = messArr[idx]; 
+		++idx;
+		mvo.setPossible(cond); mvo.setMess(condmes);
+		checkList.add(mvo);
+		
+		cond = gisa_cond12(id, cerNum);
+		condmes = messArr[idx]; 
+		++idx;
+		mvo.setPossible(cond); mvo.setMess(condmes);
+		checkList.add(mvo);
+		
+		cond = gisa_cond13(id, cerNum);
+		condmes = messArr[idx]; 
+		++idx;
+		mvo.setPossible(cond); mvo.setMess(condmes);
+		checkList.add(mvo);
+		
+		cond = gisa_cond14(id, cerNum);
+		condmes = messArr[idx]; 
+		++idx;
+		mvo.setPossible(cond); mvo.setMess(condmes);
+		checkList.add(mvo);
+		
+		cond = gisa_cond15(id, cerNum);
+		condmes = messArr[idx]; 
+		++idx;
+		mvo.setPossible(cond); mvo.setMess(condmes);
+		checkList.add(mvo);
+		
+		cond = gisa_cond16(id, cerNum);
+		condmes = messArr[idx]; 
+		++idx;
+		mvo.setPossible(cond); mvo.setMess(condmes);
+		checkList.add(mvo);
+		
+		return checkList;
+	}
+	
 
 	/*
 	 * 조건에 포함되지 않은 항목들

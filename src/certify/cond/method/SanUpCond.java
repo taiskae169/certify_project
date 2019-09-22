@@ -1,5 +1,6 @@
 package certify.cond.method;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -256,6 +257,94 @@ public class SanUpCond extends OverrideSource{
 			}
 		}
 		return applyPossible;
+	}
+	
+	public List<methodVO> getSanupAll(String id, int cerNum) {
+		List<methodVO> checkList = new ArrayList<methodVO>();
+		methodVO mvo = new methodVO();
+		boolean cond = false;
+		String condmes = null;
+		boolean cond1 = sanup_cond1(id, cerNum);
+		String condmes1 = "관련학과 2년제 전문대학 졸업예정자.";
+		mvo.setPossible(cond1); mvo.setMess(condmes1);
+		checkList.add(mvo);
+		
+		boolean cond2 = sanup_cond2(id, cerNum);
+		String condmes2 = "관련학과 3년제 전문대학 졸업예정자.";
+		mvo.setPossible(cond2); mvo.setMess(condmes2);
+		checkList.add(mvo);
+		
+		boolean cond3 = sanup_cond3(id, cerNum);
+		String condmes3 = "관련학과 졸업자(2년제)";
+		mvo.setPossible(cond3); mvo.setMess(condmes3);
+		checkList.add(mvo);
+		
+		boolean cond4 = sanup_cond4(id, cerNum);
+		String condmes4 = "관련학과 졸업자(3년제)";
+		mvo.setPossible(cond4); mvo.setMess(condmes4);
+		checkList.add(mvo);
+		
+		boolean cond5 = sanup_cond5(id, cerNum);
+		String condmes5 ="관련학과 4년제 대학 전 과정의 1/2 이상 마친자";
+		mvo.setPossible(cond5); mvo.setMess(condmes5);
+		checkList.add(mvo);
+		
+		boolean cond6 = sanup_cond6(id, cerNum);
+		String condmes6 ="관련학과 5년제 대학 전 과정의 1/2 이상 마친자";
+		mvo.setPossible(cond6); mvo.setMess(condmes6);
+		checkList.add(mvo);
+		
+		boolean cond7 = sanup_cond7(id, cerNum);
+		String condmes7 = "관련학과 6년제 대학 전 과정의 1/2 이상 마친자";
+		mvo.setPossible(cond7); mvo.setMess(condmes7);
+		checkList.add(mvo);
+		
+		boolean cond8 = sanup_cond8(id, cerNum);
+		String condmes8 = "관련학과 전공심화과정의 학사학위 취득예정자";
+		mvo.setPossible(cond8); mvo.setMess(condmes8);
+		checkList.add(mvo);
+		
+		boolean cond9 = sanup_cond9(id, cerNum);
+		String condmes9 = "관련학과 전공심화과정의 학사학위 취득자";
+		mvo.setPossible(cond8); mvo.setMess(condmes8);
+		checkList.add(mvo);
+		
+		cond = sanup_cond10(id, cerNum);
+		condmes = "관련학과 졸업예정자(4년제)";
+		mvo.setPossible(cond); mvo.setMess(condmes);
+		checkList.add(mvo);
+		
+		cond = sanup_cond11(id, cerNum);
+		condmes = "관련학과 졸업자(4년제)";
+		mvo.setPossible(cond); mvo.setMess(condmes);
+		checkList.add(mvo);
+		
+		cond = sanup_cond12(id, cerNum);
+		condmes = "기능사 자격 취득 후 동일 및 유사직무분야에서 1년이상 실무에 종사한 자";
+		mvo.setPossible(cond); mvo.setMess(condmes);
+		checkList.add(mvo);
+		
+		cond = sanup_cond13(id, cerNum);
+		condmes = "동일 및 유사직무분야에서 2년이상 실무에 종사한 자";
+		mvo.setPossible(cond); mvo.setMess(condmes);
+		checkList.add(mvo);
+		
+		cond = sanup_cond14(id, cerNum);
+		condmes = "동일 및 유사직무분야의 고용노동부령이 정하는 교육훈련기관의 \"산업기사 수준 기술훈련과정\" 이수예정자";
+		mvo.setPossible(cond); mvo.setMess(condmes);
+		checkList.add(mvo);
+		
+		cond = sanup_cond15(id, cerNum);
+		condmes = "동일 및 유사직무분야의 고용노동부령이 정하는 교육훈련기관의 \"산업기사 수준 기술훈련과정\" 이수자";
+		mvo.setPossible(cond); mvo.setMess(condmes);
+		checkList.add(mvo);
+		
+		cond = sanup_cond16(id, cerNum);
+		condmes = "동일 및 유사 직무분야의 다른 종목 산업기사 이상의 자격을 취득한 자";
+		mvo.setPossible(cond); mvo.setMess(condmes);
+		checkList.add(mvo);
+		
+		return checkList;
 	}
 	
 	/*
