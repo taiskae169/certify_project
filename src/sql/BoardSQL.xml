@@ -55,4 +55,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from board where cate=#{value}
 	</select>
   	
+  	<select id="getAriticleNotice" resultType="board.vo.BoardVO">
+  		select * from (select num,cate,title,id,content,newname,reg_date,step,orgname,readcount,rownum r from (select * from board where cate=9 order by num desc) order by num desc)
+  		<![CDATA[where r >=1 and r <=4 ]]> 
+  		</select>
 </mapper>

@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>자격루</title>
+  <title>자격루:마이페이지</title>
   <!-- Bootstrap core CSS -->
   <!-- Custom fonts for this template -->
   <link href="/certify/resource/gen/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
@@ -65,7 +65,13 @@
   
   
     <jsp:include page="/WEB-INF/view/user_myPage/myPage_data.jsp">
-    	<jsp:param value="${uvo}" name="uvo"/>	
+    	<jsp:param value="${uvo}" name="uvo"/>
+		<jsp:param value="${edu_value}" name="edu_value"/>
+    	<jsp:param value="${certi_cate}" name="certi_cate"/>
+    	<jsp:param value="${allCerti}" name="allCerti"/>
+    	<jsp:param value="${eduList}" name="eduList"/>
+    	<jsp:param value="${careerList}" name="careerList"/>
+    	<jsp:param value="${certiList}" name="certiList"/>
     </jsp:include>
     
     

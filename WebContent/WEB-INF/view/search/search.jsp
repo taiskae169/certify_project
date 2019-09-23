@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:if test="${!empty sessionID}">
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,24 +9,19 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>자격루 : 학력 및 경력사항 입력</title>
+  <title>자격루</title>
 
   <!-- Bootstrap core CSS -->
- 
-  
-  <!-- Custom fonts for this template -->
-  <link href="/certify/resource/gen/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-  <link href="/certify/resource/gen/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-  
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <link href="/certify/resource/gen/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+  <!-- Custom fonts for this template -->
+
   <!-- Custom styles for this template -->
-  <link href="/certify/resource/gen/css/landing-page.min.css" rel="stylesheet">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  
   <script src="//code.jquery.com/jquery.js"></script>
 
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -70,16 +63,38 @@
 
   <!-- Image Showcases -->
   <section class="showcase" style="width:1450px;;margin:auto;">
-
     
   </section >
-    <jsp:include page="/WEB-INF/view/user_myPage/input_eduCareerPage.jsp">
-    	<jsp:param name="category" value="${category}"/>
-    	<jsp:param name="certify" value="${certify}"/>
-    </jsp:include>
-  <!-- Testimonials -->
+  <div style="width:1450px;height:606px;margin:auto;display:block;">
+	<div style="width:59%;height:600px;border-style:solid;float:left;">
+    	<div style="height:80px;margin:3px;">
+    		<h1>자격증 이름</h1>
+    		<hr />
+    	</div>
+    	
+    	<div style="height:150px;border-style:solid;margin:3px;">
+    		자격증 상세정보
+    		<hr />
+    	</div>
+    	<div style="height:300px;border-style:solid;margin:3px;">
+    		시험 신청 및 시험 기간 표 출력 및 응시자격 확인 링크 추가
+    		<hr />
+    	</div>
+    </div>
+    <div style="width:580px;height:600px;border-style:solid;float:right;">
+    	<div style="height:152.25px;margin:3px;">
+    		<jsp:include page="/WEB-INF/view/main/loginbox.jsp">
+    			<jsp:param value="${naverURI}" name="naverURI"/>
+    			<jsp:param value="${sessionID}" name="sessionID"/>
+    		</jsp:include>
+    	</div>
+    	<div style="height:430px;margin:3px;border-style:solid;">
+    		분류 메뉴
+    	</div>
+    </div>
+   </div>
 
-  <hr />
+
   <!-- Footer -->
   <footer class="footer bg-light">
     <div class="container">
@@ -133,10 +148,3 @@
 
 </body>
 </html>
-</c:if>
-<c:if test="${empty sessionID}">
-	<script>
-		alert("로그인이 필요합니다!");
-		window.location="/certify/main.certi";
-	</script>
-</c:if>

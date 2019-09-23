@@ -83,16 +83,29 @@ public class Certi_Bean {
 			mv.addObject("name",name);
 		}
 		
-		List<BoardVO> boardlist = null;
+			int boardcount = (Integer)sql.selectOne("board.getCountALL");
+			List<BoardVO> boardlist = null;
 		
-		HashMap<Object, Object> parameters = new HashMap<Object, Object>();
-		parameters.put("start", 1);
-	    parameters.put("end", 7);
+			HashMap<Object, Object> parameters = new HashMap<Object, Object>();
+			parameters.put("start", 1);
+			parameters.put("end", 7);
 		
-	    	int boardcount = (Integer)sql.selectOne("board.getCountALL");
 	    	boardlist = (List)sql.selectList("board.getAriticleALL", parameters);
+	    	
 			model.addAttribute("boardlist", boardlist);
 			model.addAttribute("boardcount", boardcount);
+			
+			
+			
+			
+			int nocount = (Integer)sql.selectOne("board.getCountCate",9);
+			List<BoardVO> noticeboardlist = null;
+			
+			
+		    noticeboardlist = (List)sql.selectList("board.getAriticleNotice");
+			model.addAttribute("noboardlist", noticeboardlist);
+			model.addAttribute("nocount",nocount);
+		
 			
 		mv.setViewName("/main/main");
 		return mv;

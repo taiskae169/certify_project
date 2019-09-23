@@ -17,10 +17,14 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import certify.mail.Email;
+import certify.mail.EmailSender;
 import certify.vo.Cer_CategoryVO;
+import certify.vo.CertifyVO;
 import user.vo.userCareerVO;
+import user.vo.userCertiVO;
 import user.vo.userEduVO;
 import user.vo.userVO;
+import user.vo.user_Edu_edu_valueVO;
 
 public class UserMethod {
 
@@ -30,6 +34,8 @@ public class UserMethod {
 	
 	@Autowired
 	private Email email;
+	@Autowired
+	private EmailSender emailSender;
 	
 	public int logincheck(String id, String pw) {
 		int result =0;
@@ -177,6 +183,12 @@ public class UserMethod {
 		sql.insert("user.insertCareer", ucvo);
 	}
 	
+	// 회원 자격사항 입력 메소드
+	public void insertUserCertify(userCertiVO uctvo) {
+		System.out.println("회원정보-경력을 저장합니다.");
+		sql.insert("user.insertCertify", uctvo);
+	}
+	
 	//아이디 찾기를 위한 메소드
 	public List<String> lookupID(String name, String birth) {
 		List<String> list = null;
@@ -209,6 +221,8 @@ public class UserMethod {
 		email.setContent("새로운 비밀번호는 " + vo.getPw()+"입니다.");
 		email.setReceiver(vo.getId());
 		email.setSubject("자격루 임시 비밀번호입니다.");
+		
+		emailSender.SendEmail(email);
 	}
 	
 	//회원 정보를 리턴
@@ -216,5 +230,39 @@ public class UserMethod {
 		userVO vo = sql.selectOne("user.getUserInfo",id);
 		return vo;
 	}
+	
+	// 회원 학력정보를 리턴
+	public List<userEduVO> getUserEdu(String id){
+		List eduList = sql.selectList("user.getUserEdu", id);
+		System.out.println(id+"님의 학력정보를 가져옵니다.");
+		return eduList;
+	}
+	
+	// 회원 경력정보를 리턴
+	public List<userCareerVO> getUserCareer(String id){
+		List careerList = sql.selectList("user.getUserCareer", id);
+		System.out.println(id+"님의 경력정보를 가져옵니다.");
+		return careerList;
+	}
+	
+	// 회원 경력정보를 리턴
+		public List<userCertiVO> getUserCerti(String id){
+			List certiList = sql.selectList("user.getUserCerti", id);
+			System.out.println(id+"님의 자격정보를 가져옵니다.");
+			return certiList;
+		}
+	
+	// 전체 자격증 리스트를 리턴
+	public List<CertifyVO> getAllCertify(){
+		List<CertifyVO> certify = sql.selectList("user.getAllCertify");
+		return certify;
+	}
+	
+	// USER_EDU_EDU_VALUE 밸류를 리턴
+	public List<user_Edu_edu_valueVO> getUser_Edu_Val(){
+		List<user_Edu_edu_valueVO> edu_value = sql.selectList("user.getUser_Edu_Val");
+		return edu_value;
+	}
+	
 	
 }

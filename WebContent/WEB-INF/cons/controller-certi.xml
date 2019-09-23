@@ -21,6 +21,7 @@
 
 	<!-- setting of controller location -->
 	<context:component-scan base-package="cert.spring.bean" />
+	<context:component-scan base-package="certify.cond.method" />
 	<context:component-scan base-package="test.readCSV.test" />
 	
 	 
@@ -57,25 +58,24 @@
 	
 	<!-- Bean List -->
 	<bean id="login" class="certify.user.dao.UserMethod" />
-
+	<bean id="certi" class="certify.user.dao.CertifyMethod" />
 					
 
 	<bean id="userCertiVO" class="user.vo.userCertiVO" />
 	<bean id="userCareerVO" class="user.vo.userCareerVO" />
 	<bean id="userEduVO" class="user.vo.userEduVO" />
 	
+	
 	<!-- Bean for Mail -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 	    <property name="host" value="smtp.gmail.com" />
 	    <property name="port" value="587" />
-	    <property name="username" value="taiskae169@gmail.com" />
-	    <property name="password" value="lee!mind@12" />
+	    <property name="username" value="certifyAIboot@gmail.com" />
+	    <property name="password" value="team#123" />
 	    <property name="javaMailProperties">
 	    	<props>
-			    <prop key="mail.transport.protocol">smtp</prop>
-			    <prop key="mail.smtp.auth">true</prop>
-			    <prop key="mail.smtp.starttls.enable">true</prop>
-			    <prop key="mail.debug">true</prop>
+				<prop key="mail.smtp.auth">true</prop>
+      			<prop key="mail.smtp.starttls.enable">true</prop>
 	    	</props>
 	    </property>		
 	</bean>

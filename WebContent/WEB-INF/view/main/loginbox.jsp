@@ -9,10 +9,10 @@
 <script src="//code.jquery.com/jquery.js"></script>
 <meta name="google-signin-client_id" content="74093674387-j64supuapk07470j07hso4fc9fuufb1g.apps.googleusercontent.com">
 
-
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	function openWindow(){
-		window.open("/certify/user/lookUp.certi","아이디/비밀번호 찾기","width=400, height=250, toolbar=no, menuvar=no, scrollbars=no, resizable=no");
+		window.open("/certify/user/lookUp.certi","아이디/비밀번호 찾기","width=500, height=250, toolbar=no, menuvar=no, scrollbars=no, resizable=no");
 	}
 </script>
 
@@ -50,7 +50,7 @@
 
 <!-- 로그인된 아이디가 없는 경우 -->
 <c:if test="${empty sessionID}">
-	<form action="/certify/user/loginPro.certi" id="loginForm" style="display:inline-block; margin:10px;" method="POST">
+	<form action="/certify/user/loginPro.certi" id="loginForm" style="display:inline-block; margin:10px;" method="POST" name="loginForm">
 		<label for="id-box" style="display:inline-block; width:60px;">EMAIL </label>
 		<input type="text" name="id" /> <br />
 		<label for="pw-box" style="display:inline-block; width:60px;">PW </label>

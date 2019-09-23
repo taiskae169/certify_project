@@ -70,10 +70,48 @@
     		신청가능 시험 목록 출력창
     	</div>
     	<div style="height:200px;border-style:solid;margin:3px;">
-    		공지사항 <br />
+    		<c:if test="${boardcount==0 }">
+<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+									<tr>
+										<td align="center">
+											<h3>해당하는 게시글이 없습니다.. :(</h3>
+										</td>
+									</tr>	
+							</table>
+</c:if>
+<c:if test="${nocount!=0 }">
+<div position = "static">
+<table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0" border="1px">
+			<thead>
+				<tr height="30"  style="font-size:20px">
+					<td align = "center" width="75">번호</td>
+					<td align = "center" width="100">작성자</td>
+					<td align = "center" width="300">제목</td>
+					
+				</tr>
+			</thead>
+        	<tbody>
+        		<c:forEach begin="0" end="${noboardlist.size()-1}" step="1" var="i">
+        		<c:set var="noboard" value="${noboardlist[i]}"/>
+        		<tr height="30">
+        		<td align="center"  width="50" > ${noboard.num}</td>
+        		<td align="center"  width="50" > ${noboard.id}</td>
+        		<c:if test="${noboard.newname != null}">
+        		<td align="center"  width="200" ><a href="BoardContent.certi?num=${noboard.num }"> ${noboard.title} [이미지 있어유]</a></td>
+        		</c:if>
+        		<c:if test="${noboard.newname == null}">
+        		<td align="center"  width="200" ><a href="BoardContent.certi?num=${noboard.num }"> ${noboard.title} [이미지 없어유]</a></td>
+        		</c:if>
+        		</tr>
+        		</c:forEach>
+        	</tbody>
+        	</table>
+        	</div>
+        	</c:if>
     		
     	</div>
     </div>
+    
     <div style="width:580px;height:600px;border-style:solid;float:right;">
     	<div style="height:152.25px;margin:3px;">
     		<jsp:include page="/WEB-INF/view/main/loginbox.jsp">

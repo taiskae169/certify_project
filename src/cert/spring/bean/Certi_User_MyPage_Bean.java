@@ -26,11 +26,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import certify.user.dao.UserMethod;
 import certify.vo.Cer_CategoryVO;
+import certify.vo.CertifyVO;
 import test.readCSV.test.ReadCSVatUniv;
 import test.readCSV.test.VOforList;
 import user.vo.userCareerVO;
+import user.vo.userCertiVO;
 import user.vo.userEduVO;
 import user.vo.userVO;
+import user.vo.user_Edu_edu_valueVO;
 
 @Repository
 @Controller
@@ -41,18 +44,38 @@ public class Certi_User_MyPage_Bean {
 	
 	@Autowired
 	UserMethod userdao = null;
-		
 	@Autowired
 	userCareerVO ucvo = null;
-	
+	@Autowired
+	userCertiVO uctvo = null;
 	@Autowired
 	userEduVO uevo = null;
 	
 	@RequestMapping("myPage.certi")
 	public ModelAndView myPage(HttpSession session) {
-		mv = new ModelAndView();		
-		userVO uvo = userdao.getUserInfo((String) session.getAttribute("sessionID"));
-		mv.addObject("uvo",uvo);
+		mv = new ModelAndView();	
+		if(session.getAttribute("sessionID")!=null) {
+			userVO uvo = userdao.getUserInfo((String) session.getAttribute("sessionID"));
+			List<user_Edu_edu_valueVO>edu_value = userdao.getUser_Edu_Val();
+			
+			List<CertifyVO> cf = userdao.getAllCertify();
+			String id = (String)session.getAttribute("sessionID");
+			
+			List<Cer_CategoryVO> certi_cate = userdao.getCerti_Category();
+			List<userEduVO> eduList = userdao.getUserEdu(id);
+			if(eduList!=null) mv.addObject("eduList", eduList);	
+			
+			List<userCareerVO> careerList = userdao.getUserCareer(id);
+			if(careerList!=null) mv.addObject("careerList", careerList);
+			
+			List<userCertiVO> certiList = userdao.getUserCerti(id);
+			if(certiList!=null) mv.addObject("certiList", certiList);
+			
+			mv.addObject("edu_value",edu_value);
+			mv.addObject("allCerti", cf);
+			mv.addObject("certi_cate", certi_cate);	
+			mv.addObject("uvo",uvo);
+		}
 		mv.setViewName("/user_myPage/myPage");
 		return mv;
 	}
@@ -60,7 +83,7 @@ public class Certi_User_MyPage_Bean {
 	@RequestMapping("myPage_data.certi")
 	public ModelAndView myPage_data(HttpSession session) {
 		mv = new ModelAndView();
-				
+		
 		mv.addObject("sessionID", (String) session.getAttribute("sessionID"));
 		mv.setViewName("/user_myPage/myPage_data");
 		return mv;
@@ -76,6 +99,9 @@ public class Certi_User_MyPage_Bean {
 		String id = (String) session.getAttribute("sessionID");
 		List<Cer_CategoryVO> category = userdao.getCerti_Category();
 		mv.addObject("category",category);
+		List<CertifyVO> certify = userdao.getAllCertify();
+		mv.addObject("certify",certify);
+		
 		
 		mv.addObject("id",id);
 		mv.setViewName("/user_myPage/input_eduCareer");
@@ -85,6 +111,7 @@ public class Certi_User_MyPage_Bean {
 	@RequestMapping("input_eduCareerPage.certi")
 	public ModelAndView input_eduCareerPage(HttpServletRequest request, HttpSession session){
 		mv = new ModelAndView();
+		
 		mv.setViewName("/user_myPage/input_eduCareerPage");
 		return mv;
 	}
@@ -98,7 +125,7 @@ public class Certi_User_MyPage_Bean {
 		HashMap<String, Set<String>> univercity = rcu.csvToMap(filepath);
 
 		// 활용변수들
-		List uni_List = null;
+		List<String> uni_List = null;
 		List<Object> major_List = null;
 		int length=0;
 		String years = null;
@@ -108,7 +135,7 @@ public class Certi_User_MyPage_Bean {
 		int major=0;
 		
 		if(school_name!=null) {
-			uni_List  = new ArrayList();
+			uni_List  = new ArrayList<String>();
 			if(school_name.contains("고등학교")) {
 				uni_List.add(school_name);
 				length=uni_List.size();
@@ -195,18 +222,72 @@ public class Certi_User_MyPage_Bean {
 		return mv;
 	}
 	
-	@RequestMapping(value="inputEduCareer_Pro.certi", method = RequestMethod.POST)
-	public ModelAndView testEC_Pro(HttpSession session, String eduList, String careerList) throws IOException, Exception{
+	@RequestMapping("Pro_careerInput.certi")
+	public ModelAndView Pro_careerInput(int num, String certi_name, String searchHelp) throws IOException {
+		mv = new ModelAndView();
+		// 활용변수들
+		List<CertifyVO> certify = userdao.getAllCertify();
+		List<String> certi_list = null;
+		
+		if(certi_name!=null) {
+			if(searchHelp.equals("all")) {
+				certi_list = new ArrayList<String>();
+				for(CertifyVO cf : certify) {
+					if(cf.getName().contains(certi_name)) {
+						certi_list.add(cf.getName());
+					}
+				}
+			}else if(searchHelp.equals("ss1")) {
+				certi_list = new ArrayList<String>();
+				for(CertifyVO cf : certify) {
+					if(cf.getType()==0 || cf.getType()==1 || 
+							cf.getType()==2 || cf.getType()==3 || cf.getType()==4) {
+						if(cf.getName().contains(certi_name))certi_list.add(cf.getName());
+					}
+				}
+			}else if(searchHelp.equals("ss2")) {
+				certi_list = new ArrayList<String>();
+				for(CertifyVO cf : certify) {
+					if(cf.getType()==5) {
+						if(cf.getName().contains(certi_name))certi_list.add(cf.getName());
+					}
+				}
+			}else if(searchHelp.equals("ss3")) {
+				certi_list = new ArrayList<String>();
+				for(CertifyVO cf : certify) {
+					if(cf.getType()==6) {
+						if(cf.getName().contains(certi_name))certi_list.add(cf.getName());
+					}
+				}
+			}else {
+				certi_list = new ArrayList<String>();
+				for(CertifyVO cf : certify) {
+					if(cf.getType()==7) {
+						if(cf.getName().contains(certi_name))certi_list.add(cf.getName());
+					}
+				}
+			}
+		}
+		
+		mv.addObject("num",num);
+		mv.addObject("certi_list",certi_list);
+		mv.setViewName("/user_myPage/Pro_careerInput");
+		return mv;
+	}
+	
+	
+	@RequestMapping(value="inputUserData_Pro.certi", method = RequestMethod.POST)
+	public ModelAndView inputUserData_Pro(HttpSession session, String eduList, String careerList, String certiList) throws IOException, Exception{
 		mv = new ModelAndView();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
 		String id = (String) session.getAttribute("sessionID");	
 		
 		if(id!=null) {
+			// 학력사항 체크
 			if(!eduList.equals("notUse")) {
 				String pre_edu_enc = URLDecoder.decode(eduList, "UTF-8");
 				String [] edu_enc = pre_edu_enc.split("@@");
-				System.out.println(pre_edu_enc);
 				for(int i=0; i< edu_enc.length; i++) {
 					Date gra_date=null;
 					Date ent_date = null;
@@ -244,10 +325,10 @@ public class Certi_User_MyPage_Bean {
 				}
 			}
 			
+			// 경력사항
 			if(!careerList.equals("notUse")) {
 				String pre_career_enc = URLDecoder.decode(careerList, "UTF-8");
 				String [] career_enc = pre_career_enc.split("@@");
-				System.out.println(pre_career_enc);
 				for(int i=0; i< career_enc.length; i++) {
 					ucvo = new userCareerVO();
 					Date gra_date=null;
@@ -278,8 +359,50 @@ public class Certi_User_MyPage_Bean {
 					userdao.insertUserCareer(ucvo);
 				}
 			}
+			
+			// 자격사항
+			if(!certiList.equals("notUse")) {
+				String pre_certi_enc = URLDecoder.decode(certiList, "UTF-8");
+				String [] certi_enc = pre_certi_enc.split("@@");
+				List<CertifyVO> certify = userdao.getAllCertify();
+				System.out.println();
+				int cate=0;
+				int type=0;
+				int cer_name=0;
+				
+				for(int i=0; i< certi_enc.length; i++) {
+					uctvo = new userCertiVO();
+					Date cer_date = null;
+					String [] certiArr = certi_enc[i].split("&");
+					for(int j=0; j<certiArr.length; j++) {
+						certiArr[j] = certiArr[j].substring(certiArr[j].indexOf("=")+1);
+					}
+					for(CertifyVO cf : certify) {
+						if(cf.getName().equals(certiArr[0])) {
+							cate=cf.getCate();
+							type=cf.getType();
+							cer_name=cf.getNum();
+							break;
+						}
+					}
+					uctvo.setId(id);
+					uctvo.setCate(cate);
+					uctvo.setType(type);
+					uctvo.setCer_name(cer_name);					
+					if(certiArr[1]==null || certiArr[1].equals("") || certiArr[1].equals(" ")) {
+						cer_date = new Date();
+						String time = sdf.format(cer_date);
+						cer_date = sdf.parse(time);
+					}else {
+						cer_date = sdf.parse(certiArr[1]);
+					}
+					uctvo.setCer_date(cer_date);	
+					userdao.insertUserCertify(uctvo);
+				}
+			}
+			
 		}
-		mv.setViewName("/user_myPage/inputEduCareer_Pro");
+		mv.setViewName("/user_myPage/inputUserData_Pro");
 		return mv;
 	}
 	

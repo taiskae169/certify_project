@@ -31,6 +31,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	</select>
   	<!-- category list return -->
   	
+  	<!-- get all certify that saved in DB -->
+  	<select id="getAllCertify" resultType="certify.vo.CertifyVO">
+  		select * from CERTIFY_INFO
+  	</select>
+  	
+  	<!-- get all USER_EDU_EDU_VALUE that saved in DB -->
+  	<select id="getUser_Edu_Val" resultType="user.vo.user_Edu_edu_valueVO">
+  		select * from USER_EDU_EDU_VALUE
+  	</select>
+  	
   	<select id="idCheck" resultType="int" parameterType="String">
   		select count(*) from user_info where id=#{value}
   	</select>
@@ -49,6 +59,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		select * from user_info where id=#{id}
   	</select>
   	
+  	<!-- get User Education List -->
+  	<select id="getUserEdu" parameterType="String" resultType="user.vo.userEduVO">
+  		select * from USER_EDU where id=#{id}
+  	</select>
+  	
+  	<!-- get User Career List -->
+  	<select id="getUserCareer" parameterType="String" resultType="user.vo.userCareerVO">
+  		select * from USER_CAREER where id=#{id}
+  	</select>
+  	
+  	<!-- get User Certi List -->
+  	<select id="getUserCerti" parameterType="String" resultType="user.vo.userCertiVO">
+  		select * from USER_CERTI where id=#{id}
+  	</select>
+  	
   	<!-- Insert for user's Informations -->
   	<insert id="sign" parameterType="user.vo.userVO">
   		insert into user_info(id,pw,name,birth,wana,qual,googleid,naverid,kakaoid) values(#{id},#{pw},#{name},#{birth},#{wana},#{qual},#{googleId},#{naverId},#{kakaoId})
@@ -60,6 +85,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	</insert>
   	<insert id="insertCareer" parameterType="user.vo.userCareerVO">
   		insert into USER_CAREER(num,id,company,comp_cate,com_ent_date,com_gra_date) values(user_career_seq.nextval,#{id},#{company},#{comp_cate},#{com_ent_date},#{com_gra_date})
+  	</insert>
+  	<insert id="insertCertify" parameterType="user.vo.userCertiVO">
+  		insert into USER_CERTI(num,id,cate,type,cer_name,cer_date) values(user_certi_seq.nextval,#{id},#{cate},#{type},#{cer_name},#{cer_date})
   	</insert>
   	
   	
