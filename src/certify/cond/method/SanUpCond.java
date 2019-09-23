@@ -1,23 +1,38 @@
 package certify.cond.method;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
+
+import certify.user.dao.CertifyMethod;
+import certify.user.dao.UserMethod;
 import certify.vo.CertifyVO;
+import user.vo.userCareerVO;
 import user.vo.userCertiVO;
 import user.vo.userEduVO;
+import user.vo.userVO;
 
 /*
  * 산업기사 자격증 조건문
  * 작성일자 : 19.08.27. 작성자 : 조지훈
  */
 
-public class SanUpCond extends OverrideSource{
+public class SanUpCond{
+	
+	UserMethod userdao = new UserMethod();
+	
+	CertifyMethod certidao = new CertifyMethod();
+
+	userVO usvo = null;
 	
 	// 가능/불가능 리턴을 위한 변수
 	private boolean applyPossible = false;	
-		
+	
 	// 날짜 비교를 위한 변수
 	private int year = 365;	
 	private Date today = new Date();
@@ -25,27 +40,67 @@ public class SanUpCond extends OverrideSource{
 	// 학력정보 리턴 간 받아올 변수
 	private List<userEduVO> user_eduList = null;
 	
+	// 경력사항 리턴 간 받아올 변수
+	private long comp_workdays = 0;
+	
 	// 회원이 기보유한 자격증 리스트 리턴을 위한 변수
 	private List<userCertiVO> user_certiList = null;
 	
 	// 회원의 경력사항을 리턴받는 리스트 변수
+	List<userCareerVO> returnCareer = null;
+	private List<userCareerSub> user_career_sub =null; 		// 카테고리별 근무년수(근무일수) 총합 후 저장을 위한 리스트 변수
 	private HashMap<Integer, Long> careerMap = null;		// 실제 조건 비교에 사용되는 Map
 	
 	// 전체 자격증 종류 리스트 리턴을 위한 변수
-	private List certifyList = null;
+	// private List<CertifyVO> certifyList = certidao.getAllCertify();
 	
-	// (오버라이딩) 단일 회원의 전체 정보 가져오기
-	@Override
+	// 단일 회원의 전체 정보 가져오기
 	public void getUserStatus(String id) {
-		// TODO Auto-generated method stub
-		super.getUserStatus(id);
+		
+		// 회원 개인정보
+		usvo = userdao.getUserInfo(id);
+		
+		// 회원 학력정보
+		user_eduList = userdao.getUserEdu(id);
+		
+		// 회원 경력정보
+		returnCareer = userdao.getUserCareer(id);
+		
+		// 회원이 보유한 경력사항을 통합하는 과정(종목별 누적 근무일수 합산)
+		if(returnCareer!=null) {
+			for(int i=0; i<returnCareer.size(); i++) {
+				long diff = returnCareer.get(i).com_ent_date.getTime() - returnCareer.get(i).com_gra_date.getTime();
+				long diffDays = Math.abs(diff / (24 * 60 * 60 * 1000));	// 양수변환
+				comp_workdays = diffDays; // 합산 근무일수
+				
+				userCareerSub ucs = new userCareerSub();
+				ucs.setUser_car_cate(returnCareer.get(i).comp_cate);
+				ucs.setUser_sub_workdays(comp_workdays);
+				user_career_sub.add(ucs);
+			}
+			careerMap = new HashMap<Integer, Long>();
+			for(int i=0; i<user_career_sub.size(); i++) {
+				if(careerMap.isEmpty()) {
+					careerMap.put(user_career_sub.get(i).user_car_cate, user_career_sub.get(i).user_sub_workdays);
+				}else if(!careerMap.containsKey(user_career_sub.get(i).user_car_cate)) {
+					careerMap.put(user_career_sub.get(i).user_car_cate, user_career_sub.get(i).user_sub_workdays);
+				}else if(careerMap.containsKey(user_career_sub.get(i).user_car_cate)) {
+					long workday_sum = careerMap.get(user_career_sub.get(i).user_car_cate)+user_career_sub.get(i).user_sub_workdays;
+					careerMap.remove(user_career_sub.get(i).user_car_cate);
+					careerMap.put(returnCareer.get(i).comp_cate, workday_sum);
+				}
+			}
+		}
+		
+		// 회원 보유 자격증 정보
+		user_certiList = userdao.getUserCerti(id);
+		
 	}
 	
-	// (오버라이딩) 전체 자격증 중 num에 해당하는 자격증 정보 가져오기
-	@Override
+	// 전체 자격증 중 num에 해당하는 자격증 정보 가져오기
 	public CertifyVO getCertifyStatus(int num) {
-		// TODO Auto-generated method stub
-		return super.getCertifyStatus(num);
+		CertifyVO cfvo = certidao.getSpecCertify(num);
+		return cfvo;
 	}
 	
 	// 조건 1. 관련학과 2년제 전문대학 졸업예정자
@@ -256,6 +311,94 @@ public class SanUpCond extends OverrideSource{
 			}
 		}
 		return applyPossible;
+	}
+	
+	public List<methodVO> getSanupAll(String id, int cerNum) {
+		List<methodVO> checkList = new ArrayList<methodVO>();
+		methodVO mvo = new methodVO();
+		boolean cond = false;
+		String condmes = null;
+		boolean cond1 = sanup_cond1(id, cerNum);
+		String condmes1 = "관련학과 2년제 전문대학 졸업예정자.";
+		mvo.setPossible(cond1); mvo.setMess(condmes1);
+		checkList.add(mvo);
+		
+		boolean cond2 = sanup_cond2(id, cerNum);
+		String condmes2 = "관련학과 3년제 전문대학 졸업예정자.";
+		mvo.setPossible(cond2); mvo.setMess(condmes2);
+		checkList.add(mvo);
+		
+		boolean cond3 = sanup_cond3(id, cerNum);
+		String condmes3 = "관련학과 졸업자(2년제)";
+		mvo.setPossible(cond3); mvo.setMess(condmes3);
+		checkList.add(mvo);
+		
+		boolean cond4 = sanup_cond4(id, cerNum);
+		String condmes4 = "관련학과 졸업자(3년제)";
+		mvo.setPossible(cond4); mvo.setMess(condmes4);
+		checkList.add(mvo);
+		
+		boolean cond5 = sanup_cond5(id, cerNum);
+		String condmes5 ="관련학과 4년제 대학 전 과정의 1/2 이상 마친자";
+		mvo.setPossible(cond5); mvo.setMess(condmes5);
+		checkList.add(mvo);
+		
+		boolean cond6 = sanup_cond6(id, cerNum);
+		String condmes6 ="관련학과 5년제 대학 전 과정의 1/2 이상 마친자";
+		mvo.setPossible(cond6); mvo.setMess(condmes6);
+		checkList.add(mvo);
+		
+		boolean cond7 = sanup_cond7(id, cerNum);
+		String condmes7 = "관련학과 6년제 대학 전 과정의 1/2 이상 마친자";
+		mvo.setPossible(cond7); mvo.setMess(condmes7);
+		checkList.add(mvo);
+		
+		boolean cond8 = sanup_cond8(id, cerNum);
+		String condmes8 = "관련학과 전공심화과정의 학사학위 취득예정자";
+		mvo.setPossible(cond8); mvo.setMess(condmes8);
+		checkList.add(mvo);
+		
+		boolean cond9 = sanup_cond9(id, cerNum);
+		String condmes9 = "관련학과 전공심화과정의 학사학위 취득자";
+		mvo.setPossible(cond9); mvo.setMess(condmes9);
+		checkList.add(mvo);
+		
+		cond = sanup_cond10(id, cerNum);
+		condmes = "관련학과 졸업예정자(4년제)";
+		mvo.setPossible(cond); mvo.setMess(condmes);
+		checkList.add(mvo);
+		
+		cond = sanup_cond11(id, cerNum);
+		condmes = "관련학과 졸업자(4년제)";
+		mvo.setPossible(cond); mvo.setMess(condmes);
+		checkList.add(mvo);
+		
+		cond = sanup_cond12(id, cerNum);
+		condmes = "기능사 자격 취득 후 동일 및 유사직무분야에서 1년이상 실무에 종사한 자";
+		mvo.setPossible(cond); mvo.setMess(condmes);
+		checkList.add(mvo);
+		
+		cond = sanup_cond13(id, cerNum);
+		condmes = "동일 및 유사직무분야에서 2년이상 실무에 종사한 자";
+		mvo.setPossible(cond); mvo.setMess(condmes);
+		checkList.add(mvo);
+		
+		cond = sanup_cond14(id, cerNum);
+		condmes = "동일 및 유사직무분야의 고용노동부령이 정하는 교육훈련기관의 \"산업기사 수준 기술훈련과정\" 이수예정자";
+		mvo.setPossible(cond); mvo.setMess(condmes);
+		checkList.add(mvo);
+		
+		cond = sanup_cond15(id, cerNum);
+		condmes = "동일 및 유사직무분야의 고용노동부령이 정하는 교육훈련기관의 \"산업기사 수준 기술훈련과정\" 이수자";
+		mvo.setPossible(cond); mvo.setMess(condmes);
+		checkList.add(mvo);
+		
+		cond = sanup_cond16(id, cerNum);
+		condmes = "동일 및 유사 직무분야의 다른 종목 산업기사 이상의 자격을 취득한 자";
+		mvo.setPossible(cond); mvo.setMess(condmes);
+		checkList.add(mvo);
+		
+		return checkList;
 	}
 	
 	/*

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import certify.cond.method.OverrideSource;
+import certify.cond.method.methodVO;
 import certify.vo.CertifyVO;
 import user.vo.userCareerVO;
 import user.vo.userCertiVO;
@@ -461,6 +462,8 @@ public class Gukgajunmun_noCond extends OverrideSource{
 	
 	// 조건 있는 자격증리스트 ▼
 	// 문화재수리기술자 (보수, 단청, 조경, 보존과학, 식물보호)
+	// cerNum : 662	663	665	666	667
+
 	public boolean gukjun_munhwajae_gisulja(String id, int certify_num) {
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
@@ -481,7 +484,8 @@ public class Gukgajunmun_noCond extends OverrideSource{
 		return applyPossible;
 	}
 	
-	// 문화재수리기술자(실측설계)
+	
+	// 문화재수리기술자(실측설계) 664
 	public boolean gukjun_munhwa_gisulja_silchk(String id, int certify_num) {
 		getUserStatus(id);
 		CertifyVO cfvo = getCertifyStatus(certify_num);
@@ -496,7 +500,36 @@ public class Gukgajunmun_noCond extends OverrideSource{
 		return applyPossible;
 	}
 	
-	/* 변리사
+	public List<methodVO> getMoonWha(String id, int cerNum) {
+		int idx = 0;
+		List<methodVO> checkList = new ArrayList<methodVO>();
+		methodVO mvo = new methodVO();
+		boolean cond = false;
+		String condmes = null;
+		int [] etc = {662, 663,	665, 666, 667};
+		if(cerNum!=664) {
+			for(int i=0; i<etc.length; i++) {
+				if(etc[i]==cerNum) {
+					cond = gukjun_munhwajae_gisulja(id,cerNum);
+					condmes = "1. 문화재수리 분야에 1년 이상 종사한 사람 \n"
+							+" 2. 초,중등교육법에 따른 중학교의 졸업자 또는 이와 같은 수준 이상의 학력이 있다고 인정되는 사람 \n"
+							+" 3. 국가기술자격법에 따른 기능사 이상의 자격을 취득한 사람 \n"
+							+" 4. 문화재수리기능자";
+					mvo.setMess(condmes); mvo.setPossible(cond);
+					checkList.add(mvo);
+				}
+			}
+		}else if(cerNum==664) {
+			cond=gukjun_munhwa_gisulja_silchk(id,cerNum);
+			condmes="1. 문화재 수리를 위한 실측 및 설계도서의 작성 업무를 담당하는 수리기술자 자격시험에 응시하고자 하는자는"
+					+" 건축사법에 따른 건축사 자격을 가진 자이어야 한다.";
+			mvo.setMess(condmes); mvo.setPossible(cond);
+			checkList.add(mvo);
+		}
+		return checkList;
+	}
+	
+	/* 변리사 670
 	 * ※변리사법 제4조 제3호 중 미성년자는 제외
 	 * 1. 금고 이상의 실형을 선고받고 그 집행이 끝나거나(집행이 끝난 것으로 보는 경우를 포함한다) 집행이 면제된 날부터 3년이 지나지 아니한 사람
 	 * 2. 금고 이상의 형의 집행유예를 선고받고 그 유예기간 중에 있는 사람
@@ -518,6 +551,26 @@ public class Gukgajunmun_noCond extends OverrideSource{
 			}
 		}
 		return applyPossible;
+	}
+	
+	public List<methodVO> getByunRi(String id, int cerNum) {
+		int idx = 0;
+		List<methodVO> checkList = new ArrayList<methodVO>();
+		methodVO mvo = new methodVO();
+		boolean cond = false;
+		String condmes = "※변리사법 제4조 제3호 중 미성년자는 제외\r\n" + 
+				" 1. 금고 이상의 실형을 선고받고 그 집행이 끝나거나(집행이 끝난 것으로 보는 경우를 포함한다) 집행이 면제된 날부터 3년이 지나지 아니한 사람\r\n" + 
+				" 2. 금고 이상의 형의 집행유예를 선고받고 그 유예기간 중에 있는 사람\r\n" + 
+				" 3. 미성년자, 피한정후견인 또는 피성년후견인\r\n" + 
+				" 4. 파산선고를 받고 복권되지 아니한 사람\r\n" + 
+				" 5. 다음 각목의 어느 하나에 해당하는 사람\r\n" + 
+				" 	가. 탄핵 또는 징계처분에 따라 파면 또는 해임된 사람\r\n" + 
+				"    나. 강등 또는 정직처분을 받은 후 2년이 지나지 아니한 사람\r\n" + 
+				"    다. 이 법에 따른 징계처분으로 등록취소된 후 2년이 지나지 아니한 사람\r\n" + 
+				"    라. 「변호사법」에 따라 제명된 후 2년이 지나지 아니한 사람";
+		mvo.setMess(condmes); mvo.setPossible(cond);
+		checkList.add(mvo);
+		return checkList;
 	}
 	
 	

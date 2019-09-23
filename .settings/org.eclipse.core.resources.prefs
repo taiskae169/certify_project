@@ -1,7 +1,11 @@
 eclipse.preferences.version=1
 <<<<<<< HEAD
+<<<<<<< HEAD
 encoding//WebContent/WEB-INF/view/board/Boardlist.jsp=UTF-8
 =======
+=======
+encoding//WebContent/WEB-INF/view/user_myPage/calTest.jsp=UTF-8
+>>>>>>> branch 'master' of https://github.com/taiskae169/certify_project.git
 encoding//src/certi/Rjava/CertiInfoR.java=UTF-8
 >>>>>>> branch 'master' of https://github.com/taiskae169/certify_project.git
 encoding/<project>=UTF-8

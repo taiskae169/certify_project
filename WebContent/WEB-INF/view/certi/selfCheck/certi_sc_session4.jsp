@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:if test="${!empty sessionID}">
 <!DOCTYPE html>
 <html>
@@ -84,69 +85,67 @@
                
         <!-- 본문 들어가는 부분 -->
         <hr />         
+	 	<div>
+	 		<h1> 응시자격 자가진단</h1>
+	 		<b><i> ${user_name} 회원님의 자격정보를 확인합니다.</i></b>
+	 		<br><hr/>
+	 	</div>
+	 	<div class="row">
+	 		<c:if test="${!empty certiList}">
+	 			<table id="user_certiInfo" style="border-style: solid; width:100%;">
+ 					<thead style="border-style: solid;" align="center">
+ 						<td>자격증명</td>
+ 						<td>자격증 분류</td>
+ 						<td>자격 종목</td>
+ 						<td>취득일자</td>
+ 					</thead>
+ 					<c:if test="${certiList==null}">
+ 						<tr align="center"><td colspan="4">입력된 자격사항이 없습니다.</td></tr>
+ 					</c:if>
+ 					<c:if test="${certiList!=null}">
+ 						<c:forEach var="certi" items="${certiList}">
+ 							<tr align="center">
+ 								<c:forEach var="ac" items="${allCerti}">
+			 						<c:if test="${ac.num == certi.cer_name}">
+			 							<td>${ac.name}</td>
+			 							<td>
+				 							<c:choose>
+					 								<c:when test="${ac.type == 0}">기능사</c:when>
+					 								<c:when test="${ac.type == 1}">산업기사</c:when>
+					 								<c:when test="${ac.type == 2}">기사</c:when>
+					 								<c:when test="${ac.type == 3}">기술사</c:when>
+					 								<c:when test="${ac.type == 4}">기능장</c:when>
+					 								<c:when test="${ac.type == 5}">국가전문자격</c:when>
+					 								<c:when test="${ac.type == 6}">민간자격</c:when>
+					 								<c:when test="${ac.type == 7}">어학자격</c:when>
+					 						</c:choose>
+				 						</td>
+			 							<td>
+			 								<c:forEach var="cate" items="${certi_cate}">
+				 								<c:if test="${cate.certi_num == ac.cate}">${cate.name}</c:if>
+				 							</c:forEach>
+			 							</td>
+			 						</c:if>
+		 						</c:forEach>
+		 						<td><fmt:formatDate value="${certi.cer_date}" type="both" pattern="yyyy년 MM월 dd일"/></td>
+	 						</tr>
+	 					</c:forEach>
+ 					</c:if>
+ 				</table>
+	 		</c:if>
+	 		
+	 		<button id="${cerNum}" onclick="goSession5(this.id)"> 다음 단계로 </button>
+	 		
+	 		<c:if test="${empty certiList}"> <!-- 작업 끝나고 empty로 바꾸기!! -->
+	 		
+	 			
+	 		</c:if>
+
 	 		<div>
-	 			<h1> 응시자격 자가진단</h1>
-	 			<b><i>자가진단을 원하시는 자격증을 선택해주세요.</i></b>
-	 			<br><hr/> 
-	 		</div>
-	 		<div>
-	 			<a><span id="gukki"
-	 				style="border-style: solid; padding: 5px; background-color: navy; color: white;">
-	 				국가기술자격</span></a> \
-	 			<a><span id="gukjun"
-	 				 style="border-style: solid; padding: 5px;">
-	 				 국가전문자격</span></a>
-	 			<br><br>
-	 			<form name="searchCerti" action="certi_sc_session1.certi" >
-	 				<input type="hidden" name="type" value="${type}" />
-	 				<input type="text" name="certi_name" placeholder="검색할 자격증을 입력해주세요."/>
-	 			</form>
-	 		</div>
-	 		<br>
-	 		</hr>
-	 		<div>
-	 			<ul>
-	 				<!--  자격증 리스트 출력  -->
-	 				<c:if test="${count>0}">
-		 				<c:forEach begin="0" end="${certiList.size()-1}" step="1" var="i">
-	        				<c:set var="certi" value="${certiList[i]}"/>
-		 					<li><a id="${certi.num}" onclick="goSession2(this.id)">${certi.name}</a></li>
-		 				</c:forEach>
-	 				</c:if>
-	 				<c:if test="${count<=0}">
-	 					<p>해당하는 자격증이 없습니다 :( </p>
-	 				</c:if>
-	 			</ul>
-	 		</div>
-	 		<div position = "static" align="center">
-		 		<c:if test="${count>0 }">
-			      <c:if test="${startPage>10}">
-			      	<c:if test="${certi_name!=null}">
-			      		<a href="certi_sc_session1.certi?type=${type}&pageNum=${startPage - 10}&certi_name=${certi_name}">[이전]</a>
-			      	</c:if>
-			      	<c:if test="${certi_name==null}">
-			         	<a href="certi_sc_session1.certi?type=${type}&pageNum=${startPage - 10}">[이전]</a>
-			        </c:if>
-			      </c:if>
-			      <c:forEach begin="${startPage}" end="${endPage }" step="1" var="i">
-			      	<c:if test="${certi_name!=null}">
-			      		<a href="certi_sc_session1.certi?type=${type}&pageNum=${i}&certi_name=${certi_name}">[${i}]</a>
-			      	</c:if>
-			      	<c:if test="${certi_name==null}">
-			         <a href="certi_sc_session1.certi?type=${type}&pageNum=${i}">[${i}]</a>
-			        </c:if>
-			      </c:forEach>
-			      <c:if test="${endPage < pageCount}">
-			      	<c:if test="${certi_name!=null}">
-			         <a href="certi_sc_session1.certi?type=${type}&pageNum=${startPage + 10}&certi_name=${certi_name}">[다음]</a>
-			        </c:if>
-			        <c:if test="${certi_name==null}">
-			         <a href="certi_sc_session1.certi?type=${type}&pageNum=${startPage + 10}">[다음]</a>
-			        </c:if>
-			      </c:if>
-			   </c:if>
-		   </div>
-		</div> <!-- container end -->
+
+	 		</div>	 		
+		</div> 
+	</div> <!-- container end -->
     
     
   <!-- 본문 끝 -->
@@ -216,47 +215,12 @@
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-	$(document).ready(function() {
-		var getUrlParameter = function getUrlParameter(sParam) {
-			var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-			sURLVariables = sPageURL.split('&'),
-			sParameterName,
-			i;
-			for (i = 0; i < sURLVariables.length; i++) {
-				sParameterName = sURLVariables[i].split('=');
-				if (sParameterName[0] === sParam) {
-					return sParameterName[1] === undefined ? true : sParameterName[1];
-				}
-			}
-		};
-		var type = getUrlParameter('type');
-
-		if(type=='1'){
-			$("#gukki").css('background-color' , 'navy');
-		    $("#gukki").css('color' , 'white');
-		    $("#gukjun").css('background-color' , 'white');
-		    $("#gukjun").css('color' , 'black');
-		}else{
-			$("#gukjun").css('background-color' , 'navy');
-		    $("#gukjun").css('color' , 'white');
-		    $("#gukki").css('background-color' , 'white');
-		    $("#gukki").css('color' , 'black');
-		}
-
-		 $("#gukki").click(function() {
-				window.location="certi_sc_session1.certi?type=1";
-		    });
-		
-	    $("#gukjun").click(function() {
-			window.location="certi_sc_session1.certi?type=2";
-	    });
-	});
-
-	function goSession2(id){
+	function goSession5(id){
 		var cerNum=id;
-		var URL = "/certify/certi/certi_sc_session2.certi?cerNum=";
+		var URL = "/certify/certi/certi_sc_session5.certi?cerNum=";
 		window.location=URL+cerNum;
 	}
+	
 	
 </script>
 

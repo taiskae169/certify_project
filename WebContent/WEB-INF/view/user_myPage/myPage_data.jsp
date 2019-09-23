@@ -116,8 +116,8 @@
 		 						<td>${edu.edu_name}</td>
 		 						<td>${edu.major_name}</td>
 		 						<td>
-									<c:forEach var="edu_value" items="${edu_value}">
-				 						<c:if test="${edu_value.num == edu.major}">${edu_value.value}</c:if>
+									<c:forEach var="ev" items="${edu_value}">
+				 						<c:if test="${ev.num == edu.edu}">${ev.value}</c:if>
 				 					</c:forEach>	 							
 		 						</td>
 		 						<td>
@@ -142,7 +142,7 @@
  			</div>
  			
  			<div id="career_info">
- 				<h3>회원 학력정보</h3>
+ 				<h3>회원 경력정보</h3>
  				<table id="user_careerInfo" style="border-style: solid; width:100%;">
  					<thead style="border-style: solid;" align="center">
  						<td>사업체/기관명</td>
