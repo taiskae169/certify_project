@@ -66,18 +66,25 @@ public class CertifyMethod {
 	}
 	
 	public void updateCertiCategory0(CertiInfoVO vo) {
-		System.out.println(vo.getCerName());
-		System.out.println(vo.getFuture());
-		System.out.println(vo.getGen());
-		System.out.println(vo.getHistory());
-		System.out.println(vo.getHow());
-		System.out.println(vo.getJob());
-		System.out.println(vo.getPref());
-		System.out.println(vo.getSite());
-		System.out.println(vo.getSiteLink());
-		System.out.println(vo.getTestInfo());
-		System.out.println(sql);
+//		System.out.println(vo.getCerName());
+//		System.out.println(vo.getFuture());
+//		System.out.println(vo.getGen());
+//		System.out.println(vo.getHistory());
+//		System.out.println(vo.getHow());
+//		System.out.println(vo.getJob());
+//		System.out.println(vo.getPref());
+//		System.out.println(vo.getSite());
+//		System.out.println(vo.getSiteLink());
+//		System.out.println(vo.getTestInfo());
+//		System.out.println(sql);
 		sql.insert("certi.updateCetiCategory0",vo);
+	}
+	public void deleteCertiCategory(int i) {
+		if(i==0) {
+			sql.delete("certi.deleteCertiCategory0");
+		}
+		
+		
 	}
 	
 	// 전체 자격증 개수를 리턴

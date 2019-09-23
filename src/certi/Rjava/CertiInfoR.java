@@ -1,5 +1,8 @@
 package certi.Rjava;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.rosuda.REngine.Rserve.RConnection;
 import org.rosuda.REngine.Rserve.RserveException;
 import org.springframework.stereotype.Service;
@@ -12,11 +15,12 @@ public class CertiInfoR {
 	
 	
 	
-	public CertiInfoVO updateCertiInfo(int num) {
+	public List<CertiInfoVO> updateCertiInfo(int num) {
 		//num은 자격종류을 분류하기 위한 분휴번호이다.
 		//0일경우 기능사, 1일경우 산업기사의 형식
 		RConnection conn = null;
-		CertiInfoVO certiInfo = new CertiInfoVO();
+		CertiInfoVO certiInfo = null;
+		List<CertiInfoVO> result = new ArrayList<CertiInfoVO>();
 		//CertifyMethod certi = new CertifyMethod();
 		try {
 			
@@ -113,38 +117,40 @@ public class CertiInfoR {
 			for(int y=1;y<=count;y++) {
 				for(int x=1;x<=10;x++) {
 					String tmp = conn.eval("certiinfo["+y+","+x+"]").asString();
+					 certiInfo = new CertiInfoVO();
 					//System.out.println("tmp"+x+" : " +tmp);
 					switch(x) {
 						case 1: certiInfo.setCerName(tmp);
-								System.out.println(x+ " : "+certiInfo.getCerName());
+								//System.out.println(x+ " : "+certiInfo.getCerName());
 								break;
 						case 2: certiInfo.setGen(tmp);
-								System.out.println(x+ " : "+certiInfo.getGen());
+//								System.out.println(x+ " : "+certiInfo.getGen());
 								break;
 						case 3: certiInfo.setHistory(tmp);
-								System.out.println(x+ " : "+certiInfo.getHistory());
+//								System.out.println(x+ " : "+certiInfo.getHistory());
 								break;
 						case 4: certiInfo.setJob(tmp);
-								System.out.println(x+ " : "+certiInfo.getJob());
+//								System.out.println(x+ " : "+certiInfo.getJob());
 								break;
 						case 5: certiInfo.setSiteLink(tmp);
-								System.out.println(x+ " : "+certiInfo.getSiteLink());
+//								System.out.println(x+ " : "+certiInfo.getSiteLink());
 								break;
 						case 6: certiInfo.setSite(tmp);
-								System.out.println(x+ " : "+certiInfo.getSite());
+//								System.out.println(x+ " : "+certiInfo.getSite());
 								break;
-						case 7: certiInfo.setPref(tmp);
-								System.out.println(x+ " : "+certiInfo.getPref());
+						case 7: //certiInfo.setPref(tmp);
+//								System.out.println(x+ " : "+certiInfo.getPref());
 								break;
 						case 8: certiInfo.setFuture(tmp);
-								System.out.println(x+ " : "+certiInfo.getFuture());
+//								System.out.println(x+ " : "+certiInfo.getFuture());
 								break;
 						case 9: certiInfo.setTestInfo(tmp);
-								System.out.println(x+ " : "+certiInfo.getTestInfo());
+//								System.out.println(x+ " : "+certiInfo.getTestInfo());
 								break;
 						case 10: certiInfo.setHow(tmp);
-								System.out.println(x+ " : "+certiInfo.getHow());
+//								System.out.println(x+ " : "+certiInfo.getHow());
 								//certi.updateCertiCategory0(certiInfo);
+								result.add(certiInfo);
 								break;
 					}
 					
@@ -158,7 +164,8 @@ public class CertiInfoR {
 		} finally {
 			conn.close();
 		}
-		return certiInfo;
+		System.out.println(result.get(1).getCerName());
+		return result;
 	}
 
 }
