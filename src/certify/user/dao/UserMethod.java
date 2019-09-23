@@ -232,6 +232,13 @@ public class UserMethod {
 		return vo;
 	}
 	
+	//회원 정보를 리턴 (SQL매개변수)
+	public userVO getUserInfo(String id, SqlSessionTemplate sql) {
+		System.out.println(id+"님의 정보를 가져옵니다.");
+		userVO vo = sql.selectOne("user.getUserInfo",id);
+		return vo;
+	}
+	
 	// 회원 학력정보를 리턴
 	public List<userEduVO> getUserEdu(String id){
 		List eduList = sql.selectList("user.getUserEdu", id);

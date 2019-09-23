@@ -1,7 +1,10 @@
 package cert.spring.bean;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URLDecoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,6 +25,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import certify.user.dao.UserMethod;
@@ -117,10 +121,12 @@ public class Certi_User_MyPage_Bean {
 	}
 	
 	@RequestMapping("eduChooseProcess.certi")
-	public ModelAndView eduChooseProcess(int num, String school_name, String major_name, 
-							String school_nameFix, String major_nameFix) throws IOException {
+	public ModelAndView eduChooseProcess(HttpServletRequest request, int num, String school_name, String major_name, 
+							String school_nameFix, String major_nameFix) throws IOException, Throwable {
 		mv = new ModelAndView();
-		String filepath = "C:/Users/DELL/Documents/major.csv";
+		
+		String csvPath = request.getSession().getServletContext().getRealPath("/csvSource/major.csv");
+		String filepath = new File(csvPath).getAbsolutePath();
 		ReadCSVatUniv rcu = new ReadCSVatUniv();
 		HashMap<String, Set<String>> univercity = rcu.csvToMap(filepath);
 
@@ -345,7 +351,7 @@ public class Certi_User_MyPage_Bean {
 							String time = sdf.format(ent_date);
 							ent_date = sdf.parse(time);
 						}else {
-							gra_date = sdf.parse(careerArr[2]);
+							ent_date = sdf.parse(careerArr[2]);
 						}
 						if(careerArr[3]==null || careerArr[3].equals("") || careerArr[3].equals(" ")) {
 							gra_date = new Date();

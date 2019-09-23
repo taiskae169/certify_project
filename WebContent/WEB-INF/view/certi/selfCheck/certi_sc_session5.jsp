@@ -88,21 +88,17 @@
 	 	<div>
 	 		<h1> 응시자격 자가진단</h1>
 	 		<b><i> ${user_name} 회원님의 
-	 			<c:forEach var="cf" items="${allCerti}">
-		 			<c:if test="${cerNer == cf.num}">
-		 				${cf.name}
-		 			</c:if>
-	 			</c:forEach>
+				<span>${specCerti.name}</span>
 	 		  자격증 응시 자격을 확인합니다.</i></b>
 	 		<br><hr/>
 	 	</div>
 	 	<div class="row">
-	 	<h4> 자격증명 : ${cf.name}</h4>
+	 	<h4> 자격증명 : <span>${specCerti.name}</span></h4>
 	 	<h4> 진단 결과 : <span id="pass" >${pass}</span></h4>
 	 		<table id="user_certiInfo" style="border-style: solid; width:100%;">
  				<c:forEach var="check" items="${checkList}">
- 					<tr>
- 						<td>
+ 					<tr style="border-style: solid;">
+ 						<td >
  							<c:if test="${check.possible == true}" >
  								가능
  							</c:if>
