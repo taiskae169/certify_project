@@ -40,7 +40,7 @@
 <c:if test="${!empty sessionID}">
 	<h3>환영합니다. ${name }님</h3>
 	<div style="float:left;">
-		<a class="btn btn-default" href="#" role="button" style="display:block;float:right;">관심자격증</a>
+		<a class="btn btn-default" href="/certify/InterestMain.certi" role="button" style="display:block;float:right;">관심자격증</a>
 		<a class="btn btn-default" href="/certify/user/mp/input_eduCareer.certi" role="button" style="display:block;float:right;">경력/학력수정</a>
 		<a class="btn btn-default" href="/certify/user/mp/myPage.certi" role="button" style="display:block;float:right;">마이페이지</a>
 	</div>
