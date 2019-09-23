@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.api.services.calendar.Calendar;
+
 import certify.user.dao.UserMethod;
 import certify.vo.Cer_CategoryVO;
 import certify.vo.CertifyVO;
@@ -406,5 +408,49 @@ public class Certi_User_MyPage_Bean {
 		return mv;
 	}
 	
+	@RequestMapping("/caltest.certi")
+	public ModelAndView caltest() {
+		mv = new ModelAndView();
+//		Calendar service=null;
+//		try {
+//			service = certify.cal.Calendar.getCalendarService();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		mv.setViewName("/user_myPage/calTest");
+		return mv;
+	}
 	
+	@RequestMapping("/calteee.certi")
+	public ModelAndView caltest2() {
+		mv = new ModelAndView();
+//		Calendar service=null;
+//		try {
+//			service = certify.cal.Calendar.getCalendarService();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		mv.setViewName("/user_myPage/calTest2");
+		return mv;
+	}
+	
+	
+	@RequestMapping("/callist.certi")
+	public ModelAndView CalList() {
+		mv = new ModelAndView();
+//		Calendar service=null;
+//		try {
+//			service = certify.cal.Calendar.getCalendarService();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		mv.setViewName("/user_myPage/callist");
+		return mv;
+	}
 }

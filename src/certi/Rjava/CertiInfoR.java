@@ -2,21 +2,22 @@ package certi.Rjava;
 
 import org.rosuda.REngine.Rserve.RConnection;
 import org.rosuda.REngine.Rserve.RserveException;
+import org.springframework.stereotype.Service;
 
 import certify.user.dao.CertifyMethod;
 import certify.vo.CertiInfoVO;
 
-
+@Service
 public class CertiInfoR {
 	
 	
 	
-	public void updateCertiInfo(int num) {
+	public CertiInfoVO updateCertiInfo(int num) {
 		//num은 자격종류을 분류하기 위한 분휴번호이다.
 		//0일경우 기능사, 1일경우 산업기사의 형식
 		RConnection conn = null;
 		CertiInfoVO certiInfo = new CertiInfoVO();
-		CertifyMethod certi = new CertifyMethod();
+		//CertifyMethod certi = new CertifyMethod();
 		try {
 			
 			conn = new RConnection();
@@ -143,7 +144,7 @@ public class CertiInfoR {
 								break;
 						case 10: certiInfo.setHow(tmp);
 								System.out.println(x+ " : "+certiInfo.getHow());
-								certi.updateCertiCategory0(certiInfo);
+								//certi.updateCertiCategory0(certiInfo);
 								break;
 					}
 					
@@ -157,7 +158,7 @@ public class CertiInfoR {
 		} finally {
 			conn.close();
 		}
-		
+		return certiInfo;
 	}
 
 }
