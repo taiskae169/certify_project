@@ -93,8 +93,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	
   	<!--  Update for user's Information -->
   	<update id="updatePW" parameterType="user.vo.userVO">
-  		update user_info set pw=#{pw} where id=#{id}
+  		update user_info set pw=#{pw} where id=#{id}	
   	</update>
   	
+  	<insert id="insertInter" parameterType="user.vo.userInterCertiVO">
+  		insert into USER_INTER_CERTI values(seq_intercertify.nextval,#{id},#{cer_name},#{alarm})
+  	</insert>
+  	
+  	<select id="getUserInterCerti" parameterType="String" resultType="user.vo.userJoinInfoInterCertiVO">
+  			SELECT * FROM CERTIFY_INFO C,(select * from USER_INTER_CERTI where id = '${value}' ORDER by u_num ASC) U WHERE C.NUM = U.CER_NAME
+  	</select>
   	
 </mapper>

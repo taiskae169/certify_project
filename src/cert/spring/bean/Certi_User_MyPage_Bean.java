@@ -1,4 +1,4 @@
-package cert.spring.bean;
+	package cert.spring.bean;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
