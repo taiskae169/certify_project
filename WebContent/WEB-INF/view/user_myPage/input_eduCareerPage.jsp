@@ -432,7 +432,7 @@
 				
 				$.ajax({
 					url : "inputUserData_Pro.certi",
-					type: "POST",
+					type: "GET",
 					data : { "eduList" : edu_data , "careerList" : career_data , "certiList" : certi_data },
 					success:function(data){
 						alert("저장되었습니다!");
