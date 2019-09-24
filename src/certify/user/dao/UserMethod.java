@@ -25,6 +25,7 @@ import user.vo.userCertiVO;
 import user.vo.userEduVO;
 import user.vo.userVO;
 import user.vo.user_Edu_edu_valueVO;
+import user.vo.user_info_qual_value;
 
 public class UserMethod {
 
@@ -227,14 +228,12 @@ public class UserMethod {
 	
 	//회원 정보를 리턴
 	public userVO getUserInfo(String id) {
-		System.out.println(id+"님의 정보를 가져옵니다.");
 		userVO vo = sql.selectOne("user.getUserInfo",id);
 		return vo;
 	}
 	
 	//회원 정보를 리턴 (SQL매개변수)
 	public userVO getUserInfo(String id, SqlSessionTemplate sql) {
-		System.out.println(id+"님의 정보를 가져옵니다.");
 		userVO vo = sql.selectOne("user.getUserInfo",id);
 		return vo;
 	}
@@ -242,21 +241,18 @@ public class UserMethod {
 	// 회원 학력정보를 리턴
 	public List<userEduVO> getUserEdu(String id){
 		List eduList = sql.selectList("user.getUserEdu", id);
-		System.out.println(id+"님의 학력정보를 가져옵니다.");
 		return eduList;
 	}
 	
 	// 회원 경력정보를 리턴
 	public List<userCareerVO> getUserCareer(String id){
 		List careerList = sql.selectList("user.getUserCareer", id);
-		System.out.println(id+"님의 경력정보를 가져옵니다.");
 		return careerList;
 	}
 	
 	// 회원 경력정보를 리턴
 		public List<userCertiVO> getUserCerti(String id){
 			List certiList = sql.selectList("user.getUserCerti", id);
-			System.out.println(id+"님의 자격정보를 가져옵니다.");
 			return certiList;
 		}
 	
@@ -272,5 +268,30 @@ public class UserMethod {
 		return edu_value;
 	}
 	
+	// USER_INFO_QUAL 밸류를 리턴
+	public List<user_info_qual_value> getQual(){
+		List<user_info_qual_value> quals = sql.selectList("user.getQual");
+		return quals;
+	}
+	
+	// 회원정보 수정(USER_INFO)
+	public void updateUser_Info(userVO uvo){
+		sql.update("user.updateUser_Info", uvo);
+	}
+	
+	// 회원학력 삭제
+	public void deleteEdu(userEduVO uevo){
+		sql.delete("user.deleteEdu", uevo);
+	}
+	
+	// 회원경력 삭제
+	public void deleteCareer(userCareerVO ucrvo){
+		sql.delete("user.deleteCareer", ucrvo);
+	}
+	
+	// 회원자격사항 삭제
+	public void deleteCerti(userCertiVO uctvo){
+		sql.delete("user.deleteCerti", uctvo);
+	}
 	
 }

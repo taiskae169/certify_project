@@ -12,12 +12,13 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.ui.Model;
+
 import board.vo.*;
 
 
@@ -32,11 +33,52 @@ public class BoardBean {
 	ModelAndView mv =null;
 	
 	@RequestMapping("BoardList.certi")
-	public String BoardList(HttpSession session,HttpServletRequest request,Model model) {
+	public String BoardList(HttpSession session,HttpServletRequest request,Model model,int catenum) {
+		
+		if(catenum==10) {
+			int pageSize = 10;
+			String pageNum = request.getParameter("pageNum");
+			int count = (Integer)sql.selectOne("board.getCountALL");
+			if(pageNum==null) {
+				pageNum="1";
+			}
+			
+			int startRow = 0;
+			int currentPage = Integer.parseInt(pageNum);
+			int number = count-(currentPage - 1) * pageSize + 1;
+			startRow = (currentPage - 1) * pageSize + 1;
+			int endRow = currentPage * pageSize;
+			
+			List<BoardVO> boardlist = null;
+			
+			HashMap<Object, Object> parameters = new HashMap<Object, Object>();
+			parameters.put("start", startRow);
+		    parameters.put("end", endRow);
+			
+			boardlist = (List)sql.selectList("board.getAriticleALL", parameters);
+			model.addAttribute("boardlist", boardlist);
+			model.addAttribute("end", endRow);
+			model.addAttribute("start", startRow);
+			model.addAttribute("count", count);
+			
+				int pageCount = count/pageSize + (count%pageSize == 0 ? 0 : 1 );
+				int startPage = (int)(currentPage/10)*10+1;
+				
+				int endPage = pageCount;
+				
+				List<BoardCateVO> catelist = null;
+				catelist = (List)sql.selectList("board.getCateArticle");
+				model.addAttribute("catelist",catelist);
+				
+				
+				model.addAttribute("startPage", startPage);
+				model.addAttribute("endPage", endPage);
+		}
+		else {
 		
 		int pageSize = 10;
 		String pageNum = request.getParameter("pageNum");
-		int count = (Integer)sql.selectOne("board.getCount");
+		int count = (Integer)sql.selectOne("board.getCountCate",catenum);
 		if(pageNum==null) {
 			pageNum="1";
 		}
@@ -52,22 +94,30 @@ public class BoardBean {
 		HashMap<Object, Object> parameters = new HashMap<Object, Object>();
 		parameters.put("start", startRow);
 	    parameters.put("end", endRow);
+	    parameters.put("cate", catenum);
 		
-		   boardlist = (List)sql.selectList("board.getAriticle", parameters);
-			model.addAttribute("boardlist", boardlist);
-			model.addAttribute("end", endRow);
-			model.addAttribute("start", startRow);
-			model.addAttribute("count", count);
+		boardlist = (List)sql.selectList("board.getAriticleCate", parameters);
+		model.addAttribute("boardlist", boardlist);
+		model.addAttribute("end", endRow);
+		model.addAttribute("start", startRow);
+		model.addAttribute("count", count);
 			
+		
 			
 			int pageCount = count/pageSize + (count%pageSize == 0 ? 0 : 1 );
 			int startPage = (int)(currentPage/10)*10+1;
 			
 			int endPage = pageCount;
 			
+			List<BoardCateVO> catelist = null;
+			catelist = (List)sql.selectList("board.getCateArticle");
+			model.addAttribute("catelist",catelist);
+			
 			
 			model.addAttribute("startPage", startPage);
 			model.addAttribute("endPage", endPage);
+		}
+			
 		return "/board/Boardlist";
 	}
 	
@@ -78,14 +128,13 @@ public class BoardBean {
 		model.addAttribute("board", vo);
 		session.setAttribute("memId", "bong");
 		int count = sql.selectOne("board.CommentCount", num);
-		
 		List<CommentVO> Clist = null;
 		Clist = (List)sql.selectList("board.getComment", num);
 		model.addAttribute("Clist", Clist);
 		model.addAttribute("count", count);
-		
-		
-		
+		List<BoardCateVO> catelist = null;
+		catelist = (List)sql.selectList("board.getCateArticle");
+		model.addAttribute("catelist",catelist);
 		
 		return "/board/Boardcontent";
 	}
@@ -156,7 +205,7 @@ public class BoardBean {
 				MultipartHttpServletRequest request,Model model,HttpSession session) throws IOException{
 		    String orgName = null;
 		    String newName = null;
-		
+	
 			MultipartFile mf = request.getFile("save");
 			String imgs = request.getRealPath("imgs");
 			
@@ -216,9 +265,30 @@ public class BoardBean {
 		model.addAttribute("count", count);
 		model.addAttribute("comment_num", c_num);
 		
-		
-		
 		return "/board/Boardcontent";
 	}
+	
+	@RequestMapping("BoardReCommentWrite.certi")
+	public String BoardReCommentWrite(CommentVO cvo,HttpSession session,int b_num,int c_num,Model model) {
+		cvo.setId((String)session.getAttribute("memId"));
+		cvo.setTable_num(b_num);
+		cvo.setContent(cvo.getContent());
+		cvo.setNum(c_num);
+		cvo.setStep(cvo.getStep()+1);
+		
+		
+		model.addAttribute("num", b_num);
+		sql.insert("board.ReCommentWrite", cvo);
+		return "/board/BoardCommentWrite";
+	}
+	
+	@RequestMapping("BoardCommentDelete.certi")
+	public String BoardCommentDelete(HttpSession session,int b_num,int c_num,Model model) {
+		model.addAttribute("num", b_num);
+		sql.delete("board.CommentDelete", c_num);
+		return "/board/BoardCommentDelete";
+	}
+	
+	
 	
 }

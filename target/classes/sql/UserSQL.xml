@@ -96,5 +96,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		update user_info set pw=#{pw} where id=#{id}
   	</update>
   	
+  	<!-- get user_info_qual_value -->
+  	<select id="getQual" resultType="user.vo.user_info_qual_value">
+  		select * from USER_INFO_QUAL
+  	</select>
+  	
+  	<!-- update user_info -->
+  	<update id="updateUser_Info" parameterType="user.vo.userVO">
+  		update USER_INFO set pw=#{pw}, wana=#{wana}, qual=#{qual} where id=#{id}
+  	</update>
+  	
+  	<!-- delete user Edu -->
+  	<delete id="deleteEdu" parameterType="user.vo.userEduVO">
+  		delete USER_EDU where id=#{id} and edu_name=#{edu_name} 
+  			and major_name=#{major_name} and edu=#{edu} and major=#{major}
+  	</delete>
+  	
+  	<!-- delete user Career -->
+  	<delete id="deleteCareer" parameterType="user.vo.userCareerVO">
+  		delete USER_CAREER where id=#{id} and company=#{company} and comp_cate=#{comp_cate}
+  	</delete>
+  	
+  	<!-- delete user Certi -->
+  	<delete id="deleteCerti" parameterType="user.vo.userCertiVO">
+  		delete USER_CERTI where id=#{id} and cer_name=#{cer_name} and type=#{type}
+  	</delete>
   	
 </mapper>

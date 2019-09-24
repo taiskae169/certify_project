@@ -3,11 +3,11 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
-	<select id="getCount" resultType="int">
+	<select id="getCountALL" resultType="int">
 		select count(*) from board
 	</select>
-	<select id="getAriticle" parameterType="map" resultType="board.vo.BoardVO">
-  		select * from (select num,title,id,content,newname,reg_date,step,orgname,readcount,rownum r from (select * from board order by num desc) order by num desc) 
+	<select id="getAriticleALL" parameterType="map" resultType="board.vo.BoardVO">
+  		select * from (select num,cate,title,id,content,newname,reg_date,step,orgname,readcount,rownum r from (select * from board order by num desc) order by num desc) 
   		<![CDATA[where r >= #{start} and r <= #{end}]]> 
   	</select>
   	<select id="content" parameterType="int" resultType="board.vo.BoardVO">
@@ -35,10 +35,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from board_comment where table_num=#{value}
 	</select>
   	<select id="getComment" parameterType="int" resultType="board.vo.CommentVO">
-  		select * from (select * from board_comment where table_num=#{value} order by num asc)order by step asc
+  		select * from (select * from board_comment where table_num=#{value} order by step asc)order by num asc
   	</select>
   	<insert id="CommentWrite" parameterType="board.vo.CommentVO">
   		insert into board_comment values(board_comment_seq.nextval,#{table_num},#{id},sysdate,0,#{content})
   	</insert>
+  	<insert id="ReCommentWrite" parameterType="board.vo.CommentVO">
+  		insert into board_comment values(#{num},#{table_num},#{id},sysdate,#{step},#{content})
+  	</insert>
+  	<delete id="CommentDelete" parameterType="int">
+  		delete from board_comment where num=#{value}
+  	</delete>
+  		<select id="getAriticleCate" parameterType="map" resultType="board.vo.BoardVO">
+  		select * from (select num,cate,title,id,content,newname,reg_date,step,orgname,readcount,rownum r from (select * from board where cate=#{cate} order by num desc) order by num desc) 
+  		<![CDATA[where r >= #{start} and r <= #{end}]]> 
+  		</select>
+  		
+  		<select id="getCountCate" parameterType="int" resultType="int">
+		select count(*) from board where cate=#{value}
+	</select>
   	
+  	<select id="getAriticleNotice" resultType="board.vo.BoardVO">
+  		select * from (select num,cate,title,id,content,newname,reg_date,step,orgname,readcount,rownum r from (select * from board where cate=9 order by num desc) order by num desc)
+  		<![CDATA[where r >=1 and r <=4 ]]> 
+  		</select>
 </mapper>

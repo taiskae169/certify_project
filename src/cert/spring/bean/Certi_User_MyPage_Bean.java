@@ -6,12 +6,14 @@ import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLDecoder;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +30,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.api.services.calendar.Calendar;
+
 import certify.user.dao.UserMethod;
 import certify.vo.Cer_CategoryVO;
 import certify.vo.CertifyVO;
@@ -38,6 +42,7 @@ import user.vo.userCertiVO;
 import user.vo.userEduVO;
 import user.vo.userVO;
 import user.vo.user_Edu_edu_valueVO;
+import user.vo.user_info_qual_value;
 
 @Repository
 @Controller
@@ -56,7 +61,7 @@ public class Certi_User_MyPage_Bean {
 	userEduVO uevo = null;
 	
 	@RequestMapping("myPage.certi")
-	public ModelAndView myPage(HttpSession session) {
+	public ModelAndView myPage(HttpSession session, HttpServletRequest request) {
 		mv = new ModelAndView();	
 		if(session.getAttribute("sessionID")!=null) {
 			userVO uvo = userdao.getUserInfo((String) session.getAttribute("sessionID"));
@@ -75,11 +80,15 @@ public class Certi_User_MyPage_Bean {
 			List<userCertiVO> certiList = userdao.getUserCerti(id);
 			if(certiList!=null) mv.addObject("certiList", certiList);
 			
+			List<user_info_qual_value> quals = userdao.getQual();
+			mv.addObject("quals",quals);
+			
 			mv.addObject("edu_value",edu_value);
 			mv.addObject("allCerti", cf);
 			mv.addObject("certi_cate", certi_cate);	
 			mv.addObject("uvo",uvo);
 		}
+		if(request.getParameter("type")!=null) mv.addObject("type", request.getParameter("type"));
 		mv.setViewName("/user_myPage/myPage");
 		return mv;
 	}
@@ -93,9 +102,93 @@ public class Certi_User_MyPage_Bean {
 		return mv;
 	}
 	
+
+	@RequestMapping("/myPage_modify.certi")
+	public ModelAndView myPage_modify() {
+		mv = new ModelAndView();
+		
+		mv.setViewName("/user_myPage/myPage_modify");
+		return mv;
+	}
 	
+	@RequestMapping(value="/myPage_modifyPro.certi", method = RequestMethod.POST)
+	public ModelAndView modifyUserData(HttpSession session, String user_info) throws Exception {
+		mv = new ModelAndView();
+		String id = (String)session.getAttribute("sessionID");
+		
+		if(user_info!=null) {
+			String user_infoEnc = URLDecoder.decode(user_info, "UTF-8");
+			String [] user_infoArr = user_infoEnc.split("&");
+			for(int i = 0; i<user_infoArr.length; i++) {
+				user_infoArr[i] = user_infoArr[i].substring(user_infoArr[i].indexOf("=")+1);
+				// [0] : pw, [1] : wana, [2] : qual
+			}
+			userVO uvo = new userVO();
+			uvo.setId(id); 
+			uvo.setPw(user_infoArr[0]); 
+			uvo.setWana(Integer.parseInt(user_infoArr[1]));
+			uvo.setQual(Integer.parseInt(user_infoArr[2]));
+			userdao.updateUser_Info(uvo);
+		}
+		
+		mv.setViewName("/user_myPage/myPage_modifyPro");
+		return mv;
+	}
 	
-	
+	@RequestMapping("/myPage_delete.certi")
+	public ModelAndView myPage_delete_edu(String userEdu, String userCareer, String userCerti,
+			HttpSession session) throws Exception {
+		mv = new ModelAndView();
+		
+		userEduVO uevo = new userEduVO();
+		userCareerVO ucrvo = new userCareerVO();
+		userCertiVO uctvo = new userCertiVO();
+		
+		String id = (String)session.getAttribute("sessionID");
+		if(userEdu!=null) {
+			uevo.setId(id);
+			String userEduEnc = URLDecoder.decode(userEdu, "UTF-8");
+			String [] userEduArr = userEduEnc.split("&");
+			for(int i = 0; i<userEduArr.length; i++) {
+				userEduArr[i] = userEduArr[i].substring(userEduArr[i].indexOf("=")+1);
+				// [0] : edu_name, [1] : major_name, [2] : edu, [3] : major, [4] : state
+				// [5] : ent_Date, [6] : gra_Date
+			}
+			uevo.setEdu_name(userEduArr[0]);
+			uevo.setMajor_name(userEduArr[1]);
+			uevo.setEdu(Integer.parseInt(userEduArr[2]));
+			uevo.setMajor(Integer.parseInt(userEduArr[3]));
+			uevo.setState(Integer.parseInt(userEduArr[4]));
+			userdao.deleteEdu(uevo);	
+		}else if(userCareer!=null) {
+			ucrvo.setId(id);
+			String userCareerEnc = URLDecoder.decode(userCareer, "UTF-8");
+			String [] userCareerArr = userCareerEnc.split("&");
+			for(int i = 0; i<userCareerArr.length; i++) {
+				userCareerArr[i] = userCareerArr[i].substring(userCareerArr[i].indexOf("=")+1);
+				// [0] : edu_name, [1] : major_name, [2] : edu, [3] : major, [4] : state
+				// [5] : ent_Date, [6] : gra_Date
+			}
+			ucrvo.setCompany(userCareerArr[0]);
+			ucrvo.setComp_cate(Integer.parseInt(userCareerArr[1]));
+			userdao.deleteCareer(ucrvo);	
+		}else if(userCerti!=null) {
+			uctvo.setId(id);
+			String userCertiEnc = URLDecoder.decode(userCerti, "UTF-8");
+			String [] userCertiArr = userCertiEnc.split("&");
+			for(int i = 0; i<userCertiArr.length; i++) {
+				userCertiArr[i] = userCertiArr[i].substring(userCertiArr[i].indexOf("=")+1);
+				// [0] : edu_name, [1] : major_name, [2] : edu, [3] : major, [4] : state
+				// [5] : ent_Date, [6] : gra_Date
+			}
+			uctvo.setCer_name(Integer.parseInt(userCertiArr[0]));
+			uctvo.setType(Integer.parseInt(userCertiArr[1]));
+			userdao.deleteCerti(uctvo);	
+		}
+		mv.setViewName("/user_myPage/myPage_delete");
+		return mv;
+	}
+
 	
 	@RequestMapping("input_eduCareer.certi")
 	public ModelAndView input_eduCareer(HttpServletRequest request, HttpSession session){
@@ -411,6 +504,53 @@ public class Certi_User_MyPage_Bean {
 		mv.setViewName("/user_myPage/inputUserData_Pro");
 		return mv;
 	}
+	
+	@RequestMapping("/caltest.certi")
+	public ModelAndView caltest() {
+		mv = new ModelAndView();
+//		Calendar service=null;
+//		try {
+//			service = certify.cal.Calendar.getCalendarService();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		mv.setViewName("/user_myPage/calTest");
+		return mv;
+	}
+	
+	@RequestMapping("/calteee.certi")
+	public ModelAndView caltest2() {
+		mv = new ModelAndView();
+//		Calendar service=null;
+//		try {
+//			service = certify.cal.Calendar.getCalendarService();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		mv.setViewName("/user_myPage/calTest2");
+		return mv;
+	}
+	
+	
+	@RequestMapping("/callist.certi")
+	public ModelAndView CalList() {
+		mv = new ModelAndView();
+//		Calendar service=null;
+//		try {
+//			service = certify.cal.Calendar.getCalendarService();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		mv.setViewName("/user_myPage/callist");
+		return mv;
+	}
+	
 	
 	
 }

@@ -44,7 +44,7 @@ public class CertiInfoVO {
 	}
 	public void setSiteLink(String siteLink) {
 		this.siteLink = siteLink;
-	}
+	}	
 	public String getSite() {
 		return site;
 	}

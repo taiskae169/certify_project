@@ -35,8 +35,6 @@ public class SanUpCond{
 
 	userVO usvo = null;
 	
-	// 가능/불가능 리턴을 위한 변수
-	private boolean applyPossible = false;	
 	
 	// 날짜 비교를 위한 변수
 	private int year = 365;	
@@ -45,6 +43,7 @@ public class SanUpCond{
 	// 조건 1. 관련학과 2년제 전문대학 졸업예정자
 	public boolean sanup_cond1(userVO uvo, HashMap<Integer, Long> careerMap, 
 			List<userEduVO> user_eduList, CertifyVO cfvo,  List<userCertiVO> user_certiList) {
+		boolean applyPossible = false;	
 		for(int i=0; i<user_eduList.size(); i++) {
 			if(user_eduList.get(i).edu==1 && user_eduList.get(i).state==2 && user_eduList.get(i).major==cfvo.getCate()) {
 				applyPossible=true; break;
@@ -56,6 +55,7 @@ public class SanUpCond{
 	// 조건 2. 관련학과 3년제 전문대학 졸업예정자
 	public boolean sanup_cond2(userVO uvo, HashMap<Integer, Long> careerMap, 
 			List<userEduVO> user_eduList, CertifyVO cfvo,  List<userCertiVO> user_certiList) {
+		boolean applyPossible = false;	
 		for(int i=0; i<user_eduList.size(); i++) {
 			if(user_eduList.get(i).edu==2 && user_eduList.get(i).state==2 && user_eduList.get(i).major==cfvo.getCate()) {
 				applyPossible=true; break;
@@ -67,6 +67,7 @@ public class SanUpCond{
 	// 조건 3. 관련학과 졸업자(2년제)
 	public boolean sanup_cond3(userVO uvo, HashMap<Integer, Long> careerMap, 
 			List<userEduVO> user_eduList, CertifyVO cfvo,  List<userCertiVO> user_certiList) {
+		boolean applyPossible = false;	
 		for(int i=0; i<user_eduList.size(); i++) {
 			if(user_eduList.get(i).edu==1 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
 				applyPossible=true; break;
@@ -79,6 +80,7 @@ public class SanUpCond{
 	// 조건 4. 관련학과 졸업자(3년제)
 	public boolean sanup_cond4(userVO uvo, HashMap<Integer, Long> careerMap, 
 			List<userEduVO> user_eduList, CertifyVO cfvo,  List<userCertiVO> user_certiList) {
+		boolean applyPossible = false;	
 		for(int i=0; i<user_eduList.size(); i++) {
 			if(user_eduList.get(i).edu==2 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
 				applyPossible=true; break;
@@ -90,6 +92,7 @@ public class SanUpCond{
 	// 조건 5. 관련학과 4년제 대학 전 과정의 1/2 이상 마친자
 	public boolean sanup_cond5(userVO uvo, HashMap<Integer, Long> careerMap, 
 			List<userEduVO> user_eduList, CertifyVO cfvo,  List<userCertiVO> user_certiList) {
+		boolean applyPossible = false;	
 		for(int i=0; i<user_eduList.size(); i++) {
 			if(user_eduList.get(i).edu==3 && user_eduList.get(i).state==1 && user_eduList.get(i).major==cfvo.getCate()) {
 				long diff = today.getTime() - user_eduList.get(i).ent_date.getTime();
@@ -105,6 +108,7 @@ public class SanUpCond{
 	// 조건 6. 관련학과 5년제 대학 전 과정의 1/2 이상 마친자
 	public boolean sanup_cond6(userVO uvo, HashMap<Integer, Long> careerMap, 
 			List<userEduVO> user_eduList, CertifyVO cfvo,  List<userCertiVO> user_certiList) {
+		boolean applyPossible = false;	
 		for(int i=0; i<user_eduList.size(); i++) {
 			if(user_eduList.get(i).edu==4 && user_eduList.get(i).state==1 && user_eduList.get(i).major==cfvo.getCate()) {
 				long diff = today.getTime() - user_eduList.get(i).ent_date.getTime();
@@ -121,6 +125,7 @@ public class SanUpCond{
 	// 조건 7. 관련학과 6년제 대학 전 과정의 1/2 이상 마친자
 	public boolean sanup_cond7(userVO uvo, HashMap<Integer, Long> careerMap, 
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
+		boolean applyPossible = false;	
 		for(int i=0; i<user_eduList.size(); i++) {
 			if(user_eduList.get(i).edu==5 && user_eduList.get(i).state==1 && user_eduList.get(i).major==cfvo.getCate()) {
 				long diff = today.getTime() - user_eduList.get(i).ent_date.getTime();
@@ -136,6 +141,7 @@ public class SanUpCond{
 	// 조건8. 관련학과 전공심화과정의 학사학위 취득예정자
 	public boolean sanup_cond8(userVO uvo, HashMap<Integer, Long> careerMap, 
 			List<userEduVO> user_eduList, CertifyVO cfvo,  List<userCertiVO> user_certiList) {
+		boolean applyPossible = false;	
 		for(int i=0; i<user_eduList.size(); i++) {
 			if(user_eduList.get(i).edu==6 && user_eduList.get(i).state==2 && user_eduList.get(i).major==cfvo.getCate()) {
 				applyPossible=true; break;
@@ -147,6 +153,7 @@ public class SanUpCond{
 	// 조건9. 관련학과 전공심화과정의 학사학위 취득자
 	public boolean sanup_cond9(userVO uvo, HashMap<Integer, Long> careerMap,
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
+		boolean applyPossible = false;	
 		for(int i=0; i<user_eduList.size(); i++) {
 			if(user_eduList.get(i).edu==6 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
 				applyPossible=true; break;
@@ -158,6 +165,7 @@ public class SanUpCond{
 	// 조건 10. 관련학과 졸업예정자(4년제)
 	public boolean sanup_cond10(userVO uvo, HashMap<Integer, Long> careerMap, 
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
+		boolean applyPossible = false;	
 		for(int i=0; i<user_eduList.size(); i++) {
 			if(user_eduList.get(i).edu==3 && user_eduList.get(i).state==2 && user_eduList.get(i).major==cfvo.getCate()) {
 				applyPossible=true; break;
@@ -169,6 +177,7 @@ public class SanUpCond{
 	// 조건 11. 관련학과 졸업자(4년제)
 	public boolean sanup_cond11(userVO uvo, HashMap<Integer, Long> careerMap,
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
+		boolean applyPossible = false;	
 		for(int i=0; i<user_eduList.size(); i++) {
 			if(user_eduList.get(i).edu==3 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
 				applyPossible=true; break;
@@ -180,6 +189,7 @@ public class SanUpCond{
 	// 조건 12. 기능사 자격 취득 후 동일 및 유사직무분야에서 1년이상 실무에 종사한 자
 	public boolean sanup_cond12(userVO uvo, HashMap<Integer, Long> careerMap, 
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
+		boolean applyPossible = false;	
 		for(int i=0; i<user_certiList.size(); i++) {
 			if(user_certiList.get(i).cate==cfvo.getCate() && user_certiList.get(i).type==0) {
 				if(careerMap!=null && careerMap.containsKey(cfvo.getCate()) ) {
@@ -195,6 +205,7 @@ public class SanUpCond{
 	// 조건 13. 동일 및 유사직무분야에서 2년이상 실무에 종사한 자
 	public boolean sanup_cond13(userVO uvo, HashMap<Integer, Long> careerMap, 
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
+		boolean applyPossible = false;	
 		if(careerMap!=null && careerMap.containsKey(cfvo.getCate())) {
 	   		if(careerMap.get(cfvo.getCate())>=year*2) applyPossible=true;
 	   	}
@@ -204,6 +215,7 @@ public class SanUpCond{
 	// 조건 14. 동일 및 유사직무분야의 고용노동부령이 정하는 교육훈련기관의 "산업기사 수준 기술훈련과정" 이수예정자
 	public boolean sanup_cond14(userVO uvo, HashMap<Integer, Long> careerMap, 
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
+		boolean applyPossible = false;	
 		for(int i=0; i<user_eduList.size(); i++) {
 			if(user_eduList.get(i).edu==7 && user_eduList.get(i).state==2 && user_eduList.get(i).major==cfvo.getCate()) {
 				applyPossible=true; break;
@@ -215,6 +227,7 @@ public class SanUpCond{
 	// 조건 15. 동일 및 유사직무분야의 고용노동부령이 정하는 교육훈련기관의 "산업기사 수준 기술훈련과정" 이수자
 	public boolean sanup_cond15(userVO uvo, HashMap<Integer, Long> careerMap,
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
+		boolean applyPossible = false;	
 		for(int i=0; i<user_eduList.size(); i++) {
 			if(user_eduList.get(i).edu==7 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
 				applyPossible=true; break;
@@ -226,6 +239,7 @@ public class SanUpCond{
 	// 조건 16. 동일 및 유사 직무분야의 다른 종목 산업기사 이상의 자격을 취득한 자
 	public boolean sanup_cond16(userVO uvo, HashMap<Integer, Long> careerMap, 
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
+		boolean applyPossible = false;	
 		if(user_certiList!=null) {
 			for(int i=0; i<user_certiList.size(); i++) {
 				if(user_certiList.get(i).cate==cfvo.getCate() && user_certiList.get(i).type >= cfvo.getType()) {

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+  <script src="//code.jquery.com/jquery.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +14,7 @@
   <title>자격루</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="/certify/resource/gen/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
   <!-- Custom fonts for this template -->
@@ -20,7 +22,9 @@
   <!-- Custom styles for this template -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
   
-  <script src="//code.jquery.com/jquery.js"></script>
+
+  
+  
 
 </head>
 
@@ -32,7 +36,7 @@
   <!-- Masthead -->
   <header>
     <div class="overlay" style="height:100px" style="width:80%; background:white;margin:auto;">
-    	<img src="/certify/resource/image/main/test.jpg" style="width:50px;height:50px;top:30px;left:130px;position:relative; float:left"/>
+    	<img src="/certify_project/resource/image/main/test.jpg" style="width:50px;height:50px;top:30px;left:130px;position:relative; float:left"/>
     	<div class="col-md-10 col-lg-8 col-xl-7 mx-auto" style="top:30px; left:130px">
           <form>
             <div class="form-row">
@@ -47,34 +51,67 @@
         </div>
         
     </div>
-    
-
   </header>
+  
+	<jsp:include page="/WEB-INF/view/Bar/NavBar.jsp"/>
 
   <!-- Icons Grid -->
   <hr style="width:1450px;"/>
-
-  <nav class="navbar navbar-light bg-light static-top" style="width:1450px;;margin:auto">
-    <div class="container">
-      <a class="navbar-brand" href="#">자격루</a>
-      <a class="btn btn-primary" href="#">Login</a>
-    </div>
-  </nav>
-
+  
+  <!--  nav bar -->
+      
   <!-- Image Showcases -->
   <section class="showcase" style="width:1450px;;margin:auto;">
     
   </section >
-  <div style="width:1450px;height:606px;margin:auto;display:block;">
+  <div position = "static" style="width:1450px;height:606px;margin:auto;display:block;">
 	<div style="width:59%;height:600px;border-style:solid;float:left;">
     	<div style="height:380px;border-style:solid;margin:3px;">
     		신청가능 시험 목록 출력창
     	</div>
     	<div style="height:200px;border-style:solid;margin:3px;">
-    		공지사항 <br />
+    		<c:if test="${boardcount==0 }">
+<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+									<tr>
+										<td align="center">
+											<h3>해당하는 게시글이 없습니다.. :(</h3>
+										</td>
+									</tr>	
+							</table>
+</c:if>
+<c:if test="${nocount!=0 }">
+<div position = "static">
+<table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0" border="1px">
+			<thead>
+				<tr height="30"  style="font-size:20px">
+					<td align = "center" width="75">번호</td>
+					<td align = "center" width="100">작성자</td>
+					<td align = "center" width="300">제목</td>
+					
+				</tr>
+			</thead>
+        	<tbody>
+        		<c:forEach begin="0" end="${noboardlist.size()-1}" step="1" var="i">
+        		<c:set var="noboard" value="${noboardlist[i]}"/>
+        		<tr height="30">
+        		<td align="center"  width="50" > ${noboard.num}</td>
+        		<td align="center"  width="50" > ${noboard.id}</td>
+        		<c:if test="${noboard.newname != null}">
+        		<td align="center"  width="200" ><a href="BoardContent.certi?num=${noboard.num }"> ${noboard.title} [이미지 있어유]</a></td>
+        		</c:if>
+        		<c:if test="${noboard.newname == null}">
+        		<td align="center"  width="200" ><a href="BoardContent.certi?num=${noboard.num }"> ${noboard.title} [이미지 없어유]</a></td>
+        		</c:if>
+        		</tr>
+        		</c:forEach>
+        	</tbody>
+        	</table>
+        	</div>
+        	</c:if>
     		
     	</div>
     </div>
+    
     <div style="width:580px;height:600px;border-style:solid;float:right;">
     	<div style="height:152.25px;margin:3px;">
     		<jsp:include page="/WEB-INF/view/main/loginbox.jsp">
@@ -86,7 +123,43 @@
     		응시자격링크
     	</div>
     	<div style="height:311px;margin:3px;border-style:solid;">
-    		게시판
+    		<c:if test="${boardcount==0 }">
+<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+									<tr>
+										<td align="center">
+											<h3>해당하는 게시글이 없습니다.. :(</h3>
+										</td>
+									</tr>	
+							</table>
+</c:if>
+<c:if test="${boardcount!=0 }">
+<div position = "static">
+<table class="table table-bordered table-striped" id="dataTable" width="750" cellspacing="0" border="1px">
+			<thead>
+				<tr height="40"  style="font-size:20px">
+					<td align = "center" width="75">번호</td>
+					<td align = "center" width="100">작성자</td>
+					<td align = "center" width="300">제목</td>
+					
+				</tr>
+			</thead>
+        	<tbody>
+        		<c:forEach begin="0" end="${boardlist.size()-1}" step="1" var="i">
+        		<c:set var="board" value="${boardlist[i]}"/>
+        		<tr height="30">
+        		<td align="center"  width="75" > ${board.num}</td>
+        		<td align="center"  width="100" > ${board.id}</td>
+        		<c:if test="${board.newname != null}">
+        		<td align="center"  width="300" ><a href="BoardContent.certi?num=${board.num }"> ${board.title} [이미지 있어유]</a></td>
+        		</c:if>
+        		<c:if test="${board.newname == null}">
+        		<td align="center"  width="300" ><a href="BoardContent.certi?num=${board.num }"> ${board.title} [이미지 없어유]</a></td>
+        		</c:if>
+        		</tr>
+        		</c:forEach>
+        	</tbody>
+        	</table>
+        	</c:if>
     	</div>
     </div>
    </div>
