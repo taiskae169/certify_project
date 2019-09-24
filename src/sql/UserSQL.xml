@@ -93,7 +93,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	
   	<!--  Update for user's Information -->
   	<update id="updatePW" parameterType="user.vo.userVO">
-  		update user_info set pw=#{pw} where id=#{id}
+  		update user_info set pw=#{pw} where id=#{id}	
   	</update>
   	
   	<!-- get user_info_qual_value -->

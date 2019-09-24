@@ -41,6 +41,7 @@
 		p:password="class12"
 		destroy-method="close"
 	/>
+	
 	<bean id = "sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="/WEB-INF/mybatis/mybatis_config.xml" />
@@ -58,7 +59,7 @@
 	
 	
 	<!-- Bean List -->
-	<bean id="login" class="certify.user.dao.UserMethod" />
+	<bean id="login" class="certify.user.dao.UserMethod" />	
 	<bean id="certi" class="certify.user.dao.CertifyMethod" />
 	
 	<bean id="userCertiVO" class="user.vo.userCertiVO" />
