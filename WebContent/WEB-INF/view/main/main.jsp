@@ -36,9 +36,9 @@
   <!-- Masthead -->
   <header>
     <div class="overlay" style="height:100px" style="width:80%; background:white;margin:auto;">
-    	<img src="/certify_project/resource/image/main/test.jpg" style="width:50px;height:50px;top:30px;left:130px;position:relative; float:left"/>
+    	<img src="/certify/resource/image/main/test.jpg" style="width:50px;height:50px;top:30px;left:130px;position:relative; float:left"/>
     	<div class="col-md-10 col-lg-8 col-xl-7 mx-auto" style="top:30px; left:130px">
-          <form>
+          <form action="/certify/cerinfo/search.certi">
             <div class="form-row">
               <div class="col-12 col-md-9 mb-2 mb-md-0">
                 <input type="text" class="form-control form-control-lg">
@@ -66,8 +66,42 @@
   </section >
   <div position = "static" style="width:1450px;height:606px;margin:auto;display:block;">
 	<div style="width:59%;height:600px;border-style:solid;float:left;">
-    	<div style="height:380px;border-style:solid;margin:3px;">
-    		신청가능 시험 목록 출력창
+    	<div style="height:380px;border-style:solid;margin:3px; text-align:center;">
+    		<h4>신청가능한 시험 목록</h4>
+    		<hr />
+    		<table class="table table-striped" >
+    			<thead>
+    				<tr>
+    					<td>시험이름</td>
+    					<td>신청기간</td>
+    					<td>신청 사이트</td>
+    				</tr>
+    			</thead>
+    			<tbody>
+    				<tr>
+    					<td></td>
+    					<td>신청가능한 시험이 없습니다.</td>
+    					<td></td>
+    				</tr>
+    				<tr>
+    					<td> </td>
+    					<td> </td>
+    					<td> </td>
+    				</tr>
+    				<tr>
+    					<td> </td>
+    					<td> </td>
+    					<td> </td>
+    				</tr>
+    				<tr>
+    					<td> </td>
+    					<td> </td>
+    					<td> </td>
+    				</tr>
+    			</tbody>
+
+			</table>
+
     	</div>
     	<div style="height:200px;border-style:solid;margin:3px;">
     		<c:if test="${boardcount==0 }">
@@ -113,14 +147,29 @@
     </div>
     
     <div style="width:580px;height:600px;border-style:solid;float:right;">
-    	<div style="height:152.25px;margin:3px;">
+    	<div style="height:132.25px;margin:3px;">
     		<jsp:include page="/WEB-INF/view/main/loginbox.jsp">
     			<jsp:param value="${naverURI}" name="naverURI"/>
     			<jsp:param value="${sessionID}" name="sessionID"/>
     		</jsp:include>
     	</div>
     	<div style="height:119px;margin:3px;border-style:solid;">
-    		응시자격링크
+    		<a href="javascript:openlist();"><img src="/certify/resource/image/main/준비중.jpg" style="height:113px;width:561px;"></a>
+    		<script type="text/javascript">
+    		console.log('tst' + '${sessionID}');
+    		console.log('${sessionID}');
+    			function openlist(){
+        			console.log('${sessionID}');
+					var sessionID = '${sessionID}';
+        			if(sessionID){
+        				window.open('http://localhost:8080/certify/user/mp/callist.certi', '리스트',"toolbar=no, menubar=no, scrollbars=no");
+            			}else{
+                			alert('로그인이 필요합니다.');
+                		}
+    				
+        			}
+				
+			</script>
     	</div>
     	<div style="height:311px;margin:3px;border-style:solid;">
     		<c:if test="${boardcount==0 }">
@@ -133,10 +182,10 @@
 							</table>
 </c:if>
 <c:if test="${boardcount!=0 }">
-<div position = "static">
-<table class="table table-bordered table-striped" id="dataTable" width="750" cellspacing="0" border="1px">
+<div position = "static" style="hight:315px;">
+<table class="table table-bordered table-striped" id="dataTable" style="width:"750"; cellspacing:"0"; border:"1px";">
 			<thead>
-				<tr height="40"  style="font-size:20px">
+				<tr height="40"  style="font-size:18px">
 					<td align = "center" width="75">번호</td>
 					<td align = "center" width="100">작성자</td>
 					<td align = "center" width="300">제목</td>
@@ -164,18 +213,41 @@
     </div>
    </div>
   <!-- Testimonials -->
-  <div style="width:1450px;;height:100px;margin:auto;border-style:solid;display:block;">
- 		<ul style="list-style:none;margin:0;padding:0;">
- 			<li style="margin:0;padding:0;border=0;float:left;"><img src="/certify/resource/image/main/qnet.jpg" style="height:70px;weghit:300px;"></li>
- 			<li style="margin:0;padding:0;border=0;float:left;"><img src="/certify/resource/image/main/qnet.jpg" style="height:70px;weghit:300px;"></li>
- 			<li style="margin:0;padding:0;border=0;float:left;"><img src="/certify/resource/image/main/qnet.jpg" style="height:70px;weghit:300px;"></li>
- 			<li style="margin:0;padding:0;border=0;float:left;"><img src="/certify/resource/image/main/qnet.jpg" style="height:70px;weghit:300px;"></li>
+  <div style="width:1450px;;height:100px;margin:auto;display:inline-block;">
+ 		<ul style="list-style:none;margin:0;padding:0;text-align:center;">
+ 			<li style="margin:6px;padding:0;border=0;float:left;">
+ 				<a href="http://www.q-net.or.kr"><img src="/certify/resource/image/main/qnet.jpg" style="height:70px;weghit:300px;" class="img-thumbnail"></a>
+ 			</li>
+ 			<li style="margin:6px;padding:0;border=0;float:left;">
+ 				<img src="/certify/resource/image/main/kor_logo.jpg" style="height:70px;weghit:300px;" class="img-thumbnail">
+ 			</li>
+ 			<li style="margin:6px;padding:0;border=0;float:left;">
+ 				<img src="/certify/resource/image/main/toeic.jpg" style="height:70px;weghit:300px;" class="img-thumbnail">
+ 			</li>
+ 			<li style="margin:6px;padding:0;border=0;float:left;">
+ 				<img src="/certify/resource/image/main/tofle.jpg" style="height:70px;weghit:300px;" class="img-thumbnail">
+ 			</li>
+ 			<li style="margin:6px;padding:0;border=0;float:left;">
+ 				<img src="/certify/resource/image/main/HSK.jpg" style="height:70px;weghit:300px;" class="img-thumbnail">
+ 			</li>
+ 			<li style="margin:6px;padding:0;border=0;float:left;">
+ 				<img src="/certify/resource/image/main/JLPT.jpg" style="height:70px;weghit:300px;" class="img-thumbnail">
+ 			</li>
+ 			<li style="margin:6px;padding:0;border=0;float:left;">
+ 				<img src="/certify/resource/image/main/delf-page.png" style="height:70px;weghit:300px;" class="img-thumbnail">
+ 			</li>
+  			<li style="margin:6px;padding:0;border=0;float:left;">
+ 				<img src="/certify/resource/image/main/jungbo.jpg" style="height:70px;weghit:300px;" class="img-thumbnail">
+ 			</li>
+ 			<li style="margin:6px;padding:0;border=0;float:left;">
+ 				<img src="/certify/resource/image/main/Goethe.png" style="height:70px;weghit:300px;" class="img-thumbnail">
+ 			</li>
  		</ul>
   </div>
 	<!-- 자격증 사이트 목록 -->
 
   <!-- Footer -->
-  <footer class="footer bg-light">
+  <footer>
     <div class="container">
       <div class="row">
         <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
