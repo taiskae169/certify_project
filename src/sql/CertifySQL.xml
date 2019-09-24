@@ -77,5 +77,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from CERTIFY_INFO where type in (5) and name like '%'||#{certi_name}||'%'
 	</select>
 	
+		<select id="getCertifySearch" parameterType="String" resultType="certify.vo.CertifyVO">
+  		select * from CERTIFY_INFO where name like '%'||#{value}||'%' order by num asc
+  		</select>
+  		
+  		<select id="CertifiType" parameterType="int" resultType="certify.vo.CertificationVO">
+  			SELECT * FROM CERTIFY_INFO WHERE TYPE=#{value}
+  		</select>
+  	
   	
 </mapper>

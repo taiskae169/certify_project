@@ -40,7 +40,7 @@
 <c:if test="${!empty sessionID}">
 	<h3>환영합니다. ${name}님</h3>
 	<div style="float:left;">
-		<a class="btn btn-default" href="/certify/InterestMain.certi" role="button" style="display:block;float:right;">관심자격증</a>
+		<a class="btn btn-default" onclick="InterestMain()" role="button" style="display:block;float:right;">관심자격증</a>
 		<a class="btn btn-default" href="/certify/user/mp/input_eduCareer.certi" role="button" style="display:block;float:right;">경력/학력수정</a>
 		<a class="btn btn-default" href="/certify/user/mp/myPage.certi" role="button" style="display:block;float:right;">마이페이지</a>
 	</div>
@@ -151,3 +151,14 @@
 </c:if>
 
 </div>
+
+<script language="javascript" type="text/javascript">  
+
+function InterestMain(){  
+    window.open("/certify/InterestMain.certi", "검색새창", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
+}   
+
+function InterestType(){  
+    window.open("/certify/InterestTypeForm.certi", "타입새창", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
+}  
+</script>
