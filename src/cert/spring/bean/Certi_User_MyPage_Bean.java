@@ -411,14 +411,7 @@ public class Certi_User_MyPage_Bean {
 	@RequestMapping("/caltest.certi")
 	public ModelAndView caltest() {
 		mv = new ModelAndView();
-//		Calendar service=null;
-//		try {
-//			service = certify.cal.Calendar.getCalendarService();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		
+//		일정 테스트 페이지
 		mv.setViewName("/user_myPage/calTest");
 		return mv;
 	}
@@ -426,14 +419,8 @@ public class Certi_User_MyPage_Bean {
 	@RequestMapping("/calteee.certi")
 	public ModelAndView caltest2() {
 		mv = new ModelAndView();
-//		Calendar service=null;
-//		try {
-//			service = certify.cal.Calendar.getCalendarService();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		
+
+		//일정 테스트 페이지
 		mv.setViewName("/user_myPage/calTest2");
 		return mv;
 	}
@@ -450,6 +437,7 @@ public class Certi_User_MyPage_Bean {
 //			e.printStackTrace();
 //		}
 		
+		//일정 리스트 출력하는 페이지
 		mv.setViewName("/user_myPage/callist");
 		return mv;
 	}

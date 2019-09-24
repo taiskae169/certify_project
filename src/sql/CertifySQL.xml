@@ -50,8 +50,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	
   	<!-- insert into Certi_Category table  -->
   	<insert id="updateCetiCategory0" parameterType="certify.vo.CertiInfoVO">
-  		insert into certi_category0 values(#{cerName},#{gen},#{history},#{job},#{siteLink},#{site},#{pref},#{future},#{testInfo},#{how})
+  		insert into certi_category0 values(#{cerName},#{gen},#{history},#{job},#{siteLink},#{site},#{future},#{testInfo},#{how})
   	</insert>
+  	
+  	<delete id="deleteCertiCategory0">
+  		delete from certi_category0
+  	</delete>
   	
   	<select id="getCount" resultType="int">
 		select count(*) from CERTIFY_INFO
@@ -75,6 +79,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 		<select id="getCertifySearch" parameterType="String" resultType="certify.vo.CertifyVO">
   		select * from CERTIFY_INFO where name like '%'||#{value}||'%' order by num asc
+  		</select>
+  		
+  		<select id="CertifiType" parameterType="int" resultType="certify.vo.CertificationVO">
+  			SELECT * FROM CERTIFY_INFO WHERE TYPE=#{value}
   		</select>
   	
   	

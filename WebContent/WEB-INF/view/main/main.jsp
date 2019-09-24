@@ -224,6 +224,6 @@
   <!-- Bootstrap core JavaScript -->
   <script src="/certify/resource/gen/vendor/jquery/jquery.min.js"></script>
   <script src="/certify/resource/gen/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+	
 </body>
 </html>

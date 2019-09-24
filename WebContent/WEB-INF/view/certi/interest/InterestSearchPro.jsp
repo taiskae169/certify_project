@@ -13,6 +13,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<div style="width:500px; position:static">
 	<form action="InterestSearchEnd.certi" method="post">
 	<c:forEach begin="0" end="${certilist.size()-1 }" step="1" var="i">
