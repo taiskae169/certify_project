@@ -60,7 +60,7 @@ $(document).ready( function() {
   <link href="/certify/resource/gen/css/landing-page.min.css" rel="stylesheet">
 </head>
 <c:if test="${count==0 }">
- <div position = "static" style=" float:center; width:1000; margin-left:300;">
+ <div position = "static" style=" float:center; width:1000;">
 <div position = "static" style=" float:center; width:1000;" >
   	<div style=" float:left; width:100%; height:30; align:right">
 		<span style="float:right; align:right">코멘트개수( ${count } )</span>
@@ -74,15 +74,15 @@ $(document).ready( function() {
  </div>
  </div>
  
- <div position = "static" style=" float:center; background-color:#0FF;  width:1000; margin-left:300;">
+  	<div position = "static" style=" float:center; background-color:#0FF;  width:1000;">
  <form action="BoardCommentWrite.certi?num=${board.num }" method="post">
-  <div style="border-top:1px dashed black; background-color:#efefef; float:left; width:20%; height:130">
+  <div style="border-top:1px dashed black; background-color:#efefef; float:left; width:150; height:130">
  	  <span style="line-height:100px; font-size:14pt">${sessionScope.memId}</span>
  </div>
-  	<div style="border-top:1px dashed black; background-color:#efefef; float:left; width:70%; height:130; padding-top:20px;">
+  	<div style="border-top:1px dashed black; background-color:#efefef; float:left; width:700; height:130; padding-top:20px;">
  			<textarea style="height:80" row="50" cols="100" name="content"></textarea>
  		</div>
- 	<div style="border-top:1px dashed black; background-color:#efefef; float:left; width:10%; height:130; padding-top:20px">
+ 	<div style="border-top:1px dashed black; background-color:#efefef; float:left; width:150; height:130; padding-top:20px">
   	  <br>
   	  <input class="btn btn-lg btn-success" style="float:center; align:center" type="submit" value="전송">  	  
   	</div>
