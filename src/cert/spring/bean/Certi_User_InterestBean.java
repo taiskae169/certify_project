@@ -34,9 +34,6 @@ public class Certi_User_InterestBean {
 		
 		List<userJoinInfoInterCertiVO> ujiiclist = null;
 		
-		ujiiclist = (List)sql.selectList("user.getUserInterCerti",id);
-		model.addAttribute("ujiiclist", ujiiclist);
-		
 		return "certi/interest/InterestMain";
 	}
 	@RequestMapping("InterestSearchPro.certi")

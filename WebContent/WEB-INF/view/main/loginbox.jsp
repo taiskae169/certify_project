@@ -155,7 +155,7 @@
 <script language="javascript" type="text/javascript">  
 
 function InterestMain(){  
-    window.open("/certify/InterestMain.certi", "검색새창", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
+    window.open("/certify/InterestMain.certi", "검색새창", "width=600, height=700, toolbar=no, menubar=no, scrollbars=no" );  
 }   
 
 function InterestType(){  

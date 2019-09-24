@@ -36,7 +36,7 @@
   <!-- Masthead -->
   <header>
     <div class="overlay" style="height:100px" style="width:80%; background:white;margin:auto;">
-    	<img src="/certify_project/resource/image/main/test.jpg" style="width:50px;height:50px;top:30px;left:130px;position:relative; float:left"/>
+    	<img src="/certify/resource/image/main/test.jpg" style="width:50px;height:50px;top:30px;left:130px;position:relative; float:left"/>
     	<div class="col-md-10 col-lg-8 col-xl-7 mx-auto" style="top:30px; left:130px">
           <form>
             <div class="form-row">

@@ -213,6 +213,21 @@
  					</c:if>
  				</table>
  			</div>
+ 			
+ 			<div id="certi_interest">
+ 				<h3>관심자격증</h3>
+ 					<div position="static" style="display:flex; align-items:flex-start; justify-content:left; width:100%; height:40px; ">
+ 				<c:forEach begin="0" end="${certijoinList.size()-1 }" step="1" var="i">
+ 					<div style="width:20%; height:100%; align-items:flex-start;">
+ 					<c:set var="certi" value="${certijoinList[i]}"/>
+ 						<span style="align:center">${certi.name }</span>
+ 						<button class="glyphicon glyphicon-remove" onclick="window.location='UserInterestDelete.certi?u_num=${certi.u_num}'"></button>
+ 					</div>
+ 				</c:forEach>
+ 				</div>
+ 				
+ 			</div>
+ 			
  			<br></hr><br>
  			<!-- 하단버튼 -->
  			<div align="center">

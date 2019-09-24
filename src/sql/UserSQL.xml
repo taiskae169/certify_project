@@ -103,5 +103,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	<select id="getUserInterCerti" parameterType="String" resultType="user.vo.userJoinInfoInterCertiVO">
   			SELECT * FROM CERTIFY_INFO C,(select * from USER_INTER_CERTI where id = '${value}' ORDER by u_num ASC) U WHERE C.NUM = U.CER_NAME
   	</select>
-  	
+
+	<delete id="DeletInterUser" parameterType="int">
+  		delete from user_inter_certi where u_num=#{value}
+  	</delete>
 </mapper>

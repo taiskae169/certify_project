@@ -13,17 +13,23 @@
 
 </head>
 <body>
-	<div style="position:static; width:1000px; background-color:red; height:100%; display:flex; align-items:center; justify-content:center">
-	<div>
-	<form action="InterestSearchPro.certi" method="post">
-	<div><input type="text" name="search" id="search"></div>
-	<div><input type="submit" value="전송"></div> 
-</form>
-	</div>
-	<div>
-	<a class="btn btn-default" href="/certify/InterestTypeForm.certi" role="button" style="display:block;float:right;">목록으로 검색하기</a>
+	<div style="position:static; width:100%; height:100%; background-color:#5C73F2">
+		<div style="position:static; width:100%; height:20%;">
 		</div>
-	</div>
+	<div style="position:static; width:100%; height:40%; display:flex; align-items:center; justify-content:center">
+	<form action="InterestSearchPro.certi" method="post">
+	<div style="position:static; width:100%; height:50%; display:flex; align-items:center; justify-content:center">
+	<input type="text" style="border-radius: 1; font-size:14pt;" name="search" id="search"></div>
+	<div style="position:static; width:100%; height:50%; display:flex; align-items:center; justify-content:center">
+	<input class="btn btn-lg btn-success" type="submit" value="이름으로 검색"></div> 
+</form>
+</div>
+	
+	
+	<div style="position:static; width:100%; height:40%; display:flex; align-items:center; justify-content:center; border-top:5px dashed; border-color:white;">
+	<a class="btn btn-lg btn-success" href="/certify/InterestTypeForm.certi" role="button" style="display:block;float:right;">목록으로 검색하기</a>
+		</div>
 
+</div>
 </body>
 </html>
