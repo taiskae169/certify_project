@@ -12,12 +12,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<button id="loadListd">불러오기</button>
-	
-	<pre id="content"></pre>
-	
-	
 	<form action="/certify/user/mp/caldelete.certi" method="POST" id="calbox">
 		<table class="table table-bordered">
 			<thead>
@@ -120,12 +114,12 @@
 					var alarm = event.reminders.overrides;
 					if(che.test(event.summary)){
 						console.log('이름 테스트 성공');
-						setList(event.summary+'('+when +')' + event.id +'\n');
+						//setList(event.summary+'('+when +')' + event.id +'\n');
 						for(a=0; a<alarm.length;a++){
 							var al = alarm[a];
 							var time = al.minutes;
 							var day =0;
-							setList('알람목록 : ' + al.method + '/'+al.minutes );
+							//setList('알람목록 : ' + al.method + '/'+al.minutes );
 
 							//테이블 정보 추가하는 로직
 							var cal_body = document.getElementById('cal_body');

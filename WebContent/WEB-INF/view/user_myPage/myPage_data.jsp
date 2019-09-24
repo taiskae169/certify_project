@@ -76,16 +76,9 @@
  					</tr>
  					<tr>
  						<td colspan="2">응시자격 : 
- 							<c:choose>
- 								<c:when test="${uvo.qual == 0}">기능사</c:when>
- 								<c:when test="${uvo.qual == 1}">산업기사</c:when>
- 								<c:when test="${uvo.qual == 2}">기사</c:when>
- 								<c:when test="${uvo.qual == 3}">기술사</c:when>
- 								<c:when test="${uvo.qual == 4}">기능장</c:when>
- 								<c:when test="${uvo.qual == 5}">국가전문자격</c:when>
- 								<c:when test="${uvo.qual == 6}">민간자격</c:when>
- 								<c:when test="${uvo.qual == 7}">어학자격</c:when>
- 							</c:choose>
+ 							<c:forEach var="quals" items="${quals}">
+ 								<c:if test="${uvo.qual == quals.num}">${quals.value}</c:if>
+ 							</c:forEach>
  						</td>
  					</tr>
  					<tr>
@@ -232,7 +225,7 @@
  			<!-- 하단버튼 -->
  			<div align="center">
  				<button id="goSelfCheck">응시자격 자가진단</button>
- 				<button id="goFixData">정보 수정</button>
+ 				<button id="goFixData" onclick="window.location='/certify/user/mp/myPage.certi?type=mod'">정보 수정</button>
  				<button id="goFixData">회원 탈퇴</button>
  			</div>
  			

@@ -1,6 +1,7 @@
 package cert.spring.bean;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,6 +28,7 @@ import certify.cond.method.GinunJangCond;
 import certify.cond.method.GisaCond;
 import certify.cond.method.SanUpCond;
 import certify.cond.method.methodVO;
+import certify.cond.method.userCareerSub;
 import certify.user.dao.CertifyMethod;
 import certify.user.dao.UserMethod;
 import certify.vo.Cer_CategoryVO;
@@ -53,19 +55,7 @@ public class Certi_Certi_Bean {
 	@Autowired
 	userCertiVO uctvo = null;
 	@Autowired
-	userEduVO uevo = null;
-	
-	// Not Autowired
-	GinunJangCond ginun_cond = null;
-	SanUpCond sanup_cond = null;
-	GiSulsaCond gisulsa_cond = null;
-	GisaCond gisa_cond = null;
-	Gukgajunmun_noCond gukjun_nocond = null;
-	Gukjun_jungsooSisul1 gukjun_jungsoo = null;
-	GukJun_sahoebogji_1 gukjun_sahoe = null;
-	Gukjun_sobangAnjun gukjun_soAnn = null;
-	Gukjun_sobangSisul gukjun_soSii =null;
-	
+	userEduVO uevo = null;	
 	
 	@RequestMapping("certi_sc_session1.certi")
 	public ModelAndView certi_sc_session1(HttpSession session, HttpServletRequest request) {
@@ -196,30 +186,81 @@ public class Certi_Certi_Bean {
 	public ModelAndView certi_sc_session5(HttpSession session, String cerNum) {
 		mv = new ModelAndView();
 		String id = (String)session.getAttribute("sessionID");
+		if(id!=null) {
 		mv.addObject("cerNum", cerNum);
 		int certiNum = Integer.parseInt(cerNum);
 		int type = 0;
 		
+		// 날짜 비교를 위한 변수
+		int year = 365;	
+		Date today = new Date();
+		
+		userVO uvo = null;
 		List<user_Edu_edu_valueVO> edu_value=null;
 		List<CertifyVO> cf = null;
+		List<userCertiVO> user_certiList = null;
+		List<userEduVO> user_eduList = null;
 		List<Cer_CategoryVO> certi_cate = null;
 		List<userCertiVO> certiList = null;		
 		List<methodVO> checkList = null;
 		
-		ginun_cond = new GinunJangCond();;
-		sanup_cond = new SanUpCond();
-		gisulsa_cond = new GiSulsaCond();
-		gisa_cond = new GisaCond();
-		gukjun_nocond = new Gukgajunmun_noCond();
-		gukjun_jungsoo = new Gukjun_jungsooSisul1();
-		gukjun_sahoe = new GukJun_sahoebogji_1();
-		gukjun_soAnn = new Gukjun_sobangAnjun();
-		gukjun_soSii = new Gukjun_sobangSisul();
+		CertifyVO cfvo = certidao.getSpecCertify(certiNum);
+		
+		GinunJangCond ginun_cond = new GinunJangCond();;
+		SanUpCond sanup_cond = new SanUpCond();
+		GiSulsaCond gisulsa_cond = new GiSulsaCond();
+		GisaCond gisa_cond = new GisaCond();
+		Gukgajunmun_noCond gukjun_nocond = new Gukgajunmun_noCond();
+		Gukjun_jungsooSisul1 gukjun_jungsoo = new Gukjun_jungsooSisul1();
+		GukJun_sahoebogji_1 gukjun_sahoe = new GukJun_sahoebogji_1();
+		Gukjun_sobangAnjun gukjun_soAnn = new Gukjun_sobangAnjun();
+		Gukjun_sobangSisul gukjun_soSii = new Gukjun_sobangSisul();
+		
+		// 경력사항 리턴 간 받아올 변수
+		long comp_workdays = 0;
+		
+		// 회원의 경력사항을 리턴받는 리스트 변수
+		List<userCareerVO> returnCareer = null;
+		List<userCareerSub> user_career_sub = null; 		// 카테고리별 근무년수(근무일수) 총합 후 저장을 위한 리스트 변수
+		HashMap<Integer, Long> careerMap = null;		// 실제 조건 비교에 사용되는 Map
 		
 		if(cerNum!=null) {
-			userVO uvo = userdao.getUserInfo((String) session.getAttribute("sessionID"));
+			uvo = userdao.getUserInfo((String) session.getAttribute("sessionID"));
+			user_eduList = userdao.getUserEdu(id);
+			returnCareer = userdao.getUserCareer(id);
 			edu_value = userdao.getUser_Edu_Val();
 			cf = userdao.getAllCertify();
+			
+			if(returnCareer!=null) {
+				user_career_sub = new ArrayList<userCareerSub>();
+				for(int i=0; i<returnCareer.size(); i++) {
+					long diff = returnCareer.get(i).com_ent_date.getTime() - returnCareer.get(i).com_gra_date.getTime();
+					long diffDays = Math.abs(diff / (24 * 60 * 60 * 1000));	// 양수변환
+					comp_workdays = diffDays; // 합산 근무일수
+					
+					userCareerSub ucs = new userCareerSub();
+					ucs.setUser_car_cate(returnCareer.get(i).comp_cate);
+					ucs.setUser_sub_workdays(comp_workdays);
+					user_career_sub.add(ucs);
+				}
+				careerMap = new HashMap<Integer, Long>();
+				for(int i=0; i<user_career_sub.size(); i++) {
+					if(careerMap.isEmpty()) {
+						careerMap.put(user_career_sub.get(i).user_car_cate, user_career_sub.get(i).user_sub_workdays);
+					}else if(!careerMap.containsKey(user_career_sub.get(i).user_car_cate)) {
+						careerMap.put(user_career_sub.get(i).user_car_cate, user_career_sub.get(i).user_sub_workdays);
+					}else if(careerMap.containsKey(user_career_sub.get(i).user_car_cate)) {
+						long workday_sum = careerMap.get(user_career_sub.get(i).user_car_cate)+user_career_sub.get(i).user_sub_workdays;
+						careerMap.remove(user_career_sub.get(i).user_car_cate);
+						careerMap.put(returnCareer.get(i).comp_cate, workday_sum);
+					}
+				}
+			}
+			
+			user_certiList = userdao.getUserCerti(id);
+			
+			CertifyVO specCerti = certidao.getSpecCertify(certiNum);
+			mv.addObject("specCerti",specCerti);
 			
 			for(CertifyVO c : cf) {
 				if(c.getNum() == certiNum) type = c.getType();
@@ -241,18 +282,23 @@ public class Certi_Certi_Bean {
 			checkList = new ArrayList<methodVO>();
 			checkList.add(mvo);
 		}else if(type==1) {
-			checkList = sanup_cond.getSanupAll(id, certiNum);
+			checkList = sanup_cond.getSanupAll(
+					uvo, careerMap, user_eduList, cfvo, user_certiList);
 		}else if(type==2) {
-			checkList = gisa_cond.getGisaAll(id, certiNum);
+			checkList = gisa_cond.getGisaAll(
+					uvo, careerMap, user_eduList, cfvo, user_certiList);
 		}else if(type==3) {
-			checkList = gisulsa_cond.getGisulsaAll(id, certiNum);
+			checkList = gisulsa_cond.getGisulsaAll(
+					uvo, careerMap, user_eduList, cfvo, user_certiList);
 		}else if(type==4) {
-			checkList = ginun_cond.getGinunjangAll(id, certiNum);
+			checkList = ginun_cond.getGinunjangAll(
+					uvo, careerMap, user_eduList, cfvo, user_certiList);
 		}else if(type==5) {
 			if(certiNum==662 || certiNum==663 || certiNum==664 || certiNum==665 || certiNum==666 || certiNum==667) {
-				checkList = gukjun_nocond.getMoonWha(id, certiNum);
+				checkList = gukjun_nocond.getMoonWha(certiNum,
+						uvo, careerMap, user_eduList, cfvo, user_certiList);
 			}else if(certiNum==670) {
-				checkList = gukjun_nocond.getByunRi(id, certiNum);
+				checkList = gukjun_nocond.getByunRi(uvo, careerMap, user_eduList, cfvo, user_certiList);
 			}else {
 				methodVO mvo = new methodVO();
 				mvo.setMess("국가전문자격은 일부 자격증을 제외하곤 자격제한이 없습니다.");
@@ -269,11 +315,13 @@ public class Certi_Certi_Bean {
 		
 		mv.addObject("checkList", checkList);
 		mv.addObject("pass", pass);
-		
 		mv.addObject("id", id);
+		}
 		mv.setViewName("/certi/selfCheck/certi_sc_session5");
 		return mv;
 	}
 	
 
+	
+	
 }

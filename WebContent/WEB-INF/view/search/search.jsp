@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="//code.jquery.com/jquery.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,8 +15,8 @@
 
   <!-- Bootstrap core CSS -->
   <script src="https://apis.google.com/js/api.js"></script>
-  <script src="//code.jquery.com/jquery.js"></script>
-  <link href="/certify/resource/gen/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
   <!-- Custom fonts for this template -->
@@ -35,7 +36,9 @@
   <!-- Masthead -->
   <header>
     <div class="overlay" style="height:100px" style="width:80%; background:white;margin:auto;">
+    	<a href='/certify/main.certi'>
     	<img src="/certify/resource/image/main/test.jpg" style="width:50px;height:50px;top:30px;left:130px;position:relative; float:left"/>
+    	</a>
     	<div class="col-md-10 col-lg-8 col-xl-7 mx-auto" style="top:30px; left:130px">
           <form>
             <div class="form-row">
@@ -50,19 +53,13 @@
         </div>
         
     </div>
-    
-
   </header>
-
+  
+	<jsp:include page="/WEB-INF/view/Bar/NavBar.jsp"/>
   <!-- Icons Grid -->
   <hr style="width:1450px;"/>
 
-  <nav class="navbar navbar-light bg-light static-top" style="width:1450px;;margin:auto">
-    <div class="container">
-      <a class="navbar-brand" href="#">자격루</a>
-      <a class="btn btn-primary" href="#">Login</a>
-    </div>
-  </nav>
+	
 
   <!-- Image Showcases -->
   <section class="showcase" style="width:1450px;;margin:auto;">
@@ -230,7 +227,7 @@
 			"calendarId" : 'primary',
 			"resource": event
 		}).then(function(){
-			window.location.href='/certify/user/mp/callist.certi';
+			window.reload;
 			});
 	}
    </script>

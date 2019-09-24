@@ -1,48 +1,21 @@
 package certify.cond.gukjun;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import certify.cond.method.OverrideSource;
 import certify.cond.method.methodVO;
 import certify.vo.CertifyVO;
-import user.vo.userCareerVO;
 import user.vo.userCertiVO;
 import user.vo.userEduVO;
+import user.vo.userVO;
 
-public class Gukgajunmun_noCond extends OverrideSource{
+public class Gukgajunmun_noCond{
 	// 가능/불가능 리턴을 위한 변수
 	private boolean applyPossible = false;	
 		
 	// 날짜 비교를 위한 변수
 	private int year = 365;	
-	private Date today = new Date();
-	
-	// 학력정보 리턴 간 받아올 변수
-	private List<userEduVO> user_eduList = null;
-		
-	// 회원이 기보유한 자격증 리스트 리턴을 위한 변수
-	private List<userCertiVO> user_certiList = null;
-	
-	// 회원의 경력사항을 리턴받는 리스트 변수
-	private HashMap<Integer, Long> careerMap = null;		// 실제 조건 비교에 사용되는 Map
-	
-	// 전체 자격증 종류 리스트 리턴을 위한 변수
-	private List certifyList = null;
-	
-	// (오버라이딩) 단일 회원의 전체 정보 가져오기
-	@Override
-	public void getUserStatus(String id) {
-		super.getUserStatus(id);
-	}
-	
-	// (오버라이딩) 전체 자격증 중 num에 해당하는 자격증 정보 가져오기
-	@Override
-	public CertifyVO getCertifyStatus(int num) {
-		return super.getCertifyStatus(num);
-	}	
 	
 	
 	// 조건없는 자격증 리스트 ▼
@@ -464,9 +437,9 @@ public class Gukgajunmun_noCond extends OverrideSource{
 	// 문화재수리기술자 (보수, 단청, 조경, 보존과학, 식물보호)
 	// cerNum : 662	663	665	666	667
 
-	public boolean gukjun_munhwajae_gisulja(String id, int certify_num) {
-		getUserStatus(id);
-		CertifyVO cfvo = getCertifyStatus(certify_num);
+	public boolean gukjun_munhwajae_gisulja(
+			userVO uvo, HashMap<Integer, Long> careerMap, 
+			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 		condition :
 		if(careerMap!=null && careerMap.containsKey(cfvo.getCate())){
 			for(int i=0; i<user_eduList.size(); i++) {
@@ -486,9 +459,9 @@ public class Gukgajunmun_noCond extends OverrideSource{
 	
 	
 	// 문화재수리기술자(실측설계) 664
-	public boolean gukjun_munhwa_gisulja_silchk(String id, int certify_num) {
-		getUserStatus(id);
-		CertifyVO cfvo = getCertifyStatus(certify_num);
+	public boolean gukjun_munhwa_gisulja_silchk(
+			userVO uvo, HashMap<Integer, Long> careerMap, 
+			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 		/* 문화재 수리를 위한 실측 및 설계도서의 작성 업무를 담당하는 수리기술자 자격시험에 응시하고자
 		 * 하는 자는 건축사법에 따른 건축사 자격을 가진 자 이어야 한다.
 		 */
@@ -500,8 +473,8 @@ public class Gukgajunmun_noCond extends OverrideSource{
 		return applyPossible;
 	}
 	
-	public List<methodVO> getMoonWha(String id, int cerNum) {
-		int idx = 0;
+	public List<methodVO> getMoonWha(int cerNum ,userVO uvo, HashMap<Integer, Long> careerMap, 
+			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 		List<methodVO> checkList = new ArrayList<methodVO>();
 		methodVO mvo = new methodVO();
 		boolean cond = false;
@@ -510,7 +483,7 @@ public class Gukgajunmun_noCond extends OverrideSource{
 		if(cerNum!=664) {
 			for(int i=0; i<etc.length; i++) {
 				if(etc[i]==cerNum) {
-					cond = gukjun_munhwajae_gisulja(id,cerNum);
+					cond = gukjun_munhwajae_gisulja(uvo, careerMap, user_eduList, cfvo, user_certiList);
 					condmes = "1. 문화재수리 분야에 1년 이상 종사한 사람 \n"
 							+" 2. 초,중등교육법에 따른 중학교의 졸업자 또는 이와 같은 수준 이상의 학력이 있다고 인정되는 사람 \n"
 							+" 3. 국가기술자격법에 따른 기능사 이상의 자격을 취득한 사람 \n"
@@ -520,7 +493,7 @@ public class Gukgajunmun_noCond extends OverrideSource{
 				}
 			}
 		}else if(cerNum==664) {
-			cond=gukjun_munhwa_gisulja_silchk(id,cerNum);
+			cond=gukjun_munhwa_gisulja_silchk(uvo, careerMap, user_eduList, cfvo, user_certiList);
 			condmes="1. 문화재 수리를 위한 실측 및 설계도서의 작성 업무를 담당하는 수리기술자 자격시험에 응시하고자 하는자는"
 					+" 건축사법에 따른 건축사 자격을 가진 자이어야 한다.";
 			mvo.setMess(condmes); mvo.setPossible(cond);
@@ -541,9 +514,8 @@ public class Gukgajunmun_noCond extends OverrideSource{
 	 * 	다. 이 법에 따른 징계처분으로 등록취소된 후 2년이 지나지 아니한 사람
 	 *	라. 「변호사법」에 따라 제명된 후 2년이 지나지 아니한 사람
 	 */
-	public boolean gukjun_byunlisa(String id, int certify_num, boolean [] check) {
-		getUserStatus(id);
-		CertifyVO cfvo = getCertifyStatus(certify_num);
+	public boolean gukjun_byunlisa(userVO uvo, HashMap<Integer, Long> careerMap, 
+			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList, boolean [] check) {
 		if(check!=null) {
 			for(int i=0; i<check.length; i++) {
 				if(check.equals(false)) break;
@@ -553,8 +525,8 @@ public class Gukgajunmun_noCond extends OverrideSource{
 		return applyPossible;
 	}
 	
-	public List<methodVO> getByunRi(String id, int cerNum) {
-		int idx = 0;
+	public List<methodVO> getByunRi(userVO uvo, HashMap<Integer, Long> careerMap, 
+			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 		List<methodVO> checkList = new ArrayList<methodVO>();
 		methodVO mvo = new methodVO();
 		boolean cond = false;

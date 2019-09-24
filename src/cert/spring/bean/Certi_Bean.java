@@ -80,6 +80,7 @@ public class Certi_Bean {
 		if(id!=null) {
 			System.out.println("세션 아이디 있음");
 			String name = userdao.getName(id);
+			session.setAttribute("name", name);
 			mv.addObject("name",name);
 		}
 		
