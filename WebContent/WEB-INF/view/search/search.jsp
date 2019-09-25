@@ -66,7 +66,7 @@
     
   </section >
   <div style="width:1450px;height:606px;margin:auto;display:block;">
-	<div style="width:59%;height:600px;border-style:solid;float:left;">
+	<div style="width:59%;height:600px;float:left;">
     	<div style="height:80px;margin:3px;">
     		<h1>정보처리기사</h1>
     		<hr />
@@ -79,7 +79,7 @@
     		실시기관 홈페이지 :	<a href="http://www.q-net.or.kr">http://www.q-net.or.kr</a>
     		
     	</div>
-    	<div style="height:300px;border-style:solid;margin:3px;">
+    	<div style="height:300px;margin:3px;">
     		<table class='table table-bordered'>
     			<thead>
     				<th>구분</th>
@@ -124,7 +124,7 @@
     		</table>
     	</div>
     </div>
-    <div style="width:580px;height:600px;border-style:solid;float:right;">
+    <div style="width:580px;height:600px;float:right;">
     	<div style="height:152.25px;margin:3px;">
     		<jsp:include page="/WEB-INF/view/main/loginbox.jsp">
     			<jsp:param value="${naverURI}" name="naverURI"/>
@@ -137,7 +137,7 @@
     		<hr />
     		<c:forEach var="info" items="${list}" varStatus="status" >
     			
-    			<a class="btn btn-default" href="javascript:handleClientLoad();">${info.name}</a>
+    			<a class="btn btn-default" href="#">${info.name}</a>
 
     		</c:forEach>
 
