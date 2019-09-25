@@ -33,12 +33,8 @@
 <jsp:include page="/WEB-INF/view/Bar/NavBar.jsp"/>
 
   <!-- Icons Grid -->
-<<<<<<< HEAD
-=======
   <hr style="width:1450px;"/>
 
-  <jsp:include page="/WEB-INF/view/Bar/NavBar.jsp"/>
->>>>>>> branch 'master' of https://github.com/taiskae169/certify_project.git
 
   <!-- Image Showcases -->
 
@@ -54,6 +50,7 @@
 	    	<jsp:param value="${eduList}" name="eduList"/>
 	    	<jsp:param value="${careerList}" name="careerList"/>
 	    	<jsp:param value="${certiList}" name="certiList"/>
+	    	<jsp:param value="${certijoinList}" name="certijoinList"/>
 	    	<jsp:param value="${quals}" name="quals"/>
 	    </jsp:include>
     </c:if>

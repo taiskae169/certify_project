@@ -86,8 +86,8 @@ public class Certi_User_MyPage_Bean {
 			if(certiList!=null) mv.addObject("certiList", certiList);
 
 			List<userJoinInfoInterCertiVO> certijoinList = userdao.getJoinCerti(id);
-			if(certiList!=null) {mv.addObject("certijoinList",certijoinList);
-			}// 관심 자격증 정보 가져오기
+			if(certijoinList!=null) mv.addObject("certijoinList",certijoinList);
+			// 관심 자격증 정보 가져오기
 			
 			
 			mv.addObject("certijoinList", certijoinList);
