@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+  <script src="//code.jquery.com/jquery.js"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -12,13 +12,13 @@
   <title>자격루</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="/certify/resource/gen/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
   <!-- Custom fonts for this template -->
 
   <!-- Custom styles for this template -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-  <script src="//code.jquery.com/jquery.js"></script>
+
 
 </head>
 
@@ -48,16 +48,11 @@
     
 
   </header>
-
+<jsp:include page="/WEB-INF/view/Bar/NavBar.jsp"/>
   <!-- Icons Grid -->
   <hr style="width:1450px;"/>
 
-  <nav class="navbar navbar-light bg-light static-top" style="width:1450px;;margin:auto">
-    <div class="container">
-      <a class="navbar-brand" href="#">자격루</a>
-      <a class="btn btn-primary" href="#">Login</a>
-    </div>
-  </nav>
+
 
   <!-- Image Showcases -->
   <section class="showcase" style="width:1450px;;margin:auto;">
@@ -72,7 +67,7 @@
 				<h1 align="center">가입을 환영합니다.</h1>
 			
 			<div class="col-lg-10" style="margin:auto;margin-top:10px;">
-				<p><button type="button" class="btn btn-success btn-lg btn-block">응시자격 체크를 위한 경력 및 학력정보 입력</button></p>
+				<p><button type="button" class="btn btn-success btn-lg btn-block" onclick="location.href='/certify/user/mp/input_eduCareer.certi'">응시자격 체크를 위한 경력 및 학력정보 입력</button></p>
 			</div>
 			<div class="col-lg-10" style="margin:auto;margin-top:10px;">
 				<p><button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='/certify/main.certi'">입력한 응시자격으로 사이트 이용하기</button></p>

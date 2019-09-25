@@ -162,7 +162,7 @@
         			console.log('${sessionID}');
 					var sessionID = '${sessionID}';
         			if(sessionID){
-        				window.open('http://localhost:8080/certify/user/mp/callist.certi', '리스트',"toolbar=no, menubar=no, scrollbars=no");
+        				window.open('http://localhost:8080/certify/user/mp/callist.certi', '리스트',"toolbar=no, menubar=no, scrollbars=no, width=700, height=500");
             			}else{
                 			alert('로그인이 필요합니다.');
                 		}
