@@ -34,8 +34,9 @@
 <c:if test="${major_List==null}" >
 <div id="uni_check">
 	<form name="search_form" action="eduChooseProcess.certi">
-		<b>학교명을 입력하세요.</b><br>
-		<span> 고등학교의 경우 직접 입력해주세요. ("고등학교"를 정확히 입력해주세요!) </span>
+		<h3>학교명을 입력하세요.</h3>
+		<span> 사관학교 및 고등학교의 경우 직접 입력해주세요. </span><br>
+		<span> ('사관학교' 및 '고등학교'를 포함한 정확한 이름을 입력해주세요.)</span>
 		<input type="text" name="school_name" id="school_name" onkeypress="JavaScript:press(this.form)" />
 		<input type="hidden" name="num" value="${num}" >
 		<input type="submit" value="검색" id="search" />
@@ -57,8 +58,9 @@
 <!-- 학과 검색 -->
 <c:if test="${school_nameFix!=null}">
 <div id="major_check" >
+	<button onclick="JavaScript:history.back()">뒤로가기</button>
 	<form name="search_form" action="eduChooseProcess.certi">
-		<b>학과명을 입력하세요.</b><br>
+		<h3>학과명을 입력하세요.</h3>
 		<input type="text" name="major_name" id="major_name" onkeypress="JavaScript:press(this.form)"  />
 		<input type="hidden" name="num" value="${num}" >
 		<input type="hidden" name="school_nameFix" value="${school_nameFix}" >

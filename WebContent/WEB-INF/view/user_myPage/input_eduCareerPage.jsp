@@ -189,6 +189,7 @@
         <div style="position:relative; right:50px;">
 			<div class="col-lg-offset-2 col-lg-10">
 				<button class="btn btn-default" id="allSubmit">입력</button>
+				<button class="btn btn-default" id="back" style="background-color: rgb(219,68,85)" onclick="javascript:history.back()">돌아가기</button>
 			</div>
 		</div>
     </body>

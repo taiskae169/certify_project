@@ -114,8 +114,8 @@
 	 			</table>
 	 		</c:if>
 	 		
-	 		<button id="insertData" onclick="JavaScript:window.location='/certi/user/mp/input_eduCareer.certi'"> 추가 작성 </button>
-	 		<button id="${cerNum}" onclick="goSession3(this.id)"> 다음 단계로 </button>
+	 		<button class="btn" id="insertData" onclick="JavaScript:window.location='/certify/user/mp/input_eduCareer.certi'"> 추가 작성 </button>
+	 		<button class="btn" id="${cerNum}" onclick="goSession3(this.id)"> 다음 단계로 </button>
 			 		
 		</div> 
 	</div> <!-- container end -->

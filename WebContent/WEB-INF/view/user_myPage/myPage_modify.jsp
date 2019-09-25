@@ -272,7 +272,8 @@
  			<br></hr><br>
  			<!-- 하단버튼 -->
  			<div align="center">
- 				<button id="modifyFinish">수정 완료</button>
+ 				<button class="btn" id="modifyFinish">수정 완료</button>
+ 				<button class="btn" id="back" onclick="javascript:history.back()">돌아가기</button>
  			</div>
  			
  		</div>

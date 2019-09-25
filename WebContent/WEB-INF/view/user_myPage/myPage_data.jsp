@@ -209,9 +209,11 @@
  			<br></hr><br>
  			<!-- 하단버튼 -->
  			<div align="center">
- 				<button id="goSelfCheck">응시자격 자가진단</button>
- 				<button id="goFixData" onclick="window.location='/certify/user/mp/myPage.certi?type=mod'">정보 수정</button>
- 				<button id="goFixData">회원 탈퇴</button>
+ 				<button class="btn" id="goAddInput" onclick="JavaScript:window.location='/certify/user/mp/input_eduCareer.certi'"><b>추가 입력사항 기입</b></button>
+ 				<button class="btn" id="goSelfCheck"><i>응시자격 자가진단</i></button>
+ 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ 				<button class="btn" id="goFixData" onclick="window.location='/certify/user/mp/myPage.certi?type=mod'">정보 수정</button>
+ 				<button class="btn" id="deleteUser" style="background-color:#DB4455"><b>회원 탈퇴</b></button>
  			</div>
  			
  		</div>
