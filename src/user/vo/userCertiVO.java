@@ -42,23 +42,13 @@ public class userCertiVO {
 		return cate;
 	}
 	public void setCate(int cate) {
-		List<Cer_CategoryVO> cer_cate = cfm.getCerti_Category();
-		for(Cer_CategoryVO cc : cer_cate) {
-			if(cc.getCerti_num() == cate) {
-				this.cate = cate; break;
-			}else this.cate = 999; // 999 = 기타
-		}
+		this.cate = cate;
 	}
 	public int getCer_name() {
 		return cer_name;
 	}
 	public void setCer_name(int cer_name) {
-		List<CertifyVO> cvo = cfm.getAllCertify();
-		for(CertifyVO cfv : cvo) {
-			if(cfv.getNum() == cer_name) {
-				this.cer_name = cer_name; break;
-			}else this.cer_name = 999; // 999 = 기타
-		}
+		this.cer_name = cer_name;
 	}
 	public Date getCer_date() {
 		return cer_date;

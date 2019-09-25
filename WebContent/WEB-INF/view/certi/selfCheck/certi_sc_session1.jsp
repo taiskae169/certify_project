@@ -25,6 +25,17 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 
+<!-- 
+	본 selfCheck 폴더에 저장된 certi_sc_session1~5 파일은
+	session 1 : 자격증 검색
+	session 2 : user 학력사항 확인
+	session 3 : 경력사항 확인
+	session 4 : 자격사항 확인
+	session 5 : 응시 불가/가능 확인
+	의 순서로 되어있으며,  Model은 Certi_Certi_Bean.java 파일임
+ -->
+
+
 <body>
   <!-- Navigation -->
   <!-- Masthead -->
@@ -71,6 +82,7 @@
 	 			<br><hr/> 
 	 		</div>
 	 		<div>
+	 			<!-- 자격증 분류 선택 (클릭 시 스크립트 발동) -->
 	 			<a><span id="gukki"
 	 				style="border-style: solid; padding: 5px; background-color: navy; color: white;">
 	 				국가기술자격</span></a> \
@@ -87,7 +99,7 @@
 	 		</hr>
 	 		<div>
 	 			<ul>
-	 				<!--  자격증 리스트 출력  -->
+	 				<!--  자격증 리스트 출력 (게시판 형식 출력) -->
 	 				<c:if test="${count>0}">
 		 				<c:forEach begin="0" end="${certiList.size()-1}" step="1" var="i">
 	        				<c:set var="certi" value="${certiList[i]}"/>
@@ -99,6 +111,7 @@
 	 				</c:if>
 	 			</ul>
 	 		</div>
+	 		<!-- 자격증 리스트 인덱스 -->
 	 		<div position = "static" align="center">
 		 		<c:if test="${count>0 }">
 			      <c:if test="${startPage>10}">
