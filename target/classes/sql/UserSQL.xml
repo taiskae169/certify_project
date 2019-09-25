@@ -121,7 +121,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		delete USER_CAREER where id=#{id} and company=#{company} and comp_cate=#{comp_cate}
   	</delete>
   	
-  			<!-- 관심자격증을 통해 선택한 자격증의 정보 가져오기 -->
+
+  	<!-- 관심자격증을 통해 선택한 자격증의 정보 가져오기 -->
+
   	<select id="getUserInterCerti" parameterType="String" resultType="user.vo.userJoinInfoInterCertiVO">
   		   SELECT * FROM CERTIFY_INFO C,(select * from USER_INTER_CERTI where id = '${value}' ORDER by u_num ASC) U WHERE C.NUM = U.CER_NAME
   	</select>

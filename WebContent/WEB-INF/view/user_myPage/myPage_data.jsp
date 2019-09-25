@@ -190,6 +190,7 @@
  			<div id="certi_interest">
  				<h3>관심자격증</h3> <%-- 회원이 선택한 관심 자격증을 보여줌  --%>
  					<div position="static" style="display:flex; align-items:flex-start; justify-content:left; width:100%; height:40px; ">
+ 					<c:if test="${!empty certijoinList }">
  				<c:forEach begin="0" end="${certijoinList.size()-1 }" step="1" var="i">
  					<div style="width:20%; height:100%; align-items:flex-start;">
  					<c:set var="certi" value="${certijoinList[i]}"/>
@@ -197,6 +198,10 @@
 
  					</div>
  				</c:forEach>
+ 					</c:if>
+ 					<c:if test="${empty certijoinList}">
+ 						설정한 관심자격증이 없습니다.
+ 					</c:if>
  				</div>
  				
  			</div>
