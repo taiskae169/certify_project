@@ -234,25 +234,25 @@ public class Certi_Certi_Bean {
 			if(returnCareer!=null) {
 				user_career_sub = new ArrayList<userCareerSub>();
 				for(int i=0; i<returnCareer.size(); i++) {
-					long diff = returnCareer.get(i).com_ent_date.getTime() - returnCareer.get(i).com_gra_date.getTime();
+					long diff = returnCareer.get(i).getCom_ent_date().getTime() - returnCareer.get(i).getCom_gra_date().getTime();
 					long diffDays = Math.abs(diff / (24 * 60 * 60 * 1000));	// 양수변환
 					comp_workdays = diffDays; // 합산 근무일수
 					
 					userCareerSub ucs = new userCareerSub();
-					ucs.setUser_car_cate(returnCareer.get(i).comp_cate);
+					ucs.setUser_car_cate(returnCareer.get(i).getComp_cate());
 					ucs.setUser_sub_workdays(comp_workdays);
 					user_career_sub.add(ucs);
 				}
 				careerMap = new HashMap<Integer, Long>();
 				for(int i=0; i<user_career_sub.size(); i++) {
 					if(careerMap.isEmpty()) {
-						careerMap.put(user_career_sub.get(i).user_car_cate, user_career_sub.get(i).user_sub_workdays);
-					}else if(!careerMap.containsKey(user_career_sub.get(i).user_car_cate)) {
-						careerMap.put(user_career_sub.get(i).user_car_cate, user_career_sub.get(i).user_sub_workdays);
-					}else if(careerMap.containsKey(user_career_sub.get(i).user_car_cate)) {
-						long workday_sum = careerMap.get(user_career_sub.get(i).user_car_cate)+user_career_sub.get(i).user_sub_workdays;
-						careerMap.remove(user_career_sub.get(i).user_car_cate);
-						careerMap.put(returnCareer.get(i).comp_cate, workday_sum);
+						careerMap.put(user_career_sub.get(i).getUser_car_cate(), user_career_sub.get(i).getUser_sub_workdays());
+					}else if(!careerMap.containsKey(user_career_sub.get(i).getUser_car_cate())) {
+						careerMap.put(user_career_sub.get(i).getUser_car_cate(), user_career_sub.get(i).getUser_sub_workdays());
+					}else if(careerMap.containsKey(user_career_sub.get(i).getUser_car_cate())) {
+						long workday_sum = careerMap.get(user_career_sub.get(i).getUser_car_cate())+user_career_sub.get(i).getUser_sub_workdays();
+						careerMap.remove(user_career_sub.get(i).getUser_car_cate());
+						careerMap.put(returnCareer.get(i).getComp_cate(), workday_sum);
 					}
 				}
 			}

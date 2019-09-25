@@ -28,7 +28,7 @@ public class GukJun_sahoebogji_1{
 	public boolean gukjun_sahoebogjisa1(userVO uvo, HashMap<Integer, Long> careerMap, 
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList, boolean check) {
 		for(int i=0; i<user_eduList.size(); i++) {
-			if((user_eduList.get(i).edu==10 || user_eduList.get(i).edu==11) && user_eduList.get(i).major==cfvo.getCate() && check==true) {
+			if((user_eduList.get(i).getEdu()==10 || user_eduList.get(i).getEdu()==11) && user_eduList.get(i).getMajor()==cfvo.getCate() && check==true) {
 				// ▲ check : 웹에서 필수 6과목, 선택 2과목을 이수했는지 체크하도록 해야함
 				applyPossible=true; break;
 			}
@@ -41,7 +41,7 @@ public class GukJun_sahoebogji_1{
 			userVO uvo, HashMap<Integer, Long> careerMap, 
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList, boolean check) {
 		for(int i=0; i<user_eduList.size(); i++) {
-			if(user_eduList.get(i).edu==3 && user_eduList.get(i).state==0 && check==true) {
+			if(user_eduList.get(i).getEdu()==3 && user_eduList.get(i).getState()==0 && check==true) {
 				// ▲ check : 웹에서 사회복지교과목을 이수했는지 체크하도록 해야함
 				applyPossible=true; break;
 			}
@@ -55,9 +55,9 @@ public class GukJun_sahoebogji_1{
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList, boolean check) {
 		condition :
 		for(int i=0; i<user_eduList.size(); i++) {
-			if(user_eduList.get(i).edu==3 && user_eduList.get(i).state==0) {
+			if(user_eduList.get(i).getEdu()==3 && user_eduList.get(i).getState()==0) {
 				for(int j=0; j<user_eduList.size(); j++) {
-					if((user_eduList.get(j).edu==1 || user_eduList.get(j).edu==2) && check == true) {
+					if((user_eduList.get(j).getEdu()==1 || user_eduList.get(j).getEdu()==2) && check == true) {
 						applyPossible=true; break condition;
 					}
 				}
@@ -72,9 +72,9 @@ public class GukJun_sahoebogji_1{
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 		condition :
 		for(int i=0; i<user_eduList.size(); i++) {
-			if((user_eduList.get(i).edu==1 || user_eduList.get(i).edu==2) && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
+			if((user_eduList.get(i).getEdu()==1 || user_eduList.get(i).getEdu()==2) && user_eduList.get(i).getState()==0 && user_eduList.get(i).getMajor()==cfvo.getCate()) {
 				for(int j=0; j<user_eduList.size(); j++) {
-					if((user_eduList.get(j).edu==3 || user_eduList.get(j).edu==4 || user_eduList.get(j).edu==5) && user_eduList.get(j).state==0) {
+					if((user_eduList.get(j).getEdu()==3 || user_eduList.get(j).getEdu()==4 || user_eduList.get(j).getEdu()==5) && user_eduList.get(j).getState()==0) {
 						applyPossible=true; break condition;
 					}
 				}
@@ -89,9 +89,9 @@ public class GukJun_sahoebogji_1{
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList, boolean check) {
 		condition :
 		for(int i=0; i<user_eduList.size(); i++) {
-			if((user_eduList.get(i).edu==1 || user_eduList.get(i).edu==2) && user_eduList.get(i).state==0) {
+			if((user_eduList.get(i).getEdu()==1 || user_eduList.get(i).getEdu()==2) && user_eduList.get(i).getState()==0) {
 				for(int j=0; j<user_eduList.size(); j++) {
-					if((user_eduList.get(j).edu==3 || user_eduList.get(j).edu==4 || user_eduList.get(j).edu==5) && user_eduList.get(j).state==0 && check==true) {
+					if((user_eduList.get(j).getEdu()==3 || user_eduList.get(j).getEdu()==4 || user_eduList.get(j).getEdu()==5) && user_eduList.get(j).getState()==0 && check==true) {
 						applyPossible=true; break condition;
 					}
 				}
@@ -105,7 +105,7 @@ public class GukJun_sahoebogji_1{
 			userVO uvo, HashMap<Integer, Long> careerMap, 
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 		for(int i=0; i<user_eduList.size(); i++) {
-			if(user_eduList.get(i).edu==12 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
+			if(user_eduList.get(i).getEdu()==12 && user_eduList.get(i).getState()==0 && user_eduList.get(i).getMajor()==cfvo.getCate()) {
 				applyPossible=true; break;
 			}
 		}
@@ -118,9 +118,9 @@ public class GukJun_sahoebogji_1{
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 		condition : 
 		for(int i=0; i<user_eduList.size(); i++) {
-			if((user_eduList.get(i).edu==1 || user_eduList.get(i).edu==2 ) && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
+			if((user_eduList.get(i).getEdu()==1 || user_eduList.get(i).getEdu()==2 ) && user_eduList.get(i).getState()==0 && user_eduList.get(i).getMajor()==cfvo.getCate()) {
 				for(int j=0; j<user_certiList.size(); j++) {
-					if(user_certiList.get(j).num==000) {
+					if(user_certiList.get(j).getNum()==000) {
 						/*
 						 * 자격시험 일정과 자격증 취득일을 비교하는 문구 필요
 						 */
