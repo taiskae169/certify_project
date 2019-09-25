@@ -50,12 +50,7 @@
   <!-- Icons Grid -->
   <hr style="width:1450px;"/>
 
-  <nav class="navbar navbar-light bg-light static-top" style="width:1450px;;margin:auto">
-    <div class="container">
-      <a class="navbar-brand" href="#">자격루</a>
-      <a class="btn btn-primary" href="#">Login</a>
-    </div>
-  </nav>
+<jsp:include page="/WEB-INF/view/Bar/NavBar.jsp"/>
 
   <!-- Image Showcases -->
   <section class="showcase" style="width:1450px;;margin:auto;">
@@ -118,7 +113,7 @@
  					</c:if>
  				</table>
 	 		</c:if>
-	 		
+	 		<button class="btn" id="insertData" onclick="JavaScript:window.location='/certify/user/mp/input_eduCareer.certi'"> 추가 작성 </button>
 	 		<button id="${cerNum}" onclick="goSession4(this.id)"> 다음 단계로 </button>
 	 		
 	 		<c:if test="${empty eduList}"> <!-- 작업 끝나고 empty로 바꾸기!! -->
