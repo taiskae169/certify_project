@@ -33,6 +33,12 @@
 <jsp:include page="/WEB-INF/view/Bar/NavBar.jsp"/>
 
   <!-- Icons Grid -->
+<<<<<<< HEAD
+=======
+  <hr style="width:1450px;"/>
+
+  <jsp:include page="/WEB-INF/view/Bar/NavBar.jsp"/>
+>>>>>>> branch 'master' of https://github.com/taiskae169/certify_project.git
 
   <!-- Image Showcases -->
 

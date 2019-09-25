@@ -22,26 +22,6 @@
     </head>
     <body>
         <div class="container"><!-- 좌우측의 공간 확보 -->
-            <!-- 모달창 -->
-            <div class="modal fade in" id="defaultModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="modal-title">알림</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p class="modal-contents"></p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
-            <!--// 모달창 -->
-                <!-- 본문 들어가는 부분 -->
-        <hr />         
  		<div>
  			<h1> 회원 학력 및 경력정보 입력 </h1>
  			<b><i>주의! 작성을 원치 않는 항목은 반드시 "넘어가기"버튼, 또는"삭제"버튼을 활용해주세요!</i></b>
@@ -180,7 +160,7 @@
        			<input class="btn" id="plus" type="button" name="session_plus" value="추가입력" onclick="addForm_certi()">
        		</div>
         </div> <!-- input_informations -->
-         
+        </div> 
 		
 		
 		<!--// 본문 들어가는 부분 -->
@@ -189,6 +169,7 @@
         <div style="position:relative; right:50px;">
 			<div class="col-lg-offset-2 col-lg-10">
 				<button class="btn btn-default" id="allSubmit">입력</button>
+				<button class="btn btn-default" id="back" style="background-color: rgb(219,68,85)" onclick="javascript:history.back()">돌아가기</button>
 			</div>
 		</div>
     </body>

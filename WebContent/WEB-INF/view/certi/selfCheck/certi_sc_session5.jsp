@@ -36,6 +36,10 @@
   <!-- Icons Grid -->
   <hr style="width:1450px;"/>
 
+<<<<<<< HEAD
+=======
+	<jsp:include page="/WEB-INF/view/Bar/NavBar.jsp"/>
+>>>>>>> branch 'master' of https://github.com/taiskae169/certify_project.git
 
   <!-- Image Showcases -->
   <section class="showcase" style="width:1450px;;margin:auto;">
@@ -44,24 +48,6 @@
   
   <!-- 본문  -->
 	<div class="container"><!-- 좌우측의 공간 확보 -->
-    	<!-- 모달창 -->
-        <div class="modal fade in" id="defaultModal">
-        	<div class="modal-dialog">
-            	<div class="modal-content">
-                	<div class="modal-header">
-                    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title">알림</h4>
-                    </div>
-					<div class="modal-body">
-						<p class="modal-contents"></p>
-					</div>
-					<div class="modal-footer">
-	                	<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-	               	</div>
-                </div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->
-        <!--// 모달창 -->
                
         <!-- 본문 들어가는 부분 -->
         <hr />         
@@ -96,7 +82,7 @@
  				</c:forEach>
  			</table>		
 	 		<div>
-
+			<button class="btn" onclick="javascript:window.location='/certify/main.certi'">메인으로</button>
 	 		</div>	 		
 		</div> 
 	</div> <!-- container end -->

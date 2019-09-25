@@ -36,6 +36,11 @@
   <!-- Icons Grid -->
   <hr style="width:1450px;"/>
 
+<<<<<<< HEAD
+=======
+  <jsp:include page="/WEB-INF/view/Bar/NavBar.jsp"/>
+
+>>>>>>> branch 'master' of https://github.com/taiskae169/certify_project.git
   <!-- Image Showcases -->
   <section class="showcase" style="width:1450px;;margin:auto;">
 
@@ -112,7 +117,7 @@
  					</c:if>
  				</table>
 	 		</c:if>
-	 		
+	 		<button class="btn" id="insertData" onclick="JavaScript:window.location='/certify/user/mp/input_eduCareer.certi'"> 추가 작성 </button>
 	 		<button id="${cerNum}" onclick="goSession5(this.id)"> 다음 단계로 </button>
 	 		
 	 		<c:if test="${empty certiList}"> <!-- 작업 끝나고 empty로 바꾸기!! -->

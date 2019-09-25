@@ -50,16 +50,7 @@ public class userCareerVO {
 		return comp_cate;
 	}
 	public void setComp_cate(int comp_cate) {
-		/* comp_cate가 DB : cer_category.certi_num을 참조하고 있으므로
-		 * 이에 해당하지 않을 경우 999로 설정
-		 */
-		List<Cer_CategoryVO> cer_cate = cfm.getCerti_Category();
-		for(Cer_CategoryVO cc : cer_cate) {
-			if(cc.getCerti_num() == comp_cate) {
-				this.comp_cate = comp_cate; break;
-			}
-			else this.comp_cate = 999;	// 999 = 기타
-		}
+		this.comp_cate = comp_cate;
 	}
 	public Date getCom_ent_date() {
 		return com_ent_date;

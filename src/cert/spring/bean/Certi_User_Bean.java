@@ -117,8 +117,8 @@ public class Certi_User_Bean {
 		    br.close();
 		    
 		    if(responseCode==200) {
-		    	//inputLine = res.toString();
-		    	System.out.println("inputLine : " + inputLine);
+		    	inputLine = res.toString();
+		    	//System.out.println("inputLine : " + inputLine);
 		    	
 		    	//json 추출 과정
 		    	JsonParser jp = new JsonParser();

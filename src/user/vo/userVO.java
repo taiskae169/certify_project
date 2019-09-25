@@ -61,13 +61,19 @@ public class userVO {
 		return wana;
 	}
 	public void setWana(int wana) {
-		this.wana = wana;
+		if(wana>=0&&wana<=1000) {
+			this.wana = wana;	
+		}
+		
 	}
 	public int getQual() {
 		return qual;
 	}
 	public void setQual(int qual) {
-		this.qual = qual;
+		if(qual>=0&&qual<8) {
+			this.qual = qual;
+		}
+		
 	}
 	public String getNaverId() {
 		return naverId;

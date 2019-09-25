@@ -23,26 +23,6 @@
     </head>
     <body>
         <div class="container"><!-- 좌우측의 공간 확보 -->
-            <!-- 모달창 -->
-            <div class="modal fade in" id="defaultModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="modal-title">알림</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p class="modal-contents"></p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
-            <!--// 모달창 -->
-        <!-- 본문 들어가는 부분 -->
-        <hr />         
  		
  		<div>
  			<h1> ${uvo.name}님의 회원정보입니다.</h1>
@@ -224,9 +204,11 @@
  			<br></hr><br>
  			<!-- 하단버튼 -->
  			<div align="center">
- 				<button id="goSelfCheck">응시자격 자가진단</button>
- 				<button id="goFixData" onclick="window.location='/certify/user/mp/myPage.certi?type=mod'">정보 수정</button>
- 				<button id="goFixData">회원 탈퇴</button>
+ 				<button class="btn" id="goAddInput" onclick="JavaScript:window.location='/certify/user/mp/input_eduCareer.certi'"><b>추가 입력사항 기입</b></button>
+ 				<button class="btn" id="goSelfCheck"><i>응시자격 자가진단</i></button>
+ 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ 				<button class="btn" id="goFixData" onclick="window.location='/certify/user/mp/myPage.certi?type=mod'">정보 수정</button>
+ 				<button class="btn" id="deleteUser" style="background-color:#DB4455"><b>회원 탈퇴</b></button>
  			</div>
  			
  		</div>

@@ -124,7 +124,7 @@ public class Certi_User_MyPage_Bean {
 		return mv;
 	}
 	
-	@RequestMapping(value="/myPage_modifyPro.certi", method = RequestMethod.POST)
+	@RequestMapping("/myPage_modifyPro.certi")
 	public ModelAndView modifyUserData(HttpSession session, String user_info) throws Exception {
 		mv = new ModelAndView();
 		String id = (String)session.getAttribute("sessionID");
@@ -305,7 +305,7 @@ public class Certi_User_MyPage_Bean {
 				major = 999; // 999 == "기타"
 			}else if(school_nameFix.contains("사관학교")) {
 				edu = 3;
-				eduType = "사관학교";
+				eduType = "사관학교 4년";
 				major = 51; // 51 == "법률/경찰/소방/교도/국방"
 			}else {
 				List<VOforList> univList = rcu.csvToList(filepath);

@@ -30,7 +30,4 @@ public class CertifyVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
-	
 }
