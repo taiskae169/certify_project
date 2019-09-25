@@ -51,24 +51,13 @@ public class userEduVO {
 		return edu;
 	}
 	public void setEdu(int edu) {
-		List<user_Edu_edu_valueVO> edu_value = userdao.getUser_Edu_Val();
-		for(user_Edu_edu_valueVO ev : edu_value) {
-			if(ev.getNum() == edu) {
-				this.edu = edu; break;
-			}else this.edu = 14; // 14 : 기타
-		}
+		this.edu = edu;
 	}
 	public int getMajor() {
 		return major;
 	}
 	public void setMajor(int major) {
-		List<Cer_CategoryVO> cer_cate = cfm.getCerti_Category();
-		for(Cer_CategoryVO cc : cer_cate) {
-			if(cc.getCerti_num() == major) {
-				this.major = major; break;
-			}
-			else this.major = 999;	// 999 = 기타
-		}
+		this.major = major;
 	}
 	public int getState() {
 		return state;

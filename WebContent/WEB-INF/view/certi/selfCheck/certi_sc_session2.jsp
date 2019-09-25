@@ -64,28 +64,11 @@
   
   <!-- 본문  -->
 	<div class="container"><!-- 좌우측의 공간 확보 -->
-    	<!-- 모달창 -->
-        <div class="modal fade in" id="defaultModal">
-        	<div class="modal-dialog">
-            	<div class="modal-content">
-                	<div class="modal-header">
-                    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title">알림</h4>
-                    </div>
-					<div class="modal-body">
-						<p class="modal-contents"></p>
-					</div>
-					<div class="modal-footer">
-	                	<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-	               	</div>
-                </div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->
-        <!--// 모달창 -->
                
         <!-- 본문 들어가는 부분 -->
         <hr />         
 	 	<div>
+	 		<!-- 유저 학력정보확인 -->
 	 		<h1> 응시자격 자가진단</h1>
 	 		<b><i> ${user_name} 회원님의 학력정보를 확인합니다.</i></b>
 	 		<br><hr/>
@@ -131,85 +114,9 @@
 	 			</table>
 	 		</c:if>
 	 		
+	 		<button id="insertData" onclick="JavaScript:window.location='/certi/user/mp/input_eduCareer.certi'"> 추가 작성 </button>
 	 		<button id="${cerNum}" onclick="goSession3(this.id)"> 다음 단계로 </button>
-	 		
-	 		<c:if test="${empty eduList}"> <!-- 작업 끝나고 empty로 바꾸기!! -->
-	 		
-	 			<p> 입력된 학력정보가 없습니다. </p>
-	 			<p> 학력정보를 입력해주세요. </p>	
-	 			<br> 			
-	 			<div class="input_informations">
-			 		<h2>학력사항</h2>
-			 		<b>학력사항을 입력합니다. (필수항목)</b>
-			 		<div id="eduInfo">
-						<div id="edu_forms">
-							<c:set var="i" value="0" /> <!-- default value for form's id & name -->
-			        		<form class="form-horizontal"  name="user_edu_${i}" id="user_edu_${i}" role="form" method="post" >
-			            		<div class="form-group" id="divEdu_name">
-			                		<label for="edu_name" class="col-lg-2 control-label" >학교명</label>
-			                		<div class="col-lg-10">
-						                <input type="text" id="edu_name" class="form-control" name="edu_name" data-rule-required="true" placeholder="학교명(클릭하여 입력하세요.)" maxlength="40" readOnly onclick="openSub(this.form)">
-			               			</div>
-			            		</div>
-					            <div class="form-group" id="divMajor_name">
-					                <label for="major_name" class="col-lg-2 control-label">학과명</label>
-					                <div class="col-lg-10">
-					                    <input type="text" id="major_name" class="form-control" name="major_name" data-rule-required="true" placeholder="학과명(클릭하여 입력하세요.)" readOnly onclick="openSub(this.form)">
-					                </div>
-					            </div>
-					            <div class="form-group" id="divEduType">
-					                <label for="inputEduType" class="col-lg-2 control-label">학제</label>
-					                <div class="col-lg-10">
-					                    <input type="text" id="eduType" class="form-control" name="eduType" data-rule-required="true" placeholder="학제" maxlength="30" readOnly onclick="openSub(this.form)">
-					                </div>
-					            </div>
-					            <div class="form-group" id="divState">
-					                <label for="inputState" class="col-lg-2 control-label">상태</label>
-					                <div class="col-lg-10">
-					                    <select class="form-control" id="state" name="state">
-					                        <option value="0">졸업</option>
-											<option value="1" selected>재학중</option>
-											<option value="2">졸업예정</option>
-											<option value="3">중퇴</option>
-					                    </select>
-			                		</div>
-					            </div>
-					            <div class="form-group" id="divMajor">
-							    	<label for="inputMajor" class="col-lg-2 control-label">분류</label>
-							        <div class="col-lg-10">
-							        	<select class="form-control" name="major" id="major">
-							            	<c:forEach var="cate" items="${certi_cate}">
-												<option value="${cate.certi_num}">${cate.name}</option>
-											</c:forEach>
-							            </select>
-					                </div>
-							    </div>
-							    <div class="form-group" id="divEnt_Date">
-					                <label for="inputEnt_date" class="col-lg-2 control-label">입학일자</label>
-					                <div class="col-lg-10">
-					                    <input type="date" id="ent_date" class="form-control" name="ent_date" data-rule-required="true" required max="9999-12-31"  placeholder="YYYY-MM-DD">
-					                </div>
-					            </div>
-					            <div class="form-group" id="divGra_Date">
-					                <label for="inputGra_date" class="col-lg-2 control-label">졸업일자</label>
-					                <div class="col-lg-10">
-					                    <input type="date" id="gra_date" class="form-control" name="gra_date" data-rule-required="true" max="9999-12-31"  placeholder="YYYY-MM-DD" >
-					                    <span> ※ 현재 재학 시 미기재 또는 졸업일자 기재필수 (졸업예정자는 예정 졸업일자를 작성해주세요.) </span>
-					                </div>
-					            </div>
-								<input type="hidden" name="edu">
-								<input type="button" value="입력" id="submitForm"/>
-				           	</form>
-				       	</div>
-				       </div>
-
-			       </div>
-	 			<!-- 입력창 open으로 띄워 입력받은 후 sql.insert -> ajax로 페이지 리로드 -->
-	 			</c:if>
-
-	 		<div>
-
-	 		</div>	 		
+			 		
 		</div> 
 	</div> <!-- container end -->
     
