@@ -23,22 +23,6 @@
               <li><a href="/certify/certi/certi_sc_session1.certi?type=1">응시자격 자가진단</a></li>
            		<!-- 응시자격 페이지로 가기 -->
 
-              <li class="active"><a href="main.certi">Home</a></li>
-              <li><a href="/certify/BoardList.certi?catenum=10">게시판</a></li>
-              <li><a href="/certify/certi/certi_sc_session1.certi?type=1">응시자격검사</a></li>
-
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li class="divider"></li>
-                  <li class="dropdown-header">Nav header</li>
-                  <li><a href="#">Separated link</a></li>
-                  <li><a href="#">One more separated link</a></li>
-                </ul>
-              </li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
