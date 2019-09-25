@@ -10,6 +10,12 @@ import user.vo.userVO;
 
 public class Gukjun_jungsooSisul1{
 	
+	/* 2019.09.25. 최신 note(작성자 조지훈) : 
+	 * 자격증 조건 메소드를 작성하기 위한 변수가 너무 많아
+	 * 일시 작성 중지
+	 */
+	
+	
 	// 가능/불가능 리턴을 위한 변수
 	private boolean applyPossible = false;	
 				
@@ -17,7 +23,6 @@ public class Gukjun_jungsooSisul1{
 	public boolean gukjun_jungsooSisul1_1(userVO uvo, HashMap<Integer, Long> careerMap, 
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 		
-		// CSV를 참조하여 DB에 저장된 major(Integer)와 
 		
 		
 		return applyPossible;

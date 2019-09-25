@@ -23,7 +23,7 @@ public class Gukjun_sobangSisul{
 		condition:
 		for(int i=0; i<user_certiList.size(); i++) {
 			for(int j=0; j<cer_var.length; j++) {
-				if(user_certiList.get(i).num==cer_var[j]) {
+				if(user_certiList.get(i).getNum()==cer_var[j]) {
 					applyPossible=true; break condition;
 				}
 			}
@@ -37,7 +37,7 @@ public class Gukjun_sobangSisul{
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 		condition:
 		for(int i=0; i<user_certiList.size(); i++) {
-			if((user_certiList.get(i).num==307 || user_certiList.get(i).num==308)) {
+			if((user_certiList.get(i).getNum()==307 || user_certiList.get(i).getNum()==308)) {
 				if(careerMap!=null && careerMap.containsKey(cfvo.getCate())) {
 					if(careerMap.get(cfvo.getCate())>=year*2) applyPossible=true; break condition;
 				}
@@ -52,7 +52,7 @@ public class Gukjun_sobangSisul{
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 		condition:
 		for(int i=0; i<user_certiList.size(); i++) {
-			if((user_certiList.get(i).num==202 || user_certiList.get(i).num==203)) {
+			if((user_certiList.get(i).getNum()==202 || user_certiList.get(i).getNum()==203)) {
 				if(careerMap!=null && careerMap.containsKey(cfvo.getCate())) {
 					if(careerMap.get(cfvo.getCate())>=year*3) applyPossible=true; break condition;
 				}
@@ -77,7 +77,7 @@ public class Gukjun_sobangSisul{
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 		condition:
 		for(int i=0; i<user_certiList.size(); i++) {
-			if((user_certiList.get(i).num==217 || user_certiList.get(i).num==92)) {
+			if((user_certiList.get(i).getNum()==217 || user_certiList.get(i).getNum()==92)) {
 				if(careerMap!=null && careerMap.containsKey(cfvo.getCate())) {
 					if(careerMap.get(cfvo.getCate())>=year*3) applyPossible=true; break condition;
 				}
@@ -92,7 +92,7 @@ public class Gukjun_sobangSisul{
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 		condition:
 		for(int i=0; i<user_certiList.size(); i++) {
-			if(user_certiList.get(i).num==300) {
+			if(user_certiList.get(i).getNum()==300) {
 				if(careerMap!=null && careerMap.containsKey(cfvo.getCate())) {
 					if(careerMap.get(cfvo.getCate())>=year*3) applyPossible=true; break condition;
 				}
@@ -113,14 +113,14 @@ public class Gukjun_sobangSisul{
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 		condition:
 			for(int i=0; i<user_eduList.size(); i++) {
-				if(user_eduList.get(i).edu==11 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
+				if(user_eduList.get(i).getEdu()==11 && user_eduList.get(i).getState()==0 && user_eduList.get(i).getMajor()==cfvo.getCate()) {
 					// 박사학위취득일때
 					applyPossible=true; break condition;
-				}else if(user_eduList.get(i).edu==10 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
+				}else if(user_eduList.get(i).getEdu()==10 && user_eduList.get(i).getState()==0 && user_eduList.get(i).getMajor()==cfvo.getCate()) {
 					if(careerMap!=null && careerMap.containsKey(cfvo.getCate())) {
 						if(careerMap.get(cfvo.getCate())>=year*2) applyPossible=true; break condition;
 					}
-				}else if(user_eduList.get(i).edu==3 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
+				}else if(user_eduList.get(i).getEdu()==3 && user_eduList.get(i).getState()==0 && user_eduList.get(i).getMajor()==cfvo.getCate()) {
 					if(careerMap!=null && careerMap.containsKey(cfvo.getCate())) {
 						if(careerMap.get(cfvo.getCate())>=year*3) applyPossible=true; break condition;
 					}
@@ -138,9 +138,9 @@ public class Gukjun_sobangSisul{
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 		condition:
 			for(int i=0; i<user_eduList.size(); i++) {
-				if(user_eduList.get(i).edu==3 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
+				if(user_eduList.get(i).getEdu()==3 && user_eduList.get(i).getState()==0 && user_eduList.get(i).getMajor()==cfvo.getCate()) {
 					for(int j=0; j<user_eduList.size(); j++) {
-						if(user_eduList.get(j).edu==10 && user_eduList.get(j).state==0 && user_eduList.get(j).major==cfvo.getCate()) {
+						if(user_eduList.get(j).getEdu()==10 && user_eduList.get(j).getState()==0 && user_eduList.get(j).getMajor()==cfvo.getCate()) {
 							applyPossible=true; break condition;
 						}else if(careerMap!=null && careerMap.containsKey(cfvo.getCate())) {
 							if(careerMap.get(cfvo.getCate())>=year*2) applyPossible=true; break condition;
@@ -157,7 +157,7 @@ public class Gukjun_sobangSisul{
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 		condition:
 			for(int i=0; i<user_eduList.size(); i++) {
-				if(user_eduList.get(i).edu==3 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
+				if(user_eduList.get(i).getEdu()==3 && user_eduList.get(i).getState()==0 && user_eduList.get(i).getMajor()==cfvo.getCate()) {
 					if(careerMap!=null && careerMap.containsKey(cfvo.getCate())) {
 						if(careerMap.get(cfvo.getCate())>=year*3) applyPossible=true; break condition;
 					}
@@ -179,7 +179,7 @@ public class Gukjun_sobangSisul{
 			userVO uvo, HashMap<Integer, Long> careerMap, 
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 		for(int i=0; i<user_certiList.size(); i++) {
-			if(user_certiList.get(i).num==701) {
+			if(user_certiList.get(i).getNum()==701) {
 				applyPossible=true; break;
 			}
 		}

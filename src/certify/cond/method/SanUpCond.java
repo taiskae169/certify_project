@@ -45,7 +45,7 @@ public class SanUpCond{
 			List<userEduVO> user_eduList, CertifyVO cfvo,  List<userCertiVO> user_certiList) {
 		boolean applyPossible = false;	
 		for(int i=0; i<user_eduList.size(); i++) {
-			if(user_eduList.get(i).edu==1 && user_eduList.get(i).state==2 && user_eduList.get(i).major==cfvo.getCate()) {
+			if(user_eduList.get(i).getEdu()==1 && user_eduList.get(i).getState()==2 && user_eduList.get(i).getMajor()==cfvo.getCate()) {
 				applyPossible=true; break;
 			}
 		}
@@ -57,7 +57,7 @@ public class SanUpCond{
 			List<userEduVO> user_eduList, CertifyVO cfvo,  List<userCertiVO> user_certiList) {
 		boolean applyPossible = false;	
 		for(int i=0; i<user_eduList.size(); i++) {
-			if(user_eduList.get(i).edu==2 && user_eduList.get(i).state==2 && user_eduList.get(i).major==cfvo.getCate()) {
+			if(user_eduList.get(i).getEdu()==2 && user_eduList.get(i).getState()==2 && user_eduList.get(i).getMajor()==cfvo.getCate()) {
 				applyPossible=true; break;
 			}
 		}
@@ -69,7 +69,7 @@ public class SanUpCond{
 			List<userEduVO> user_eduList, CertifyVO cfvo,  List<userCertiVO> user_certiList) {
 		boolean applyPossible = false;	
 		for(int i=0; i<user_eduList.size(); i++) {
-			if(user_eduList.get(i).edu==1 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
+			if(user_eduList.get(i).getEdu()==1 && user_eduList.get(i).getState()==0 && user_eduList.get(i).getMajor()==cfvo.getCate()) {
 				applyPossible=true; break;
 			}
 		}
@@ -82,7 +82,7 @@ public class SanUpCond{
 			List<userEduVO> user_eduList, CertifyVO cfvo,  List<userCertiVO> user_certiList) {
 		boolean applyPossible = false;	
 		for(int i=0; i<user_eduList.size(); i++) {
-			if(user_eduList.get(i).edu==2 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
+			if(user_eduList.get(i).getEdu()==2 && user_eduList.get(i).getState()==0 && user_eduList.get(i).getMajor()==cfvo.getCate()) {
 				applyPossible=true; break;
 			}
 		}
@@ -94,8 +94,8 @@ public class SanUpCond{
 			List<userEduVO> user_eduList, CertifyVO cfvo,  List<userCertiVO> user_certiList) {
 		boolean applyPossible = false;	
 		for(int i=0; i<user_eduList.size(); i++) {
-			if(user_eduList.get(i).edu==3 && user_eduList.get(i).state==1 && user_eduList.get(i).major==cfvo.getCate()) {
-				long diff = today.getTime() - user_eduList.get(i).ent_date.getTime();
+			if(user_eduList.get(i).getEdu()==3 && user_eduList.get(i).getState()==1 && user_eduList.get(i).getMajor()==cfvo.getCate()) {
+				long diff = today.getTime() - user_eduList.get(i).getEnt_date().getTime();
 			    long diffDays = diff / (24 * 60 * 60 * 1000);
 			    if(diffDays>=year*2) {
 			    	applyPossible=true; break;
@@ -110,8 +110,8 @@ public class SanUpCond{
 			List<userEduVO> user_eduList, CertifyVO cfvo,  List<userCertiVO> user_certiList) {
 		boolean applyPossible = false;	
 		for(int i=0; i<user_eduList.size(); i++) {
-			if(user_eduList.get(i).edu==4 && user_eduList.get(i).state==1 && user_eduList.get(i).major==cfvo.getCate()) {
-				long diff = today.getTime() - user_eduList.get(i).ent_date.getTime();
+			if(user_eduList.get(i).getEdu()==4 && user_eduList.get(i).getState()==1 && user_eduList.get(i).getMajor()==cfvo.getCate()) {
+				long diff = today.getTime() - user_eduList.get(i).getEnt_date().getTime();
 			    long diffDays = diff / (24 * 60 * 60 * 1000);
 			    // 관련학과 2년 이상 마쳤을 경우(현재기준)
 			    if(diffDays>=(year*5)/2) {
@@ -127,8 +127,8 @@ public class SanUpCond{
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 		boolean applyPossible = false;	
 		for(int i=0; i<user_eduList.size(); i++) {
-			if(user_eduList.get(i).edu==5 && user_eduList.get(i).state==1 && user_eduList.get(i).major==cfvo.getCate()) {
-				long diff = today.getTime() - user_eduList.get(i).ent_date.getTime();
+			if(user_eduList.get(i).getEdu()==5 && user_eduList.get(i).getState()==1 && user_eduList.get(i).getMajor()==cfvo.getCate()) {
+				long diff = today.getTime() - user_eduList.get(i).getEnt_date().getTime();
 			    long diffDays = diff / (24 * 60 * 60 * 1000);
 			    if(diffDays>=year*3) {
 			    	applyPossible=true; break;
@@ -143,7 +143,7 @@ public class SanUpCond{
 			List<userEduVO> user_eduList, CertifyVO cfvo,  List<userCertiVO> user_certiList) {
 		boolean applyPossible = false;	
 		for(int i=0; i<user_eduList.size(); i++) {
-			if(user_eduList.get(i).edu==6 && user_eduList.get(i).state==2 && user_eduList.get(i).major==cfvo.getCate()) {
+			if(user_eduList.get(i).getEdu()==6 && user_eduList.get(i).getState()==2 && user_eduList.get(i).getMajor()==cfvo.getCate()) {
 				applyPossible=true; break;
 			}
 		}
@@ -155,7 +155,7 @@ public class SanUpCond{
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 		boolean applyPossible = false;	
 		for(int i=0; i<user_eduList.size(); i++) {
-			if(user_eduList.get(i).edu==6 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
+			if(user_eduList.get(i).getEdu()==6 && user_eduList.get(i).getState()==0 && user_eduList.get(i).getMajor()==cfvo.getCate()) {
 				applyPossible=true; break;
 			}
 		}
@@ -167,7 +167,7 @@ public class SanUpCond{
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 		boolean applyPossible = false;	
 		for(int i=0; i<user_eduList.size(); i++) {
-			if(user_eduList.get(i).edu==3 && user_eduList.get(i).state==2 && user_eduList.get(i).major==cfvo.getCate()) {
+			if(user_eduList.get(i).getEdu()==3 && user_eduList.get(i).getState()==2 && user_eduList.get(i).getMajor()==cfvo.getCate()) {
 				applyPossible=true; break;
 			}
 		}
@@ -179,7 +179,7 @@ public class SanUpCond{
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 		boolean applyPossible = false;	
 		for(int i=0; i<user_eduList.size(); i++) {
-			if(user_eduList.get(i).edu==3 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
+			if(user_eduList.get(i).getEdu()==3 && user_eduList.get(i).getState()==0 && user_eduList.get(i).getMajor()==cfvo.getCate()) {
 				applyPossible=true; break;
 			}
 		}
@@ -191,7 +191,7 @@ public class SanUpCond{
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 		boolean applyPossible = false;	
 		for(int i=0; i<user_certiList.size(); i++) {
-			if(user_certiList.get(i).cate==cfvo.getCate() && user_certiList.get(i).type==0) {
+			if(user_certiList.get(i).getCate()==cfvo.getCate() && user_certiList.get(i).getType()==0) {
 				if(careerMap!=null && careerMap.containsKey(cfvo.getCate()) ) {
 		    		if(careerMap.get(cfvo.getCate())>=year) {
 		    			applyPossible=true; break;
@@ -217,7 +217,7 @@ public class SanUpCond{
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 		boolean applyPossible = false;	
 		for(int i=0; i<user_eduList.size(); i++) {
-			if(user_eduList.get(i).edu==7 && user_eduList.get(i).state==2 && user_eduList.get(i).major==cfvo.getCate()) {
+			if(user_eduList.get(i).getEdu()==7 && user_eduList.get(i).getState()==2 && user_eduList.get(i).getMajor()==cfvo.getCate()) {
 				applyPossible=true; break;
 			}
 		}
@@ -229,7 +229,7 @@ public class SanUpCond{
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 		boolean applyPossible = false;	
 		for(int i=0; i<user_eduList.size(); i++) {
-			if(user_eduList.get(i).edu==7 && user_eduList.get(i).state==0 && user_eduList.get(i).major==cfvo.getCate()) {
+			if(user_eduList.get(i).getEdu()==7 && user_eduList.get(i).getState()==0 && user_eduList.get(i).getMajor()==cfvo.getCate()) {
 				applyPossible=true; break;
 			}
 		}
@@ -242,7 +242,7 @@ public class SanUpCond{
 		boolean applyPossible = false;	
 		if(user_certiList!=null) {
 			for(int i=0; i<user_certiList.size(); i++) {
-				if(user_certiList.get(i).cate==cfvo.getCate() && user_certiList.get(i).type >= cfvo.getType()) {
+				if(user_certiList.get(i).getCate()==cfvo.getCate() && user_certiList.get(i).getType() >= cfvo.getType()) {
 					applyPossible=true; break;
 				}
 			}

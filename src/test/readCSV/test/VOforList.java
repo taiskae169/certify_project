@@ -10,6 +10,10 @@ public class VOforList {
 	private String smallType;
 	private String years;
 	private String eduType;
+	
+	// csv파일을 리스트로 불러올때 참조하는 클래스로,
+	// 별도의 유효성검사가 필요하지 않습니다.
+	
 	public String getUniv() {
 		return univ;
 	}

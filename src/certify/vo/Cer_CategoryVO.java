@@ -6,6 +6,10 @@ public class Cer_CategoryVO {
 	private String name;	//카테고리명
 	private int certi_num;	//카테고리 번호
 	
+	/*
+	 * DB에 저장된 국가기술직무표준 코드번호로, 단순 데이터로 구성되어있음
+	 * 본 클래스를 다른 클래스에서 참조하여 사용합니다.
+	 */
 	
 	public int getNum() {
 		return num;
