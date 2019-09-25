@@ -17,7 +17,7 @@
             <ul class="nav navbar-nav">
               <li class="active"><a href="main.certi">Home</a></li>
               <li><a href="/certify/BoardList.certi?catenum=10">게시판</a></li>
-              <li><a href="#수정해주세요">응시자격검사</a></li>
+              <li><a href="/certify/certi/certi_sc_session1.certi?type=1">응시자격검사</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
