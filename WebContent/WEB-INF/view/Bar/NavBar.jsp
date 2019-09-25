@@ -15,10 +15,12 @@
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="/certify/main.certi">Home</a></li>
-              <li><a href="BoardList.certi?catenum=10">게시판</a></li>
-              <li><a href="javascript:InterestMain();">관심자격증</a></li>
-              <li><a href="javascript:openlist();"">시험일정</a></li>
+              <li class="active"><a href="/certify/main.certi">Home</a></li> <!-- 홈페이지로 가기 -->
+              <li><a href="/certify/BoardList.certi?catenum=10">게시판</a></li> <!-- 게시판 페이지로 가기 -->
+              <li><a href="javascript:InterestMain();">관심자격증</a></li> <!-- 관심자격증창 띄우기 -->
+              <li><a href="javascript:openlist();"">시험일정</a></li> <!-- 시험일정 창띄우기 -->
+              <li><a href="/certify/certi/certi_sc_session1.certi?type=1">응시자격 자가진단</a></li>
+           		<!-- 응시자격 페이지로 가기 -->
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">

@@ -100,10 +100,10 @@
  						<td>입학일자</td>
  						<td>졸업일자</td>
  					</thead>
- 					<c:if test="${eduList==null}">
+ 					<c:if test="${empty eduList}">
  						<tr align="center"><td colspan="7">입력된 학력사항이 없습니다.</td></tr>
  					</c:if>
- 					<c:if test="${eduList!=null}">
+ 					<c:if test="${!empty eduList}">
  						<c:forEach var="edu" items="${eduList}">
  							<tr align="center">
 		 						<td>${edu.edu_name}</td>
@@ -143,10 +143,10 @@
  						<td>입사일자</td>
  						<td>퇴사일자</td>
  					</thead>
- 					<c:if test="${careerList==null}">
+ 					<c:if test="${empty careerList}">
  						<tr align="center"><td colspan="4">입력된 경력사항이 없습니다.</td></tr>
  					</c:if>
- 					<c:if test="${careerList!=null}">
+ 					<c:if test="${!empty careerList}">
  						<c:forEach var="career" items="${careerList}">
  							<tr align="center">
 		 						<td>${career.company}</td>
@@ -172,10 +172,10 @@
  						<td>자격 종목</td>
  						<td>취득일자</td>
  					</thead>
- 					<c:if test="${certiList==null}">
+ 					<c:if test="${empty certiList}">
  						<tr align="center"><td colspan="4">입력된 자격사항이 없습니다.</td></tr>
  					</c:if>
- 					<c:if test="${certiList!=null}">
+ 					<c:if test="${!empty certiList}">
  						<c:forEach var="certi" items="${certiList}">
  							<tr align="center">
  								<c:forEach var="ac" items="${allCerti}">
@@ -208,13 +208,13 @@
  			</div>
  			
  			<div id="certi_interest">
- 				<h3>관심자격증</h3>
+ 				<h3>관심자격증</h3> <%-- 회원이 선택한 관심 자격증을 보여줌  --%>
  					<div position="static" style="display:flex; align-items:flex-start; justify-content:left; width:100%; height:40px; ">
  				<c:forEach begin="0" end="${certijoinList.size()-1 }" step="1" var="i">
  					<div style="width:20%; height:100%; align-items:flex-start;">
  					<c:set var="certi" value="${certijoinList[i]}"/>
  						<span style="align:center">${certi.name }</span>
- 						<button class="glyphicon glyphicon-remove" onclick="window.location='UserInterestDelete.certi?u_num=${certi.u_num}'"></button>
+
  					</div>
  				</c:forEach>
  				</div>

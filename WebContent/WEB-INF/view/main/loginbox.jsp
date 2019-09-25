@@ -150,11 +150,12 @@
 	</div>
 </c:if>
 
-</div>
+</div> 
+
 
 <script language="javascript" type="text/javascript">  
 
-function InterestMain(){  
+function InterestMain(){ <%-- 관심 자격증 페이지 새창으로 띄우기 --%> 
     window.open("/certify/InterestMain.certi", "검색새창", "width=600, height=700, toolbar=no, menubar=no, scrollbars=no" );  
 }   
 </script>

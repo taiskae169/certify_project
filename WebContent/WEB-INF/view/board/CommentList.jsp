@@ -44,7 +44,7 @@
   
   
 <script>
-$(document).ready( function() {
+$(document).ready( function() { <%-- 페이지 실행후 바로 실행  --%>
 	var i = ${i}
 	
 	  $("div.b"+i).css("display",'none');
@@ -59,7 +59,7 @@ $(document).ready( function() {
   <!-- Custom styles for this template -->
   <link href="/certify/resource/gen/css/landing-page.min.css" rel="stylesheet">
 </head>
-<c:if test="${count==0 }">
+<c:if test="${count==0 }"> <%-- 코멘트 개수 가져오기  --%>
  <div position = "static" style=" float:center; width:1000;">
 <div position = "static" style=" float:center; width:1000;" >
   	<div style=" float:left; width:100%; height:30; align:right">
@@ -77,7 +77,7 @@ $(document).ready( function() {
   	<div position = "static" style=" float:center; background-color:#0FF;  width:1000;">
  <form action="BoardCommentWrite.certi?num=${board.num }" method="post">
   <div style="border-top:1px dashed black; background-color:#efefef; float:left; width:150; height:130">
- 	  <span style="line-height:100px; font-size:14pt">${sessionScope.memId}</span>
+ 	  <span style="line-height:100px; font-size:14pt">${sessionScope.sessionID}</span>
  </div>
   	<div style="border-top:1px dashed black; background-color:#efefef; float:left; width:700; height:130; padding-top:20px;">
  			<textarea style="height:80" row="50" cols="100" name="content"></textarea>
@@ -111,8 +111,8 @@ $(document).ready( function() {
   	  <span style="font-size:11pt"><fmt:formatDate value="${comment.reg_date}" pattern="yyyy-MM-dd"/></span>
   	  <br>
   	  <br>
-  	  <button style="margin-right:30px" class="btn btn-sm btn-primary" id="re${i }">답글</button>
-  	  <c:if test="${comment.id == sessionScope.memId}">
+  	  <button style="margin-right:30px" class="btn btn-sm btn-primary" id="re${i }">답글</button> <%-- 답글 버튼을 누르면 hover 기능을 통해 답글 창 생성  --%>
+  	  <c:if test="${comment.id == sessionScope.sessionID}">
   	  <button style="float:left; margin-left:30px" class="btn btn-sm btn-danger" onclick="window.location='BoardCommentDelete.certi?b_num=${board.num }&c_num=${comment.num}'">삭제</button>
   	  </c:if>
   	</div>
@@ -121,7 +121,7 @@ $(document).ready( function() {
  	<div class="b${i }" position = "static" style=" float:center; width:1000;">
  <form action="BoardReCommentWrite.certi?b_num=${board.num }&c_num=${comment.num}" method="post">
   <div style="border-top:1px dashed black; background-color:#efefef; float:left; width:150; height:130">
- 	  <span style="line-height:100px; font-size:14pt">${sessionScope.memId}</span>
+ 	  <span style="line-height:100px; font-size:14pt">${sessionScope.sessionID}</span>
  </div>
   	<div style="border-top:1px dashed black; background-color:#efefef; float:left; width:750; height:130; padding-top:20px;">
  			<textarea style="height:80" row="50" cols="100" name="content"></textarea>
@@ -138,7 +138,7 @@ $(document).ready( function() {
  	<div position = "static" style=" float:center; background-color:#0FF;  width:1000;">
  <form action="BoardCommentWrite.certi?num=${board.num }" method="post">
   <div style="border-top:1px dashed black; background-color:#efefef; float:left; width:150; height:130">
- 	  <span style="line-height:100px; font-size:14pt">${sessionScope.memId}</span>
+ 	  <span style="line-height:100px; font-size:14pt">${sessionScope.sessionID}</span>
  </div>
   	<div style="border-top:1px dashed black; background-color:#efefef; float:left; width:700; height:130; padding-top:20px;">
  			<textarea style="height:80" row="50" cols="100" name="content"></textarea>

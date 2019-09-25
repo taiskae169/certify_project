@@ -33,19 +33,9 @@
 <jsp:include page="/WEB-INF/view/Bar/NavBar.jsp"/>
 
   <!-- Icons Grid -->
-  <hr style="width:1450px;"/>
-
-  <nav class="navbar navbar-light bg-light static-top" style="width:1450px;;margin:auto">
-    <div class="container">
-      <a class="navbar-brand" href="#">자격루</a>
-      <a class="btn btn-primary" href="#">Login</a>
-    </div>
-  </nav>
 
   <!-- Image Showcases -->
-  <section class="showcase" style="width:1450px;;margin:auto;">
 
-  </section >
   
   <!-- 본문  -->
   

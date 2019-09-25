@@ -24,7 +24,8 @@
 	<div style="position:static; width:100%; height:40%; display:flex; align-items:center; justify-content:center; border-top:5px dashed; border-color:white;">
 	<form action="InterestSearchPro.certi" method="post">
 	<div style="position:static; width:100%; height:50%; display:flex; align-items:center; justify-content:center">
-	<input type="text" style="border-radius: 1; font-size:14pt;" name="search" id="search" ></div>
+	<input type="text" style="border-radius: 1; font-size:14pt;" name="search" id="search" > <%-- 검색어 입력창 --%> 
+	</div>
 	<div style="position:static; width:100%; height:50%; display:flex; align-items:center; justify-content:center">
 	<input class="btn btn-lg btn-success" type="submit" value="이름으로 검색" placeholder="검색어를 입력해주세요"></div> 
 </form>

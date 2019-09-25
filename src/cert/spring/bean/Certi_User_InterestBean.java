@@ -28,15 +28,13 @@ public class Certi_User_InterestBean {
 	
 	ModelAndView mv =null;
 	
-	@RequestMapping("InterestMain.certi")
+	@RequestMapping("InterestMain.certi") //관심 자격증 메인페이지
 	public String BoardList(HttpSession session,Model model) {
 		String id = (String)session.getAttribute("sessionID");
 		
-		List<userJoinInfoInterCertiVO> ujiiclist = null;
-		
 		return "certi/interest/InterestMain";
 	}
-	@RequestMapping("InterestSearchPro.certi")
+	@RequestMapping("InterestSearchPro.certi") //검색으로 찾고 라디오로 보여주기
 	public String InterRestSearchPro(String search,Model model) {
 	
 		String searchname = search;
@@ -49,7 +47,7 @@ public class Certi_User_InterestBean {
 		return "certi/interest/InterestSearchPro";
 	}
 	
-	@RequestMapping("InterestSearchEnd.certi")
+	@RequestMapping("InterestSearchEnd.certi") //찾은 검색어 insert
 	public String InterRestSearchEnd(String certi,HttpSession session) {
 		System.out.println(certi);
 		int certiname = Integer.parseInt(certi);
@@ -68,7 +66,7 @@ public class Certi_User_InterestBean {
 		return "certi/interest/InterestSearchEnd";
 	}
 	
-	@RequestMapping("InterestTypeForm.certi")
+	@RequestMapping("InterestTypeForm.certi")//Type 별 관심 자격증 list로 출력
 	public String InterRestTypeForm(Model model) {
 		
 		
@@ -111,7 +109,7 @@ public class Certi_User_InterestBean {
 		
 		return "certi/interest/InterestTypeForm";
 	}
-	@RequestMapping("InterestTypePro.certi")
+	@RequestMapping("InterestTypePro.certi")//클릭한 자격증 insert하기
 	public String InterRestTypePro(String cre_name,Model model,HttpSession session) {
 	
 		

@@ -18,7 +18,7 @@
 	<p style="font-size:25pt; color:white;">자격증을 선택해주세요</p>	
 	</div>
 	<div style="position:static; width:100%; height:80%; display:flex; align-items:flex-start; border-color:white;">
-	<form action="InterestSearchEnd.certi" method="post">
+	<form action="InterestSearchEnd.certi" method="post"> <%-- 검색된 개체들 라디오 버튼으로 출력 --%> 
 	<c:forEach begin="0" end="${certilist.size()-1 }" step="1" var="i">
 	<div style="padding-left:50px; width:950px; height:40">
 	<c:set var="certi" value="${certilist[i]}"/>

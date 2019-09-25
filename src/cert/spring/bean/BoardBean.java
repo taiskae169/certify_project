@@ -35,7 +35,7 @@ public class BoardBean {
 	@RequestMapping("BoardList.certi")
 	public String BoardList(HttpSession session,HttpServletRequest request,Model model,int catenum) {
 		
-		if(catenum==10) {
+		if(catenum==10) { //catenum이 10인 경우는 전체글보기
 			int pageSize = 10;
 			String pageNum = request.getParameter("pageNum");
 			int count = (Integer)sql.selectOne("board.getCountALL");
@@ -49,7 +49,7 @@ public class BoardBean {
 			startRow = (currentPage - 1) * pageSize + 1;
 			int endRow = currentPage * pageSize;
 			
-			List<BoardVO> boardlist = null;
+			List<BoardVO> boardlist = null; //BoardVO 형태 리스트 생성
 			
 			HashMap<Object, Object> parameters = new HashMap<Object, Object>();
 			parameters.put("start", startRow);
@@ -59,7 +59,7 @@ public class BoardBean {
 			model.addAttribute("boardlist", boardlist);
 			model.addAttribute("end", endRow);
 			model.addAttribute("start", startRow);
-			model.addAttribute("count", count);
+			model.addAttribute("count", count); //count 값을 조사하여 리스트에 글이 있음과 없을 표시하기위하여 값 전달
 			
 				int pageCount = count/pageSize + (count%pageSize == 0 ? 0 : 1 );
 				int startPage = (int)(currentPage/10)*10+1;
@@ -74,7 +74,7 @@ public class BoardBean {
 				model.addAttribute("startPage", startPage);
 				model.addAttribute("endPage", endPage);
 		}
-		else {
+		else {// catenum이 10이 아닌경우 카테고리가 있는 경우
 		
 		int pageSize = 10;
 		String pageNum = request.getParameter("pageNum");
@@ -126,7 +126,6 @@ public class BoardBean {
 		
 		BoardVO vo = (BoardVO)sql.selectOne("board.content",num);
 		model.addAttribute("board", vo);
-		session.setAttribute("memId", "bong");
 		int count = sql.selectOne("board.CommentCount", num);
 		List<CommentVO> Clist = null;
 		Clist = (List)sql.selectList("board.getComment", num);
@@ -141,7 +140,6 @@ public class BoardBean {
 	
 	@RequestMapping("BoardWriteForm.certi")
 	public String BoardWriteForm(HttpSession session,Model model) {
-		session.setAttribute("memId", "bong");
 		List<BoardCateVO> catelist = null;
 		catelist = (List)sql.selectList("board.getCateArticle");
 		model.addAttribute("catelist",catelist);
@@ -151,23 +149,22 @@ public class BoardBean {
 	@RequestMapping(value="BoardWritePro.certi", method=RequestMethod.POST)
 	public String BoardWritePro(BoardVO vo , 
 				MultipartHttpServletRequest request,Model model,HttpSession session) throws IOException{
-			MultipartFile mf = request.getFile("save");
-			String imgs = request.getRealPath("imgs");
+			MultipartFile mf = request.getFile("save"); //save 이름으로 되어있는 file 받아오기
+			String imgs = request.getRealPath("imgs"); // imgs 이미지 실제 주소 받아오기
 			
-			String orgName = mf.getOriginalFilename(); 
-			String ext = orgName.substring(orgName.lastIndexOf('.'));
+			String orgName = mf.getOriginalFilename(); //파일 이름
+			String ext = orgName.substring(orgName.lastIndexOf('.')); // 확장자 가져오기
 			
-			System.out.println((String)session.getAttribute("memId"));
 			
-			int num = (Integer)sql.selectOne("board.Filenum") + 1;
-			String newName = "image"+num+ext; 
-			File copyFile = new File(imgs+"//"+newName);
+			int num = (Integer)sql.selectOne("board.Filenum") + 1; //파일 개수 가져오기
+			String newName = "image"+num+ext; //새로운 파일 이름 만들기
+			File copyFile = new File(imgs+"//"+newName); 
 			mf.transferTo(copyFile);
 			
 			
 			vo.setNewname(newName);
 			vo.setOrgname(orgName);
-			vo.setId((String)session.getAttribute("memId"));
+			vo.setId((String)session.getAttribute("sessionID"));
 			vo.setTitle(vo.getTitle());
 			vo.setCate(vo.getCate());
 			vo.setContent(vo.getContent());
@@ -191,7 +188,7 @@ public class BoardBean {
 	
 	@RequestMapping("BoardUpdateForm.certi")
 	public String BoardUpdateForm(HttpSession session,Model model,int num) {
-		session.setAttribute("memId", "bong");
+		
 		List<BoardCateVO> catelist = null;
 		catelist = (List)sql.selectList("board.getCateArticle");
 		model.addAttribute("catelist",catelist);
@@ -223,7 +220,7 @@ public class BoardBean {
 
 			vo.setNewname(newName);
 			vo.setOrgname(orgName);
-			vo.setId((String)session.getAttribute("memId"));
+			vo.setId((String)session.getAttribute("sessionID"));
 			vo.setTitle(vo.getTitle());
 			vo.setCate(vo.getCate());
 			vo.setContent(vo.getContent());
@@ -242,7 +239,7 @@ public class BoardBean {
 	
 	@RequestMapping("BoardCommentWrite.certi")
 	public String BoardCommentWrite(CommentVO cvo,HttpSession session,int num,Model model) {
-		cvo.setId((String)session.getAttribute("memId"));
+		cvo.setId((String)session.getAttribute("sessionID"));
 		cvo.setTable_num(num);
 		cvo.setContent(cvo.getContent());
 		
@@ -256,8 +253,8 @@ public class BoardBean {
 		
 		BoardVO vo = (BoardVO)sql.selectOne("board.content",b_num);
 		model.addAttribute("board", vo);
-		session.setAttribute("memId", "bong");
-		int count = sql.selectOne("board.CommentCount", b_num);
+	
+		int count = sql.selectOne("board.CommentCount", b_num); //댓글 개수 가져오기
 		
 		List<CommentVO> Clist = null;
 		Clist = (List)sql.selectList("board.getComment", b_num);
@@ -270,11 +267,11 @@ public class BoardBean {
 	
 	@RequestMapping("BoardReCommentWrite.certi")
 	public String BoardReCommentWrite(CommentVO cvo,HttpSession session,int b_num,int c_num,Model model) {
-		cvo.setId((String)session.getAttribute("memId"));
+		cvo.setId((String)session.getAttribute("sessionID"));
 		cvo.setTable_num(b_num);
 		cvo.setContent(cvo.getContent());
 		cvo.setNum(c_num);
-		cvo.setStep(cvo.getStep()+1);
+		cvo.setStep(cvo.getStep()+1); //현재 스탭보다 개수를 하나 더 많게 하여 답글 구분하기
 		
 		
 		model.addAttribute("num", b_num);

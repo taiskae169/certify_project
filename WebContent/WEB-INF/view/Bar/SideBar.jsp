@@ -7,7 +7,7 @@
            <li><a href="BoardList.certi?catenum=10" style="color:white; font-size:13pt">전체게시판</a></li>
           <c:forEach begin="0" end="${catelist.size()-1}" step="1" var="i">
           <c:set var="cateboard" value="${catelist[i] }" />
-          	 <li><a href="BoardList.certi?catenum=${cateboard.num }" style="color:white; font-size:13pt">${cateboard.value }게시판</a></li>
+          	 <li><a href="BoardList.certi?catenum=${cateboard.num }" style="color:white; font-size:13pt">${cateboard.value }게시판</a></li> <!-- 카테고리 리스트 보여주기 -->
           </c:forEach>
           </ul>
         </div>

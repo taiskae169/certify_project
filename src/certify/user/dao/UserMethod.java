@@ -275,7 +275,8 @@ public class UserMethod {
 
 	public List<userJoinInfoInterCertiVO> getJoinCerti(String id) {
 		
-		List<userJoinInfoInterCertiVO> certijoinList = (List)sql.selectList("user.getUserInterCerti",id);	
+		List<userJoinInfoInterCertiVO> certijoinList = (List)sql.selectList("user.getUserInterCerti",id);
+		
 				return certijoinList;
 	}
 	

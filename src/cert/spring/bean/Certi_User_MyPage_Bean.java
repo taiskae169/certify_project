@@ -87,7 +87,7 @@ public class Certi_User_MyPage_Bean {
 
 			List<userJoinInfoInterCertiVO> certijoinList = userdao.getJoinCerti(id);
 			if(certiList!=null) {mv.addObject("certijoinList",certijoinList);
-			}
+			}// 관심 자격증 정보 가져오기
 			
 			
 			mv.addObject("certijoinList", certijoinList);
@@ -552,8 +552,8 @@ public class Certi_User_MyPage_Bean {
 		return mv;
 	}
 	
-
-	@RequestMapping("UserInterestDelete.certi")
+	//관심 자격증 삭제
+	@RequestMapping("UserInterestDelete.certi") //
 	public String UserInterestDelete(HttpSession session,String u_num) {
 		int num = Integer.parseInt(u_num);
 		

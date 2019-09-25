@@ -65,8 +65,8 @@
     
   </section >
   <div position = "static" style="width:1450px;height:606px;margin:auto;display:block;">
-	<div style="width:59%;height:600px;border-style:solid;float:left;">
-    	<div style="height:380px;border-style:solid;margin:3px; text-align:center;">
+	<div style="width:59%;height:600px;float:left;">
+    	<div style="height:380px;margin:3px; text-align:center;">
     		<h4>신청가능한 시험 목록</h4>
     		<hr />
     		<table class="table table-striped" >
@@ -103,7 +103,7 @@
 			</table>
 
     	</div>
-    	<div style="height:200px;border-style:solid;margin:3px;">
+    	<div style="height:200px;margin:3px;">
     		<c:if test="${boardcount==0 }">
 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<tr>
@@ -119,7 +119,7 @@
 			<thead>
 				<tr height="30"  style="font-size:20px">
 					<td align = "center" width="75">번호</td>
-					<td align = "center" width="100">작성자</td>
+					<td align = "center" width="50">작성자</td>
 					<td align = "center" width="300">제목</td>
 					
 				</tr>
@@ -130,12 +130,7 @@
         		<tr height="30">
         		<td align="center"  width="50" > ${noboard.num}</td>
         		<td align="center"  width="50" > ${noboard.id}</td>
-        		<c:if test="${noboard.newname != null}">
-        		<td align="center"  width="200" ><a href="BoardContent.certi?num=${noboard.num }"> ${noboard.title} [이미지 있어유]</a></td>
-        		</c:if>
-        		<c:if test="${noboard.newname == null}">
-        		<td align="center"  width="200" ><a href="BoardContent.certi?num=${noboard.num }"> ${noboard.title} [이미지 없어유]</a></td>
-        		</c:if>
+        		<td align="center"  width="300" ><a href="BoardContent.certi?num=${noboard.num }"> ${noboard.title}</a></td>
         		</tr>
         		</c:forEach>
         	</tbody>
@@ -146,14 +141,14 @@
     	</div>
     </div>
     
-    <div style="width:580px;height:600px;border-style:solid;float:right;">
+    <div style="width:580px;height:600px;float:right;">
     	<div style="height:132.25px;margin:3px;">
     		<jsp:include page="/WEB-INF/view/main/loginbox.jsp">
     			<jsp:param value="${naverURI}" name="naverURI"/>
     			<jsp:param value="${sessionID}" name="sessionID"/>
     		</jsp:include>
     	</div>
-    	<div style="height:119px;margin:3px;border-style:solid;">
+    	<div style="height:119px;margin:3px;">
     		<a href="javascript:openlist();"><img src="/certify/resource/image/main/준비중.jpg" style="height:113px;width:561px;"></a>
     		<script type="text/javascript">
     		console.log('tst' + '${sessionID}');
@@ -171,7 +166,7 @@
 				
 			</script>
     	</div>
-    	<div style="height:311px;margin:3px;border-style:solid;">
+    	<div style="height:311px;margin:3px;">
     		<c:if test="${boardcount==0 }">
 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<tr>
@@ -198,12 +193,7 @@
         		<tr height="30">
         		<td align="center"  width="75" > ${board.num}</td>
         		<td align="center"  width="100" > ${board.id}</td>
-        		<c:if test="${board.newname != null}">
-        		<td align="center"  width="300" ><a href="BoardContent.certi?num=${board.num }"> ${board.title} [이미지 있어유]</a></td>
-        		</c:if>
-        		<c:if test="${board.newname == null}">
-        		<td align="center"  width="300" ><a href="BoardContent.certi?num=${board.num }"> ${board.title} [이미지 없어유]</a></td>
-        		</c:if>
+        		<td align="center"  width="300" ><a href="BoardContent.certi?num=${board.num }"> ${board.title}</a></td>
         		</tr>
         		</c:forEach>
         	</tbody>
