@@ -33,26 +33,11 @@ public class Certi_Search_Bean {
 		mv.setViewName("/search/search");
 		//String sessionID = (String)session.getAttribute("sessionID");
 		//mv.addObject("sessionID",sessionID);
+		
+		
 		return mv;
-	}
+	}//search 종료
 	
-	@RequestMapping("searchtest.certi")
-	public ModelAndView searchtest(String certify) {
-		mv = new ModelAndView();
-		System.out.println("검색 창 시작");
-		certify = "가구제작기능사";
-		
-//		CertiInfoR usrR = new CertiInfoR();
-//		certidao.deleteCertiCategory(0);
-//		List<CertiInfoVO> certiList = usrR.updateCertiInfo(1);
-//		for(CertiInfoVO vo : certiList) {
-//			System.out.println(vo.getCerName());
-//			certidao.updateCertiCategory0(vo);
-//		}
-		
-		
-		mv.setViewName("/search/info");
-		return mv;
-	}
+
 
 }

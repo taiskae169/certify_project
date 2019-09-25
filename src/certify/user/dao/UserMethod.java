@@ -43,7 +43,7 @@ public class UserMethod {
 		Map<String, String> idpw = new HashMap<String, String>();
 		idpw.put("id", id);
 		idpw.put("pw", pw);
-		System.out.println("DB 테스트");
+		//System.out.println("DB 테스트");
 		result = sql.selectOne("user.logincheck", idpw);
 		
 		
@@ -79,11 +79,12 @@ public class UserMethod {
 	public HashMap<String, String> getNaverProfile(String access_token){
 		HashMap<String , String> profile = new HashMap<String,String>();
 		
-		System.out.println("프로필 가지져오기 시작");
+		//System.out.println("프로필 가지져오기 시작");
 		
 		String header = "Bearer "+access_token;
 		try {
 			String apiURL="https://openapi.naver.com/v1/nid/me";
+			//요청해야하는 api 주소를 설정
 			URL url = new URL(apiURL);
 			HttpURLConnection con = (HttpURLConnection)url.openConnection();
 			con.setRequestMethod("GET");
@@ -102,7 +103,7 @@ public class UserMethod {
 			}
 			br.close();
 			
-			
+			//json 추출 시작
 			JsonParser jp = new JsonParser();
 			JsonElement element = jp.parse(response.toString());
 			if(element.getAsJsonObject().get("message").getAsString().equals("success")) {
@@ -121,10 +122,10 @@ public class UserMethod {
 			e.printStackTrace();
 		}
 		
-		System.out.println("프로필가져오기 끝");
+		//System.out.println("프로필가져오기 끝");
 		
 		return profile;
-	}
+	}//네이버 로그인 시 정보를 받기 위한 메소드
 	
 	public List<Cer_CategoryVO> getCerti_Category(){
 		List<Cer_CategoryVO> category = sql.selectList("user.cer_category");
@@ -152,13 +153,13 @@ public class UserMethod {
 	}// id 중복확인을 위한 메소드
 	
 	public void signUp(userVO vo) {
-		System.out.println("가입 시작");
-		System.out.println("birth : " + vo.getBirth());
-		System.out.println("id : " + vo.getId());
-		System.out.println("pw :" + vo.getPw());
-		System.out.println("googleid : " + vo.getGoogleId());
-		System.out.println("naverid : " + vo.getNaverId());
-		System.out.println("kakaoid : " + vo.getKakaoId());
+//		System.out.println("가입 시작");
+//		System.out.println("birth : " + vo.getBirth());
+//		System.out.println("id : " + vo.getId());
+//		System.out.println("pw :" + vo.getPw());
+//		System.out.println("googleid : " + vo.getGoogleId());
+//		System.out.println("naverid : " + vo.getNaverId());
+//		System.out.println("kakaoid : " + vo.getKakaoId());
 		sql.insert("user.sign", vo);
 		System.out.println("가입 성공");
 		
@@ -167,10 +168,10 @@ public class UserMethod {
 	public String getName(String id) {
 		String name = sql.selectOne("user.getName",id);
 		
-		System.out.println(name);
+		//System.out.println(name);
 		
 		return name;
-	}
+	}//이름을 받기 위해서 말함
 	
 	// 회원 학력사항 입력 메소드
 	public void insertUserEdu(userEduVO uevo) {
@@ -198,7 +199,7 @@ public class UserMethod {
 		vo.setBirth(birth);
 		
 		list = sql.selectList("user.lookUpID",vo);
-		
+		//이름과 생년월일을 받아 아이디 리스트를 받아온다.
 		return list;
 	}
 	
@@ -212,7 +213,7 @@ public class UserMethod {
 		//System.out.println("tmp : " + tmp);
 		sql.update("user.updatePW", vo);
 		
-		System.out.println("임시 비밀번호 등록 완료");
+		//System.out.println("임시 비밀번호 등록 완료");
 		
 		return tmp;
 	}

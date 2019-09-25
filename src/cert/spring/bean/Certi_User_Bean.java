@@ -31,7 +31,7 @@ import user.vo.userVO;
 
 
 
-
+//유저관련 페이지를 처리하기 위한 컨트롤러
 
 @Controller
 @RequestMapping("/user/")
@@ -47,12 +47,14 @@ public class Certi_User_Bean {
 	
 	@RequestMapping("loginPro.certi")
 	public ModelAndView loginPro(String id, String pw,HttpSession session) {
+		//로그인페이지
 		mv = new ModelAndView();
 
 		System.out.println(id);
 		System.out.println(pw);
 		
 		int i = userdao.logincheck(id, pw);
+		//아이디 체크를 해서 아이디와 비밀번호가 맞을 경우 1을 리턴한다.
 		System.out.println("로그인 체크 : " + i);
 		if(i==1) {
 			System.out.println("로그인 중");
@@ -66,11 +68,14 @@ public class Certi_User_Bean {
 	
 	@RequestMapping("naverLogin.certi")
 	public ModelAndView naverLogin(HttpSession session, String code) {
-		System.out.println("네이버 로그인 시작");
+		//네이버 로그인 페이지
+		//REST 방식으로 처리하였음
+		//System.out.println("네이버 로그인 시작");
 		mv = new ModelAndView();
 		
 		String clientId="UfsHgM0aSD0KyYettfN3";
 		String clientSecret="jsiBe65lAg";
+		//2개 내용은 네이버 API에서 프로젝트 생성 후에 확인 가능함
 		String state = (String)session.getAttribute("naverState");
 		String redirectURI;
 		String apiURL;
@@ -82,32 +87,37 @@ public class Certi_User_Bean {
 		    apiURL += "&redirect_uri=" + redirectURI;
 		    apiURL += "&code=" + code;
 		    apiURL += "&state=" + state;
+		    //요청 URI 설정
 		    String access_token = "";
 		    String refresh_token = "";
 		    
 		    URL url = new URL(apiURL);
 		    HttpURLConnection con = (HttpURLConnection)url.openConnection();
+		    //설정한 uri를 URL 클래스를 통해 실행
 		    con.setRequestMethod("GET");
+		    //받아오는 방식을 get 방식으로 설정
 		    int responseCode=con.getResponseCode();
+		    //responsecode를 받아와 200일 시 정상 동작, 그 외일 시 오류발생
 		    BufferedReader br;
 		    
 		    
-		    System.out.println("response :" + responseCode);
+		    //System.out.println("response :" + responseCode);
 		    
 		    if(responseCode==200) {
 		    	br = new BufferedReader(new InputStreamReader(con.getInputStream()));
 		    }else {
 		    	br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
 		    }
-		    String inputLine;
+		    String inputLine;// 리턴되는 값들이 들어갈 변수
 		    StringBuffer res = new StringBuffer();
 		    while((inputLine=br.readLine())!=null) {
 		    	res.append(inputLine);
+		    	//inputLine에 각 한줄씩 추가
 		    }
 		    br.close();
 		    
 		    if(responseCode==200) {
-		    	inputLine = res.toString();
+		    	//inputLine = res.toString();
 		    	System.out.println("inputLine : " + inputLine);
 		    	
 		    	//json 추출 과정
@@ -164,8 +174,8 @@ public class Certi_User_Bean {
 		mv = new ModelAndView();
 		
 		int check = userdao.kakaoLogin(userinfo.getKakaoId());
-		
-		System.out.println("check : " + check);
+		// 카카오로그인을 클릭하여 전송되는 값을 바탕으로 유저 데이터 테이블에서 가입여부를 확인 
+		//System.out.println("check : " + check);
 		
 		if(check==1) {
 			//user_info 데이터베이스에 가입되어 있는 경우
@@ -188,8 +198,8 @@ public class Certi_User_Bean {
 		mv = new ModelAndView();
 		
 		int check = userdao.googleLogin(userinfo.getGoogleId());
-		
-		System.out.println("check : " + check);
+		// 구글로그인을 클릭하여 전송되는 값을 바탕으로 유저 데이터 테이블에서 가입여부를 확인 
+		//System.out.println("check : " + check);
 		
 		if(check==1) {
 			//user_info 데이터베이스에 가입되어 있는 경우
@@ -209,27 +219,29 @@ public class Certi_User_Bean {
 	 
 	@RequestMapping("sign.certi")
 	public ModelAndView sign(@ModelAttribute userVO vo) {
+		//가입 페이지를 위한 컨트롤러
 		mv = new ModelAndView();
 		
-		System.out.println(vo.getKakaoId());
+		//System.out.println(vo.getKakaoId());
 		
 		List<Cer_CategoryVO> category = userdao.getCerti_Category();
-		
+		//가입페이지의 관심목록을 추가 하기 위해 list를 받아온다.
 		
 		mv.addObject("category",category);
+		//페이지에서 사용하기 위해 설정
 		mv.setViewName("/login/sign");
 		
 		return mv;
 	}
 	
-	@RequestMapping("signpage.certi")
-	public ModelAndView signPage() {
-		mv = new ModelAndView();
-		
-		mv.setViewName("/login/signPage");
-		
-		return mv;
-	}
+//	@RequestMapping("signpage.certi")
+//	public ModelAndView signPage() {
+//		mv = new ModelAndView();
+//		
+//		mv.setViewName("/login/signPage");
+//		
+//		return mv;
+//	}
 	
 	@RequestMapping(value="idcheck.certi")
 	public @ResponseBody String idcheck(String email) {
@@ -248,7 +260,7 @@ public class Certi_User_Bean {
 		mv = new ModelAndView();
 
 		userdao.signUp(vo);
-		
+		//입력받은 정보를 바탕으로 유저 정보 DB에 입력
 		mv.setViewName("/login/signup");
 		return mv;
 	}//가입처리 페이지
@@ -258,7 +270,7 @@ public class Certi_User_Bean {
 		mv = new ModelAndView();
 		
 		session.invalidate();
-		
+		//로그아웃, 세션을 삭제한다.
 		mv.setViewName("/login/logout");
 		return mv;
 	}//로그아웃
@@ -269,7 +281,7 @@ public class Certi_User_Bean {
 		
 		mv.setViewName("/login/lookUp");
 		return mv;
-	}//아이디 찾기
+	}//아이디 찾기, 이름과 날짜르 받는 페이지
 	
 	@RequestMapping(value="selectID.certi", method=RequestMethod.POST,produces="text/plain;charset=UTF-8")
 	public ModelAndView selectID(String name, String birth) {
@@ -283,8 +295,9 @@ public class Certi_User_Bean {
 		//System.out.println(IDList.get(0));
 		
 		mv.setViewName("/login/selectID");
+		//이름과 생년월일을 받아서 아이디를 가지고오고 해당 아이디 리스트를 만들어 전송합니다.
 		return mv;
-	}
+	}//아이디 찾기 - 아이디 선택화면
 	
 	@RequestMapping(value="selectIDPro.certi", method = RequestMethod.POST,produces="text/plain;charset=UTF-8")
 	public ModelAndView selectIDPro(String id) {
@@ -306,7 +319,7 @@ public class Certi_User_Bean {
 				
 		mv.setViewName("/login/selectIDPro");
 		return mv;
-	}
+	}//아이디ㅣ 비밀번호 생성
 	
 	
 	

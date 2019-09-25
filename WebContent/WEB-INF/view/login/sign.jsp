@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
-
+  <script src="//code.jquery.com/jquery.js"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -23,7 +24,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
   <!-- Custom styles for this template -->
   <link href="/certify/resource/gen/css/landing-page.min.css" rel="stylesheet">
-  <script src="//code.jquery.com/jquery.js"></script>
+
 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -59,12 +60,7 @@
   <!-- Icons Grid -->
   <hr style="width:1450px;"/>
 
-  <nav class="navbar navbar-light bg-light static-top" style="width:1450px;;margin:auto">
-    <div class="container">
-      <a class="navbar-brand" href="#">자격루</a>
-      <a class="btn btn-primary" href="#">Login</a>
-    </div>
-  </nav>
+	<jsp:include page="/WEB-INF/view/Bar/NavBar.jsp"/>
 
   <!-- Image Showcases -->
   <section class="showcase" style="width:1450px;;margin:auto;">
