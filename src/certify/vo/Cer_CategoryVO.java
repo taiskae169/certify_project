@@ -11,7 +11,9 @@ public class Cer_CategoryVO {
 		return num;
 	}
 	public void setNum(int num) {
-		this.num = num;
+		if(num>=1&&num<=53) {
+			this.num = num;
+		}
 	}
 	public String getName() {
 		return name;
@@ -23,7 +25,9 @@ public class Cer_CategoryVO {
 		return certi_num;
 	}
 	public void setCerti_num(int certi_num) {
-		this.certi_num = certi_num;
+		if(certi_num>=0&&certi_num<=1000) {
+			this.certi_num = certi_num;
+		}
 	}
 	
 	
