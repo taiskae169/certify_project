@@ -25,7 +25,11 @@ import user.vo.userCertiVO;
 import user.vo.userEduVO;
 import user.vo.userVO;
 import user.vo.user_Edu_edu_valueVO;
+
+import user.vo.*;
+
 import user.vo.user_info_qual_value;
+
 
 public class UserMethod {
 
@@ -267,6 +271,14 @@ public class UserMethod {
 	public List<user_Edu_edu_valueVO> getUser_Edu_Val(){
 		List<user_Edu_edu_valueVO> edu_value = sql.selectList("user.getUser_Edu_Val");
 		return edu_value;
+	}
+	
+
+	public List<userJoinInfoInterCertiVO> getJoinCerti(String id) {
+		
+		List<userJoinInfoInterCertiVO> certijoinList = (List)sql.selectList("user.getUserInterCerti",id);
+		
+				return certijoinList;
 	}
 	
 	// USER_INFO_QUAL 밸류를 리턴

@@ -36,11 +36,12 @@
 	<div position="absolute" style="width:1000; height:100%; margin-top:50; margin-left:300; border:1px solid; padding:10; border-radius:10px">
 			<div position = "static" style="width:1000; height:50;">
 				<div position="static" style="float:left; width:800; height:50; border-bottom:1.5px dashed; display: flex; align-items:flex-end; justify-content:left; padding-left:15">
+					<%-- 세로 가로 가운데 정렬  --%>
 					<b style="font-size:14pt">${board.title}</b>
 				</div>
 				
 				<div position="static" style="float:left; width:160; height:50; border-bottom:1.5px dashed; display:flex; align-items:flex-end; justify-content:center;">
-				<span style="font-size:13pt"><fmt:formatDate value="${board.reg_date }" pattern="yyyy-MM-dd"/></span>
+				<span style="font-size:13pt"><fmt:formatDate value="${board.reg_date }" pattern="yyyy-MM-dd"/></span> <%-- 날짜 형식 변경하기  --%>
 				</div>
 			</div>
 			
@@ -53,7 +54,7 @@
 				<div class="dropdown" position="static" style="float:left; width:210; height:50; display:flex; align-items:center; justify-content:left">
 					
   					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">첨부파일 <span class="caret"></span></a>
-  					<ul class="dropdown-menu" role="menu">
+  					<ul class="dropdown-menu" role="menu"> <%-- 첨부 파일이 있을 경우 첨부파일 토글로 보여주기  --%>
                   <li><a href="Download.certi?newname=${board.newname}">${board.newname }</a></li>
                   </ul>
   					 
@@ -65,7 +66,7 @@
 					 <span>${board.content }</span>
 					 <c:if test="${board.newname != null}">
 					 
-					    <img src="/certify/imgs/${board.newname}" style="width:800px; height:450px"/>
+					    <img src="/certify/imgs/${board.newname}" style="width:800px; height:450px"/> <%-- 내용에 사진 띄우기 --%>
 					    </c:if>
 				</div>
 				</div>
@@ -75,7 +76,7 @@
 
 				
 				<div position="static" style="width:1000; height:70; margin-left:330; display:flex; align-items:center; justify-content:center" >
-				<c:if test="${board.id == sessionScope.memId }">
+				<c:if test="${board.id == sessionScope.sessionID }">
 				<button class="btn btn-sm btn-primary" onclick="window.location='BoardUpdateForm.certi?num=${board.num}'">수정하기</button>
 				<button class="btn btn-sm btn-danger" onclick="window.location='BoardDelete.certi?num=${board.num}'">삭제하기</button>
 				</c:if>

@@ -35,10 +35,10 @@
     <![endif]-->
   <style>
     .dropbtn {
-  background-color: #ea2129;
+  background-color: #D9BE82;
   color: white;
   padding: 16px;
-  font-size: 16px;
+  font-size: 14px;
   border: none;
 }
 
@@ -51,7 +51,7 @@
   display: none;
   position: absolute;
   background-color: #f1f1f1;
-  min-width: 160px;
+  min-width: 140px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
@@ -67,16 +67,22 @@
 
 .dropdown:hover .dropdown-content {display: block;}
 
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
+.dropdown:hover .dropbtn {background-color: #8C7238;}
 </style>
   </head>
-<body>
+<body bgcolor="#829FD9"> <!-- hover라 그런지 전체 컬러를 꾸며야 한다 --> 
 <!-- jQuery (부트스트랩의 자바스크립트 플러그인을 위해 필요합니다) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요 -->
     <script src="js/bootstrap.min.js"></script>
-  <div class="dropdown">
-  <button class="dropbtn">기능사</button>
+    
+    <div style="position:static; width:100%; height:100%;">
+	<div style="position:static; width:100%; height:20%; display:flex; align-items:center; justify-content:center; border-bottom:5px dashed; border-color:white;">
+	<p style="font-size:25pt; color:white;">자격증을 선택해주세요</p>	
+	</div>
+ 
+  <div class="dropdown">  <!-- 기능사 목록 dropdown으로 표현하기 --> 
+  <button class="btn btn-lg btn-default dropbtn">기능사</button>
   <div class="dropdown-content">
       <c:forEach begin="0" end="${certilist0.size()-1 }" step="1" var="i">
     <div style="width:500px; height:40">
@@ -91,7 +97,7 @@
   <button class="dropbtn">산업기사</button>
   <div class="dropdown-content">
       <c:forEach begin="0" end="${certilist1.size()-1 }" step="1" var="i">
-    <div style="width:500px; height:40">
+    <div style="width:1000px; height:40">
    <c:set var="certi" value="${certilist1[i]}"/>
    <a href="InterestTypePro.certi?cre_name=${certi.num }">${ certi.name}</a>
 	</div>

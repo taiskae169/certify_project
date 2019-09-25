@@ -39,29 +39,20 @@
 <body>
   <!-- Navigation -->
   <!-- Masthead -->
-  <header>
-    <div class="overlay" style="height:100px" style="width:80%; background:white;margin:auto;">
-    	<img src="/certify/resource/image/main/test.jpg" style="width:50px;height:50px;top:30px;left:130px;position:relative; float:left"/>
-    	<div class="col-md-10 col-lg-8 col-xl-7 mx-auto" style="top:30px; left:130px">
-          <form>
-            <div class="form-row">
-              <div class="col-12 col-md-9 mb-2 mb-md-0">
-                <input type="text" class="form-control form-control-lg">
-              </div>
-              <div class="col-12 col-md-3">
-                <button type="submit" class="btn btn-block btn-lg btn-primary">검색</button>
-              </div>
-            </div>
-          </form>
-        </div>     
-    </div>
-  </header>
+ <jsp:include page="/WEB-INF/view/Bar/Search.jsp"/>
+
+<jsp:include page="/WEB-INF/view/Bar/NavBar.jsp"/>
+  
+  
 
   <!-- Icons Grid -->
   <hr style="width:1450px;"/>
 
+<<<<<<< HEAD
+=======
   <jsp:include page="/WEB-INF/view/Bar/NavBar.jsp"/>
 
+>>>>>>> branch 'master' of https://github.com/taiskae169/certify_project.git
   <!-- Image Showcases -->
   <section class="showcase" style="width:1450px;;margin:auto;">
 

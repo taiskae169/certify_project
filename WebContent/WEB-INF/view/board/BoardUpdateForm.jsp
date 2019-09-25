@@ -11,7 +11,7 @@
 	<table cellSpacing=1 cellPadding=1 width="80%" border=1 align="center">
 	<tbody>
 		<tr>
-			<td width="10%">작성자</td><td><p>${sessionScope.memId}<p></td>
+			<td width="10%">작성자</td><td><p>${sessionScope.sessionID}<p></td>
 			<input type="hidden" name="num" value="${board.num }" />
 		</tr>
 		<tr>

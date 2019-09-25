@@ -76,11 +76,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getCount_typeSpec2" resultType="int" parameterType="String">
 		select count(*) from CERTIFY_INFO where type in (5) and name like '%'||#{certi_name}||'%'
 	</select>
-	
+		
+			<!-- 관심자격증 자격증 검색  -->
 		<select id="getCertifySearch" parameterType="String" resultType="certify.vo.CertifyVO">
   		select * from CERTIFY_INFO where name like '%'||#{value}||'%' order by num asc
   		</select>
   		
+  			<!-- 관심자격증 목록보기위해 자격증들 타입 가져오기  -->
   		<select id="CertifiType" parameterType="int" resultType="certify.vo.CertificationVO">
   			SELECT * FROM CERTIFY_INFO WHERE TYPE=#{value}
   		</select>

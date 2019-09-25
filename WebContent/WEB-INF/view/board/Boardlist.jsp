@@ -42,7 +42,7 @@
       
       <jsp:include page="/WEB-INF/view/Bar/SideBar.jsp"/>
         
-<c:if test="${count==0 }">
+<c:if test="${count==0 }"> <%-- 글 존재여부 확인  --%>
 <table class="table table-bordered" id="dataTable" width="70%" cellspacing="0">
 									<tr>
 										<td align="center">
@@ -68,12 +68,7 @@
         		<tr height="30">
         		<td align="center"  width="75" > ${board.num}</td>
         		<td align="center"  width="100" > ${board.id}</td>
-        		<c:if test="${board.newname != null}">
-        		<td align="center"  width="300" ><a href="BoardContent.certi?num=${board.num }"> ${board.title} [이미지 있어유]</a></td>
-        		</c:if>
-        		<c:if test="${board.newname == null}">
-        		<td align="center"  width="300" ><a href="BoardContent.certi?num=${board.num }"> ${board.title} [이미지 없어유]</a></td>
-        		</c:if>
+        		<td align="center"  width="300" ><a href="BoardContent.certi?num=${board.num }"> ${board.title}</a></td>
         		</tr>
         		</c:forEach>
         	</tbody>

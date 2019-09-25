@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
 
 import java.util.Map.Entry;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
@@ -40,6 +41,7 @@ import test.readCSV.test.VOforList;
 import user.vo.userCareerVO;
 import user.vo.userCertiVO;
 import user.vo.userEduVO;
+import user.vo.userJoinInfoInterCertiVO;
 import user.vo.userVO;
 import user.vo.user_Edu_edu_valueVO;
 import user.vo.user_info_qual_value;
@@ -51,6 +53,7 @@ public class Certi_User_MyPage_Bean {
 	
 	ModelAndView mv =null;
 	
+	
 	@Autowired
 	UserMethod userdao = null;
 	@Autowired
@@ -59,6 +62,8 @@ public class Certi_User_MyPage_Bean {
 	userCertiVO uctvo = null;
 	@Autowired
 	userEduVO uevo = null;
+	@Autowired
+	private SqlSessionTemplate sql = null;
 	
 	@RequestMapping("myPage.certi")
 	public ModelAndView myPage(HttpSession session, HttpServletRequest request) {
@@ -79,10 +84,18 @@ public class Certi_User_MyPage_Bean {
 			
 			List<userCertiVO> certiList = userdao.getUserCerti(id);
 			if(certiList!=null) mv.addObject("certiList", certiList);
+
+			List<userJoinInfoInterCertiVO> certijoinList = userdao.getJoinCerti(id);
+			if(certiList!=null) {mv.addObject("certijoinList",certijoinList);
+			}// 관심 자격증 정보 가져오기
 			
+			
+			mv.addObject("certijoinList", certijoinList);
+
 			List<user_info_qual_value> quals = userdao.getQual();
 			mv.addObject("quals",quals);
 			
+
 			mv.addObject("edu_value",edu_value);
 			mv.addObject("allCerti", cf);
 			mv.addObject("certi_cate", certi_cate);	
@@ -544,6 +557,16 @@ public class Certi_User_MyPage_Bean {
 		return mv;
 	}//일정 리스트를 위한 페이지
 	
+	//관심 자격증 삭제
+	@RequestMapping("UserInterestDelete.certi") //
+	public String UserInterestDelete(HttpSession session,String u_num) {
+		int num = Integer.parseInt(u_num);
+		
+		sql.delete("user.DeletInterUser", num);
+		
+		return "/user_myPage/DeleteInterUser";
+	}
+
 	
 	
 }

@@ -45,7 +45,7 @@
 				</div>
 				
 				<div position="static" style="float:left; width:800; height:50; border-bottom:1.5px dashed; display:flex; align-items:flex-end;">
-				<c:forEach begin="0" end="${catelist.size()-1}" step="1" var="i">
+				<c:forEach begin="0" end="${catelist.size()-1}" step="1" var="i"> <%-- 카테고리 이름과 넘버 가져오기  --%>
 				<c:set var="cate" value="${catelist[i]}"/>
 				<input type="radio" name="cate" value="${cate.num }">${cate.value}
 				</c:forEach>
@@ -78,7 +78,7 @@
 				
 				<div position = "static" style="width:1000; height:100%;">
 				<div position="static" style="float:left; width:100%; align:center; overflow:scroll; padding-left:30">
-					<textarea id="editor1" class="ckeditor" name="content" rows="20" cols="50" width="960"></textarea>
+					<textarea id="editor1" class="ckeditor" name="content" rows="20" cols="50" width="960"></textarea> <%-- checkeditor api 사용하기 --%>
 				</div>
 				</div>
 				

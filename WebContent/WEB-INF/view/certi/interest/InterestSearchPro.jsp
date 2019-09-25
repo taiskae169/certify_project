@@ -13,18 +13,23 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<div style="width:500px; position:static">
-	<form action="InterestSearchEnd.certi" method="post">
+<div style="position:static; width:100%; height:100%; background-color:#829FD9">
+	<div style="position:static; width:100%; height:20%; display:flex; align-items:center; justify-content:center; border-bottom:5px dashed; border-color:white;">
+	<p style="font-size:25pt; color:white;">자격증을 선택해주세요</p>	
+	</div>
+	<div style="position:static; width:100%; height:80%; display:flex; align-items:flex-start; border-color:white;">
+	<form action="InterestSearchEnd.certi" method="post"> <%-- 검색된 개체들 라디오 버튼으로 출력 --%> 
 	<c:forEach begin="0" end="${certilist.size()-1 }" step="1" var="i">
-	<div style="width:500px; height:40">
+	<div style="padding-left:50px; width:950px; height:40">
 	<c:set var="certi" value="${certilist[i]}"/>
 		<input type="radio" name="certi" value="${certi.num }">${certi.name}
 		</div>
 	</c:forEach>
-	<input type="submit" value="선택완료">
+	<input class="btn btn-lg btn-success" style="margin-left:50px" type="submit" value="선택완료">
 	</form>
 	</div>
 	
+	
+	</div>
 </body>
 </html>
