@@ -78,14 +78,13 @@ public class CertifyMethod {
 //		System.out.println(vo.getTestInfo());
 //		System.out.println(sql);
 		sql.insert("certi.updateCetiCategory0",vo);
-	}
+	}//자격증 리스트 업데이트를 위한 메소드
+	
 	public void deleteCertiCategory(int i) {
 		if(i==0) {
 			sql.delete("certi.deleteCertiCategory0");
 		}
-		
-		
-	}
+	}//자격증 리스트 삭제를 위한 메소드
 	
 	// 전체 자격증 개수를 리턴
 	public int getCount(){

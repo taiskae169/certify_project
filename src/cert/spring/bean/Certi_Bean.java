@@ -75,11 +75,12 @@ public class Certi_Bean {
 		}
 		
 		String id = (String)session.getAttribute("sessionID");
-		System.out.println("sessionID : " +id);
+		//System.out.println("sessionID : " +id);
 		
 		if(id!=null) {
-			System.out.println("세션 아이디 있음");
+			//System.out.println("세션 아이디 있음");
 			String name = userdao.getName(id);
+			//이름을 출력하기 위해서 DB에서 이름을 검색
 			session.setAttribute("name", name);
 			mv.addObject("name",name);
 		}
@@ -112,16 +113,6 @@ public class Certi_Bean {
 		return mv;
 	}
 
-	//로그인 모듈 테스트만을 위한 메소드
-	@RequestMapping("logintest.certi")
-	public ModelAndView logintest() {
-		mv = new ModelAndView();
-		
-		
-		mv.setViewName("/main/loginbox");
-		return mv;
-	}
-	
 
 	
 
