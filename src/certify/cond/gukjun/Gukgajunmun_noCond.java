@@ -443,10 +443,10 @@ public class Gukgajunmun_noCond{
 		condition :
 		if(careerMap!=null && careerMap.containsKey(cfvo.getCate())){
 			for(int i=0; i<user_eduList.size(); i++) {
-				if(careerMap.get(cfvo.getCate())>=year && user_eduList.get(i).edu>=0) {
+				if(careerMap.get(cfvo.getCate())>=year && user_eduList.get(i).getEdu()>=0) {
 					for(int j=0; j<user_certiList.size(); j++) {
 						for(int num=639; num<=662; num++) {
-							if(user_certiList.get(j).num==num){
+							if(user_certiList.get(j).getNum()==num){
 								applyPossible=true; break condition;
 							}
 						}
@@ -466,7 +466,7 @@ public class Gukgajunmun_noCond{
 		 * 하는 자는 건축사법에 따른 건축사 자격을 가진 자 이어야 한다.
 		 */
 		for(int i=0; i<user_certiList.size(); i++) {
-			if(user_certiList.get(i).num==701) {
+			if(user_certiList.get(i).getNum()==701) {
 				applyPossible=true; break;
 			}
 		}

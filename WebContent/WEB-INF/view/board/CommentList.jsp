@@ -123,10 +123,10 @@ $(document).ready( function() { <%-- 페이지 실행후 바로 실행  --%>
   <div style="border-top:1px dashed black; background-color:#efefef; float:left; width:150; height:130">
  	  <span style="line-height:100px; font-size:14pt">${sessionScope.sessionID}</span>
  </div>
-  	<div style="border-top:1px dashed black; background-color:#efefef; float:left; width:750; height:130; padding-top:20px;">
+  	<div style="border-top:1px dashed black; background-color:#efefef; float:left; width:700; height:130; padding-top:20px;">
  			<textarea style="height:80" row="50" cols="100" name="content"></textarea>
  		</div>
- 	<div style="border-top:1px dashed black; background-color:#efefef; float:left; width:250; height:130; padding-top:20px">
+ 	<div style="border-top:1px dashed black; background-color:#efefef; float:left; width:150; height:130; padding-top:20px">
   	  <br>
   	  <input class="btn btn-lg btn-success" style="float:center; align:center" type="submit" value="전송">  	  
   	</div>
@@ -135,9 +135,9 @@ $(document).ready( function() { <%-- 페이지 실행후 바로 실행  --%>
  	</c:forEach>
  	
  	
- 	<div position = "static" style=" float:center; background-color:#0FF;  width:1000;">
+ 	<div position = "static" style="background-color:#0FF;  width:1000;">
  <form action="BoardCommentWrite.certi?num=${board.num }" method="post">
-  <div style="border-top:1px dashed black; background-color:#efefef; float:left; width:150; height:130">
+  <div position ="static" style="border-top:1px dashed black; background-color:#efefef; float:left; width:150; height:130">
  	  <span style="line-height:100px; font-size:14pt">${sessionScope.sessionID}</span>
  </div>
   	<div style="border-top:1px dashed black; background-color:#efefef; float:left; width:700; height:130; padding-top:20px;">

@@ -1,9 +1,9 @@
 package certify.mail;
 
 public class Email {
-	private String subject;
-	private String content;
-	private String receiver;
+	private String subject;	//이메일 제목
+	private String content; //이메일 내용
+	private String receiver;//이메일 받는 사람
 	
 	public String getSubject() {
 		return subject;

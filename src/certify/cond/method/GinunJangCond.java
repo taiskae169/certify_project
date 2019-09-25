@@ -34,7 +34,7 @@ public class GinunJangCond{
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 		boolean applyPossible = false;
 		for(int i=0; i<user_certiList.size(); i++) {
-			if(user_certiList.get(i).cate==cfvo.getCate() && user_certiList.get(i).type==0) {
+			if(user_certiList.get(i).getCate()==cfvo.getCate() && user_certiList.get(i).getType()==0) {
 				if(careerMap!=null && careerMap.containsKey(cfvo.getCate()) ) {
 		    		if(careerMap.get(cfvo.getCate())>=year*7) {
 		    			applyPossible=true; break;
@@ -62,9 +62,9 @@ public class GinunJangCond{
 		if(user_certiList!=null) {
 			condition : 
 			for(int i=0; i<user_certiList.size(); i++) {
-				if(user_certiList.get(i).cate==cfvo.getCate() && user_certiList.get(i).type == 0) {
+				if(user_certiList.get(i).getCate()==cfvo.getCate() && user_certiList.get(i).getType() == 0) {
 					for(int j=0; j<user_eduList.size();j++) {
-						if(user_eduList.get(j).edu==9 && user_eduList.get(j).state==2)	{
+						if(user_eduList.get(j).getEdu()==9 && user_eduList.get(j).getState()==2)	{
 							applyPossible=true; break condition;
 						}
 					}
@@ -80,9 +80,9 @@ public class GinunJangCond{
 		boolean applyPossible = false;
 		if(user_certiList!=null) {
 			for(int i=0; i<user_certiList.size(); i++) {
-				if(user_certiList.get(i).cate==cfvo.getCate() && user_certiList.get(i).type == 0) {
+				if(user_certiList.get(i).getCate()==cfvo.getCate() && user_certiList.get(i).getType() == 0) {
 					for(int j=0; j<user_eduList.size();j++) {
-						if(user_eduList.get(j).edu==9 && user_eduList.get(j).state==0)	{
+						if(user_eduList.get(j).getEdu()==9 && user_eduList.get(j).getState()==0)	{
 							applyPossible=true; break;
 						}
 					}
@@ -98,7 +98,7 @@ public class GinunJangCond{
 		boolean applyPossible = false;
 		if(user_certiList!=null) {
 			for(int i=0; i<user_certiList.size(); i++) {
-				if(user_certiList.get(i).cate==cfvo.getCate() && user_certiList.get(i).type == cfvo.getType()) {
+				if(user_certiList.get(i).getCate()==cfvo.getCate() && user_certiList.get(i).getType() == cfvo.getType()) {
 					applyPossible=true; break;
 				}
 			}
@@ -112,9 +112,9 @@ public class GinunJangCond{
 		boolean applyPossible = false;
 		if(user_certiList!=null) {
 			for(int i=0; i<user_certiList.size(); i++) {
-				if(user_certiList.get(i).cate==cfvo.getCate() && user_certiList.get(i).type == 1) {
+				if(user_certiList.get(i).getCate()==cfvo.getCate() && user_certiList.get(i).getType() == 1) {
 					for(int j=0; j<user_eduList.size();j++) {
-						if(user_eduList.get(j).edu==9 && user_eduList.get(j).state==2)	{
+						if(user_eduList.get(j).getEdu()==9 && user_eduList.get(j).getState()==2)	{
 							applyPossible=true; break;
 						}
 					}
@@ -130,9 +130,9 @@ public class GinunJangCond{
 		boolean applyPossible = false;
 		if(user_certiList!=null) {
 			for(int i=0; i<user_certiList.size(); i++) {
-				if(user_certiList.get(i).cate==cfvo.getCate() && user_certiList.get(i).type == 1) {
+				if(user_certiList.get(i).getCate()==cfvo.getCate() && user_certiList.get(i).getType() == 1) {
 					for(int j=0; j<user_eduList.size();j++) {
-						if(user_eduList.get(j).edu==9 && user_eduList.get(j).state==0)	{
+						if(user_eduList.get(j).getEdu()==9 && user_eduList.get(j).getState()==0)	{
 							applyPossible=true; break;
 						}
 					}
@@ -147,7 +147,7 @@ public class GinunJangCond{
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 		boolean applyPossible = false;
 		for(int i=0; i<user_certiList.size(); i++) {
-			if(user_certiList.get(i).cate==cfvo.getCate() && user_certiList.get(i).type>=1) {
+			if(user_certiList.get(i).getCate()==cfvo.getCate() && user_certiList.get(i).getType()>=1) {
 				if(careerMap!=null && careerMap.containsKey(cfvo.getCate()) ) {
 		    		if(careerMap.get(cfvo.getCate())>=year*5) {
 		    			applyPossible=true; break;

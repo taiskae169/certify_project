@@ -8,17 +8,17 @@ import java.util.Date;
  */
 
 public class userVO {
-	public String id;
-	public String pw;
-	public String name;
-	public String birth;
-	public String profile;
-	public Timestamp reg;
-	public int wana;
-	public int qual;
-	public String naverId;
-	public String kakaoId;
-	public String googleId;
+	public String id;		//아이디 - 이메일 형식
+	public String pw;		//비밀번호
+	public String name;		//이름
+	public String birth;	//생년월일
+	public String profile;	//프로필 사진
+	public Timestamp reg;	//가입날자
+	public int wana;		//관심 분야
+	public int qual;		//응시가능 자격
+	public String naverId;	//네이버 아이디
+	public String kakaoId;	//카카오 아이디
+	public String googleId; //구글 아이디
 	
 	
 	public String getId() {

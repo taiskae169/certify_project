@@ -26,7 +26,7 @@ public class Gukjun_sobangAnjun {
 				if(careerMap.get(cfvo.getCate())>=year*3) applyPossible=true; break condition;
 			}else if(user_eduList!=null) {
 				for(int i=0; i<user_eduList.size(); i++) {
-					if(user_eduList.get(i).getEdu_name().contains("소방학교") && user_eduList.get(i).state==0) {
+					if(user_eduList.get(i).getEdu_name().contains("소방학교") && user_eduList.get(i).getState()==0) {
 						long diff = user_eduList.get(i).getEnt_date().getTime() - user_eduList.get(i).getGra_date().getTime();
 						long diffDays = Math.abs(diff / (24 * 60 * 60 * 1000));	// 양수변환
 						if(diffDays>=14) applyPossible=true; break condition;
@@ -42,7 +42,7 @@ public class Gukjun_sobangAnjun {
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 		condition:
 			for(int i=0; i<user_certiList.size(); i++) {
-				if(user_certiList.get(i).num==702 || user_certiList.get(i).num==703) {
+				if(user_certiList.get(i).getNum()==702 || user_certiList.get(i).getNum()==703) {
 					applyPossible=true; break condition;
 				}
 			}
@@ -55,7 +55,7 @@ public class Gukjun_sobangAnjun {
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 		condition:
 			for(int i=0; i<user_certiList.size(); i++) {
-				if(user_certiList.get(i).num==703) {
+				if(user_certiList.get(i).getNum()==703) {
 					applyPossible=true; break condition;
 				}
 			}
@@ -69,8 +69,8 @@ public class Gukjun_sobangAnjun {
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 			condition:
 				for(int i=0; i<user_certiList.size(); i++) {
-					if(user_certiList.get(i).num==705 || user_certiList.get(i).num==706 || user_certiList.get(i).num==707) {
-						if(careerMap!=null && careerMap.containsKey(user_certiList.get(i).cate)) {
+					if(user_certiList.get(i).getNum()==705 || user_certiList.get(i).getNum()==706 || user_certiList.get(i).getNum()==707) {
+						if(careerMap!=null && careerMap.containsKey(user_certiList.get(i).getCate())) {
 							if(careerMap.get(cfvo.getCate())>=year*3) applyPossible=true; break condition;
 						}
 					}
@@ -90,9 +90,9 @@ public class Gukjun_sobangAnjun {
 			condition:
 				for(int i=0; i<user_eduList.size(); i++) {
 					for(int v=0; v<var.length; v++) {
-						if(user_eduList.get(i).edu==var[v]) applyPossible=true; break condition;
+						if(user_eduList.get(i).getEdu()==var[v]) applyPossible=true; break condition;
 					}
-					if(user_eduList.get(i).edu==14 && user_eduList.get(i).edu_name.contains("교육훈련")) {
+					if(user_eduList.get(i).getEdu()==14 && user_eduList.get(i).getEdu_name().contains("교육훈련")) {
 						applyPossible=true; break condition;
 					}
 				}
@@ -106,7 +106,7 @@ public class Gukjun_sobangAnjun {
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 			condition:
 				for(int i=0; i<user_certiList.size(); i++) {
-					if(user_certiList.get(i).cate==251 && user_certiList.get(i).type==3) {
+					if(user_certiList.get(i).getCate()==251 && user_certiList.get(i).getType()==3) {
 						applyPossible=true; break condition;
 					}
 				}
@@ -119,7 +119,7 @@ public class Gukjun_sobangAnjun {
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 			condition:
 				for(int i=0; i<user_certiList.size(); i++) {
-					if(user_certiList.get(i).num==680) {
+					if(user_certiList.get(i).getNum()==680) {
 						applyPossible=true; break condition;
 					}
 				}
@@ -132,8 +132,8 @@ public class Gukjun_sobangAnjun {
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 			condition:
 				for(int i=0; i<user_certiList.size(); i++) {
-					if(user_certiList.get(i).cate==251 && user_certiList.get(i).type==1) {
-						if(careerMap!=null && careerMap.containsKey(user_certiList.get(i).cate)) {
+					if(user_certiList.get(i).getCate()==251 && user_certiList.get(i).getType()==1) {
+						if(careerMap!=null && careerMap.containsKey(user_certiList.get(i).getCate())) {
 							if(careerMap.get(cfvo.getCate())>=year*1) applyPossible=true; break condition;
 						}
 					}
@@ -147,8 +147,8 @@ public class Gukjun_sobangAnjun {
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 			condition:
 				for(int i=0; i<user_certiList.size(); i++) {
-					if(user_certiList.get(i).num==779) {
-						if(careerMap!=null && careerMap.containsKey(user_certiList.get(i).cate)) {
+					if(user_certiList.get(i).getNum()==779) {
+						if(careerMap!=null && careerMap.containsKey(user_certiList.get(i).getCate())) {
 							if(careerMap.get(cfvo.getCate())>=year*1) applyPossible=true; break condition;
 						}
 					}
@@ -162,8 +162,8 @@ public class Gukjun_sobangAnjun {
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 			condition:
 				for(int i=0; i<user_certiList.size(); i++) {
-					if(user_certiList.get(i).num==781) {
-						if(careerMap!=null && careerMap.containsKey(user_certiList.get(i).cate)) {
+					if(user_certiList.get(i).getNum()==781) {
+						if(careerMap!=null && careerMap.containsKey(user_certiList.get(i).getCate())) {
 							if(careerMap.get(cfvo.getCate())>=year*1) applyPossible=true; break condition;
 						}
 					}
@@ -177,8 +177,8 @@ public class Gukjun_sobangAnjun {
 			List<userEduVO> user_eduList, CertifyVO cfvo, List<userCertiVO> user_certiList) {
 			condition:
 				for(int i=0; i<user_certiList.size(); i++) {
-					if(user_certiList.get(i).num==782) {
-						if(careerMap!=null && careerMap.containsKey(user_certiList.get(i).cate)) {
+					if(user_certiList.get(i).getNum()==782) {
+						if(careerMap!=null && careerMap.containsKey(user_certiList.get(i).getCate())) {
 							if(careerMap.get(cfvo.getCate())>=year*3) applyPossible=true; break condition;
 						}
 					}

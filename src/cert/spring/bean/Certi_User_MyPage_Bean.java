@@ -248,7 +248,7 @@ public class Certi_User_MyPage_Bean {
 		
 		if(school_name!=null) {
 			uni_List  = new ArrayList<String>();
-			if(school_name.contains("고등학교")) {
+			if(school_name.contains("고등학교") || school_name.contains("사관학교")) {
 				uni_List.add(school_name);
 				length=uni_List.size();
 			}else {
@@ -266,6 +266,9 @@ public class Certi_User_MyPage_Bean {
 				major_List=new ArrayList<Object>();
 				major_List.add("문/이과/실업계 (통합)");
 				length=major_List.size();
+			}else if(school_nameFix.contains("사관학교")) {
+				major_List=new ArrayList<Object>();
+				major_List.add("군사학 (직접 입력해주세요.)");
 			}else {
 				major_List =  new ArrayList<Object>();
 				majorArr = univercity.get(school_nameFix).toArray();
@@ -276,6 +279,10 @@ public class Certi_User_MyPage_Bean {
 			}
 		}else if(school_nameFix!=null && major_name!=null) {
 			if(school_nameFix.contains("고등학교")) {
+				major_List=new ArrayList<Object>();
+				major_List.add(major_name);
+				length=major_List.size();
+			}else if(school_nameFix.contains("사관학교")) {
 				major_List=new ArrayList<Object>();
 				major_List.add(major_name);
 				length=major_List.size();
@@ -295,7 +302,11 @@ public class Certi_User_MyPage_Bean {
 			if(school_nameFix.contains("고등학교")) {
 				edu = 0;
 				eduType = "고등학교";
-				major = 999;
+				major = 999; // 999 == "기타"
+			}else if(school_nameFix.contains("사관학교")) {
+				edu = 3;
+				eduType = "사관학교";
+				major = 51; // 51 == "법률/경찰/소방/교도/국방"
 			}else {
 				List<VOforList> univList = rcu.csvToList(filepath);
 				checkMajor : 
@@ -518,39 +529,33 @@ public class Certi_User_MyPage_Bean {
 		return mv;
 	}
 	
-	@RequestMapping("/caltest.certi")
-	public ModelAndView caltest() {
-		mv = new ModelAndView();
-//		일정 테스트 페이지
-		mv.setViewName("/user_myPage/calTest");
-		return mv;
-	}
+//	@RequestMapping("/caltest.certi")
+//	public ModelAndView caltest() {
+//		mv = new ModelAndView();
+////		일정 테스트 페이지
+//		mv.setViewName("/user_myPage/calTest");
+//		return mv;
+//	}
 	
-	@RequestMapping("/calteee.certi")
-	public ModelAndView caltest2() {
-		mv = new ModelAndView();
-
-		//일정 테스트 페이지
-		mv.setViewName("/user_myPage/calTest2");
-		return mv;
-	}
+//	@RequestMapping("/calteee.certi")
+//	public ModelAndView caltest2() {
+//		mv = new ModelAndView();
+//
+//		//일정 테스트 페이지
+//		mv.setViewName("/user_myPage/calTest2");
+//		return mv;
+//	}
 	
 	
 	@RequestMapping("/callist.certi")
 	public ModelAndView CalList() {
 		mv = new ModelAndView();
-//		Calendar service=null;
-//		try {
-//			service = certify.cal.Calendar.getCalendarService();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+
 		
 		//일정 리스트 출력하는 페이지
 		mv.setViewName("/user_myPage/callist");
 		return mv;
-	}
+	}//일정 리스트를 위한 페이지
 	
 	//관심 자격증 삭제
 	@RequestMapping("UserInterestDelete.certi") //

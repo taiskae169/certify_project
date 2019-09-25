@@ -164,7 +164,8 @@ public class CertiInfoR {
 		} finally {
 			conn.close();
 		}
-		System.out.println(result.get(1).getCerName());
+		//System.out.println(result.get(1).getCerName());
+		//vo리스트 리턴
 		return result;
 	}
 
