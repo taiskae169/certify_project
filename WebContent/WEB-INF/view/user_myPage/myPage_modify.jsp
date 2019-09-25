@@ -352,8 +352,6 @@
 	$(document).ready(function(){
 		$('#modifyFinish').click(function(){
 			var user_info = $('#user_Info').serialize();
-			alert(user_info);
-
 			$.ajax({
 				url : "myPage_modifyPro.certi",
 				type: "GET",
