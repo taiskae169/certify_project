@@ -224,6 +224,7 @@ public class Certi_User_Bean {
 		
 		//System.out.println(vo.getKakaoId());
 		
+		
 		List<Cer_CategoryVO> category = userdao.getCerti_Category();
 		//가입페이지의 관심목록을 추가 하기 위해 list를 받아온다.
 		

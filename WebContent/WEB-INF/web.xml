@@ -32,7 +32,14 @@
 	</servlet-mapping>
 	<!-- mapping setting -->
 
-
+	<error-page>
+		<error-code>404</error-code>
+		<location>/resource/image/error404.png</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/resource/image/error505.jsp</location>
+	</error-page>
 
 
 
