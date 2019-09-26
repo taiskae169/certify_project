@@ -34,10 +34,6 @@
 <jsp:include page="/WEB-INF/view/Bar/NavBar.jsp"/>
 
   <!-- Icons Grid -->
-  <hr style="width:1450px;"/>
-
-
-<jsp:include page="/WEB-INF/view/Bar/NavBar.jsp"/>
 
   <!-- Image Showcases -->
   <section class="showcase" style="width:1450px;;margin:auto;">
@@ -45,26 +41,7 @@
   </section >
   
   <!-- 본문  -->
-	<div class="container"><!-- 좌우측의 공간 확보 -->
-    	<!-- 모달창 -->
-        <div class="modal fade in" id="defaultModal">
-        	<div class="modal-dialog">
-            	<div class="modal-content">
-                	<div class="modal-header">
-                    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title">알림</h4>
-                    </div>
-					<div class="modal-body">
-						<p class="modal-contents"></p>
-					</div>
-					<div class="modal-footer">
-	                	<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-	               	</div>
-                </div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->
-        <!--// 모달창 -->
-               
+	<div class="container"><!-- 좌우측의 공간 확보 -->          
         <!-- 본문 들어가는 부분 -->
         <hr />         
 	 	<div>
@@ -100,8 +77,9 @@
  					</c:if>
  				</table>
 	 		</c:if>
+	 		<br><br>
 	 		<button class="btn" id="insertData" onclick="JavaScript:window.location='/certify/user/mp/input_eduCareer.certi'"> 추가 작성 </button>
-	 		<button id="${cerNum}" onclick="goSession4(this.id)"> 다음 단계로 </button>
+	 		<button class="btn" id="${cerNum}" onclick="goSession4(this.id)"> 다음 단계로 </button>
 	 		
 	 		<c:if test="${empty eduList}"> <!-- 작업 끝나고 empty로 바꾸기!! -->
 	 		

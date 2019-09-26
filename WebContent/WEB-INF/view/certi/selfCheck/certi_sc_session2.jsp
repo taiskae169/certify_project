@@ -30,15 +30,9 @@
   <!-- Navigation -->
   <!-- Masthead -->
   <jsp:include page="/WEB-INF/view/Bar/Search.jsp"/>
-
 <jsp:include page="/WEB-INF/view/Bar/NavBar.jsp"/>
 
   <!-- Icons Grid -->
-  <hr style="width:1450px;"/>
-
-
-
-  <jsp:include page="/WEB-INF/view/Bar/NavBar.jsp"/>
 
   <!-- Image Showcases -->
   <section class="showcase" style="width:1450px;;margin:auto;">
@@ -96,7 +90,7 @@
 						</c:forEach>
 	 			</table>
 	 		</c:if>
-	 		
+	 		<br><br>
 	 		<button class="btn" id="insertData" onclick="JavaScript:window.location='/certify/user/mp/input_eduCareer.certi'"> 추가 작성 </button>
 	 		<button class="btn" id="${cerNum}" onclick="goSession3(this.id)"> 다음 단계로 </button>
 			 		

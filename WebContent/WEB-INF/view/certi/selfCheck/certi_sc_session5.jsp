@@ -34,12 +34,6 @@
 <jsp:include page="/WEB-INF/view/Bar/NavBar.jsp"/>
 
   <!-- Icons Grid -->
-  <hr style="width:1450px;"/>
-
-<<<<<<< HEAD
-=======
-	<jsp:include page="/WEB-INF/view/Bar/NavBar.jsp"/>
->>>>>>> branch 'master' of https://github.com/taiskae169/certify_project.git
 
   <!-- Image Showcases -->
   <section class="showcase" style="width:1450px;;margin:auto;">
@@ -57,7 +51,7 @@
 				<span style="font-size: 20px;">${specCerti.name}</span>
 	 		  자격증 응시 자격을 확인합니다.</i></b>
 	 		  <button class="btn" onclick="location.href='/certify/main.certi'"> 메인으로 </button>
-	 		  <button class="btn" onclick="#"> 관심자격증 등록 </button>
+	 		  <button class="btn" onclick="insertInterst(${cerNum})"> 관심자격증 등록 </button>
 	 		  <button class="btn" onclick="location.href='/certify/user/mp/myPage.certi'"> 마이페이지 </button>
 	 		<br><hr/>
 	 	</div>
@@ -82,6 +76,7 @@
  				</c:forEach>
  			</table>		
 	 		<div>
+	 		<br><br>
 			<button class="btn" onclick="javascript:window.location='/certify/main.certi'">메인으로</button>
 	 		</div>	 		
 		</div> 
@@ -160,6 +155,22 @@
 		var URL = "/certify/certi/certi_sc_session5.certi?cerNum=";
 		window.location=URL+cerNum;
 	}
+	function insertInterst(cerNum){
+		var certi = cerNum;
+		var URL = "/certify/InterestTypePro.certi";
+		$.ajax({
+			url : URL,
+			type : "GET",
+			data : {"cre_name" : certi},
+			success : function(data){
+				alert("등록되었습니다!");
+			},
+			error:function(jqXHR, textStatus, errorThrown){
+				alert("등록되지 않았습니다. 관리자에게 문의하세요.");
+				return false;
+			}
+		});
+	};
 	$(document).ready(function(){
 		if( $('#pass').text() == '불가능' ){
 			$('#pass').css('color', 'red');
