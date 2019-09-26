@@ -52,15 +52,15 @@
 <c:if test="${empty sessionID}">
 	<form action="/certify/user/loginPro.certi" id="loginForm" style="display:inline-block; margin:10px;" method="POST" name="loginForm">
 		<label for="id-box" style="display:inline-block; width:60px;">EMAIL </label>
-		<input type="text" name="id" /> <br />
+		<input type="text" name="id" onkeypress="JavaScript:press(this.form)"/> <br />
 		<label for="pw-box" style="display:inline-block; width:60px;">PW </label>
-		<input type="password" name="pw" />
+		<input type="password" name="pw" onkeypress="JavaScript:press(this.form)"/>
 	</form>
 	<button type="button" class="btn btn-info" onclick="document.getElementById('loginForm').submit();" style="position:relative; height:55px; bottom:15px;">로그인</button> <br />
 	<div style="margin:10px;">
 		<a href="/certify/user/sign.certi">회원가입</a> /
 		<a href="javascript:openWindow();">ID/PW찾기</a>
-		<div style=" position:relative; left:320px;bottom:105px; width:40px;">
+		<div style=" position:relative; left:330px;bottom:105px; width:40px;">
 			<a href="${naverURI}"><img src="/certify/resource/image/login/naver_icon_long.PNG" style="width:200px;height:30px; margin:2px;"/> </a> <br />
 			<a href="javascript:loginWithKakao()" id="custom-login-btn"><img src="/certify/resource/image/login/kakao_icon_middle.png" style="width:200px;height:30px; margin:2px;"/></a> <br />
 			<script type="text/javascript">
@@ -158,4 +158,9 @@
 function InterestMain(){ <%-- 관심 자격증 페이지 새창으로 띄우기 --%> 
     window.open("/certify/InterestMain.certi", "검색새창", "width=600, height=700, toolbar=no, menubar=no, scrollbars=no" );  
 }   
+function press(f){ 
+	if(f.keyCode == 13){ //javascript에서는 13이 enter키를 의미함 
+		loginForm.submit(); 
+	} 
+}
 </script>

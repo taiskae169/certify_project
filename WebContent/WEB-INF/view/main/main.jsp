@@ -140,7 +140,7 @@
     		</jsp:include>
     	</div>
     	<div style="height:119px;margin:3px;">
-    		<a href="javascript:openlist();"><img src="/certify/resource/image/main/준비중.jpg" style="height:113px;width:561px;"></a>
+    		<a href="javascript:openlist();"><img src="/certify/resource/image/icon_alarm.gif" style="height:113px;width:570px;"></a>
     		<script type="text/javascript">
     		console.log('tst' + '${sessionID}');
     		console.log('${sessionID}');
