@@ -28,7 +28,7 @@
 
 </head>
 
-<body>
+<body bgcolor="#F9F3ED">
 
   <!-- Navigation -->
 
