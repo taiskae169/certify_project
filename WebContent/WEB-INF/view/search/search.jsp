@@ -34,28 +34,8 @@
 
 
   <!-- Masthead -->
-  <header>
-    <div class="overlay" style="height:100px" style="width:80%; background:white;margin:auto;">
-    	<a href='/certify/main.certi'>
-    	<img src="/certify/resource/image/main/test.jpg" style="width:50px;height:50px;top:30px;left:130px;position:relative; float:left"/>
-    	</a>
-    	<div class="col-md-10 col-lg-8 col-xl-7 mx-auto" style="top:30px; left:130px">
-          <form>
-            <div class="form-row">
-              <div class="col-12 col-md-9 mb-2 mb-md-0">
-                <input type="text" class="form-control form-control-lg">
-              </div>
-              <div class="col-12 col-md-3">
-                <button type="submit" class="btn btn-block btn-lg btn-primary">검색</button>
-              </div>
-            </div>
-          </form>
-        </div>
-        
-    </div>
-  </header>
-  
-	<jsp:include page="/WEB-INF/view/Bar/NavBar.jsp"/>
+  <jsp:include page="/WEB-INF/view/Bar/Search.jsp"/>
+  <jsp:include page="/WEB-INF/view/Bar/NavBar.jsp"/>
   <!-- Icons Grid -->
   <hr style="width:1450px;"/>
 
@@ -66,7 +46,7 @@
     
   </section >
   <div style="width:1450px;height:606px;margin:auto;display:block;">
-	<div style="width:59%;height:600px;border-style:solid;float:left;">
+	<div style="width:59%;height:600px;float:left;">
     	<div style="height:80px;margin:3px;">
     		<h1>정보처리기사</h1>
     		<hr />
@@ -79,7 +59,7 @@
     		실시기관 홈페이지 :	<a href="http://www.q-net.or.kr">http://www.q-net.or.kr</a>
     		
     	</div>
-    	<div style="height:300px;border-style:solid;margin:3px;">
+    	<div style="height:300px;margin:3px;">
     		<table class='table table-bordered'>
     			<thead>
     				<th>구분</th>
@@ -124,7 +104,7 @@
     		</table>
     	</div>
     </div>
-    <div style="width:580px;height:600px;border-style:solid;float:right;">
+    <div style="width:580px;height:600px;float:right;">
     	<div style="height:152.25px;margin:3px;">
     		<jsp:include page="/WEB-INF/view/main/loginbox.jsp">
     			<jsp:param value="${naverURI}" name="naverURI"/>
@@ -137,7 +117,7 @@
     		<hr />
     		<c:forEach var="info" items="${list}" varStatus="status" >
     			
-    			<a class="btn btn-default" href="javascript:handleClientLoad();">${info.name}</a>
+    			<a class="btn btn-default" href="#">${info.name}</a>
 
     		</c:forEach>
 

@@ -347,7 +347,6 @@
 						return false;
 					}
 				}else{
-					// 유효성검사 완성 X
 					for(var x=0; x<edu_forms.length; x++){
 						if( $('#'+edu_forms[x].id+'#edu_name').val()=="" || $('#'+edu_forms[x].id+'#major_name').val()=="" ){
 							alert("학교 및 학과는 필수기재사항입니다!")
