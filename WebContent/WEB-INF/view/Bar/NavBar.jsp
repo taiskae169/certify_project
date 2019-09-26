@@ -19,8 +19,9 @@
               <li class="active"><a href="/certify/main.certi">Home</a></li> <!-- 홈페이지로 가기 -->
               <li><a href="/certify/BoardList.certi?catenum=10">게시판</a></li> <!-- 게시판 페이지로 가기 -->
               <li><a href="javascript:InterestMain();">관심자격증</a></li> <!-- 관심자격증창 띄우기 -->
-              <li><a href="javascript:openlist();"">시험일정</a></li> <!-- 시험일정 창띄우기 -->
+              <li><a href="javascript:openlist();">시험일정</a></li> <!-- 시험일정 창띄우기 -->
               <li><a href="/certify/certi/certi_sc_session1.certi?type=1">응시자격 자가진단</a></li>
+              <li><a href="javascript:CBTest();">기출문제</a></li>
            		<!-- 응시자격 페이지로 가기 -->
 
             </ul>
@@ -43,5 +44,11 @@
     			function InterestMain(){  
     			    window.open("/certify/InterestMain.certi", "검색새창", "width=600, height=700, toolbar=no, menubar=no, scrollbars=no" );  
     			} 
+
+    			function CBTest(){  
+    			    window.open("https://www.comcbt.com", "검색새창", "toolbar=no, menubar=no, scrollbars=no" );  
+    			} 
+
+    			
 				
 			</script>
