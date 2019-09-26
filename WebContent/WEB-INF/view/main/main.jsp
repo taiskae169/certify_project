@@ -34,26 +34,8 @@
 
 
   <!-- Masthead -->
-  <header>
-    <div class="overlay" style="height:100px" style="width:80%; background:white;margin:auto;">
-    	<img src="/certify/resource/image/main/test.jpg" style="width:50px;height:50px;top:30px;left:130px;position:relative; float:left"/>
-    	<div class="col-md-10 col-lg-8 col-xl-7 mx-auto" style="top:30px; left:130px">
-          <form action="/certify/cerinfo/search.certi">
-            <div class="form-row">
-              <div class="col-12 col-md-9 mb-2 mb-md-0">
-                <input type="text" class="form-control form-control-lg">
-              </div>
-              <div class="col-12 col-md-3">
-                <button type="submit" class="btn btn-block btn-lg btn-primary">검색</button>
-              </div>
-            </div>
-          </form>
-        </div>
-        
-    </div>
-  </header>
-  
-	<jsp:include page="/WEB-INF/view/Bar/NavBar.jsp"/>
+  <jsp:include page="/WEB-INF/view/Bar/Search.jsp"/>
+  <jsp:include page="/WEB-INF/view/Bar/NavBar.jsp"/>
 
   <!-- Icons Grid -->
   <hr style="width:1450px;"/>
@@ -66,9 +48,8 @@
   </section >
   <div position = "static" style="width:1450px;height:606px;margin:auto;display:block;">
 	<div style="width:59%;height:600px;float:left;">
-    	<div style="height:380px;margin:3px; text-align:center;">
-    		<h4>신청가능한 시험 목록</h4>
-    		<hr />
+    	<div style="height:310px;margin:3px; text-align:center;">
+    		<h4 align="left">신청가능한 시험 목록</h4>
     		<table class="table table-striped" >
     			<thead>
     				<tr>
@@ -77,29 +58,38 @@
     					<td>신청 사이트</td>
     				</tr>
     			</thead>
-    			<tbody>
+    			<tbody id="certiTable1">
     				<tr>
-    					<td></td>
-    					<td>신청가능한 시험이 없습니다.</td>
-    					<td></td>
+    					<td>제26회 정수시설운영관리사 1,2차 원서접수</td>
+    					<td>9월 30일 (월), 오전 9시 – 10월 9일 (수), 오후 6시</td>
+    					<td><a href="http://www.q-net.or.kr/man001.do?gSite=Q">이동하기</a></td>
     				</tr>
     				<tr>
-    					<td> </td>
-    					<td> </td>
-    					<td> </td>
+    					<td>정기 기능사 4회 필기시험</td>
+    					<td>9월 28일 (토), 오전 9시 – 10월 6일 (일), 오후 6시</td>
+    					<td><a href="http://www.q-net.or.kr/man001.do?gSite=Q">이동하기</a></td>
     				</tr>
     				<tr>
-    					<td> </td>
-    					<td> </td>
-    					<td> </td>
+    					<td>박물관및미술관준학예사 원서접수</td>
+    					<td>10월 7일 (월), 오전 9시 – 10월 16일 (수), 오후 6시 </td>
+    					<td><a href="http://www.q-net.or.kr/man001.do?gSite=Q">이동하기</a></td>
     				</tr>
     				<tr>
-    					<td> </td>
-    					<td> </td>
-    					<td> </td>
+    					<td>정기 기사 3회 실기시험 </td>
+    					<td>10월 12일 (토), 오전 9시 – 10월 25일 (금), 오후 6시 </td>
+    					<td><a href="http://www.q-net.or.kr/man001.do?gSite=Q">이동하기</a></td>
+    				</tr>
+    				<tr>
+    					<td>정기 기사 4회 실기 원서접수</td>
+    					<td>10월 14일 (월), 오전 9시 – 10월 17일 (목), 오후 6시</td>
+    					<td><a href="http://www.q-net.or.kr/man001.do?gSite=Q">이동하기</a></td>
+    				</tr>
+    				<tr>
+    					<td>제27회 청소년지도사 1차합격자발표</td>
+    					<td>10월 25일 (금), 오전 9시 – 오후 6시</td>
+    					<td><a href="http://www.q-net.or.kr/man001.do?gSite=Q">이동하기</a></td>
     				</tr>
     			</tbody>
-
 			</table>
 
     	</div>
@@ -115,6 +105,7 @@
 </c:if>
 <c:if test="${nocount!=0 }">
 <div position = "static">
+<h3 align="left">공지사항</h3>
 <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0" border="1px">
 			<thead>
 				<tr height="30"  style="font-size:20px">
@@ -289,3 +280,5 @@
 	
 </body>
 </html>
+
+

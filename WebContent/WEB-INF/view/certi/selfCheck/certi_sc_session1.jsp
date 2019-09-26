@@ -40,15 +40,11 @@
   <!-- Navigation -->
   <!-- Masthead -->
  <jsp:include page="/WEB-INF/view/Bar/Search.jsp"/>
-
-<jsp:include page="/WEB-INF/view/Bar/NavBar.jsp"/>
+ <jsp:include page="/WEB-INF/view/Bar/NavBar.jsp"/>
   
-  
-
   <!-- Icons Grid -->
-  <hr style="width:1450px;"/>
 
-  <jsp:include page="/WEB-INF/view/Bar/NavBar.jsp"/>
+
   <!-- Image Showcases -->
   <section class="showcase" style="width:1450px;;margin:auto;">
 
