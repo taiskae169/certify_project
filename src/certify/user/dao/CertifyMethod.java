@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import certify.vo.Cer_CategoryVO;
 import certify.vo.CertiInfoVO;
 import certify.vo.CertifyVO;
+import test.readCSV.test.VOforCerti;
 
 
 public class CertifyMethod {
@@ -114,6 +115,11 @@ public class CertifyMethod {
 	public int getCount_typeSpec2(String certi_name){
 		int count = sql.selectOne("certi.getCount_typeSpec2", certi_name);
 		return count;
+	}
+	
+	public List<CertifyVO> getCertiSpecList(String certify) {
+		List<CertifyVO> list = sql.selectList("getCertifySearch", certify);
+		return list;
 	}
 	
 	

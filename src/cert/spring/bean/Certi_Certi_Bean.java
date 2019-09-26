@@ -187,135 +187,136 @@ public class Certi_Certi_Bean {
 		mv = new ModelAndView();
 		String id = (String)session.getAttribute("sessionID");
 		if(id!=null) {
-		mv.addObject("cerNum", cerNum);
-		int certiNum = Integer.parseInt(cerNum);
-		int type = 0;
-		
-		// 날짜 비교를 위한 변수
-		int year = 365;	
-		Date today = new Date();
-		
-		userVO uvo = null;
-		List<user_Edu_edu_valueVO> edu_value=null;
-		List<CertifyVO> cf = null;
-		List<userCertiVO> user_certiList = null;
-		List<userEduVO> user_eduList = null;
-		List<Cer_CategoryVO> certi_cate = null;
-		List<userCertiVO> certiList = null;		
-		List<methodVO> checkList = null;
-		
-		CertifyVO cfvo = certidao.getSpecCertify(certiNum);
-		
-		GinunJangCond ginun_cond = new GinunJangCond();;
-		SanUpCond sanup_cond = new SanUpCond();
-		GiSulsaCond gisulsa_cond = new GiSulsaCond();
-		GisaCond gisa_cond = new GisaCond();
-		Gukgajunmun_noCond gukjun_nocond = new Gukgajunmun_noCond();
-		Gukjun_jungsooSisul1 gukjun_jungsoo = new Gukjun_jungsooSisul1();
-		GukJun_sahoebogji_1 gukjun_sahoe = new GukJun_sahoebogji_1();
-		Gukjun_sobangAnjun gukjun_soAnn = new Gukjun_sobangAnjun();
-		Gukjun_sobangSisul gukjun_soSii = new Gukjun_sobangSisul();
-		
-		// 경력사항 리턴 간 받아올 변수
-		long comp_workdays = 0;
-		
-		// 회원의 경력사항을 리턴받는 리스트 변수
-		List<userCareerVO> returnCareer = null;
-		List<userCareerSub> user_career_sub = null; 		// 카테고리별 근무년수(근무일수) 총합 후 저장을 위한 리스트 변수
-		HashMap<Integer, Long> careerMap = null;		// 실제 조건 비교에 사용되는 Map
-		
-		if(cerNum!=null) {
-			uvo = userdao.getUserInfo((String) session.getAttribute("sessionID"));
-			user_eduList = userdao.getUserEdu(id);
-			returnCareer = userdao.getUserCareer(id);
-			edu_value = userdao.getUser_Edu_Val();
-			cf = userdao.getAllCertify();
+			mv.addObject("cerNum", cerNum);
+			int certiNum = Integer.parseInt(cerNum); // 자격증 번호
+			int type = 0;	// 자격증 구분(기사,산업기사..)을 위한 변수
 			
-			if(returnCareer!=null) {
-				user_career_sub = new ArrayList<userCareerSub>();
-				for(int i=0; i<returnCareer.size(); i++) {
-					long diff = returnCareer.get(i).getCom_ent_date().getTime() - returnCareer.get(i).getCom_gra_date().getTime();
-					long diffDays = Math.abs(diff / (24 * 60 * 60 * 1000));	// 양수변환
-					comp_workdays = diffDays; // 합산 근무일수
+			userVO uvo = null;
+			List<user_Edu_edu_valueVO> edu_value=null;
+			List<CertifyVO> cf = null;
+			List<userCertiVO> user_certiList = null;
+			List<userEduVO> user_eduList = null;
+			List<Cer_CategoryVO> certi_cate = null;
+			List<userCertiVO> certiList = null;		
+			List<methodVO> checkList = null;
+			CertifyVO cfvo = certidao.getSpecCertify(certiNum);
+			
+			// 자격증 조건문 메소드
+			GinunJangCond ginun_cond = new GinunJangCond();;
+			SanUpCond sanup_cond = new SanUpCond();
+			GiSulsaCond gisulsa_cond = new GiSulsaCond();
+			GisaCond gisa_cond = new GisaCond();
+			Gukgajunmun_noCond gukjun_nocond = new Gukgajunmun_noCond();
+			Gukjun_jungsooSisul1 gukjun_jungsoo = new Gukjun_jungsooSisul1();
+			GukJun_sahoebogji_1 gukjun_sahoe = new GukJun_sahoebogji_1();
+			Gukjun_sobangAnjun gukjun_soAnn = new Gukjun_sobangAnjun();
+			Gukjun_sobangSisul gukjun_soSii = new Gukjun_sobangSisul();
+			
+			// 경력사항 리턴 간 받아올 변수
+			long comp_workdays = 0;	
+			
+			// 회원의 경력사항을 리턴받는 리스트 변수
+			List<userCareerVO> returnCareer = null;
+			List<userCareerSub> user_career_sub = null; 	// 카테고리별 근무년수(근무일수) 총합 후 저장을 위한 리스트 변수
+			HashMap<Integer, Long> careerMap = null;		// 실제 조건 비교에 사용되는 Map
+			
+			if(cerNum!=null) {
+				uvo = userdao.getUserInfo((String) session.getAttribute("sessionID"));
+				user_eduList = userdao.getUserEdu(id);
+				returnCareer = userdao.getUserCareer(id);
+				edu_value = userdao.getUser_Edu_Val();
+				cf = userdao.getAllCertify();
+				
+				if(returnCareer!=null) {
+					// add user_career_sub
+					user_career_sub = new ArrayList<userCareerSub>();
+					for(userCareerVO ucv : returnCareer) {
+						long diff = ucv.getCom_ent_date().getTime() - ucv.getCom_gra_date().getTime();
+						long diffDays = Math.abs(diff / (24 * 60 * 60 * 1000));	// 양수변환
+						comp_workdays = diffDays; // 합산 근무일수
+						
+						userCareerSub ucs = new userCareerSub();
+						ucs.setUser_car_cate(ucv.getComp_cate());
+						ucs.setUser_sub_workdays(comp_workdays);
+						user_career_sub.add(ucs);
+					}
 					
-					userCareerSub ucs = new userCareerSub();
-					ucs.setUser_car_cate(returnCareer.get(i).getComp_cate());
-					ucs.setUser_sub_workdays(comp_workdays);
-					user_career_sub.add(ucs);
-				}
-				careerMap = new HashMap<Integer, Long>();
-				for(int i=0; i<user_career_sub.size(); i++) {
-					if(careerMap.isEmpty()) {
-						careerMap.put(user_career_sub.get(i).getUser_car_cate(), user_career_sub.get(i).getUser_sub_workdays());
-					}else if(!careerMap.containsKey(user_career_sub.get(i).getUser_car_cate())) {
-						careerMap.put(user_career_sub.get(i).getUser_car_cate(), user_career_sub.get(i).getUser_sub_workdays());
-					}else if(careerMap.containsKey(user_career_sub.get(i).getUser_car_cate())) {
-						long workday_sum = careerMap.get(user_career_sub.get(i).getUser_car_cate())+user_career_sub.get(i).getUser_sub_workdays();
-						careerMap.remove(user_career_sub.get(i).getUser_car_cate());
-						careerMap.put(returnCareer.get(i).getComp_cate(), workday_sum);
+					// put careerMap
+					careerMap = new HashMap<Integer, Long>();
+					for(userCareerSub ucsb : user_career_sub) {
+						int i = 0;
+						if(careerMap.isEmpty()) {
+							careerMap.put(ucsb.getUser_car_cate(), ucsb.getUser_sub_workdays());
+						}else if(!careerMap.containsKey(ucsb.getUser_car_cate())) {
+							careerMap.put(ucsb.getUser_car_cate(), ucsb.getUser_sub_workdays());
+						}else if(careerMap.containsKey(ucsb.getUser_car_cate())) {
+							long workday_sum = careerMap.get(ucsb.getUser_car_cate())+ucsb.getUser_sub_workdays();
+							careerMap.remove(ucsb.getUser_car_cate());
+							careerMap.put(returnCareer.get(i).getComp_cate(), workday_sum);
+						}
+						i++;
 					}
 				}
+				
+				user_certiList = userdao.getUserCerti(id);
+				
+				CertifyVO specCerti = certidao.getSpecCertify(certiNum);
+				mv.addObject("specCerti",specCerti);
+				
+				for(CertifyVO c : cf) {
+					if(c.getNum() == certiNum) type = c.getType();
+				}
+				certi_cate = userdao.getCerti_Category();
+				certiList = userdao.getUserCerti(id);
+				if(certiList!=null) mv.addObject("certiList", certiList);
+				mv.addObject("edu_value",edu_value);
+				mv.addObject("allCerti", cf);
+				mv.addObject("certi_cate", certi_cate);	
+				mv.addObject("uvo",uvo);
 			}
 			
-			user_certiList = userdao.getUserCerti(id);
-			
-			CertifyVO specCerti = certidao.getSpecCertify(certiNum);
-			mv.addObject("specCerti",specCerti);
-			
-			for(CertifyVO c : cf) {
-				if(c.getNum() == certiNum) type = c.getType();
-			}
-			certi_cate = userdao.getCerti_Category();
-			
-			certiList = userdao.getUserCerti(id);
-			if(certiList!=null) mv.addObject("certiList", certiList);
-			mv.addObject("edu_value",edu_value);
-			mv.addObject("allCerti", cf);
-			mv.addObject("certi_cate", certi_cate);	
-			mv.addObject("uvo",uvo);
-		}
-		
-		if(type == 0) {
-			methodVO mvo = new methodVO();
-			mvo.setMess("기능사는 자격제한이 없습니다.");
-			mvo.setPossible(true);
-			checkList = new ArrayList<methodVO>();
-			checkList.add(mvo);
-		}else if(type==1) {
-			checkList = sanup_cond.getSanupAll(
-					uvo, careerMap, user_eduList, cfvo, user_certiList);
-		}else if(type==2) {
-			checkList = gisa_cond.getGisaAll(
-					uvo, careerMap, user_eduList, cfvo, user_certiList);
-		}else if(type==3) {
-			checkList = gisulsa_cond.getGisulsaAll(
-					uvo, careerMap, user_eduList, cfvo, user_certiList);
-		}else if(type==4) {
-			checkList = ginun_cond.getGinunjangAll(
-					uvo, careerMap, user_eduList, cfvo, user_certiList);
-		}else if(type==5) {
-			if(certiNum==662 || certiNum==663 || certiNum==664 || certiNum==665 || certiNum==666 || certiNum==667) {
-				checkList = gukjun_nocond.getMoonWha(certiNum,
-						uvo, careerMap, user_eduList, cfvo, user_certiList);
-			}else if(certiNum==670) {
-				checkList = gukjun_nocond.getByunRi(uvo, careerMap, user_eduList, cfvo, user_certiList);
-			}else {
+			if(type == 0) { // 기능사
 				methodVO mvo = new methodVO();
-				mvo.setMess("국가전문자격은 일부 자격증을 제외하곤 자격제한이 없습니다.");
+				mvo.setMess("기능사는 자격제한이 없습니다.");
 				mvo.setPossible(true);
 				checkList = new ArrayList<methodVO>();
 				checkList.add(mvo);
+			}else if(type==1) { // 산업기사
+				checkList = sanup_cond.getSanupAll(
+						uvo, careerMap, user_eduList, cfvo, user_certiList);
+			}else if(type==2) { // 기사
+				checkList = gisa_cond.getGisaAll(
+						uvo, careerMap, user_eduList, cfvo, user_certiList);
+			}else if(type==3) { // 기술사
+				checkList = gisulsa_cond.getGisulsaAll(
+						uvo, careerMap, user_eduList, cfvo, user_certiList);
+			}else if(type==4) { // 기능장
+				checkList = ginun_cond.getGinunjangAll(
+						uvo, careerMap, user_eduList, cfvo, user_certiList);
+			}else if(type==5) { // 국가전문자격
+				if(certiNum==662 || certiNum==663 || certiNum==664 || certiNum==665 || certiNum==666 || certiNum==667) {
+					checkList = gukjun_nocond.getMoonWha(certiNum,
+							uvo, careerMap, user_eduList, cfvo, user_certiList);
+				}else if(certiNum==670) {
+					checkList = gukjun_nocond.getByunRi(uvo, careerMap, user_eduList, cfvo, user_certiList);
+				}else {
+					methodVO mvo = new methodVO();
+					mvo.setMess("국가전문자격은 일부 자격증을 제외하곤 자격제한이 없습니다.");
+					mvo.setPossible(true);
+					checkList = new ArrayList<methodVO>();
+					checkList.add(mvo);
+				}
 			}
-		}
-		String pass = null;
-		for(methodVO mvo : checkList) {
-			if(mvo.isPossible()==true) pass="응시 가능";
-			else pass="불가능";
-		}
-		
-		mv.addObject("checkList", checkList);
-		mv.addObject("pass", pass);
-		mv.addObject("id", id);
+			
+			String pass = null;
+			for(methodVO mvo : checkList) {
+				if(mvo.isPossible()==true) pass="응시 가능";
+				else pass="불가능";
+			}
+			
+			mv.addObject("checkList", checkList);
+			mv.addObject("pass", pass);
+			mv.addObject("id", id);
 		}
 		mv.setViewName("/certi/selfCheck/certi_sc_session5");
 		return mv;

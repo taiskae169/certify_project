@@ -1,7 +1,13 @@
 package cert.spring.bean;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +20,7 @@ import certify.user.dao.CertifyMethod;
 import certify.vo.Cer_CategoryVO;
 import certify.vo.CertiInfoVO;
 import certify.vo.CertifyVO;
+import test.readCSV.test.ReadCSVatUniv;
 
 @Controller
 @RequestMapping("/cerinfo/")
@@ -26,8 +33,22 @@ public class Certi_Search_Bean {
 	
 	
 	@RequestMapping("search.certi")
-	public ModelAndView search(String certify, HttpSession session) {
+	public ModelAndView search(String certify, HttpSession session, HttpServletRequest request) 
+			throws IOException {
 		mv = new ModelAndView();
+		
+		String csvGisaPath = request.getSession().getServletContext().getRealPath("/csvSource/gisa.csv");
+		String filepath = new File(csvGisaPath).getAbsolutePath();
+		ReadCSVatUniv rcu = new ReadCSVatUniv();
+		HashMap<String, Map<String, String>> gisaCerti = rcu.certiCSVtoMap(filepath);
+		
+//		if(certify!=null) {
+//			List<CertifyVO> certiList = certidao.getCertiSpecList(certify);
+//			for(CertifyVO cv :certiList) {
+//				System.out.println(gisaCerti.get(cv.getName()));
+//			}
+//		}
+		
 		List<Cer_CategoryVO> list = certidao.getCerti_Category();
 		mv.addObject("list", list);
 		mv.setViewName("/search/search");
@@ -38,6 +59,6 @@ public class Certi_Search_Bean {
 		return mv;
 	}//search 종료
 	
-
+	
 
 }

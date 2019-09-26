@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
@@ -70,4 +71,34 @@ public class ReadCSVatUniv {
         }   
         return univercity;
     }
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public HashMap<String, Map<String, String>> certiCSVtoMap(String filePath) throws IOException {
+		HashMap<String, Map<String, String>> univercity = new HashMap<String, Map<String, String>>();	 
+        @SuppressWarnings("resource")
+        CSVReader reader = new CSVReader(new InputStreamReader(new FileInputStream(filePath), "EUC-KR")); // CSV파일 한글로 읽어들이기
+        String[] nextLine;
+        String save = null;
+        Map mm = null;
+        while ((nextLine = reader.readNext()) != null) {
+            if(save==null) {
+            	mm = new HashMap<String, String>();
+            	save=nextLine[0].trim();
+            	mm.put(nextLine[1].trim(), nextLine[2].trim());
+            	univercity.put(save, mm);
+            }else if(save!=null && save.equals(nextLine[0].trim())) {
+            	mm.put(nextLine[1].trim(), nextLine[2].trim());
+            	univercity.put(save, mm);
+            }else if(save!=null && !save.equals(nextLine[0].trim())) {
+            	save = nextLine[0].trim();
+            	mm = new HashMap<String, String>();
+            	mm.put(nextLine[1].trim(), nextLine[2].trim());
+            	univercity.put(save, mm);
+            }  
+        }
+       
+        return univercity;
+    }
+	
+	
 }
