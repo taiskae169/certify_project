@@ -118,7 +118,6 @@ public class Certi_User_Bean {
 		    
 		    if(responseCode==200) {
 		    	inputLine = res.toString();
-		    	//System.out.println("inputLine : " + inputLine);
 		    	
 		    	//json 추출 과정
 		    	JsonParser jp = new JsonParser();
@@ -126,20 +125,13 @@ public class Certi_User_Bean {
 		    	access_token = element.getAsJsonObject().get("access_token").getAsString();
 		    	refresh_token= element.getAsJsonObject().get("refresh_token").getAsString();
 		    	//json에서 access_toekn, refresh_token 추출 완료
-		    	
-		    	//session.setAttribute("naver_access_token", access_token);
-		    	//session.setAttribute("naver_refresh_token", refresh_token);
-		    	
+
 		    	HashMap<String, String> profile = userdao.getNaverProfile(access_token);
 		    	userVO userinfo = new userVO();
 		    	userinfo.setId(profile.get("email"));
 		    	userinfo.setName(profile.get("name"));
 		    	userinfo.setNaverId(profile.get("id"));
-		    	
-//		    	System.out.println(profile.get("name"));
-//		    	System.out.println(profile.get("birthday"));
-//		    	System.out.println(profile.get("email"));
-//		    	System.out.println(profile.get("id"));
+
 		    	
 		    	
 				int check = userdao.naverLogin(userinfo.getNaverId());
