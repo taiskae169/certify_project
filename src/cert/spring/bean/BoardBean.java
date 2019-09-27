@@ -157,6 +157,7 @@ public class BoardBean {
 		if(request.getFile("save")!=null) {
 			MultipartFile mf = request.getFile("save"); //save 이름으로 되어있는 file 받아오기
 			String imgs = request.getRealPath("imgs"); // imgs 이미지 실제 주소 받아오기
+
 			
 			orgName = mf.getOriginalFilename(); //파일 이름
 			String ext = orgName.substring(orgName.lastIndexOf('.')); // 확장자 가져오기
