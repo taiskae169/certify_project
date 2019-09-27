@@ -166,7 +166,7 @@ public class BoardBean {
 			newName = "image"+num+ext; //새로운 파일 이름 만들기
 			File copyFile = new File(imgs+"//"+newName); 
 			mf.transferTo(copyFile);
-	}	
+		}	
 		else {
 			newName = null;
 			orgName = null;
