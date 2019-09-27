@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.mortbay.jetty.Request;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -147,20 +148,29 @@ public class BoardBean {
 	}
 	
 	@RequestMapping(value="BoardWritePro.certi", method=RequestMethod.POST)
-	public String BoardWritePro(BoardVO vo , 
-				MultipartHttpServletRequest request,Model model,HttpSession session) throws IOException{
+	public String BoardWritePro(BoardVO vo ,
+			MultipartHttpServletRequest request,Model model,HttpSession session) throws IOException {
+			
+			String newName = "";
+			String orgName = "";
+			
+		if(request.getFile("save")!=null) {
 			MultipartFile mf = request.getFile("save"); //save 이름으로 되어있는 file 받아오기
 			String imgs = request.getRealPath("imgs"); // imgs 이미지 실제 주소 받아오기
 			
-			String orgName = mf.getOriginalFilename(); //파일 이름
+			orgName = mf.getOriginalFilename(); //파일 이름
 			String ext = orgName.substring(orgName.lastIndexOf('.')); // 확장자 가져오기
 			
 			
 			int num = (Integer)sql.selectOne("board.Filenum") + 1; //파일 개수 가져오기
-			String newName = "image"+num+ext; //새로운 파일 이름 만들기
+			newName = "image"+num+ext; //새로운 파일 이름 만들기
 			File copyFile = new File(imgs+"//"+newName); 
 			mf.transferTo(copyFile);
-			
+	}	
+		else {
+			newName = null;
+			orgName = null;
+		}
 			
 			vo.setNewname(newName);
 			vo.setOrgname(orgName);
