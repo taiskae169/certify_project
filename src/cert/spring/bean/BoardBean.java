@@ -200,9 +200,11 @@ public class BoardBean {
 	@RequestMapping(value="BoardUpdatePro.certi", method=RequestMethod.POST)
 	public String BoardUpdatePro(BoardVO vo , 
 				MultipartHttpServletRequest request,Model model,HttpSession session) throws IOException{
-		    String orgName = null;
+		    
+			String orgName = null;
 		    String newName = null;
 	
+		    if(request.getFile("save") != null) {
 			MultipartFile mf = request.getFile("save");
 			String imgs = request.getRealPath("imgs");
 			
@@ -215,7 +217,7 @@ public class BoardBean {
 			mf.transferTo(copyFile);
 			
 			System.out.println(vo.getNum());
-			
+		    }
 			
 
 			vo.setNewname(newName);

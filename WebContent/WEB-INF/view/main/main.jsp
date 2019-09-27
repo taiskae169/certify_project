@@ -28,7 +28,7 @@
 
 </head>
 
-<body>
+<body bgcolor="#F9F3ED">
 
   <!-- Navigation -->
 
@@ -49,7 +49,7 @@
   <div position = "static" style="width:1450px;height:606px;margin:auto;display:block;">
 	<div style="width:59%;height:600px;float:left;">
     	<div style="height:310px;margin:3px; text-align:center;">
-    		<h4 align="left">신청가능한 시험 목록</h4>
+    		<h4 align="left"><b><i>신청가능한 시험 목록</i></b></h4>
     		<table class="table table-striped" >
     			<thead>
     				<tr>
@@ -95,40 +95,38 @@
     	</div>
     	<div style="height:200px;margin:3px;">
     		<c:if test="${boardcount==0 }">
-<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-									<tr>
-										<td align="center">
-											<h3>해당하는 게시글이 없습니다.. :(</h3>
-										</td>
-									</tr>	
-							</table>
-</c:if>
-<c:if test="${nocount!=0 }">
-<div position = "static">
-<h3 align="left">공지사항</h3>
-<table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0" border="1px">
-			<thead>
-				<tr height="30"  style="font-size:20px">
-					<td align = "center" width="75">번호</td>
-					<td align = "center" width="50">작성자</td>
-					<td align = "center" width="300">제목</td>
-					
-				</tr>
-			</thead>
-        	<tbody>
-        		<c:forEach begin="0" end="${noboardlist.size()-1}" step="1" var="i">
-        		<c:set var="noboard" value="${noboardlist[i]}"/>
-        		<tr height="30">
-        		<td align="center"  width="50" > ${noboard.num}</td>
-        		<td align="center"  width="50" > ${noboard.id}</td>
-        		<td align="center"  width="300" ><a href="BoardContent.certi?num=${noboard.num }"> ${noboard.title}</a></td>
-        		</tr>
-        		</c:forEach>
-        	</tbody>
-        	</table>
-        	</div>
+				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+					<tr>
+						<td align="center">
+							<h3>해당하는 게시글이 없습니다.. :(</h3>
+						</td>
+					</tr>	
+				</table>
+			</c:if>
+			<c:if test="${nocount!=0 }">
+				<div position = "static">
+					<h4 align="left"><b><i>공지사항</i></b></h4>
+					<table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0" border="1px">
+						<thead  style="font-size: 16px;">
+							<tr height="30"  style="font-size:20px">
+								<td align = "center" width="75">번호</td>
+								<td align = "center" width="50">작성자</td>
+								<td align = "center" width="300">제목</td>
+							</tr>
+						</thead>
+					    <tbody  style="font-size: 14px;">
+					    	<c:forEach begin="0" end="${noboardlist.size()-1}" step="1" var="i">
+					        	<c:set var="noboard" value="${noboardlist[i]}"/>
+					        	<tr height="30">
+					        		<td align="center"  width="50" > ${noboard.num}</td>
+					        		<td align="center"  width="50" > ${noboard.id}</td>
+					        		<td align="center"  width="300" ><a href="BoardContent.certi?num=${noboard.num }"> ${noboard.title}</a></td>
+					        	</tr>
+					       	</c:forEach>
+					    </tbody>
+					</table>
+				</div>
         	</c:if>
-    		
     	</div>
     </div>
     
@@ -158,39 +156,32 @@
 			</script>
     	</div>
     	<div style="height:311px;margin:3px;">
+    		<h4 align="left"><b><i>최근 게시글</i></b></h4>
     		<c:if test="${boardcount==0 }">
-<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-									<tr>
-										<td align="center">
-											<h3>해당하는 게시글이 없습니다.. :(</h3>
-										</td>
-									</tr>	
-							</table>
-</c:if>
-<c:if test="${boardcount!=0 }">
-<div position = "static" style="hight:315px;">
-<table class="table table-bordered table-striped" id="dataTable" style="width:"750"; cellspacing:"0"; border:"1px";">
-			<thead>
-				<tr height="40"  style="font-size:18px">
-					<td align = "center" width="75">번호</td>
-					<td align = "center" width="100">작성자</td>
-					<td align = "center" width="300">제목</td>
-					
-				</tr>
-			</thead>
-        	<tbody>
-        		<c:forEach begin="0" end="${boardlist.size()-1}" step="1" var="i">
-        		<c:set var="board" value="${boardlist[i]}"/>
-        		<tr height="30">
-        		<td align="center"  width="75" > ${board.num}</td>
-        		<td align="center"  width="100" > ${board.id}</td>
-        		<td align="center"  width="300" ><a href="BoardContent.certi?num=${board.num }"> ${board.title}</a></td>
-        		</tr>
-        		</c:forEach>
-        	</tbody>
-        	</table>
-        	</c:if>
-    	</div>
+				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+					<tr>
+						<td align="center">
+							<h3>해당하는 게시글이 없습니다.. :(</h3>
+						</td>
+					</tr>	
+				</table>
+			</c:if>
+			<c:if test="${boardcount!=0 }">
+				<div position = "static" style="hight:315px;">
+				<table class="table table-bordered table-striped" id="dataTable" style="width:"750"; cellspacing:"0"; border:"1px";">
+		        	<tbody style="font-size: 14px;">
+		        		<c:forEach begin="0" end="${boardlist.size()-1}" step="1" var="i">
+		        		<c:set var="board" value="${boardlist[i]}"/>
+		        		<tr height="30">
+		        		<td align="center"  width="75" > ${board.num}</td>
+		        		<td align="center"  width="100" > ${board.id}</td>
+		        		<td align="center"  width="300" ><a href="BoardContent.certi?num=${board.num }"> ${board.title}</a></td>
+		        		</tr>
+		        		</c:forEach>
+		        	</tbody>
+        		</table>	
+    		</div>
+    	</c:if>
     </div>
    </div>
   <!-- Testimonials -->

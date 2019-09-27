@@ -400,7 +400,8 @@ public class Certi_User_MyPage_Bean {
 	
 	
 	@RequestMapping(value="inputUserData_Pro.certi", method = RequestMethod.POST)
-	public ModelAndView inputUserData_Pro(HttpSession session, String eduList, String careerList, String certiList) throws IOException, Exception{
+	public ModelAndView inputUserData_Pro(HttpSession session, 
+			String eduList, String careerList, String certiList) throws IOException, Exception{
 		mv = new ModelAndView();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
@@ -444,7 +445,6 @@ public class Certi_User_MyPage_Bean {
 					uevo.setGra_date(gra_date);
 					uevo.setEdu(Integer.parseInt(eduArr[7]));
 					userdao.insertUserEdu(uevo);
-					// 주 : 배열의 순서가 바뀔 일이 없기 때문에 가능한 하드코딩입니다. 맵핑으로 못받더라구요 ㅜㅜㅜ
 				}
 			}
 			
