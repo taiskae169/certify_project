@@ -56,7 +56,7 @@ public class Certi_Bean {
 		String state;
 		try {
 			//네이버 로그인을 위한 URL 설정
-			redirectURI = URLEncoder.encode("http://localhost:8080/certify/user/naverLogin.certi", "UTF-8");
+			redirectURI = URLEncoder.encode("http://192.168.0.5:8080/certify/user/naverLogin.certi", "UTF-8");
 			SecureRandom rendom = new SecureRandom();
 			state = new BigInteger(130,rendom).toString();
 			
