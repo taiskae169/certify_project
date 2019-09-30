@@ -12,7 +12,7 @@
 	<br/>
 	<br/>
 	<br/>
-	<a href="/certify/main.certi"><img src="/certify/resource/image/error505.png" style="margin:auto; width:734px; hight:587px;"></a>
+	<a href="/certify/main.certi"><img src="/certify/resource/image/error404.png" style="margin:auto; width:734px; hight:587px;"></a>
 
 </body>
 </html>
