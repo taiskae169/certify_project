@@ -35,7 +35,7 @@
         			console.log('${sessionID}');
 					var sessionID = '${sessionID}';
         			if(sessionID){
-        				window.open('http://localhost:8080/certify/user/mp/callist.certi', '리스트',"toolbar=no, menubar=no, scrollbars=no");
+        				window.open('/certify/user/mp/callist.certi', '리스트',"toolbar=no, menubar=no, scrollbars=no");
             			}else{
                 			alert('로그인이 필요합니다.');
                 		}
